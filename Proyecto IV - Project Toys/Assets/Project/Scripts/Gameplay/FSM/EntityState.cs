@@ -4,32 +4,38 @@ public abstract class EntityState
 {
     protected Player player;
     protected StateMachine stateMachine;
-    protected string stateName;
+    protected string animBoolName;
+
+    protected Animator anim;
+    protected Rigidbody rb;
 
     public EntityState(Player player, StateMachine stateMachine, string stateName)
     {
         this.player = player;
         this.stateMachine = stateMachine;
-        this.stateName = stateName;
+        this.animBoolName = stateName;
+
+        this.anim = player.anim;
+        this.rb = player.rb;
     }
 
     public virtual void Enter()
     {
         // Cada vez que se cambie de estado se llamará a este método
-        Debug.Log("Entering state: " + stateName);
+        anim.SetBool(animBoolName, true);
 
     }
 
     public virtual void Update()
     {
         // Aqui va la logica del estado
-        Debug.Log("Updating state: " + stateName);
+        Debug.Log("Updating state: " + animBoolName);
     }
 
     public virtual void Exit()
     {
         // Esto se llamara cada vez que salgamos de un estado y entremos en otro
-        Debug.Log("Exiting state: " + stateName);
+        anim.SetBool(animBoolName, false);
     }
 
 }
