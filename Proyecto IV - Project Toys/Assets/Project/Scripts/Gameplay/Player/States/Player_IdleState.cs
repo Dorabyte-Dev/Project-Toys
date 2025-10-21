@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player_IdleState : EntityState
+public class Player_IdleState : Player_GroundedState
 {
     public Player_IdleState(Player player, StateMachine stateMachine, string stateName) : base(player, stateMachine, stateName)
     {
@@ -10,6 +10,9 @@ public class Player_IdleState : EntityState
     {
         base.Enter();
         Debug.Log("Player has entered Idle State.");
+
+        player.SetVelocity(0,0);
+        Debug.Log(rb.linearVelocity.y);
     }
 
     public override void Exit()

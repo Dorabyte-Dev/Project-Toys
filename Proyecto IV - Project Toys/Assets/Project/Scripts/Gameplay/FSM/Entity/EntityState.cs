@@ -2,34 +2,29 @@ using UnityEngine;
 
 public abstract class EntityState
 {
-    protected Player player;
     protected StateMachine stateMachine;
     protected string animBoolName;
 
     protected Animator anim;
     protected Rigidbody rb;
 
-    public EntityState(Player player, StateMachine stateMachine, string stateName)
+    public EntityState(StateMachine stateMachine, string animBoolName)
     {
-        this.player = player;
+        // Asociamos la maquina de estados al estado
         this.stateMachine = stateMachine;
-        this.animBoolName = stateName;
-
-        this.anim = player.anim;
-        this.rb = player.rb;
+        this.animBoolName = animBoolName;
     }
 
     public virtual void Enter()
     {
         // Cada vez que se cambie de estado se llamará a este método
         anim.SetBool(animBoolName, true);
-
     }
 
     public virtual void Update()
     {
         // Aqui va la logica del estado
-        Debug.Log("Updating state: " + animBoolName);
+        anim.SetFloat("yVelocity", rb.linearVelocity.y);
     }
 
     public virtual void Exit()

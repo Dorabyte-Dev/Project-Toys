@@ -1,28 +1,35 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
-    public Animator anim;
-    public Rigidbody rb { get; private set; }
-
-
-    private PlayerInputSystem input;
-    private StateMachine stateMachine;
+    public PlayerInputSystem input { get; private set; }
     public Player_IdleState idleState { get; private set; }
     public Player_MoveState moveState { get; private set; }
+    public Player_JumpState jumpState { get; private set; }
+    public Player_FallState fallState { get; private set; }
 
+
+    [Header("Movement Specs")]
     public Vector2 moveInput { get; private set; }
-
     public float moveSpeed;
+    public float jumpForce = 5;
 
-    private void Awake()
+    
+
+    protected override void Awake()
     {
-        anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
-        stateMachine = new StateMachine();
+        base.Awake();
         input = new PlayerInputSystem();
+
         idleState = new Player_IdleState(this, stateMachine, "Idle");
         moveState = new Player_MoveState(this, stateMachine, "Move");
+        jumpState = new Player_JumpState(this, stateMachine, "jumpFall");
+        fallState = new Player_FallState(this, stateMachine, "jumpFall");
+    }
+    protected override void Start()
+    {
+        base.Start();
+        stateMachine.Initialize(idleState);
     }
 
     private void OnEnable()
@@ -38,18 +45,5 @@ public class Player : MonoBehaviour
         input.Disable();
     }
 
-    private void Start()
-    {
-        stateMachine.Initialize(idleState);
-    }
-
-    private void Update()
-    {
-        stateMachine.currentState.Update();
-    }
-
-    public void SetVelocity(float xVelocity, float yVelocity)
-    {
-        rb.linearVelocity = new Vector3(xVelocity, 0f, yVelocity);
-    }
+   
 }
