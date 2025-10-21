@@ -24,7 +24,6 @@ public abstract class EntityState
     public virtual void Update()
     {
         // Aqui va la logica del estado
-        anim.SetFloat("yVelocity", rb.linearVelocity.y);
     }
 
     public virtual void Exit()
