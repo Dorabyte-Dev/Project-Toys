@@ -1,15 +1,28 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
 public class ZoneCloser : MonoBehaviour
 {
     Rigidbody rb;
+    public bool hasBeenActivated;
     public LayerMask playerMask;
-    public UnityEvent zoneEvent;
+    public ZoneEvent zoneEvent;
+    public enum EventType
+    {
+        Combat,
+        Puzzle
+    }
+    [System.Serializable]
+    public struct ZoneEvent
+    {
+        public string name;
+        public EventType eventType; 
+        public UnityEvent uEvent;
+        public EnemySpawner spawner;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,26 +38,30 @@ public class ZoneCloser : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((playerMask & (1 << other.gameObject.layer)) != 0)
+        if ((playerMask & (1 << other.gameObject.layer)) != 0 && !hasBeenActivated)
         {
+            //Disable the Zone Closer
+            hasBeenActivated = true;
+
             //Close zone
+            CloseZone();
+
             //Trigger Zone Event
+            zoneEvent.uEvent.Invoke();
+            Debug.Log("Zone Event: " + zoneEvent.name + " activated");
+
             //Wait for Zone Unlocker
+            zoneEvent.spawner.endCombat.AddListener(OpenZone);
         }
     }
 
     void CloseZone()
     {
-
+        Debug.Log("Zone Closed");
     }
 
-    void TriggerZoneEvent()
+    void OpenZone()
     {
-
-    }
-
-    void WaitForZoneUnlocker()
-    {
-
+        Debug.Log("ZoneOpen");
     }
 }

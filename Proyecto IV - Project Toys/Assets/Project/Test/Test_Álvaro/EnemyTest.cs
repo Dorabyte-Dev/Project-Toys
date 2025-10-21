@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class EnemyTest : MonoBehaviour
 {
+    public EnemySpawner spawner;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -14,11 +14,11 @@ public class EnemyTest : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //Send Message to AreaManager
+            spawner.EnemyDead(this.gameObject);
             Destroy(gameObject);
         }
     }
