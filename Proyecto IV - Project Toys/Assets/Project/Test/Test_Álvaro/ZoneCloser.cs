@@ -10,6 +10,8 @@ public class ZoneCloser : MonoBehaviour
     public bool hasBeenActivated;
     public LayerMask playerMask;
     public ZoneEvent zoneEvent;
+    public ZoneDoor[] doors;
+
     public enum EventType
     {
         Combat,
@@ -57,11 +59,21 @@ public class ZoneCloser : MonoBehaviour
 
     void CloseZone()
     {
+        foreach (var door in doors)
+        {
+            //Animation? Maybe?
+            door.Close();
+        }
         Debug.Log("Zone Closed");
     }
 
     void OpenZone()
     {
+        foreach (var door in doors)
+        {
+            //Animation? Maybe?
+            door.Open();
+        }
         Debug.Log("ZoneOpen");
     }
 }
