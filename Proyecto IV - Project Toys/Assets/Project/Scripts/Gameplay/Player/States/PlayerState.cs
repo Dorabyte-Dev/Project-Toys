@@ -4,6 +4,7 @@ public abstract class PlayerState : EntityState
 {
     protected Player player;
     protected PlayerInputSystem input;
+    
 
     public PlayerState(Player player, StateMachine stateMachine, string animBoolName) : base(stateMachine, animBoolName)
     {
@@ -27,6 +28,7 @@ public abstract class PlayerState : EntityState
     public override void Update()
     {
         base.Update();
+        stateTimer -= Time.deltaTime;
         // Aqui va la logica del estado
         anim.SetFloat("yVelocity", rb.linearVelocity.y);
     }

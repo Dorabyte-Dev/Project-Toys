@@ -8,6 +8,8 @@ public abstract class EntityState
     protected Animator anim;
     protected Rigidbody rb;
 
+    protected float stateTimer;
+
     public EntityState(StateMachine stateMachine, string animBoolName)
     {
         // Asociamos la maquina de estados al estado

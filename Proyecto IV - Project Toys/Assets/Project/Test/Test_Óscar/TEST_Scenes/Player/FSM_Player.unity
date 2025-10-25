@@ -153,12 +153,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25a701ad5f936f45873cddec0c18884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  groundCheckDistance: 0.65
+  trEntity: {fileID: 0}
+  groundCheckDistance: 0.67
   whatIsGround:
     serializedVersion: 2
     m_Bits: 2147483648
   moveSpeed: 5
   jumpForce: 5
+  dashDuration: 0.25
+  dashSpeed: 3
+  playerTr: {fileID: 0}
 --- !u!54 &87048799
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -206,9 +210,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5000001
-  m_Height: 2.1132529
+  m_Height: 1.8755546
   m_Direction: 1
-  m_Center: {x: 0.000000059010997, y: -0.05662636, z: -0.000000118021994}
+  m_Center: {x: 0.000000059010997, y: 0.062222846, z: -0.000000118021994}
 --- !u!23 &87048801
 MeshRenderer:
   m_ObjectHideFlags: 0

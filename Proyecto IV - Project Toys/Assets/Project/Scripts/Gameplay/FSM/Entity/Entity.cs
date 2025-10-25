@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    public Transform trEntity;
     public Animator anim { get; private set; }
     public Rigidbody rb { get; private set; }
     protected StateMachine stateMachine;
@@ -42,5 +44,10 @@ public class Entity : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -groundCheckDistance));
+    }
+
+    internal void CurrentStateAnimationTrigger()
+    {
+        throw new NotImplementedException();
     }
 }
