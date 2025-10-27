@@ -12,11 +12,13 @@ public class EnemySpawner : MonoBehaviour
     private List<GameObject> enemiesSpawned = new List<GameObject>();
     public UnityEvent endCombat;
 
-    private CameraCollider cam;
+    private CameraManager camManager;
+    private CameraSwitch cam;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        cam = GetComponent<CameraCollider>();
+        cam = GetComponent<CameraSwitch>();
+        camManager = FindAnyObjectByType<CameraManager>();
     }
 
     // Update is called once per frame
@@ -28,9 +30,13 @@ public class EnemySpawner : MonoBehaviour
     public void StartCombat()
     {
         StartCoroutine(SpawnEnemies());
-        if(cam != null)
+        if(cam != null && camManager != null)
         {
-            cam.RaisePriority();
+            camManager.ToggleOnCombatCamera(cam);
+        }
+        else
+        {
+            Debug.LogWarning("Camera or Camera Manager not assigned!");
         }
     }
 
@@ -54,13 +60,21 @@ public class EnemySpawner : MonoBehaviour
 
         if(enemiesSpawned.Count == 0)
         {
-            if (cam != null)
-            {
-                cam.RaisePriority();
-            }
-
-            endCombat.Invoke();
+            EndCombat();
         }
     }
 
+    private void EndCombat()
+    {
+        if (cam != null && camManager != null)
+        {
+            camManager.UnToggleOnCombatCamera();
+        }
+        else
+        {
+            Debug.LogWarning("Camera or Camera Manager not assigned!");
+        }
+
+        endCombat.Invoke();
+    }
 }
