@@ -13,6 +13,8 @@ public class Entity : MonoBehaviour
     [SerializeField] private LayerMask whatIsGround;
     public bool groundDetected { get; private set; }
 
+    public float moveSpeed;
+
     protected virtual void Awake()
     {
         anim = GetComponent<Animator>();
@@ -32,7 +34,19 @@ public class Entity : MonoBehaviour
 
     public void SetVelocity(float xVelocity, float yVelocity)
     {
-        rb.linearVelocity = new Vector3(xVelocity, 0f, yVelocity);
+        Vector3 velocity = rb.linearVelocity;
+        velocity.x = xVelocity;
+        velocity.z = yVelocity;
+
+        // Normalizar solo si hay movimiento
+        if (velocity.magnitude > 1f)
+        {
+            velocity = velocity.normalized * moveSpeed;
+        }
+
+        rb.linearVelocity = velocity;
+
+        //rb.linearVelocity = new Vector3(xVelocity, 0f, yVelocity);
     }
 
     private void HandleCollisionDetected()
