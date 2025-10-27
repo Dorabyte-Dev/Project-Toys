@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 554541475}
   - component: {fileID: 554541474}
   - component: {fileID: 554541473}
+  - component: {fileID: 554541477}
   m_Layer: 0
   m_Name: Enemy1Test
   m_TagString: Untagged
@@ -228,6 +229,19 @@ Transform:
   - {fileID: 1840338168}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &554541477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554541472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60efe02ea2dc3ff4c83cb7b03458ec0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jugadorDetectado: 0
 --- !u!1 &629559705
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,7 +590,7 @@ GameObject:
   - component: {fileID: 1785783765}
   m_Layer: 0
   m_Name: PlayerTest
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -722,6 +736,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1840338168}
   - component: {fileID: 1840338169}
+  - component: {fileID: 1840338170}
+  - component: {fileID: 1840338171}
   m_Layer: 0
   m_Name: PlayerDetector
   m_TagString: Untagged
@@ -764,6 +780,39 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 10.89
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1840338170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840338167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff87fa959f7786140b15e612dd2ccacc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &1840338171
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840338167}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 4.26
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2075158298
 GameObject:

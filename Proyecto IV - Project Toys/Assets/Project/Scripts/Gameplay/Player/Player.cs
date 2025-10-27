@@ -12,7 +12,6 @@ public class Player : Entity
 
     [Header("Movement Specs")]
     public Vector2 moveInput { get; private set; }
-    public float moveSpeed;
     public float jumpForce = 5;
 
     public float dashDuration = .25f;
