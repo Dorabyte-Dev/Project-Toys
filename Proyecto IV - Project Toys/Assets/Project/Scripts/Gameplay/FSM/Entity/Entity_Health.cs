@@ -2,8 +2,20 @@ using UnityEngine;
 
 public class Entity_Health : MonoBehaviour
 {
-    protected float maxHp;
+    private Entity entity;
+    private Entity_Stats stats;
+
+    [SerializeField] protected float currentHp;
+    [SerializeField] protected float maxHp;
     protected bool isDead;
+
+    private void Awake()
+    {
+        entity = GetComponent<Entity>();
+        stats = GetComponent<Entity_Stats>();
+
+        currentHp = stats.GetMaxetHealth();
+    }
 
     public void TakeDamage(float takeDamage)
     {
@@ -14,7 +26,7 @@ public class Entity_Health : MonoBehaviour
 
     protected void ReduceHp(float damage)
     {
-        maxHp -= damage;
+        currentHp -= damage;
         if (maxHp < 0)
         {
             IsDead();
