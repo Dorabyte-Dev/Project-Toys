@@ -11,9 +11,20 @@ public class DetectarJugadorTest : MonoBehaviour
 
     void Update()
     {
-        if(nearness >= 2)
+        switch (nearness)
         {
-            Debug.Log("ATACAAAAA");
+            case 0:
+                enemy.SetState(EnemyDavidTest.enemyStates.Walk);
+                break;
+            case 1:
+                enemy.SetState(EnemyDavidTest.enemyStates.Pursuit);
+                break;
+            case 2:
+                enemy.SetState(EnemyDavidTest.enemyStates.Attack);
+                break;
+            default:
+                Debug.LogWarningFormat("Error with the detect player system");
+                break;
         }
     }
 
@@ -21,8 +32,15 @@ public class DetectarJugadorTest : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            enemy.jugadorDetectado = true;
             nearness++;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            enemy.playerTransform = other.transform;
         }
     }
 
@@ -30,7 +48,6 @@ public class DetectarJugadorTest : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            enemy.jugadorDetectado = false;
             nearness--;
         }
     }
