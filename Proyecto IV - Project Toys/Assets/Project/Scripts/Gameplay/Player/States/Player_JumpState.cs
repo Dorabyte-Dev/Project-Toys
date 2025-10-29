@@ -18,7 +18,7 @@ public class Player_JumpState : PlayerState
     public override void Update()
     {
         base.Update();
-        if (player.rb.linearVelocity.y < 0)
+        if (player.rb.linearVelocity.y < 0 && player.groundDetected)
         {
             stateMachine.ChangeState(player.fallState);
         }

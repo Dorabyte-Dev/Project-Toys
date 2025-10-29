@@ -14,6 +14,7 @@ public class Player : Entity
     public Vector2 moveInput { get; private set; }
     public float jumpForce = 5;
 
+    [Header("Dash Specs")]
     public float dashDuration = .25f;
     public float dashSpeed = 20f;
     public Transform playerTr;

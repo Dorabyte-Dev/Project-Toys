@@ -15,6 +15,10 @@ public class Entity : MonoBehaviour
 
     public float moveSpeed;
 
+    [Header("Slope Detection")]
+    [SerializeField] private float maxSlopeAngle;
+    [SerializeField] private RaycastHit slopeHit;
+
     protected virtual void Awake()
     {
         anim = GetComponent<Animator>();
@@ -44,9 +48,20 @@ public class Entity : MonoBehaviour
             velocity = velocity.normalized * moveSpeed;
         }
 
-        rb.linearVelocity = velocity;
+        if (OnSlope())
+        {
+            Vector3 slopeDir = GetSlopeMoveDirection();
+            rb.linearVelocity = new Vector3(xVelocity * slopeDir.x, 0f, yVelocity * slopeDir.y);
+            Debug.Log(rb.linearVelocity);
+        }
+        else 
+        {
+            rb.linearVelocity = new Vector3(xVelocity, 0f, yVelocity);
+        }
 
-        //rb.linearVelocity = new Vector3(xVelocity, 0f, yVelocity);
+        //rb.linearVelocity = velocity;
+
+        //rb.MovePosition(transform.position + velocity * moveSpeed * Time.deltaTime);
     }
 
     private void HandleCollisionDetected()
@@ -56,12 +71,56 @@ public class Entity : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        float rayDistance = 1f * 0.5f + 0.3f;
+
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -groundCheckDistance));
+
+
+        // Raycast para detectar el suelo
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, rayDistance))
+        {
+            float angle = Vector3.Angle(Vector3.up, hit.normal);
+
+            // Cambiar color según si es pendiente válida o no
+            if (angle < maxSlopeAngle && angle != 0)
+            {
+                Gizmos.color = Color.green; // Pendiente válida
+            }
+            else if (angle == 0)
+            {
+                Gizmos.color = Color.white; // Superficie plana
+            }
+            else
+            {
+                Gizmos.color = Color.red; // Pendiente muy empinada
+            }
+
+            // Dibujar la normal de la superficie (perpendicular a la pendiente)
+            Gizmos.DrawRay(hit.point, hit.normal * 2f);
+
+            // Punto de impacto
+            Gizmos.DrawSphere(hit.point, 0.1f);
+        }
     }
 
     internal void CurrentStateAnimationTrigger()
     {
         throw new NotImplementedException();
+    }
+
+    private bool OnSlope()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, 1f * 0.5f + 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0;
+        }
+        return false;
+    }
+
+    private Vector3 GetSlopeMoveDirection()
+    {
+        return Vector3.ProjectOnPlane(rb.linearVelocity, slopeHit.normal).normalized;
     }
 }
