@@ -38,24 +38,32 @@ public class Entity : MonoBehaviour
 
     public void SetVelocity(float xVelocity, float yVelocity)
     {
-        Vector3 velocity = rb.linearVelocity;
-        velocity.x = xVelocity;
-        velocity.z = yVelocity;
+        Vector3 inputDirection = new Vector3(xVelocity, 0f, yVelocity);
 
-        // Normalizar solo si hay movimiento
-        if (velocity.magnitude > 1f)
-        {
-            velocity = velocity.normalized * moveSpeed;
-        }
-
+        //If this entity is on a slope, we project the movement direction to the slope normal
         if (OnSlope())
         {
-            Vector3 slopeDir = GetSlopeMoveDirection();
-            rb.linearVelocity = new Vector3(xVelocity * slopeDir.x, 0f, yVelocity * slopeDir.y);
-            Debug.Log(rb.linearVelocity);
+            Vector3 slopeMoveDirection = Vector3.ProjectOnPlane(inputDirection, slopeHit.normal).normalized;
+            
+            rb.linearVelocity = slopeMoveDirection * moveSpeed;
+
+            if (rb.linearVelocity.y > 0)
+            {
+                rb.linearVelocity += Vector3.down * 5f * Time.deltaTime;
+            }
         }
         else 
         {
+            // The Entity is on flat ground
+            Vector3 velocity = rb.linearVelocity;
+            velocity.x = xVelocity;
+            velocity.z = yVelocity;
+
+            // Normalizar solo si hay movimiento
+            if (velocity.magnitude > 1f)
+            {
+                velocity = velocity.normalized * moveSpeed;
+            }
             rb.linearVelocity = new Vector3(xVelocity, 0f, yVelocity);
         }
 
@@ -117,10 +125,5 @@ public class Entity : MonoBehaviour
             return angle < maxSlopeAngle && angle != 0;
         }
         return false;
-    }
-
-    private Vector3 GetSlopeMoveDirection()
-    {
-        return Vector3.ProjectOnPlane(rb.linearVelocity, slopeHit.normal).normalized;
     }
 }
