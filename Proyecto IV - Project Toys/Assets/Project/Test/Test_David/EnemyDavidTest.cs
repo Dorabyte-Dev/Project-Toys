@@ -38,7 +38,13 @@ public class EnemyDavidTest : MonoBehaviour
                 currentPosition = transform.position;
                 break;
             case enemyStates.Attack:
-                
+                /*
+                 * Nota para los proximos cambios:
+                 * El objetivo es que el ataque sea una sequencia de una que ignore todo lo demás, es decir, cuando entra al estado de ataque
+                 * no sale hasta que termina el ataque. Para conseguir este Ienumerator no es del todo una buena idea ya que se ejecuta de manera paralela 
+                 * al codigo del update; lo ideal es crear una sequencia de animaciones las cuales realizan el ataque, o; sin animaciones;
+                 * activar un trigger de ataque cuando pase el tiempo de espera del ataque.
+                 */
                 transform.LookAt(new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z), Vector3.up);    //De esta manera el enemigo estará mirando todo el rato al enemigo sin necesidad de cambiar su rotacion en Y
                 agent.destination = currentPosition + (lastPlayerPosition - currentPosition) * .25f;
                 if (!agent.pathPending)
