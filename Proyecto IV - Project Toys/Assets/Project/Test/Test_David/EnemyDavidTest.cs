@@ -6,6 +6,7 @@ using static UnityEditor.VersionControl.Asset;
 public class EnemyDavidTest : MonoBehaviour
 {
     public bool jugadorDetectado;
+    public bool isAttacking;
     public float range;
     private NavMeshAgent agent;
     [HideInInspector] public Transform playerTransform; 
@@ -13,9 +14,11 @@ public class EnemyDavidTest : MonoBehaviour
     private enemyStates state;
     private Vector3 lastPlayerPosition;
     private Vector3 currentPosition;
+    private Animator anim;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -35,9 +38,25 @@ public class EnemyDavidTest : MonoBehaviour
                 currentPosition = transform.position;
                 break;
             case enemyStates.Attack:
+                
                 transform.LookAt(new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z), Vector3.up);    //De esta manera el enemigo estará mirando todo el rato al enemigo sin necesidad de cambiar su rotacion en Y
                 agent.destination = currentPosition + (lastPlayerPosition - currentPosition) * .25f;
-                Debug.Log("ATACAAAA");
+                if (!agent.pathPending)
+                {
+                    if (agent.remainingDistance <= agent.stoppingDistance)
+                    {
+                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                        {
+
+                            if (!isAttacking)
+                            {
+                                StartCoroutine(AttackSequence());
+                            }
+                            Debug.Log("ATACAAAA");
+                            
+                        }
+                    }
+                }
                 break;
         }
     }
@@ -49,11 +68,20 @@ public class EnemyDavidTest : MonoBehaviour
     #region AttackFunctions
     public IEnumerator AttackSequence()
     {
+        Debug.Log("Attacking");
+        isAttacking = true;
+        agent.isStopped = true;
         Vector3 attackPosition = Vector3.zero;
         yield return new WaitForSecondsRealtime(1.5f);
         attackPosition = playerTransform.position;
         yield return new WaitForSecondsRealtime(0.5f);
         //Attack
+        agent.isStopped = false;
+        /*agent.speed *= 2;
+        agent.acceleration *= 2;*/
+        anim.Play("Foxy");
+        agent.destination = attackPosition;
+        isAttacking = false;
     }
     #endregion
 
