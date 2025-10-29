@@ -9,9 +9,10 @@ public class EnemySpawner : MonoBehaviour
     public float maxSpawnDistance;
     public float spawnDelay;
     public int spawnCount;
+    private int enemiesDead;
     private List<GameObject> enemiesSpawned = new List<GameObject>();
     public UnityEvent endCombat;
-
+    
     private CameraManager camManager;
     private CameraSwitch cam;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -57,8 +58,9 @@ public class EnemySpawner : MonoBehaviour
         if (!enemiesSpawned.Contains(enemy)) return;
 
         enemiesSpawned.Remove(enemy);
+        enemiesDead++;
 
-        if(enemiesSpawned.Count == 0)
+        if(spawnCount == enemiesDead)
         {
             EndCombat();
         }
