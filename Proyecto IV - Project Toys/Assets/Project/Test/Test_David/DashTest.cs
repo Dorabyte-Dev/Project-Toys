@@ -9,6 +9,7 @@ public class DashTest : MonoBehaviour
     private PlayerInputSystem inputActions;
     private Vector2 inputVector;
     public float speed;
+    public bool activateMovementTest;
     private void Awake()
     {
         inputActions = new PlayerInputSystem();
@@ -41,7 +42,10 @@ public class DashTest : MonoBehaviour
 
     void FixedUpdate()
     {
-        //rb.linearVelocity = new Vector3(inputVector.x * speed, rb.linearVelocity.y, inputVector.y * speed);
+        if (activateMovementTest)
+        {
+            rb.linearVelocity = new Vector3(inputVector.x * speed, rb.linearVelocity.y, inputVector.y * speed);
+        }
     }
 
     public void OnDash(InputAction.CallbackContext context)

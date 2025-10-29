@@ -14,10 +14,16 @@ public class DetectarJugadorTest : MonoBehaviour
         switch (nearness)
         {
             case 0:
-                enemy.SetState(EnemyDavidTest.enemyStates.Walk);
+                if(enemy.isAttacking == false)
+                {
+                    enemy.SetState(EnemyDavidTest.enemyStates.Walk);
+                }
                 break;
             case 1:
-                enemy.SetState(EnemyDavidTest.enemyStates.Pursuit);
+                if (enemy.isAttacking == false)
+                {
+                    enemy.SetState(EnemyDavidTest.enemyStates.Pursuit);
+                }
                 break;
             case 2:
                 enemy.SetState(EnemyDavidTest.enemyStates.Attack);
