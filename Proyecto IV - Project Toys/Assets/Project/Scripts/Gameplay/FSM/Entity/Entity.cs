@@ -11,6 +11,7 @@ public class Entity : MonoBehaviour
     [Header("Collision detection")]
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private Transform groundCheck;
     public bool groundDetected { get; private set; }
 
     public float moveSpeed;
@@ -22,6 +23,10 @@ public class Entity : MonoBehaviour
     protected virtual void Awake()
     {
         anim = GetComponent<Animator>();
+        if (anim == null)
+        {
+            Debug.LogWarning("Animator component not found on " + gameObject.name);
+        }
         rb = GetComponent<Rigidbody>();
         stateMachine = new StateMachine();
     }
@@ -34,6 +39,7 @@ public class Entity : MonoBehaviour
     {
         HandleCollisionDetected();
         stateMachine.UpdateActiveState();
+        Debug.Log(groundDetected);
     }
 
     public void SetVelocity(float xVelocity, float yVelocity)
@@ -74,7 +80,7 @@ public class Entity : MonoBehaviour
 
     private void HandleCollisionDetected()
     {
-        groundDetected = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, whatIsGround);
+        groundDetected = Physics.Raycast(groundCheck.position, Vector3.down, groundCheckDistance, whatIsGround);
     }
 
     private void OnDrawGizmos()
@@ -82,7 +88,7 @@ public class Entity : MonoBehaviour
         float rayDistance = 1f * 0.5f + 0.3f;
 
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -groundCheckDistance));
+        Gizmos.DrawLine(groundCheck.position, groundCheck.position + new Vector3(0, -groundCheckDistance));
 
 
         // Raycast para detectar el suelo
