@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    public Transform trEntity;
     public Animator anim { get; private set; }
     public Rigidbody rb { get; private set; }
     protected StateMachine stateMachine;
@@ -39,7 +38,6 @@ public class Entity : MonoBehaviour
     {
         HandleCollisionDetected();
         stateMachine.UpdateActiveState();
-        Debug.Log(groundDetected);
     }
 
     public void SetVelocity(float xVelocity, float yVelocity)
@@ -49,8 +47,8 @@ public class Entity : MonoBehaviour
         //If this entity is on a slope, we project the movement direction to the slope normal
         if (OnSlope())
         {
-            Vector3 slopeMoveDirection = Vector3.ProjectOnPlane(inputDirection, slopeHit.normal).normalized;
-            
+            Vector3 slopeMoveDirection = ProjectVectorOnSlope(inputDirection);
+
             rb.linearVelocity = slopeMoveDirection * moveSpeed;
 
             if (rb.linearVelocity.y > 0)
@@ -123,7 +121,7 @@ public class Entity : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    private bool OnSlope()
+    public bool OnSlope()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, 1f * 0.5f + 0.3f))
         {
@@ -131,5 +129,19 @@ public class Entity : MonoBehaviour
             return angle < maxSlopeAngle && angle != 0;
         }
         return false;
+    }
+
+    public Vector3 ProjectVectorOnSlope(Vector3 vector)
+    {
+        Vector3 slopeMoveDirection = Vector3.ProjectOnPlane(vector, slopeHit.normal).normalized;
+
+        return slopeMoveDirection;
+    }
+
+    public Vector3 ProjectVectorOutOfSlope(Vector3 vector) 
+    {
+        Vector3 slopeMoveDirection = Vector3.ProjectOnPlane(vector, Vector3.up).normalized;
+
+        return slopeMoveDirection;
     }
 }

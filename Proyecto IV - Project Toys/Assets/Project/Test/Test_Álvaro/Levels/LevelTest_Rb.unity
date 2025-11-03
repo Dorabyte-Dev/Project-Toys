@@ -1064,7 +1064,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185882464}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20119841, y: 0.06827974, z: -0.0140602235, w: 0.97706676}
+  m_LocalRotation: {x: 0.20117989, y: 0.069555074, z: -0.01432284, w: 0.9769768}
   m_LocalPosition: {x: 29.92, y: 8.817243, z: -77.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5403,7 +5403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25a701ad5f936f45873cddec0c18884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  trEntity: {fileID: 0}
   groundCheckDistance: 0.32
   whatIsGround:
     serializedVersion: 2
@@ -5413,8 +5412,7 @@ MonoBehaviour:
   maxSlopeAngle: 30
   jumpForce: 5
   dashDuration: 0.25
-  dashSpeed: 3
-  playerTr: {fileID: 0}
+  dashDistance: 4
 --- !u!54 &934724535
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8582,7 +8580,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441210244}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20119841, y: 0.06827975, z: -0.014060225, w: 0.97706676}
+  m_LocalRotation: {x: 0.20117988, y: 0.06955506, z: -0.014322836, w: 0.9769768}
   m_LocalPosition: {x: 29.92, y: 8.817243, z: -77.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

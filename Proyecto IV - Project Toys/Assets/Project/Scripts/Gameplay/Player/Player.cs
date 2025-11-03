@@ -16,8 +16,7 @@ public class Player : Entity
 
     [Header("Dash Specs")]
     public float dashDuration = .25f;
-    public float dashSpeed = 20f;
-    public Transform playerTr;
+    public float dashDistance = 20f;
 
     protected override void Awake()
     {
@@ -29,7 +28,6 @@ public class Player : Entity
         jumpState = new Player_JumpState(this, stateMachine, "jumpFall");
         fallState = new Player_FallState(this, stateMachine, "jumpFall");
         dashState = new Player_DashState(this, stateMachine, "Dash");
-        playerTr = GetComponent<Transform>();
     }
     protected override void Start()
     {

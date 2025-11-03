@@ -3,6 +3,9 @@ using UnityEngine;
 public class Player_DashState : Player_GroundedState
 {
     Vector3 forToApply;
+    float dashSpeed;
+    bool enteredSlope;
+    bool switchSlope;
     public Player_DashState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
@@ -14,19 +17,41 @@ public class Player_DashState : Player_GroundedState
 
         Vector3 playerDirection = GetDashDirection();
         Debug.Log("Dash direction: " + playerDirection);
-        forToApply = playerDirection * player.dashSpeed;
+
+        dashSpeed = player.dashDistance/player.dashDuration;
+        forToApply = playerDirection * dashSpeed;
+        rb.AddForce(forToApply, ForceMode.VelocityChange);
+        enteredSlope = player.OnSlope();
+        
+        Debug.Log("Dash applied: " + forToApply);
     }
 
 
     public override void Update()
     {
         base.Update();
-        rb.AddForce(forToApply, ForceMode.VelocityChange);
-
+        
+        if(enteredSlope != player.OnSlope() && !switchSlope)
+        {
+            if (enteredSlope)
+            {
+                float remainingDashSpeed = rb.linearVelocity.magnitude;
+                Vector3 newDashDirection = player.ProjectVectorOutOfSlope(rb.linearVelocity).normalized;
+                rb.linearVelocity = newDashDirection * remainingDashSpeed;
+            }
+            else 
+            {
+                Debug.Log("My last Linear velocity is: " + rb.linearVelocity + ", with magnitude of " + rb.linearVelocity.magnitude);
+                float remainingDashSpeed = rb.linearVelocity.magnitude;
+                Vector3 newDashDirection = player.ProjectVectorOnSlope(rb.linearVelocity).normalized;
+                Vector3 test = player.ProjectVectorOutOfSlope(newDashDirection).normalized;
+                Debug.Log("NewDashDirection Angle is: " + Vector3.Angle(newDashDirection, test));
+                rb.linearVelocity = newDashDirection * remainingDashSpeed;
+                Debug.Log("My new Linear velocity is: " + rb.linearVelocity + ", with magnitude of " + rb.linearVelocity.magnitude);
+            }
+        }
         if (stateTimer < 0f)
         {
-            Debug.Log("Dash applied: " + forToApply);
-
             if (player.groundDetected)
             {
                 stateMachine.ChangeState(player.idleState);
@@ -50,6 +75,8 @@ public class Player_DashState : Player_GroundedState
             return player.transform.forward;
 
         Vector3 direction = new Vector3(inputVector.x, 0f, inputVector.y).normalized;
+        if(player.OnSlope()) 
+            direction = player.ProjectVectorOnSlope(direction);
         return direction;
     }
 }
