@@ -8,8 +8,14 @@ public class EnemyDavidTest : MonoBehaviour
     public bool jugadorDetectado;
     public bool isAttacking;
     public float range;
+    public float attackRange;
     public float waitTime;
     public int damage;
+    public float speed;
+    public float acceleration;
+    public float attackAcceleration;
+    public float attackSpeed;
+    public GameObject damageCollider;
     private NavMeshAgent agent;
     private Animator anim;
     [HideInInspector] public Transform playerTransform; 
@@ -23,6 +29,9 @@ public class EnemyDavidTest : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        agent.speed = speed;
+        agent.acceleration = acceleration;
+        damageCollider.SetActive(false);
     }
 
     // Update is called once per frame
@@ -43,35 +52,28 @@ public class EnemyDavidTest : MonoBehaviour
                 currentPosition = transform.position;
                 break;
             case enemyStates.Attack:
-                /*
-                 * Nota para los proximos cambios:
-                 * El objetivo es que el ataque sea una sequencia de una que ignore todo lo demás, es decir, cuando entra al estado de ataque
-                 * no sale hasta que termina el ataque. Para conseguir este Ienumerator no es del todo una buena idea ya que se ejecuta de manera paralela 
-                 * al codigo del update; lo ideal es crear una sequencia de animaciones las cuales realizan el ataque, o; sin animaciones;
-                 * activar un trigger de ataque cuando pase el tiempo de espera del ataque.
-                 */
-                //transform.LookAt(new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z), Vector3.up);    //De esta manera el enemigo estará mirando todo el rato al enemigo sin necesidad de cambiar su rotacion en Y
-                
-                if (!isAttacking)
+                if (!isAttacking)   //Se ejecuta solo al entrar al estado de ataque
                 {
                     Debug.Log("ATACAAAA");
                     isAttacking = true;
+                    damageCollider.SetActive(true);
                     agent.destination = currentPosition + (lastPlayerPosition - currentPosition) * .25f;
-                    //agent.destination = transform.position;
                     attackPoint = playerTransform.position;
                     lastPlayerPosition = attackPoint;
                     currentPosition = transform.position;
+                    transform.LookAt(new Vector3(attackPoint.x, transform.position.y, attackPoint.z), Vector3.up);
                     anim.Play("WaitAttack");
                 }
 
                 currentTime += Time.deltaTime;
-                if (currentTime >= waitTime)
+                if (currentTime >= waitTime)    //Se ejecuta cuando haya terminado de cargar el ataque.
                 {
-                    //Ataca
-                    Vector3 attackDirection = attackPoint - currentPosition;
-                    transform.LookAt(new Vector3(attackPoint.x, transform.position.y, attackPoint.z), Vector3.up);
+                    Vector3 attackDirection = (attackPoint - currentPosition).normalized;
+                    attackPoint = currentPosition + attackDirection * attackRange;
                     anim.Play("Attack");
-                    agent.destination = currentPosition + attackDirection * 1.25f;
+                    agent.speed = attackSpeed;
+                    agent.acceleration = attackAcceleration;
+                    agent.destination = attackPoint;
                     if (HasReachDestination())
                     {
                         FinishAttack();
@@ -109,8 +111,11 @@ public class EnemyDavidTest : MonoBehaviour
     public void FinishAttack()
     {
         isAttacking = false;
+        damageCollider.SetActive(false);
         currentTime = 0f;
         currentPosition = transform.position;
+        agent.speed = speed;
+        agent.acceleration = acceleration;
         SetState(enemyStates.Pursuit);
     }
     public void DealDamage()
