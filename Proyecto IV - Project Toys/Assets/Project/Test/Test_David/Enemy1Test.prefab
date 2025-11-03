@@ -168,9 +168,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2639638324218457063, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 89.98021
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
       propertyPath: m_Name
       value: Mike
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417361359673230750, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 55b8dede2ec0c224495080dbce30082e, type: 2}
+    - target: {fileID: 8879528566716807029, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.98021
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -188,9 +200,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 717991449406867871}
-    - targetCorrespondingSourceObject: {fileID: 7036213049465896255, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7489829071761993892}
+      addedObject: {fileID: 30203586013713184}
   m_SourcePrefab: {fileID: 100100000, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
 --- !u!4 &2880578199871554259 stripped
 Transform:
@@ -238,7 +250,9 @@ MonoBehaviour:
   jugadorDetectado: 0
   isAttacking: 0
   range: 5
+  waitTime: 2
   playerTransform: {fileID: 0}
+  currentTime: 0
 --- !u!195 &717991449406867871
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -261,25 +275,20 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!1 &4744192133522036743 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7036213049465896255, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
-  m_PrefabInstance: {fileID: 2338326848165471544}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &7489829071761993892
+--- !u!95 &30203586013713184
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4744192133522036743}
+  m_GameObject: {fileID: 3220652286160427113}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6ff22a144fca466439d0df3a3e93fd0f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0

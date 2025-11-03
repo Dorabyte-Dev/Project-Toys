@@ -17,7 +17,7 @@ public class EnemyDavidTest : MonoBehaviour
     private Vector3 lastPlayerPosition;
     private Vector3 currentPosition;
     private Vector3 attackPoint;
-    public float currentTime;
+    private float currentTime;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
