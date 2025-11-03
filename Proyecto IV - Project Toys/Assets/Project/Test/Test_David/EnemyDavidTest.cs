@@ -8,13 +8,16 @@ public class EnemyDavidTest : MonoBehaviour
     public bool jugadorDetectado;
     public bool isAttacking;
     public float range;
+    public float waitTime;
     private NavMeshAgent agent;
+    private Animator anim;
     [HideInInspector] public Transform playerTransform; 
     public enum enemyStates { Walk, Pursuit, Attack};
     private enemyStates state;
     private Vector3 lastPlayerPosition;
     private Vector3 currentPosition;
-    private Animator anim;
+    private Vector3 attackPoint;
+    public float currentTime;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -33,6 +36,7 @@ public class EnemyDavidTest : MonoBehaviour
                 break;
             case enemyStates.Pursuit:
                 Debug.Log("TE ENCONTRÉ");
+                currentTime = 0;
                 agent.destination = playerTransform.position;
                 lastPlayerPosition = playerTransform.position;
                 currentPosition = transform.position;
@@ -45,24 +49,34 @@ public class EnemyDavidTest : MonoBehaviour
                  * al codigo del update; lo ideal es crear una sequencia de animaciones las cuales realizan el ataque, o; sin animaciones;
                  * activar un trigger de ataque cuando pase el tiempo de espera del ataque.
                  */
-                transform.LookAt(new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z), Vector3.up);    //De esta manera el enemigo estará mirando todo el rato al enemigo sin necesidad de cambiar su rotacion en Y
-                agent.destination = currentPosition + (lastPlayerPosition - currentPosition) * .25f;
-                if (!agent.pathPending)
+                //transform.LookAt(new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z), Vector3.up);    //De esta manera el enemigo estará mirando todo el rato al enemigo sin necesidad de cambiar su rotacion en Y
+                
+                if (!isAttacking)
                 {
-                    if (agent.remainingDistance <= agent.stoppingDistance)
-                    {
-                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                        {
+                    isAttacking = true;
+                    //agent.destination = currentPosition + (lastPlayerPosition - currentPosition) * .25f;
+                    agent.destination = transform.position;
+                    attackPoint = playerTransform.position;
+                    lastPlayerPosition = attackPoint;
+                    anim.Play("WaitAttack");
+                }
 
-                            if (!isAttacking)
-                            {
-                                StartCoroutine(AttackSequence());
-                            }
-                            Debug.Log("ATACAAAA");
-                            
-                        }
+                currentTime += Time.deltaTime;
+                if (currentTime >= waitTime)
+                {
+                    //Ataca
+                    transform.LookAt(new Vector3(attackPoint.x, transform.position.y, attackPoint.z), Vector3.up);
+                    anim.Play("Attack");
+                    agent.destination = attackPoint;
+                    if (HasReachDestination())
+                    {
+                        currentTime = 0f;
+                        FinishAttack();
                     }
                 }
+
+                
+                Debug.Log("ATACAAAA");
                 break;
         }
     }
@@ -71,21 +85,38 @@ public class EnemyDavidTest : MonoBehaviour
         state = setState;
     }
 
+    public bool HasReachDestination()
+    {
+        if (!agent.pathPending)
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     #region AttackFunctions
+    public void FinishAttack()
+    {
+        isAttacking = false;
+        SetState(enemyStates.Pursuit);
+    }
     public IEnumerator AttackSequence()
     {
         Debug.Log("Attacking");
         isAttacking = true;
-        agent.isStopped = true;
         Vector3 attackPosition = Vector3.zero;
-        yield return new WaitForSecondsRealtime(1.5f);
         attackPosition = playerTransform.position;
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(2f);
         //Attack
-        agent.isStopped = false;
         /*agent.speed *= 2;
         agent.acceleration *= 2;*/
-        anim.Play("Foxy");
+        anim.Play("Attack");
         agent.destination = attackPosition;
         isAttacking = false;
     }
