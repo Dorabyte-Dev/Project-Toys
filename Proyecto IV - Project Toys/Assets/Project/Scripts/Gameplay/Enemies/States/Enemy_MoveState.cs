@@ -10,11 +10,12 @@ public class Enemy_MoveState : EnemyState
     public override void Update()
     {
         base.Update();
-        enemy.SetVelocity(enemy.moveSpeed * 1f,  enemy.moveSpeed * 1f);
+        enemy.SetVelocity(enemy.moveSpeed * enemy.facingDirection, rb.linearVelocity.y);
 
-        if (enemy.groundDetected == false)
+        if (!enemy.groundDetected)
+        {
             stateMachine.ChangeState(enemy.idleState);
-            enemy.transform.Rotate(0f, -180f, 0f);
-            enemy.SetVelocity(enemy.moveSpeed * 1f, enemy.moveSpeed * 1f);
+            enemy.Flip();
+        }
     }
 }
