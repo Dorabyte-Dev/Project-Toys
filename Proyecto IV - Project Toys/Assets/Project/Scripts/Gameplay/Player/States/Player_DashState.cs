@@ -44,8 +44,6 @@ public class Player_DashState : Player_GroundedState
                 Debug.Log("My last Linear velocity is: " + rb.linearVelocity + ", with magnitude of " + rb.linearVelocity.magnitude);
                 float remainingDashSpeed = rb.linearVelocity.magnitude;
                 Vector3 newDashDirection = player.ProjectVectorOnSlope(rb.linearVelocity).normalized;
-                Vector3 test = player.ProjectVectorOutOfSlope(newDashDirection).normalized;
-                Debug.Log("NewDashDirection Angle is: " + Vector3.Angle(newDashDirection, test));
                 rb.linearVelocity = newDashDirection * remainingDashSpeed;
                 Debug.Log("My new Linear velocity is: " + rb.linearVelocity + ", with magnitude of " + rb.linearVelocity.magnitude);
             }
