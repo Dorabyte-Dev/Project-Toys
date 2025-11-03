@@ -9,6 +9,7 @@ public class EnemyDavidTest : MonoBehaviour
     public bool isAttacking;
     public float range;
     public float waitTime;
+    public int damage;
     private NavMeshAgent agent;
     private Animator anim;
     [HideInInspector] public Transform playerTransform; 
@@ -53,11 +54,13 @@ public class EnemyDavidTest : MonoBehaviour
                 
                 if (!isAttacking)
                 {
+                    Debug.Log("ATACAAAA");
                     isAttacking = true;
-                    //agent.destination = currentPosition + (lastPlayerPosition - currentPosition) * .25f;
-                    agent.destination = transform.position;
+                    agent.destination = currentPosition + (lastPlayerPosition - currentPosition) * .25f;
+                    //agent.destination = transform.position;
                     attackPoint = playerTransform.position;
                     lastPlayerPosition = attackPoint;
+                    currentPosition = transform.position;
                     anim.Play("WaitAttack");
                 }
 
@@ -65,18 +68,18 @@ public class EnemyDavidTest : MonoBehaviour
                 if (currentTime >= waitTime)
                 {
                     //Ataca
+                    Vector3 attackDirection = attackPoint - currentPosition;
                     transform.LookAt(new Vector3(attackPoint.x, transform.position.y, attackPoint.z), Vector3.up);
                     anim.Play("Attack");
-                    agent.destination = attackPoint;
+                    agent.destination = currentPosition + attackDirection * 1.25f;
                     if (HasReachDestination())
                     {
-                        currentTime = 0f;
                         FinishAttack();
                     }
                 }
 
                 
-                Debug.Log("ATACAAAA");
+                
                 break;
         }
     }
@@ -84,6 +87,8 @@ public class EnemyDavidTest : MonoBehaviour
     {
         state = setState;
     }
+
+    
 
     public bool HasReachDestination()
     {
@@ -104,21 +109,13 @@ public class EnemyDavidTest : MonoBehaviour
     public void FinishAttack()
     {
         isAttacking = false;
+        currentTime = 0f;
+        currentPosition = transform.position;
         SetState(enemyStates.Pursuit);
     }
-    public IEnumerator AttackSequence()
+    public void DealDamage()
     {
-        Debug.Log("Attacking");
-        isAttacking = true;
-        Vector3 attackPosition = Vector3.zero;
-        attackPosition = playerTransform.position;
-        yield return new WaitForSecondsRealtime(2f);
-        //Attack
-        /*agent.speed *= 2;
-        agent.acceleration *= 2;*/
-        anim.Play("Attack");
-        agent.destination = attackPosition;
-        isAttacking = false;
+        Debug.Log("Pum te pego: " + damage + " de daño");
     }
     #endregion
 
