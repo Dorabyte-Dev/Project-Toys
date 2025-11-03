@@ -5,7 +5,7 @@ public abstract class PlayerState : EntityState
     protected Player player;
     protected PlayerInputSystem input;
 
-    protected bool triggerCalled;
+    
 
     public PlayerState(Player player, StateMachine stateMachine, string animBoolName) : base(stateMachine, animBoolName)
     {
@@ -41,9 +41,6 @@ public abstract class PlayerState : EntityState
         base.Exit();
     }
 
-    public void CallAnimationTrigger()
-    {
-        triggerCalled = true;
-    }
+    
 
 }

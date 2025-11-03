@@ -8,7 +8,11 @@ public class Player : Entity
     public Player_JumpState jumpState { get; private set; }
     public Player_FallState fallState { get; private set; }
     public Player_DashState dashState { get; private set; }
+    public Player_LightAttackState lightAttackState { get; private set; }
 
+    [Header("Attack Details")]
+    public Vector2 attackVelocity;
+    public float attackVelocityDuration = .1f;
 
     [Header("Movement Specs")]
     public Vector2 moveInput { get; private set; }
@@ -28,6 +32,8 @@ public class Player : Entity
         jumpState = new Player_JumpState(this, stateMachine, "jumpFall");
         fallState = new Player_FallState(this, stateMachine, "jumpFall");
         dashState = new Player_DashState(this, stateMachine, "Dash");
+        lightAttackState = new Player_LightAttackState(this, stateMachine, "LightPressed");
+
     }
     protected override void Start()
     {
@@ -41,6 +47,11 @@ public class Player : Entity
         input.Player.Movement.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;
 
+    }
+
+    public void CallAnimationTrigger()
+    {
+        stateMachine.currentState.CallAnimationTrigger();
     }
 
     private void OnDisable()

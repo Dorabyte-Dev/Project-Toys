@@ -23,6 +23,9 @@ public class Player_GroundedState : PlayerState
 
         if (input.Player.Dash.WasPerformedThisFrame())
             stateMachine.ChangeState(player.dashState);
+
+        if (input.Player.LightAttack.WasPerformedThisFrame())
+            stateMachine.ChangeState(player.lightAttackState);
     }
     public override void Exit()
     {

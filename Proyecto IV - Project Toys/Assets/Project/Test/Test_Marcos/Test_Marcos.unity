@@ -914,7 +914,11 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 2147483648
+  groundCheck: {fileID: 0}
   moveSpeed: 5
+  maxSlopeAngle: 0
+  attackVelocity: {x: 0, y: 0}
+  attackVelocityDuration: 0.1
   jumpForce: 5
   dashDuration: 0.25
   dashSpeed: 3
@@ -926,10 +930,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1205664905}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -989,6 +993,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1010,6 +1016,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -1073,10 +1080,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1273449104}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1103,7 +1110,7 @@ Animator:
   m_GameObject: {fileID: 1273449104}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6759bc0d217d30f4fb6b411517d9b5d2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5b43a175c30ddc542a23f6cc74e0afb8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1162,7 +1169,11 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 2147483648
+  groundCheck: {fileID: 1273449114}
   moveSpeed: 5
+  maxSlopeAngle: 0
+  attackVelocity: {x: 3, y: 1.5}
+  attackVelocityDuration: 0.1
   jumpForce: 5
   dashDuration: 0.25
   dashSpeed: 3
@@ -1179,6 +1190,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5301aa7571920c49ab127abf0c98a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1273449114 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0066acbad87edf545bb86bd6c7f64e66, type: 3}
+  m_PrefabInstance: {fileID: 434625178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1290629832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1765,6 +1781,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1786,6 +1804,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
