@@ -21,10 +21,10 @@ public class Player_DashState : Player_GroundedState
     public override void Update()
     {
         base.Update();
+        rb.AddForce(forToApply, ForceMode.VelocityChange);
 
         if (stateTimer < 0f)
         {
-            rb.AddForce(forToApply, ForceMode.VelocityChange);
             Debug.Log("Dash applied: " + forToApply);
 
             if (player.groundDetected)
