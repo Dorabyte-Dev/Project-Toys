@@ -10,6 +10,8 @@ public abstract class EntityState
 
     protected float stateTimer;
 
+    protected bool triggerCalled;
+
     public EntityState(StateMachine stateMachine, string animBoolName)
     {
         // Asociamos la maquina de estados al estado
@@ -35,4 +37,8 @@ public abstract class EntityState
         anim.SetBool(animBoolName, false);
     }
 
+    public void CallAnimationTrigger()
+    {
+        triggerCalled = true;
+    }
 }

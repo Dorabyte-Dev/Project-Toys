@@ -2,9 +2,15 @@ using UnityEngine;
 
 public class Player_AnimationTriggers : MonoBehaviour
 {
-    public void FinishAttack()
+    private Player player;
+
+    private void Awake()
     {
-        Debug.Log("Attack is over");
-        
+        player = GetComponent<Player>();
+    }
+
+    private void CurrentStateTrigger()
+    {
+        player.CallAnimationTrigger();
     }
 }
