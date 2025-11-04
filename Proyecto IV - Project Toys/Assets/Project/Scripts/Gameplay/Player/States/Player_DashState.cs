@@ -6,6 +6,7 @@ public class Player_DashState : Player_GroundedState
     float dashSpeed;
     bool enteredSlope;
     bool switchSlope;
+    bool isPerfectDodge;
     public Player_DashState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
@@ -22,7 +23,9 @@ public class Player_DashState : Player_GroundedState
         forToApply = playerDirection * dashSpeed;
         rb.AddForce(forToApply, ForceMode.VelocityChange);
         enteredSlope = player.OnSlope();
-        
+        isPerfectDodge = Object.FindAnyObjectByType<GameManager>().perfectDodgeWindowActive;
+        if (isPerfectDodge) Debug.Log("Perfect!");
+
         Debug.Log("Dash applied: " + forToApply);
     }
 
@@ -30,6 +33,7 @@ public class Player_DashState : Player_GroundedState
     public override void Update()
     {
         base.Update();
+
         
         if(enteredSlope != player.OnSlope() && !switchSlope)
         {
