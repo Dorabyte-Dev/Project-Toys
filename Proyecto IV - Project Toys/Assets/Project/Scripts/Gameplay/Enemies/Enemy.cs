@@ -24,7 +24,7 @@ public class Enemy : Entity
     [Header("Player Coords")]
     [HideInInspector] public Transform playerTransform;
     public bool jugadorDetectado;
-    private int nearness;
+    public int nearness;
 
     public NavMeshAgent agent;
 
@@ -36,6 +36,7 @@ public class Enemy : Entity
         agent = GetComponent<NavMeshAgent>();
         agent.speed = moveSpeed;
         agent.acceleration = acceleration;
+
         damageCollider.SetActive(false);
     }
 
@@ -52,35 +53,7 @@ public class Enemy : Entity
     }
 
     #region Player Detection
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            nearness++;
-            UpdateStateBasedOnNearness();
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            playerTransform = other.transform;
-            UpdateStateBasedOnNearness();
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            nearness--;
-            UpdateStateBasedOnNearness();
-        }
-    }
-
-    // NUEVO MÉTODO para gestionar transiciones
-    private void UpdateStateBasedOnNearness()
+    public void UpdateStateBasedOnNearness()
     {
         switch (nearness)
         {
@@ -103,6 +76,7 @@ public class Enemy : Entity
                 Debug.LogWarning("Error with the detect player system");
                 break;
         }
+        Debug.Log(nearness);
     }
     #endregion
 
