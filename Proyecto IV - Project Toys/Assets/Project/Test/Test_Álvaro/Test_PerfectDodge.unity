@@ -1118,6 +1118,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &806032596 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3391732683709616615, guid: 5a2e4f34a2401644591f0ad689a05fb1, type: 3}
+  m_PrefabInstance: {fileID: 2081055697468438184}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &806032601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806032596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809934b2930d35d48bb289ffcbf39f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DetectarJugadorPerfectDodge
 --- !u!1 &934715652
 GameObject:
   m_ObjectHideFlags: 0
@@ -1677,6 +1694,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2624015239847296106, guid: 5a2e4f34a2401644591f0ad689a05fb1, type: 3}
   m_PrefabInstance: {fileID: 2081055697468438184}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1317053136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317053132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d9ba6357d303614a81c3639e88c3ff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDamagePerfectDodge
+  perfectDodgeDetector: 0
 --- !u!1 &1325146109
 GameObject:
   m_ObjectHideFlags: 0
@@ -2624,13 +2654,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3304384714455109416, guid: 5a2e4f34a2401644591f0ad689a05fb1, type: 3}
+    - {fileID: 8579472552444677331, guid: 5a2e4f34a2401644591f0ad689a05fb1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3220652286160427113, guid: 5a2e4f34a2401644591f0ad689a05fb1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2081055697468438186}
+    - targetCorrespondingSourceObject: {fileID: 3391732683709616615, guid: 5a2e4f34a2401644591f0ad689a05fb1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 806032601}
+    - targetCorrespondingSourceObject: {fileID: 2624015239847296106, guid: 5a2e4f34a2401644591f0ad689a05fb1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1317053136}
   m_SourcePrefab: {fileID: 100100000, guid: 5a2e4f34a2401644591f0ad689a05fb1, type: 3}
 --- !u!1 &2081055697468438185 stripped
 GameObject:
