@@ -4,6 +4,14 @@ using UnityEngine;
 public class Player_LightAttackState : PlayerState
 {
     private float attackVelocityTimer;
+
+
+    private const int firstComboIndex = 1;
+    private int comboIndex = 1;
+    private int comboLimit = 3;
+
+    private float lastTimeAttacked;
+
     public Player_LightAttackState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
@@ -12,12 +20,19 @@ public class Player_LightAttackState : PlayerState
     {
         base.Enter();
 
-        GenerateAttackVelocity();
+        
+        ResetComboIndexIfNeeded();
+
+        anim.SetInteger("lightAttackIndex", comboIndex);
+        ApplyAttackVelocity();
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        comboIndex++;
+        lastTimeAttacked = Time.time;
     }
 
     public override void Update()
@@ -37,9 +52,21 @@ public class Player_LightAttackState : PlayerState
             player.SetVelocity(0, rb.linearVelocity.y);
     }
 
-    private void GenerateAttackVelocity()
+    private void ApplyAttackVelocity()
     {
         attackVelocityTimer = player.attackVelocityDuration;
         player.SetVelocity(player.attackVelocity.x, player.attackVelocity.y);
     }
+
+    private void ResetComboIndexIfNeeded()
+    {
+        if(Time.time > lastTimeAttacked + player.comboResetTime)
+            comboIndex = firstComboIndex;
+
+        
+
+        if (comboIndex > comboLimit)
+            comboIndex = firstComboIndex;
+    }
+
 }
