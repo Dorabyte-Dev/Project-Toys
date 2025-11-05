@@ -25,6 +25,9 @@ public class EnemyDavidTest : MonoBehaviour
     private Vector3 currentPosition;
     private Vector3 attackPoint;
     private float currentTime;
+    [Header("Player Variables")]
+    public float cooldown;
+    [SerializeField]private float cooldownTime;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -56,7 +59,7 @@ public class EnemyDavidTest : MonoBehaviour
                 {
                     Debug.Log("ATACAAAA");
                     isAttacking = true;
-                    damageCollider.SetActive(true);
+                    
                     agent.destination = currentPosition + (lastPlayerPosition - currentPosition) * .25f;
                     attackPoint = playerTransform.position;
                     lastPlayerPosition = attackPoint;
@@ -70,6 +73,7 @@ public class EnemyDavidTest : MonoBehaviour
                 {
                     Vector3 attackDirection = (attackPoint - currentPosition).normalized;
                     attackPoint = currentPosition + attackDirection * attackRange;
+                    damageCollider.SetActive(true);
                     anim.Play("Attack");
                     agent.speed = attackSpeed;
                     agent.acceleration = attackAcceleration;
@@ -83,6 +87,11 @@ public class EnemyDavidTest : MonoBehaviour
                 
                 
                 break;
+        }
+
+        if(cooldownTime < cooldown)
+        {
+            cooldownTime += Time.deltaTime;
         }
     }
     public void SetState(enemyStates setState)
@@ -120,7 +129,12 @@ public class EnemyDavidTest : MonoBehaviour
     }
     public void DealDamage()
     {
-        Debug.Log("Pum te pego: " + damage + " de daño");
+        if(cooldownTime>= cooldown)
+        {
+            Debug.Log("Pum te pego: " + damage + " de daño");
+            cooldownTime = 0f;
+        }
+        
     }
     #endregion
 
