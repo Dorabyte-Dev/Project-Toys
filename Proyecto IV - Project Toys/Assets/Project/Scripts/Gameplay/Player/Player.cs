@@ -13,6 +13,7 @@ public class Player : Entity
     [Header("Attack Details")]
     public Vector2 attackVelocity;
     public float attackVelocityDuration = .1f;
+    public float comboResetTime = 1;
 
     [Header("Movement Specs")]
     public Vector2 moveInput { get; private set; }
