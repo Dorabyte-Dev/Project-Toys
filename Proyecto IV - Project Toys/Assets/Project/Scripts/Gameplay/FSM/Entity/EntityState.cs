@@ -22,17 +22,20 @@ public abstract class EntityState
     public virtual void Enter()
     {
         // Cada vez que se cambie de estado se llamará a este método
+        Debug.Log(animBoolName);
         anim.SetBool(animBoolName, true);
     }
 
     public virtual void Update()
     {
+        Debug.Log("UPDATE " + animBoolName);
         // Aqui va la logica del estado
         stateTimer -= Time.deltaTime;
     }
 
     public virtual void Exit()
     {
+        Debug.Log(animBoolName);
         // Esto se llamara cada vez que salgamos de un estado y entremos en otro
         anim.SetBool(animBoolName, false);
     }

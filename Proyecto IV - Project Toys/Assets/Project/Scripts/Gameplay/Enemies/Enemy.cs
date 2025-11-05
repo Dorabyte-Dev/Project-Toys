@@ -6,6 +6,7 @@ public class Enemy : Entity
     public Enemy_IdleState idleState;   // ESTADO DE IDLE
     public Enemy_MoveState moveState;    // ESTADO DE MOVIMIENTO
     public Enemy_PursuitState pursuitState;  // ESTADO DE PERSECUCION
+    public Enemy_WaitAttackState waitAttackState; // ESTADO DE ESPERA DEL ATAQUE
     public Enemy_AttackState attackState;    // ESTADO DE ATTACK
 
     [Header("Enemy Specs")]
@@ -70,7 +71,7 @@ public class Enemy : Entity
                 }
                 break;
             case 2:
-                stateMachine.ChangeState(attackState);
+                stateMachine.ChangeState(waitAttackState);
                 break;
             default:
                 Debug.LogWarning("Error with the detect player system");

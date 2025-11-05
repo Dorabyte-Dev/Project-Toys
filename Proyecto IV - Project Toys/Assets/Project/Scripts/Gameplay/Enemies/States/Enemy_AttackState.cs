@@ -6,7 +6,7 @@ public class Enemy_AttackState : EnemyState
     private Vector3 lastPlayerPosition;
     private Vector3 currentPosition;
     private float currentTime;
-    private bool hasStartedAttack;
+    //private bool hasStartedAttack;
 
     public Enemy_AttackState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
@@ -16,50 +16,26 @@ public class Enemy_AttackState : EnemyState
     {
         base.Enter();
 
-        enemy.isAttacking = true;
-        enemy.damageCollider.SetActive(true);
-
-        // Guardar posiciones
-        currentPosition = enemy.transform.position;
-        lastPlayerPosition = enemy.playerTransform != null ? enemy.playerTransform.position : enemy.transform.forward;
-
-        // Calcular punto de ataque
-        enemy.agent.destination = currentPosition + (lastPlayerPosition - currentPosition) * 0.25f;
-        attackPoint = lastPlayerPosition;
-
-        // Mirar hacia el objetivo
-        enemy.transform.LookAt(new Vector3(attackPoint.x, enemy.transform.position.y, attackPoint.z), Vector3.up);
-
-        // Animación de carga
-        anim.Play("WaitAttack");
-
-        currentTime = 0f;
-        hasStartedAttack = false;
     }
 
     public override void Update()
     {
         base.Update();
 
-        currentTime += Time.deltaTime;
+        //hasStartedAttack = true;
 
-        if (currentTime >= enemy.waitTime && !hasStartedAttack)
-        {
-            // Ejecutar el ataque
-            hasStartedAttack = true;
+        Vector3 attackDirection = (attackPoint - currentPosition).normalized;
+        attackPoint = currentPosition + attackDirection * enemy.attackRange;
 
-            Vector3 attackDirection = (attackPoint - currentPosition).normalized;
-            attackPoint = currentPosition + attackDirection * enemy.attackRange;
+        //anim.Play("Attack");
 
-            anim.Play("Attack");
-
-            enemy.agent.speed = enemy.attackSpeed;
-            enemy.agent.acceleration = enemy.attackAcceleration;
-            enemy.agent.destination = attackPoint;
-        }
+        enemy.agent.speed = enemy.attackSpeed;
+        enemy.agent.acceleration = enemy.attackAcceleration;
+        enemy.agent.destination = attackPoint;
 
         // Verificar si llegó al punto de ataque
-        if (hasStartedAttack && HasReachedDestination())
+        //if (hasStartedAttack && HasReachedDestination())
+        if (HasReachedDestination())
         {
             FinishAttack();
         }
@@ -94,6 +70,19 @@ public class Enemy_AttackState : EnemyState
     private void FinishAttack()
     {
         // Cambiar al estado de persecución
-        stateMachine.ChangeState(enemy.pursuitState);
+        if (!enemy.isAttacking)
+        {
+            stateMachine.ChangeState(enemy.idleState);
+        }
+        else
+        {
+            stateMachine.ChangeState(enemy.pursuitState);
+        }
+    }
+
+    public void SetParametersAttack(Vector3 currentP, Vector3 attackP) 
+    {
+        currentPosition = currentP;
+        attackPoint = attackP;
     }
 }
