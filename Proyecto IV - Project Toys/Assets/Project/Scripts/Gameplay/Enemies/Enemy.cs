@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.VersionControl.Asset;
 
 public class Enemy : Entity
 {
-    public Enemy_IdleState idleState;
-    public Enemy_MoveState moveState;
+    public Enemy_IdleState idleState;   // ESTADO DE IDLE
+    public Enemy_MoveState moveState;    // ESTADO DE MOVIMIENTO
+    public Enemy_PursuitState pursuitState;  // ESTADO DE PERSECUCION
+    public Enemy_AttackState attackState;    // ESTADO DE ATTACK
 
     [Header("Enemy Specs")]
     public float range;
@@ -22,14 +23,10 @@ public class Enemy : Entity
 
     [Header("Player Coords")]
     [HideInInspector] public Transform playerTransform;
-    private Vector3 lastPlayerPosition;
-    private Vector3 currentPosition;
-    private Vector3 attackPoint;
     public bool jugadorDetectado;
     private int nearness;
 
     public NavMeshAgent agent;
-    private float currentTime;
 
     public int facingDirection = 1;
 
@@ -41,6 +38,7 @@ public class Enemy : Entity
         agent.acceleration = acceleration;
         damageCollider.SetActive(false);
     }
+
     protected override void Start()
     {
         base.Start();
@@ -53,13 +51,13 @@ public class Enemy : Entity
         transform.Rotate(0f, 180f, 0f);
     }
 
-
     #region Player Detection
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             nearness++;
+            UpdateStateBasedOnNearness();
         }
     }
 
@@ -68,6 +66,7 @@ public class Enemy : Entity
         if (other.gameObject.CompareTag("Player"))
         {
             playerTransform = other.transform;
+            UpdateStateBasedOnNearness();
         }
     }
 
@@ -76,7 +75,41 @@ public class Enemy : Entity
         if (other.gameObject.CompareTag("Player"))
         {
             nearness--;
+            UpdateStateBasedOnNearness();
         }
+    }
+
+    // NUEVO MÉTODO para gestionar transiciones
+    private void UpdateStateBasedOnNearness()
+    {
+        switch (nearness)
+        {
+            case 0:
+                if (!isAttacking)
+                {
+                    stateMachine.ChangeState(moveState);
+                }
+                break;
+            case 1:
+                if (!isAttacking)
+                {
+                    stateMachine.ChangeState(pursuitState);
+                }
+                break;
+            case 2:
+                stateMachine.ChangeState(attackState);
+                break;
+            default:
+                Debug.LogWarning("Error with the detect player system");
+                break;
+        }
+    }
+    #endregion
+
+    #region Damage
+    public void DealDamage()
+    {
+        Debug.Log("Pum te pego: " + damage + " de daño");
     }
     #endregion
 }

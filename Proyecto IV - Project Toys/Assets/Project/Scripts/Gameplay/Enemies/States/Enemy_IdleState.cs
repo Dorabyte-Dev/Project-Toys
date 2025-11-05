@@ -11,7 +11,7 @@ public class Enemy_IdleState : EnemyState
         base.Enter();
 
         stateTimer = 1f;
-        enemy.SetVelocity(0f, 0f);
+        //enemy.SetVelocity(0f, 0f);
     }
 
     public override void Update()
