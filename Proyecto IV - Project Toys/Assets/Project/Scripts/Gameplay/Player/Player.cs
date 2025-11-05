@@ -21,6 +21,7 @@ public class Player : Entity
     [Header("Dash Specs")]
     public float dashDuration = .25f;
     public float dashDistance = 20f;
+    public Collider perfectDodgeCollider;
 
     protected override void Awake()
     {

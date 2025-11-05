@@ -62,7 +62,6 @@ public class EnemyPerfectDodgeTest : MonoBehaviour
                     lastPlayerPosition = attackPoint;
                     currentPosition = transform.position;
                     transform.LookAt(new Vector3(attackPoint.x, transform.position.y, attackPoint.z), Vector3.up);
-                    SetPerfectDodgeFlag();
                     anim.Play("WaitAttack");
                 }
 
@@ -118,12 +117,10 @@ public class EnemyPerfectDodgeTest : MonoBehaviour
         agent.speed = speed;
         agent.acceleration = acceleration;
         SetState(enemyStates.Pursuit);
-        EndPerfectDodgeFlag();
     }
     public void DealDamage()
     {
         Debug.Log("Pum te pego: " + damage + " de daño");
-        EndPerfectDodgeFlag();
     }
     #endregion
 
@@ -151,12 +148,12 @@ public class EnemyPerfectDodgeTest : MonoBehaviour
     #endregion
 
     #region PerfectDodge
-    void SetPerfectDodgeFlag()
+    public void SetPerfectDodgeFlag()
     {
         FindAnyObjectByType<GameManager>().perfectDodgeWindowActive = true;
     }
 
-    void EndPerfectDodgeFlag()
+    public void EndPerfectDodgeFlag()
     {
         FindAnyObjectByType<GameManager>().perfectDodgeWindowActive = false;
     }

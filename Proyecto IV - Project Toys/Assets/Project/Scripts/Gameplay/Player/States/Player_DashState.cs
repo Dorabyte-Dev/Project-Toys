@@ -24,7 +24,7 @@ public class Player_DashState : Player_GroundedState
         rb.AddForce(forToApply, ForceMode.VelocityChange);
         enteredSlope = player.OnSlope();
         isPerfectDodge = Object.FindAnyObjectByType<GameManager>().perfectDodgeWindowActive;
-        if (isPerfectDodge) Debug.Log("Perfect!");
+        if (isPerfectDodge) Debug.LogWarning("Perfect!");
 
         Debug.Log("Dash applied: " + forToApply);
     }
