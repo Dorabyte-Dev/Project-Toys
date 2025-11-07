@@ -22,7 +22,11 @@ public class Player : Entity
     [Header("Dash Specs")]
     public float dashDuration = .25f;
     public float dashDistance = 20f;
+
+    public float perfectDodgeDuration = .25f;
+    public float perfectDodgeEnemyDistance = 1f;
     public Collider perfectDodgeCollider;
+    public MeshTrail afterimageTrail;
 
     protected override void Awake()
     {

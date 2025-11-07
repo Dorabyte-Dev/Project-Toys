@@ -150,12 +150,15 @@ public class EnemyPerfectDodgeTest : MonoBehaviour
     #region PerfectDodge
     public void SetPerfectDodgeFlag()
     {
-        FindAnyObjectByType<GameManager>().perfectDodgeWindowActive = true;
+        GameManager gm = FindAnyObjectByType<GameManager>();
+        gm.pDodgeEnemies.Add(this.gameObject);
+        Debug.Log("He puesto la Flag de perfect dodge");
     }
 
     public void EndPerfectDodgeFlag()
     {
-        FindAnyObjectByType<GameManager>().perfectDodgeWindowActive = false;
+        GameManager gm = FindAnyObjectByType<GameManager>();
+        gm.pDodgeEnemies.Remove(this.gameObject);
     }
     #endregion
 }
