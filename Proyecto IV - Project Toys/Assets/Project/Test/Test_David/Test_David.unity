@@ -1212,22 +1212,27 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483648
   groundCheck: {fileID: 1275545421}
-  moveSpeed: 5
+  moveSpeed: 3
   maxSlopeAngle: 30
   range: 5
   attackRange: 7.5
   waitTime: 2
-  acceleration: 15
+  acceleration: 8
   attackAcceleration: 20
-  damage: 9
-  attackSpeed: 5
+  damage: 5
+  attackSpeed: 9
   damageCollider: {fileID: 957381537}
   isAttacking: 0
   playerTransform: {fileID: 0}
   jugadorDetectado: 0
   nearness: 0
-  agent: {fileID: 0}
+  agent: {fileID: 819281404}
   facingDirection: 1
+--- !u!195 &819281404 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 717991449406867871, guid: 5a2e4f34a2401644591f0ad689a05fb1, type: 3}
+  m_PrefabInstance: {fileID: 519728077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &957381537 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2624015239847296106, guid: 5a2e4f34a2401644591f0ad689a05fb1, type: 3}

@@ -24,12 +24,12 @@ public class Enemy_WaitAttackState : EnemyState
         // Calcular punto de ataque (hacia donde va a embestir)
         Vector3 directionToPlayer = (lastPlayerPosition - currentPosition).normalized;
         attackPoint = currentPosition + directionToPlayer * enemy.attackRange;
-        //enemy.agent.destination = currentPosition + (lastPlayerPosition - currentPosition) * 0.25f;
+        enemy.agent.destination = currentPosition + (lastPlayerPosition - currentPosition) * 0.25f;
         //attackPoint = lastPlayerPosition;
 
         // DETENER al enemigo durante la carga del ataque
-        enemy.agent.isStopped = true;
-        enemy.agent.velocity = Vector3.zero;
+        //enemy.agent.isStopped = true;
+        //enemy.agent.velocity = Vector3.zero;
 
         // Mirar hacia el objetivo
         enemy.transform.LookAt(new Vector3(attackPoint.x, enemy.transform.position.y, attackPoint.z), Vector3.up);
