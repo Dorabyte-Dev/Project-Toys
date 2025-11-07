@@ -6,6 +6,7 @@ public class Enemy_AttackState : EnemyState
     private Vector3 lastPlayerPosition;
     private Vector3 currentPosition;
     private float currentTime;
+    private bool reachedAttack;
     //private bool hasStartedAttack;
 
     public Enemy_AttackState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
@@ -16,22 +17,26 @@ public class Enemy_AttackState : EnemyState
     {
         base.Enter();
 
+        if (!reachedAttack) 
+        {
+            stateMachine.ChangeState(enemy.pursuitState);
+            return;
+        }
+
+
+        enemy.isAttacking = true;
+        enemy.damageCollider.SetActive(true);
+
+        // Configurar velocidad de ataque (embestida rápida)
+        enemy.agent.speed = enemy.attackSpeed;
+        enemy.agent.acceleration = enemy.attackAcceleration;
+        enemy.agent.destination = attackPoint;
+
     }
 
     public override void Update()
     {
         base.Update();
-
-        //hasStartedAttack = true;
-
-        Vector3 attackDirection = (attackPoint - currentPosition).normalized;
-        attackPoint = currentPosition + attackDirection * enemy.attackRange;
-
-        //anim.Play("Attack");
-
-        enemy.agent.speed = enemy.attackSpeed;
-        enemy.agent.acceleration = enemy.attackAcceleration;
-        enemy.agent.destination = attackPoint;
 
         // Verificar si llegó al punto de ataque
         //if (hasStartedAttack && HasReachedDestination())
@@ -46,6 +51,7 @@ public class Enemy_AttackState : EnemyState
         base.Exit();
         enemy.isAttacking = false;
         enemy.damageCollider.SetActive(false);
+        reachedAttack = false;
 
         // Restaurar velocidades normales
         enemy.agent.speed = enemy.moveSpeed;
@@ -56,7 +62,8 @@ public class Enemy_AttackState : EnemyState
     {
         if (!enemy.agent.pathPending)
         {
-            if (enemy.agent.remainingDistance <= enemy.agent.stoppingDistance)
+            float arrivalDestinationThreshold = enemy.agent.stoppingDistance + 0.5f;
+            if (enemy.agent.remainingDistance <= arrivalDestinationThreshold)
             {
                 if (!enemy.agent.hasPath || enemy.agent.velocity.sqrMagnitude == 0f)
                 {
@@ -70,19 +77,13 @@ public class Enemy_AttackState : EnemyState
     private void FinishAttack()
     {
         // Cambiar al estado de persecución
-        if (!enemy.isAttacking)
-        {
-            stateMachine.ChangeState(enemy.idleState);
-        }
-        else
-        {
-            stateMachine.ChangeState(enemy.pursuitState);
-        }
+        stateMachine.ChangeState(enemy.pursuitState);
     }
 
-    public void SetParametersAttack(Vector3 currentP, Vector3 attackP) 
+    public void SetParametersAttack(Vector3 currentP, Vector3 attackP)
     {
         currentPosition = currentP;
         attackPoint = attackP;
+        reachedAttack = true;
     }
 }

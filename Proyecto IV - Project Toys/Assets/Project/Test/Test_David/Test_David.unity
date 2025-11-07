@@ -576,6 +576,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 16532f6f5c95064409cf499640b857e3, type: 2}
+    - target: {fileID: 717991449406867871, guid: 5a2e4f34a2401644591f0ad689a05fb1, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 804564364225803378, guid: 5a2e4f34a2401644591f0ad689a05fb1, type: 3}
       propertyPath: m_Name
       value: EnemyFSM
@@ -1212,11 +1216,11 @@ MonoBehaviour:
   maxSlopeAngle: 30
   range: 5
   attackRange: 7.5
-  waitTime: 1
-  acceleration: 8
+  waitTime: 2
+  acceleration: 15
   attackAcceleration: 20
   damage: 9
-  attackSpeed: 1
+  attackSpeed: 5
   damageCollider: {fileID: 957381537}
   isAttacking: 0
   playerTransform: {fileID: 0}

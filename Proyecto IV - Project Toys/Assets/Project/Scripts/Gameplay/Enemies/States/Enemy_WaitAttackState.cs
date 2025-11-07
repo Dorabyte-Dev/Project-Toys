@@ -21,9 +21,15 @@ public class Enemy_WaitAttackState : EnemyState
         currentPosition = enemy.transform.position;
         lastPlayerPosition = enemy.playerTransform != null ? enemy.playerTransform.position : enemy.transform.forward;
 
-        // Calcular punto de ataque
-        enemy.agent.destination = currentPosition + (lastPlayerPosition - currentPosition) * 0.25f;
-        attackPoint = lastPlayerPosition;
+        // Calcular punto de ataque (hacia donde va a embestir)
+        Vector3 directionToPlayer = (lastPlayerPosition - currentPosition).normalized;
+        attackPoint = currentPosition + directionToPlayer * enemy.attackRange;
+        //enemy.agent.destination = currentPosition + (lastPlayerPosition - currentPosition) * 0.25f;
+        //attackPoint = lastPlayerPosition;
+
+        // DETENER al enemigo durante la carga del ataque
+        enemy.agent.isStopped = true;
+        enemy.agent.velocity = Vector3.zero;
 
         // Mirar hacia el objetivo
         enemy.transform.LookAt(new Vector3(attackPoint.x, enemy.transform.position.y, attackPoint.z), Vector3.up);
@@ -40,12 +46,13 @@ public class Enemy_WaitAttackState : EnemyState
     {
         base.Update();
 
-        currentTime += 0.1f;
-        Debug.Log(currentTime);
+        currentTime += Time.deltaTime;
         //if (currentTime >= enemy.waitTime && !hasStartedAttack)
         if (currentTime >= enemy.waitTime)
         {
+            Debug.Log("Cambiar a estado de ataque");
             enemy.attackState.SetParametersAttack(currentPosition, attackPoint);
+            
             stateMachine.ChangeState(enemy.attackState);
         }
 
@@ -53,5 +60,6 @@ public class Enemy_WaitAttackState : EnemyState
     public override void Exit()
     {
         base.Exit();
+        enemy.agent.isStopped = false;
     }
 }

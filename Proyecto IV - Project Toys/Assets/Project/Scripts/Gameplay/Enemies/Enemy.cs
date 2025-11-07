@@ -71,7 +71,10 @@ public class Enemy : Entity
                 }
                 break;
             case 2:
-                stateMachine.ChangeState(waitAttackState);
+                if (!isAttacking)
+                {
+                    stateMachine.ChangeState(waitAttackState);
+                }
                 break;
             default:
                 Debug.LogWarning("Error with the detect player system");
