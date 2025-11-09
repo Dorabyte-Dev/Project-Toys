@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -31,6 +32,8 @@ public class Enemy : Entity
 
     public int facingDirection = 1;
 
+    public Transform player { get; private set; }
+
     protected override void Awake()
     {
         base.Awake();
@@ -52,6 +55,27 @@ public class Enemy : Entity
         facingDirection *= -1;
         transform.Rotate(0f, 180f, 0f);
     }
+
+    //public Transform GetPlayerReference()
+    //{
+    //    if (player == null)
+    //        player == PlayerDetected().transform;
+    //    return player;
+    //}
+
+    //private RaycastHit PlayerDetected()
+    //{
+    //    RaycastHit hit =
+    //        Physics.Raycast(transform.position, transform.forward, out hit, range)
+    //    if (Physics.Raycast(transform.position, directionToPlayer, out hit, range))
+    //    {
+    //        if (hit.transform.CompareTag("Player"))
+    //        {
+    //            return hit;
+    //        }
+    //    }
+    //    return hit;
+    //}
 
     #region Player Detection
     public void UpdateStateBasedOnNearness()

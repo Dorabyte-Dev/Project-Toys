@@ -3,10 +3,12 @@ using UnityEngine;
 public class Entity_AnimationTriggers : MonoBehaviour
 {
     private Entity entity;
+    private Entity_Combat entityCombat;
 
     private void Awake()
     {
-        entity = GetComponentInParent<Entity>();
+        entity = GetComponent<Entity>();
+        entityCombat = GetComponent<Entity_Combat>();
     }
 
     private void CurrentStateTrigger() 
@@ -14,5 +16,8 @@ public class Entity_AnimationTriggers : MonoBehaviour
         entity.CurrentStateAnimationTrigger();
     }
 
-
+    private void AttackTrigger()
+    {
+        entityCombat.PerformAttack(10);
+    }
 }
