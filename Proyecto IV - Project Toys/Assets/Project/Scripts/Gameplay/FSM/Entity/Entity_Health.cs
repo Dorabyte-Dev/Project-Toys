@@ -17,7 +17,7 @@ public class Entity_Health : MonoBehaviour
         currentHp = stats.GetMaxetHealth();
     }
 
-    public void TakeDamage(float takeDamage)
+    public virtual void TakeDamage(float takeDamage, Transform damageDealer)
     {
         if (isDead)
             return;
