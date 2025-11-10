@@ -5,8 +5,8 @@ public class Entity_Health : MonoBehaviour
     private Entity entity;
     private Entity_Stats stats;
 
-    [SerializeField] protected float currentHp;
-    [SerializeField] protected float maxHp;
+    [SerializeField] public float currentHp;
+    [SerializeField] public float maxHp;
     protected bool isDead;
 
     private void Awake()
@@ -15,6 +15,7 @@ public class Entity_Health : MonoBehaviour
         stats = GetComponent<Entity_Stats>();
 
         currentHp = stats.GetMaxetHealth();
+        maxHp = stats.GetMaxetHealth();
     }
 
     public virtual void TakeDamage(float takeDamage, Transform damageDealer)
@@ -37,5 +38,6 @@ public class Entity_Health : MonoBehaviour
     public virtual void IsDead()
     {
         isDead = true;
+        entity.DeadEntity();
     }
 }

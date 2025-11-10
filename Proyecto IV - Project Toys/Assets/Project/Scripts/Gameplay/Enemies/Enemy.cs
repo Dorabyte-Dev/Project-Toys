@@ -9,6 +9,8 @@ public class Enemy : Entity
     public Enemy_PursuitState pursuitState;  // ESTADO DE PERSECUCION
     public Enemy_WaitAttackState waitAttackState; // ESTADO DE ESPERA DEL ATAQUE
     public Enemy_AttackState attackState;    // ESTADO DE ATTACK
+    public Enemy_DeadState deadState; // ESTADO DE MUERTE
+
 
     [Header("Enemy Specs")]
     public float range;
@@ -43,7 +45,12 @@ public class Enemy : Entity
 
         damageCollider.SetActive(false);
     }
+    public override void DeadEntity()
+    {
+        base.DeadEntity();
 
+        stateMachine.ChangeState(deadState);
+    }
     protected override void Start()
     {
         base.Start();
@@ -54,6 +61,22 @@ public class Enemy : Entity
     {
         facingDirection *= -1;
         transform.Rotate(0f, 180f, 0f);
+    }
+
+    
+
+    public void PlayerDeath()
+    {
+        stateMachine.ChangeState(idleState);
+    }
+    private void OnEnable()
+    {
+        Player.OnPlayerDeath += PlayerDeath;
+    }
+
+    private void OnDisable()
+    {
+        Player.OnPlayerDeath -= PlayerDeath;
     }
 
     //public Transform GetPlayerReference()
