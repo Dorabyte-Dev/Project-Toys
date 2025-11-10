@@ -6,7 +6,8 @@ using UnityEngine.Windows;
 
 public class MeshTrail : MonoBehaviour
 {
-    public float activeTime = 2f;
+    public Player player;
+
     public float meshDestroyDelay = 2f;
     [Header("Mesh Related")]
     public float meshRefreshRate = 0.05f;
@@ -18,13 +19,17 @@ public class MeshTrail : MonoBehaviour
     public bool toggleTrail;
     private bool isTrailActive;
 
+    private void Start()
+    {
+        player = GetComponent<Player>();
+    }
     void Update()
     {
         if (toggleTrail && !isTrailActive)
         {
             toggleTrail = false;
             isTrailActive = true;
-            StartCoroutine(ActivateTrail(activeTime));
+            StartCoroutine(ActivateTrail(player.dashDuration));
         }
     }
 
