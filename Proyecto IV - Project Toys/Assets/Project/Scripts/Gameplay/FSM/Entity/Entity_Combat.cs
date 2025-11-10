@@ -3,15 +3,15 @@ using UnityEngine;
 public class Entity_Combat : MonoBehaviour
 {
     [Header("Target Detection")]
-    [SerializeField] private Transform targetCheck;
-    [SerializeField] private float targetCheckRadius = 1;
     [SerializeField] private LayerMask whatIsTarget;
 
     [SerializeField] private Entity_Stats stats;
+    [SerializeField] private Entity entity;
     [SerializeField] private float damage;
 
     private void Awake()
     {
+        entity = GetComponent<Entity>();
         stats = GetComponent<Entity_Stats>();
         damage = stats.GetMaxAttack();
     }
@@ -28,12 +28,8 @@ public class Entity_Combat : MonoBehaviour
 
     private Collider[] GetDetectedColliders()
     {
-        return Physics.OverlapSphere(targetCheck.position, targetCheckRadius, whatIsTarget);
+        return Physics.OverlapSphere(entity.targetCheck.position, entity.targetCheckRadius, whatIsTarget);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(targetCheck.position, targetCheckRadius);
-    }
+    
 }

@@ -127,7 +127,6 @@ public class Enemy : Entity
                 Debug.LogWarning("Error with the detect player system");
                 break;
         }
-        Debug.Log(nearness);
     }
     #endregion
 

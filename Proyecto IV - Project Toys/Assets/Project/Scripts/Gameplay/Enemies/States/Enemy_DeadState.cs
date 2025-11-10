@@ -10,11 +10,8 @@ public class Enemy_DeadState : EnemyState
     public override void Enter()
     {
         anim.enabled = false;
-
-        Debug.Log("ENTRO EN ESTADO DE MUERTE ENEMY");
         enemy.agent.enabled = false;
         stateMachine.SwitchOffStateMachine();
-        Debug.Log("IM DEAD.\n PD: Compra pan");
     }
 
 

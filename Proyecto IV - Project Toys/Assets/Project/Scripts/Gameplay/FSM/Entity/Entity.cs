@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Entity : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Entity : MonoBehaviour
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] public Transform targetCheck;
+    [SerializeField] public float targetCheckRadius = 1;
     public bool groundDetected { get; private set; }
 
     public float moveSpeed;
@@ -119,6 +122,7 @@ public class Entity : MonoBehaviour
             // Punto de impacto
             Gizmos.DrawSphere(hit.point, 0.1f);
         }
+        Gizmos.DrawWireSphere(targetCheck.position, targetCheckRadius);
     }
 
     internal void CurrentStateAnimationTrigger()
