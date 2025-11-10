@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Player : Entity
@@ -14,9 +15,10 @@ public class Player : Entity
     public Player_DeathState deathState { get; private set; }
 
     [Header("Attack Details")]
-    public Vector2 attackVelocity;
+    public Vector2[] attackVelocity;
     public float attackVelocityDuration = .1f;
     public float comboResetTime = 1;
+    private Coroutine queuedAttackCo;
 
     [Header("Movement Specs")]
     public Vector2 moveInput { get; private set; }
@@ -74,6 +76,20 @@ public class Player : Entity
         base.DeadEntity();
         OnPlayerDeath?.Invoke();
         stateMachine.ChangeState(deathState);
+    }
+
+    public void EnterAttackStateWithDelay()
+    {
+        if(queuedAttackCo != null)
+            StopCoroutine(queuedAttackCo);
+
+        queuedAttackCo = StartCoroutine(EnterAttackStateWithDelayCo());
+    }
+
+    private IEnumerator EnterAttackStateWithDelayCo()
+    {
+        yield return new WaitForEndOfFrame();
+        stateMachine.ChangeState(lightAttackState);
     }
    
 }

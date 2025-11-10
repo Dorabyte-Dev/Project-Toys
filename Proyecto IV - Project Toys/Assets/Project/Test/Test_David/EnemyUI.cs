@@ -3,22 +3,33 @@ using UnityEngine.UI;
 
 public class EnemyUI : MonoBehaviour
 {
-    public Image lifeBar;
+    [Header("Enemy Health")]
+    public Image fill;
+    public GameObject lifeBar;
+    [Space(20)]
     private Enemy_Health enemyLifeScript;
 
     void Start()
     {
         enemyLifeScript = GetComponentInParent<Enemy_Health>();
-        if(lifeBar == null)
+        if(fill == null)
         {
-            lifeBar = GetComponent<Image>();
+            fill = GetComponent<Image>();
         }
     }
 
     void Update()
     {
         transform.LookAt(Camera.main.transform);
-        Debug.Log("Enemy health: " + enemyLifeScript.currentHp);
-        lifeBar.fillAmount = enemyLifeScript.currentHp / enemyLifeScript.maxHp;
+
+        if (enemyLifeScript.currentHp >= enemyLifeScript.maxHp)
+        {
+            lifeBar.SetActive(false);
+        }
+        else
+        {
+            lifeBar.SetActive(true);
+        }
+        fill.fillAmount = enemyLifeScript.currentHp / enemyLifeScript.maxHp;
     }
 }

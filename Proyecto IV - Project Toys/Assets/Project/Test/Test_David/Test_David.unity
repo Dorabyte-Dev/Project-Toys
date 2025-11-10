@@ -1785,6 +1785,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694712086}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &819281399 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2226526623033496037, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
+  m_PrefabInstance: {fileID: 6348706563170746834}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &897056666
 GameObject:
   m_ObjectHideFlags: 0
@@ -2381,7 +2386,7 @@ Transform:
   m_GameObject: {fileID: 1291522908}
   serializedVersion: 2
   m_LocalRotation: {x: 0.26585165, y: -0, z: -0, w: 0.96401393}
-  m_LocalPosition: {x: -3.22, y: 8.56, z: -12.61}
+  m_LocalPosition: {x: -9.98, y: 11.62, z: -15.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3526,6 +3531,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15f8f96c14b0e93409577906da7020c4, type: 3}
+--- !u!114 &2846876122211514352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819281399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56a597c11b8581049893541a16697240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDamageFeedback
+  feedbackColor: {r: 1, g: 0.97001433, b: 0.15566039, a: 1}
 --- !u!1001 &6348706563170746834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3593,7 +3611,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2226526623033496037, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2846876122211514352}
   m_SourcePrefab: {fileID: 100100000, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

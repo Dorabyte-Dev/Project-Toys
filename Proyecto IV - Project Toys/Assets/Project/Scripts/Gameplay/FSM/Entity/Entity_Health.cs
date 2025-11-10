@@ -28,7 +28,7 @@ public class Entity_Health : MonoBehaviour
     protected void ReduceHp(float damage)
     {
         currentHp -= damage;
-        if (maxHp < 0)
+        if (currentHp < 0)
         {
             IsDead();
         }

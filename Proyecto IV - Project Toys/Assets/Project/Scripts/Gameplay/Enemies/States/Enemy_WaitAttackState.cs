@@ -15,7 +15,6 @@ public class Enemy_WaitAttackState : EnemyState
     {
         base.Enter();
         enemy.isAttacking = true;
-        enemy.damageCollider.SetActive(true);
 
         // Guardar posiciones
         currentPosition = enemy.transform.position;

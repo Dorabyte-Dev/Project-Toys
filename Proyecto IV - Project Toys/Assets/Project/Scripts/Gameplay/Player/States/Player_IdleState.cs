@@ -9,10 +9,8 @@ public class Player_IdleState : Player_GroundedState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Player has entered Idle State.");
 
         player.SetVelocity(0,0);
-        Debug.Log(rb.linearVelocity.y);
     }
 
     public override void Exit()

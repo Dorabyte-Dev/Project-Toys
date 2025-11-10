@@ -75,7 +75,6 @@ GameObject:
   - component: {fileID: 4735192515070300137}
   - component: {fileID: 6863398189771913411}
   - component: {fileID: 6515810562021439052}
-  - component: {fileID: 8711299408823344122}
   m_Layer: 5
   m_Name: Lifebar
   m_TagString: Untagged
@@ -141,21 +140,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8711299408823344122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1804735386121678601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e004dd4be34adc149aab0808c6b62a97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyUI
-  currentHp: 0
-  maxHp: 0
-  lifeBar: {fileID: 8893466979339389320}
 --- !u!1 &4499935715755394834
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,6 +381,7 @@ GameObject:
   - component: {fileID: 2597664386778760542}
   - component: {fileID: 3715519108080773853}
   - component: {fileID: 3717051003241592424}
+  - component: {fileID: 9010726021998954927}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -487,6 +472,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &9010726021998954927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8846006323350921810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e004dd4be34adc149aab0808c6b62a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyUI
+  fill: {fileID: 8893466979339389320}
+  lifeBar: {fileID: 1804735386121678601}
 --- !u!1 &8974778953848447290
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,9 +626,17 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8417361359673230750, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417361359673230750, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 55b8dede2ec0c224495080dbce30082e, type: 2}
+    - target: {fileID: 8417361359673230750, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 76adee55614063d49be6dcf8caac2187, type: 2}
     - target: {fileID: 8719771546195959716, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
       propertyPath: m_Layer
       value: 6
