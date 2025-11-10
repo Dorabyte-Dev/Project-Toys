@@ -80,6 +80,11 @@ public class Entity : MonoBehaviour
     {
         groundDetected = Physics.Raycast(groundCheck.position, Vector3.down, groundCheckDistance, whatIsGround);
     }
+    public virtual void DeadEntity() 
+    {
+
+    
+    }
 
     private void OnDrawGizmos()
     {

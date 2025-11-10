@@ -7,7 +7,15 @@ public class Entity_Combat : MonoBehaviour
     [SerializeField] private float targetCheckRadius = 1;
     [SerializeField] private LayerMask whatIsTarget;
 
-    public void PerformAttack(float damage)
+    [SerializeField] private Entity_Stats stats;
+    [SerializeField] private float damage;
+
+    private void Awake()
+    {
+        stats = GetComponent<Entity_Stats>();
+        damage = stats.GetMaxAttack();
+    }
+    public void PerformAttack()
     {
         foreach (var target in GetDetectedColliders())
         {

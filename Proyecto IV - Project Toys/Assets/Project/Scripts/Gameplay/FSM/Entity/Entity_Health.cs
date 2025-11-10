@@ -38,5 +38,6 @@ public class Entity_Health : MonoBehaviour
     public virtual void IsDead()
     {
         isDead = true;
+        entity.DeadEntity();
     }
 }

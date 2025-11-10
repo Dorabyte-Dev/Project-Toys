@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class Player : Entity
 {
+    public static event Action OnPlayerDeath;
     public PlayerInputSystem input { get; private set; }
     public Player_IdleState idleState { get; private set; }
     public Player_MoveState moveState { get; private set; }
@@ -9,6 +11,7 @@ public class Player : Entity
     public Player_FallState fallState { get; private set; }
     public Player_DashState dashState { get; private set; }
     public Player_LightAttackState lightAttackState { get; private set; }
+    public Player_DeathState deathState { get; private set; }
 
     [Header("Attack Details")]
     public Vector2 attackVelocity;
@@ -39,6 +42,7 @@ public class Player : Entity
         fallState = new Player_FallState(this, stateMachine, "jumpFall");
         dashState = new Player_DashState(this, stateMachine, "Dash");
         lightAttackState = new Player_LightAttackState(this, stateMachine, "LightPressed");
+        deathState = new Player_DeathState(this, stateMachine, "death");
 
     }
     protected override void Start()
@@ -65,5 +69,11 @@ public class Player : Entity
         input.Disable();
     }
 
+    public override void DeadEntity()
+    {
+        base.DeadEntity();
+        OnPlayerDeath?.Invoke();
+        stateMachine.ChangeState(deathState);
+    }
    
 }
