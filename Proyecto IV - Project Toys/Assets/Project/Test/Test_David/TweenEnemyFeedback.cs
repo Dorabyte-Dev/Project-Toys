@@ -9,7 +9,7 @@ public class TweenEnemyFeedback : MonoBehaviour
     //private Coroutine changeCoroutine;
     //private Coroutine revertCoroutine;
     private bool isStarted;
-    private DOTween changeColorsTween;
+    private Tween changeColorsTween;
     public Color feedbackColor;
     void Start()
     {
@@ -35,16 +35,20 @@ public class TweenEnemyFeedback : MonoBehaviour
 
     public void TriggerMaterialChange()
     {
-        if(isStarted == false)
+        //if (isStarted == false)
+        //{
+        //    ChangeMaterialsColors(feedbackColor);
+        //}
+        //else
+        //{
+        //    DOTween.Clear();
+        //    ChangeMaterialsColors(feedbackColor);
+        //}
+        if(changeColorsTween != null)
         {
-            ChangeMaterialsColors(feedbackColor);
+            changeColorsTween.Pause();
         }
-        else
-        {
-            DOTween.Clear();
-            ChangeMaterialsColors(feedbackColor);
-        }
-        
+        ChangeMaterialsColors(feedbackColor);
     }
 
    
@@ -82,7 +86,7 @@ public class TweenEnemyFeedback : MonoBehaviour
         SkinnedMeshRenderer[] skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
         foreach(SkinnedMeshRenderer renderer in skinnedMeshRenderers)
         {
-            renderer.material.DOColor(color, 0).OnComplete(() =>
+            changeColorsTween = renderer.material.DOColor(color, 0).OnComplete(() =>
             {
                 for (int i = 0; i < skinnedMeshRenderers.Length; i++)
                 {
@@ -156,11 +160,11 @@ public class TweenEnemyFeedback : MonoBehaviour
     //}
 
 
-    /*private void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
             TriggerMaterialChange();
         }
-    }*/
+    }
 }

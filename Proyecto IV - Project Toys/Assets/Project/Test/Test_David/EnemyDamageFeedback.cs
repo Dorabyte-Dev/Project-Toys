@@ -8,7 +8,11 @@ public class EnemyDamageFeedback : MonoBehaviour
     private List<Color[]> originalColors = new List<Color[]>();
     private Coroutine changeCoroutine;
     private Coroutine revertCoroutine;
+    private Rigidbody rb;
     public Color feedbackColor;
+    public float feedbackDuration;
+    public float pushStrengh;
+    [Range(0, 1)] public float pushDuration;
     void Start()
     {
         SkinnedMeshRenderer[] skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -29,9 +33,17 @@ public class EnemyDamageFeedback : MonoBehaviour
             }
             originalColors.Add(colors.ToArray());
         }
-
+        rb = GetComponent<Rigidbody>();
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            TriggerMaterialChange();
+            StartCoroutine(PushFeedback());
+        }
+    }
+    #region ColoredFeedback
     public void TriggerMaterialChange()
     {
         if (changeCoroutine != null)
@@ -50,9 +62,10 @@ public class EnemyDamageFeedback : MonoBehaviour
 
     private IEnumerator ChangeMaterialsTemporarily()
     {
-        ChangeMaterialsToColor(feedbackColor); // 255, 255, 255
-        yield return new WaitForSeconds(0.2f);
-        revertCoroutine = StartCoroutine(RevertMaterialsSmoothly(1.0f));
+        ChangeMaterialsToColor(feedbackColor);
+        //yield return new WaitForSeconds(0.2f);
+        yield return null;
+        revertCoroutine = StartCoroutine(RevertMaterialsSmoothly(feedbackDuration));
     }
 
 
@@ -130,14 +143,12 @@ public class EnemyDamageFeedback : MonoBehaviour
             skinnedMeshRenderers[i].materials = originalMaterials[i];
         }
     }
+    #endregion
 
-
-    /*private void Update()
+    private IEnumerator PushFeedback()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            TriggerMaterialChange();
-        }
-    }*/
-
+        rb.AddForce(-transform.forward * pushStrengh, ForceMode.VelocityChange);    //En el caso normal sería la dirección del ataque, pero aun no tengo como comprobarlo
+        yield return new WaitForSecondsRealtime(pushDuration);
+        rb.linearVelocity = Vector3.zero;
+    }
 }
