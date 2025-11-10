@@ -8,8 +8,4 @@ public class Enemy_PlayerTrigger : MonoBehaviour
     {
         enemy = GetComponentInParent<Enemy>();
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        enemy.DealDamage();
-    }
 }

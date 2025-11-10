@@ -10,6 +10,7 @@ public class Player_DeathState : PlayerState
     {
         base.Enter();
         input.Disable();
+        player.SetVelocity(0,0);
     }
 
     public override void Update()

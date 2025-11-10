@@ -22,7 +22,6 @@ public class Enemy : Entity
     public float attackAcceleration;
     public int damage;
     public float attackSpeed;
-    public GameObject damageCollider;
     public bool isAttacking;
 
     [Header("Player Coords")]
@@ -43,7 +42,6 @@ public class Enemy : Entity
         agent.speed = moveSpeed;
         agent.acceleration = acceleration;
 
-        damageCollider.SetActive(false);
     }
     public override void DeadEntity()
     {

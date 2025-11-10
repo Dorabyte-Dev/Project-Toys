@@ -25,7 +25,7 @@ public class Enemy_AttackState : EnemyState
 
 
         enemy.isAttacking = true;
-        enemy.damageCollider.SetActive(true);
+        //enemy.damageCollider.SetActive(true);
 
         // Configurar velocidad de ataque (embestida rápida)
         enemy.agent.speed = enemy.attackSpeed;
@@ -50,7 +50,7 @@ public class Enemy_AttackState : EnemyState
     {
         base.Exit();
         enemy.isAttacking = false;
-        enemy.damageCollider.SetActive(false);
+        //enemy.damageCollider.SetActive(false);
         reachedAttack = false;
 
         // Restaurar velocidades normales
