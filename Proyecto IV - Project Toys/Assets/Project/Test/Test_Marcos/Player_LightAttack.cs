@@ -23,7 +23,7 @@ public class Player_LightAttackState : PlayerState
     public override void Enter()
     {
         base.Enter();
-
+        comboAttackQueued = false;
         
         ResetComboIndexIfNeeded();
 
@@ -45,15 +45,15 @@ public class Player_LightAttackState : PlayerState
         HandleAttackVelocity();
 
         if (input.Player.LightAttack.WasPressedThisFrame())
-            QueueNextAttack();
+           QueueNextAttack();
 
         if(triggerCalled)
         {
             if (comboAttackQueued)
             {
                 anim.SetBool(animBoolName, false);
-                player.EnterAttackStateWithDelay();
-            }
+               player.EnterAttackStateWithDelay();
+           }
             else
                 stateMachine.ChangeState(player.idleState);
         }
