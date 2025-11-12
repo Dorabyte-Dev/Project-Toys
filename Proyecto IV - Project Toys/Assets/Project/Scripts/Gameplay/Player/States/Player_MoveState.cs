@@ -31,6 +31,13 @@ public class Player_MoveState : Player_GroundedState
 
     public void RotatePlayerToMatchInput()
     {
+        Vector2 direction = new Vector2(player.moveInput.x, player.moveInput.y).normalized;
 
+        if (direction.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(player.transform.eulerAngles.y, targetAngle, ref player.turnSmoothVelocity, player.turnSmoothTime);
+            player.transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+        }
     }
 }

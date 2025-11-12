@@ -17,6 +17,8 @@ public class Entity : MonoBehaviour
     public bool groundDetected { get; private set; }
 
     public float moveSpeed;
+    public float turnSmoothTime = 0.1f;
+    public float turnSmoothVelocity;
 
     [Header("Slope Detection")]
     [SerializeField] private float maxSlopeAngle;
