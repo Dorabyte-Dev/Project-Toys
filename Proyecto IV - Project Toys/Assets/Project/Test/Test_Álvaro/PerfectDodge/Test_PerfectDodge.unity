@@ -2212,6 +2212,8 @@ MonoBehaviour:
     baseValue: 100
   vitality:
     baseValue: 3
+  attackDamage:
+    baseValue: 0
 --- !u!114 &1642367674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2243,9 +2245,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483648
   groundCheck: {fileID: 1062709522}
+  targetCheck: {fileID: 0}
+  targetCheckRadius: 1
   moveSpeed: 5
   maxSlopeAngle: 30
-  attackVelocity: {x: 0, y: 0}
+  attackVelocity:
+  - {x: 5.1676716e+22, y: 5.37e-43}
+  - {x: 1.9787757e-15, y: 5.38e-43}
   attackVelocityDuration: 0.1
   comboResetTime: 1
   jumpForce: 5

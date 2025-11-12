@@ -1064,7 +1064,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185882464}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06525703, y: -0.6204627, z: 0.051923703, w: 0.7797894}
+  m_LocalRotation: {x: 0.06528928, y: -0.61997765, z: 0.051883094, w: 0.7801751}
   m_LocalPosition: {x: 52.946365, y: 5.3781757, z: -66.03447}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5377,6 +5377,8 @@ MonoBehaviour:
     baseValue: 100
   vitality:
     baseValue: 3
+  attackDamage:
+    baseValue: 0
 --- !u!114 &934724533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5408,14 +5410,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483648
   groundCheck: {fileID: 551999766}
+  targetCheck: {fileID: 0}
+  targetCheckRadius: 1
   moveSpeed: 5
   maxSlopeAngle: 30
-  attackVelocity: {x: 0, y: 0}
+  attackVelocity:
+  - {x: 4.429222e+22, y: 5.37e-43}
+  - {x: 2.0091806e+36, y: 5.35e-43}
   attackVelocityDuration: 0.1
-  moveInput: {x: 0, y: 0}
+  comboResetTime: 1
   jumpForce: 5
   dashDuration: 0.25
   dashDistance: 4
+  perfectDodgeDuration: 0.25
+  perfectDodgeEnemyDistance: 1
+  perfectDodgeCollider: {fileID: 0}
+  afterimageTrail: {fileID: 0}
 --- !u!54 &934724535
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5423,10 +5433,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934724530}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -5440,7 +5450,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!136 &934724536
@@ -5486,6 +5496,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5507,6 +5519,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -6502,6 +6515,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4824774553823918, guid: 570c3dec22603a448810f71055d3cea6, type: 3}
   m_PrefabInstance: {fileID: 1065490657}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1080267338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1080267340}
+  - component: {fileID: 1080267339}
+  m_Layer: 0
+  m_Name: PerfectDodgeManager (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1080267339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080267338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1506602440b085e4eb0c58bcd6b75cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pDodgeEnemies: []
+--- !u!4 &1080267340
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080267338}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.564616, y: 10.126596, z: -23.944078}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1083746114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8580,7 +8638,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441210244}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06525703, y: -0.6204627, z: 0.051923692, w: 0.77978945}
+  m_LocalRotation: {x: 0.06528929, y: -0.61997765, z: 0.05188309, w: 0.78017515}
   m_LocalPosition: {x: 52.946365, y: 5.3781757, z: -66.03447}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12481,3 +12539,4 @@ SceneRoots:
   - {fileID: 934724539}
   - {fileID: 1510442952}
   - {fileID: 1441210247}
+  - {fileID: 1080267340}
