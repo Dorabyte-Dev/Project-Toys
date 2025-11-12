@@ -4,6 +4,7 @@ public class Entity_Health : MonoBehaviour
 {
     private Entity entity;
     private Entity_Stats stats;
+    [SerializeField] private Entity_VFX vfx;
 
     [SerializeField] public float currentHp;
     [SerializeField] public float maxHp;
@@ -13,6 +14,7 @@ public class Entity_Health : MonoBehaviour
     {
         entity = GetComponent<Entity>();
         stats = GetComponent<Entity_Stats>();
+        vfx = GetComponent<Entity_VFX>();
 
         currentHp = stats.GetMaxetHealth();
         maxHp = stats.GetMaxetHealth();
@@ -22,6 +24,7 @@ public class Entity_Health : MonoBehaviour
     {
         if (isDead)
             return;
+        vfx.DamageVFX_Feedback();
         ReduceHp(takeDamage);
     }
 
