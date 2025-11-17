@@ -76,10 +76,11 @@ public class Player : Entity
     }
     
 
-    public void CallAnimationTrigger()
-    {
-        stateMachine.currentState.CallAnimationTrigger();
-    }
+    //public void CallAnimationTrigger()
+    //{
+    //    Debug.Log("Entro en trigger animation");
+    //    stateMachine.currentState.CallAnimationTrigger();
+    //}
 
     private void OnDisable()
     {
