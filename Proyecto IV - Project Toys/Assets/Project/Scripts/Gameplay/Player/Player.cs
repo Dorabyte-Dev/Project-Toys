@@ -61,6 +61,21 @@ public class Player : Entity
 
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        Vector2 dir = new Vector2(moveInput.x, moveInput.y);
+
+        if(dir.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+        }
+
+    }
+    
+
     public void CallAnimationTrigger()
     {
         stateMachine.currentState.CallAnimationTrigger();
@@ -91,5 +106,5 @@ public class Player : Entity
         yield return new WaitForEndOfFrame();
         stateMachine.ChangeState(lightAttackState);
     }
-   
+
 }
