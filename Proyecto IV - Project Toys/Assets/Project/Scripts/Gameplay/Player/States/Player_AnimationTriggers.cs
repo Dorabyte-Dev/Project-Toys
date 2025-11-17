@@ -10,13 +10,19 @@ public class Player_AnimationTriggers : Entity_AnimationTriggers
         player = GetComponent<Player>();
     }
 
-    public override void CurrentStateTrigger()
-    {
-        base.AttackTrigger();
-        player.CallAnimationTrigger();
-    }
+    //public override void CurrentStateTrigger()
+    //{
+    //    base.CurrentStateTrigger();
+    //    player.CallAnimationTrigger();
+    //}
     public override void AttackTrigger()
     {
         base.AttackTrigger();
+    }
+
+    public override void CurrentStateTrigger()
+    {
+        base.CurrentStateTrigger();
+        //player.CallAnimationTrigger();
     }
 }

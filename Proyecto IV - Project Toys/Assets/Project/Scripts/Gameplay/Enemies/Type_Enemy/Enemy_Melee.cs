@@ -13,6 +13,7 @@ public class Enemy_Melee : Enemy
         attackState = new Enemy_AttackState(this, stateMachine, "attack");
         waitAttackState = new Enemy_WaitAttackState(this, stateMachine, "waitAttack");
         deadState = new Enemy_DeadState(this, stateMachine, "idle");
+        flinchState = new Enemy_FlinchState(this, stateMachine, "flinch");
     }
 
     protected override void Start()

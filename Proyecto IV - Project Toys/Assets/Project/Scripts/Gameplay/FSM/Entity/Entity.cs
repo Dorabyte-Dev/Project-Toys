@@ -129,7 +129,7 @@ public class Entity : MonoBehaviour
 
     internal void CurrentStateAnimationTrigger()
     {
-        throw new NotImplementedException();
+        stateMachine.currentState.CallAnimationTrigger();
     }
 
     public bool OnSlope()

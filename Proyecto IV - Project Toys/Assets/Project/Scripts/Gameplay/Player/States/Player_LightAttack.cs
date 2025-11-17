@@ -47,13 +47,13 @@ public class Player_LightAttackState : PlayerState
         if (input.Player.LightAttack.WasPressedThisFrame())
            QueueNextAttack();
 
-        if(triggerCalled)
+        if (triggerCalled)
         {
             if (comboAttackQueued)
             {
                 anim.SetBool(animBoolName, false);
-               player.EnterAttackStateWithDelay();
-           }
+                player.EnterAttackStateWithDelay();
+            }
             else
                 stateMachine.ChangeState(player.idleState);
         }
