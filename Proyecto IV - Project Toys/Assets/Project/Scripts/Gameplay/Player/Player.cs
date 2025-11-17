@@ -38,7 +38,6 @@ public class Player : Entity
     {
         base.Awake();
         input = new PlayerInputSystem();
-
         idleState = new Player_IdleState(this, stateMachine, "Idle");
         moveState = new Player_MoveState(this, stateMachine, "Move");
         jumpState = new Player_JumpState(this, stateMachine, "jumpFall");
@@ -52,6 +51,11 @@ public class Player : Entity
     {
         base.Start();
         stateMachine.Initialize(idleState);
+
+        if (cam == null)
+        {
+           cam = Camera.main;
+        }
     }
 
     private void OnEnable()
@@ -109,12 +113,16 @@ public class Player : Entity
         stateMachine.ChangeState(lightAttackState);
     }
     
-    public Vector2 MovementDirectionToCamera(Vector2 moveInput)
+    public Vector2 MovementDirectionToCamera(Vector2 _moveInput)
     {
-        Vector3 camZ = (transform.position - cam.transform.position).normalized;
-        Vector3 xVector = Vector3.Cross(Vector3.up, camZ);
+        if (cam == null)
+        {
+            Debug.LogWarning("No camera assigned!"); 
+            return _moveInput;
+        }
+        Vector3 xVector = cam.transform.right;
         Vector3 zVector = Vector3.Cross(xVector, Vector3.up);
-        Vector3 moveVector = moveInput.x * xVector + moveInput.y * zVector;
+        Vector3 moveVector = _moveInput.x * xVector + _moveInput.y * zVector;
         Vector3 moveVector2 = new Vector2(moveVector.x, moveVector.z);
         return moveVector2;
     }
