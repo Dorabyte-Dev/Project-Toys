@@ -26,7 +26,7 @@ public class Enemy_Health : Entity_Health
         }
     }
 
-    public void FlintState()
+    private void FlintState()
     {
         entity.ChangeFlintState();
     }

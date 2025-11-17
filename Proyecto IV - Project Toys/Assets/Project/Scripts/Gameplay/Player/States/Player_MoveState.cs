@@ -26,20 +26,12 @@ public class Player_MoveState : Player_GroundedState
             stateMachine.ChangeState(player.idleState);
         }
         //RotatePlayerToMatchInput();
-        Vector2 redirectedInput = MovementDirectionToCamera(player.moveInput);
+        Vector2 redirectedInput = player.MovementDirectionToCamera(player.moveInput);
         
         player.SetVelocity(redirectedInput.x * player.moveSpeed, redirectedInput.y * player.moveSpeed);
     }
 
-    Vector2 MovementDirectionToCamera(Vector2 moveInput)
-    {
-        Vector3 camZ = (player.transform.position - player.cam.transform.position).normalized;
-        Vector3 xVector = Vector3.Cross(Vector3.up, camZ);
-        Vector3 zVector = Vector3.Cross(xVector, Vector3.up);
-        Vector3 moveVector = player.moveInput.x * xVector + player.moveInput.y * zVector;
-        Vector3 moveVector2 = new Vector2(moveVector.x, moveVector.z);
-        return moveVector2;
-    }
+    
     //public void RotatePlayerToMatchInput()
     //{
     //    Vector2 direction = new Vector2(player.moveInput.x, player.moveInput.y).normalized;

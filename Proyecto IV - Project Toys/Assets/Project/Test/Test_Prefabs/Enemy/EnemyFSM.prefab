@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 1672824140760715180}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 4735192515070300137}
   - component: {fileID: 6863398189771913411}
   - component: {fileID: 6515810562021439052}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Lifebar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 756554177914256118}
   - component: {fileID: 1904002611526302977}
   - component: {fileID: 8893466979339389320}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Filled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 2062718345361554058}
   - component: {fileID: 5376673858393285757}
   - component: {fileID: 7059884833110041257}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 3715519108080773853}
   - component: {fileID: 3717051003241592424}
   - component: {fileID: 9010726021998954927}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -839,10 +839,13 @@ PrefabInstance:
       addedObject: {fileID: 2033618310773752279}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6636870514004334655}
+      addedObject: {fileID: 6990604091059825229}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6990604091059825229}
+      addedObject: {fileID: 4977593809323309783}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 694672207064584404}
   m_SourcePrefab: {fileID: 100100000, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
 --- !u!4 &1562158110484515679 stripped
 Transform:
@@ -963,7 +966,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483648
   groundCheck: {fileID: 6124371372069018773}
-  targetCheck: {fileID: 0}
+  targetCheck: {fileID: 4477271842164433315}
   targetCheckRadius: 1
   moveSpeed: 3
   turnSmoothTime: 0.1
@@ -977,6 +980,7 @@ MonoBehaviour:
   damage: 5
   attackSpeed: 9
   isAttacking: 0
+  flinchTime: 0.45
   playerTransform: {fileID: 0}
   jugadorDetectado: 0
   nearness: 0
@@ -1017,7 +1021,7 @@ MonoBehaviour:
   vitality:
     baseValue: 0
   attackDamage:
-    baseValue: 0
+    baseValue: 30
 --- !u!114 &2033618310773752279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1030,21 +1034,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece7f104867932d459538947d28484f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
+  entity: {fileID: 0}
   vfx: {fileID: 0}
   currentHp: 0
   maxHp: 0
---- !u!114 &6636870514004334655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2226526623033496037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7080e2c980ed0144a81fc71d1bba76ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Entity_AnimationTriggers
+  enemy: {fileID: 0}
 --- !u!114 &6990604091059825229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,3 +1055,34 @@ MonoBehaviour:
   feedbackDuration: 0.5
   pushStrengh: 15
   pushDuration: 0.1
+--- !u!114 &4977593809323309783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2226526623033496037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9cdf3465f35574298a72b3213c3bf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Entity_VFX
+  rb: {fileID: 0}
+  feedbackColor: {r: 1, g: 1, b: 1, a: 0}
+  feedbackDuration: 0.5
+  pushStrengh: 15
+  pushDuration: 0.1
+--- !u!114 &694672207064584404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2226526623033496037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f9e591154bd41743ab2e17cbac77cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy_AnimationTriggers
+  entity: {fileID: 0}
+  entityCombat: {fileID: 0}
