@@ -10,6 +10,7 @@ public class Enemy : Entity
     public Enemy_WaitAttackState waitAttackState; // ESTADO DE ESPERA DEL ATAQUE
     public Enemy_AttackState attackState;    // ESTADO DE ATTACK
     public Enemy_DeadState deadState; // ESTADO DE MUERTE
+    public Enemy_FlinchState flinchState; // ESTADO DE ATURDIMIENTO
 
 
     [Header("Enemy Specs")]
@@ -23,6 +24,7 @@ public class Enemy : Entity
     public int damage;
     public float attackSpeed;
     public bool isAttacking;
+    public float flinchTime;
 
     [Header("Player Coords")]
     [HideInInspector] public Transform playerTransform;
