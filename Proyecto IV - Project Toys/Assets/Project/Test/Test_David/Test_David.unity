@@ -1149,6 +1149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf265e28b037f5a41b787432023d7101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entity: {fileID: 0}
   vfx: {fileID: 0}
   currentHp: 0
   maxHp: 0
@@ -1180,6 +1181,7 @@ MonoBehaviour:
   - {x: -2.4640483e-28, y: 6.39e-43}
   attackVelocityDuration: 0.1
   comboResetTime: 1
+  cam: {fileID: 0}
   jumpForce: 5
   dashDuration: 0.25
   dashDistance: 4
@@ -2679,7 +2681,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15f8f96c14b0e93409577906da7020c4, type: 3}
---- !u!1001 &6348706563170746834
+--- !u!1001 &8233501738500858134
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2731,10 +2733,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5854394103487887614, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2752,6 +2750,6 @@ SceneRoots:
   - {fileID: 539290584}
   - {fileID: 438640107}
   - {fileID: 154184246}
-  - {fileID: 6348706563170746834}
+  - {fileID: 8233501738500858134}
   - {fileID: 897056675}
   - {fileID: 1596098437367033559}
