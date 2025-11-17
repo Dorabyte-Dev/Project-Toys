@@ -22,6 +22,7 @@ public class Player : Entity
 
     [Header("Movement Specs")]
     public Vector2 moveInput { get; private set; }
+    public Camera cam;
     public float jumpForce = 5;
 
     [Header("Dash Specs")]
@@ -107,5 +108,7 @@ public class Player : Entity
         yield return new WaitForEndOfFrame();
         stateMachine.ChangeState(lightAttackState);
     }
+    
+    
 
 }
