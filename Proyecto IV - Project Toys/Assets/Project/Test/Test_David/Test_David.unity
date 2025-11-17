@@ -1149,6 +1149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf265e28b037f5a41b787432023d7101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vfx: {fileID: 0}
   currentHp: 0
   maxHp: 0
 --- !u!114 &897056670
@@ -1171,6 +1172,8 @@ MonoBehaviour:
   targetCheck: {fileID: 0}
   targetCheckRadius: 1
   moveSpeed: 5
+  turnSmoothTime: 0.1
+  turnSmoothVelocity: 0
   maxSlopeAngle: 30
   attackVelocity:
   - {x: -3.8756779e-28, y: 6.39e-43}
@@ -2727,10 +2730,6 @@ PrefabInstance:
     - target: {fileID: 1874491415246942145, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2597664386778760542, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1358961527
       objectReference: {fileID: 0}
     - target: {fileID: 5854394103487887614, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
       propertyPath: m_IsActive
