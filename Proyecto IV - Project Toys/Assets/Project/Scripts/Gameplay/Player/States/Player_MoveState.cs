@@ -26,9 +26,21 @@ public class Player_MoveState : Player_GroundedState
             stateMachine.ChangeState(player.idleState);
         }
         //RotatePlayerToMatchInput();
+        
         player.SetVelocity(player.moveInput.x * player.moveSpeed, player.moveInput.y * player.moveSpeed);
     }
 
+    Vector2 MovementDirectionToCamera(Vector2 moveInput)
+    {
+        Vector2 moveVector;
+        Vector3 xVector;
+        Vector3 yVector;
+        
+        
+        
+        
+        return moveVector;
+    }
     //public void RotatePlayerToMatchInput()
     //{
     //    Vector2 direction = new Vector2(player.moveInput.x, player.moveInput.y).normalized;
