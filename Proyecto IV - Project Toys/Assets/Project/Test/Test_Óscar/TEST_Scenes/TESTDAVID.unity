@@ -1592,7 +1592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4477271842164433315, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.94
+      value: 1.39
       objectReference: {fileID: 0}
     - target: {fileID: 4497863152128539375, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
       propertyPath: attackDamage.baseValue
@@ -1613,6 +1613,10 @@ PrefabInstance:
     - target: {fileID: 8354484202080567144, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8456881175810662470, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
+      propertyPath: flinchTime
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 8456881175810662470, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
       propertyPath: targetCheck
@@ -2272,6 +2276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf265e28b037f5a41b787432023d7101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entity: {fileID: 0}
   vfx: {fileID: 0}
   currentHp: 0
   maxHp: 0
@@ -2688,6 +2693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf265e28b037f5a41b787432023d7101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entity: {fileID: 0}
   vfx: {fileID: 0}
   currentHp: 0
   maxHp: 0

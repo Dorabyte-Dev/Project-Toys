@@ -91,6 +91,11 @@ public class Entity : MonoBehaviour
     
     }
 
+    public virtual void ChangeFlintState()
+    {
+
+    }
+
     private void OnDrawGizmos()
     {
         float rayDistance = 1f * 0.5f + 0.3f;
@@ -155,4 +160,5 @@ public class Entity : MonoBehaviour
 
         return slopeMoveDirection;
     }
+
 }

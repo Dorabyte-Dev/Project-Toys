@@ -43,7 +43,7 @@ public class Enemy : Entity
         agent = GetComponent<NavMeshAgent>();
         agent.speed = moveSpeed;
         agent.acceleration = acceleration;
-
+        agent.isStopped = false;
     }
     public override void DeadEntity()
     {
@@ -63,7 +63,12 @@ public class Enemy : Entity
         transform.Rotate(0f, 180f, 0f);
     }
 
-    
+    public override void ChangeFlintState()
+    {
+        base.ChangeFlintState();
+        Debug.Log("Entro en flichState");
+        stateMachine.ChangeState(flinchState);
+    }
 
     public void PlayerDeath()
     {
