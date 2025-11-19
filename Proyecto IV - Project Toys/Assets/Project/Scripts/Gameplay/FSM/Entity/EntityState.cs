@@ -21,8 +21,7 @@ public abstract class EntityState
 
     public virtual void Enter()
     {
-        // Cada vez que se cambie de estado se llamará a este método
-        Debug.Log("ENTRO EN " + animBoolName);
+        // Cada vez que se cambie de estado se llamarï¿½ a este mï¿½todo
         anim.SetBool(animBoolName, true);
     }
 

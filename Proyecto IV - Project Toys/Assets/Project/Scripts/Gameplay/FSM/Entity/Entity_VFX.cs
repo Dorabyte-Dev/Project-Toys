@@ -13,6 +13,10 @@ public class Entity_VFX : MonoBehaviour
     public float feedbackDuration;
     public float pushStrengh;
     [Range(0, 1)] public float pushDuration;
+    [SerializeField] private float shakeDuration = 1;
+    [SerializeField] private float shakeStrength = 1;
+    [SerializeField] private float randomShake = 0.2f;
+
     void Awake()
     {
         SkinnedMeshRenderer[] skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -46,9 +50,9 @@ public class Entity_VFX : MonoBehaviour
 
     public void DamageVFX_Feedback()
     {
-        Debug.Log("Ejecutando VFX");
         TriggerMaterialChange();
         StartCoroutine(PushFeedback());
+        Shake(shakeDuration, shakeStrength);
     }
 
     #region ColoredFeedback
@@ -157,5 +161,36 @@ public class Entity_VFX : MonoBehaviour
         rb.AddForce(-transform.forward * pushStrengh, ForceMode.VelocityChange);    //En el caso normal ser�a la direcci�n del ataque, pero aun no tengo como comprobarlo
         yield return new WaitForSecondsRealtime(pushDuration);
         rb.linearVelocity = Vector3.zero;
+    }
+
+    private void Shake(float duration, float magnitude)
+    {
+        StartCoroutine(ShakeCoroutine(duration, magnitude));
+    }
+    
+    IEnumerator ShakeCoroutine(float duration, float magnitude)
+    {
+        Debug.Log("Ejecutando VFX Shake");
+        
+        // Cogemos posicion del Rigibody ya que al aplicar este componente, normalmente que este efecto no
+        // intervenga en el efecto de PushFeedback se realiza con rb.position y su funcion MovePosition
+        Vector3 originalPosition = rb.position;
+        float elapsed = 0f;
+    
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-randomShake, randomShake) * magnitude;
+            float y = Random.Range(-randomShake, randomShake) * magnitude;
+            float z = Random.Range(-randomShake, randomShake) * magnitude;
+            
+            // transform.position = originalPosition + new Vector3(x, y, z);
+            rb.MovePosition(originalPosition + new Vector3(x, y, z));
+            
+            elapsed += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        
+        // transform.position = originalPosition;
+        rb.MovePosition(originalPosition);
     }
 }
