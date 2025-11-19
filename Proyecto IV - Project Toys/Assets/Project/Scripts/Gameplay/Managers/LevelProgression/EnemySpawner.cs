@@ -47,8 +47,9 @@ public class EnemySpawner : MonoBehaviour
         {
             Vector3 newPosition = transform.position + new Vector3 (Random.Range(0, maxSpawnDistance), 0, Random.Range(0, maxSpawnDistance));
             GameObject newEnemy = Instantiate(enemy, newPosition, Quaternion.identity);
-            enemiesSpawned.Add(newEnemy);
-            newEnemy.GetComponent<EnemyTest>().spawner = this;
+            Enemy newEnemyScript = newEnemy.GetComponentInChildren<Enemy>();
+            enemiesSpawned.Add(newEnemyScript.gameObject);
+            newEnemyScript.spawner = this;
             yield return new WaitForSeconds(spawnDelay);
         }
     }
@@ -59,7 +60,7 @@ public class EnemySpawner : MonoBehaviour
 
         enemiesSpawned.Remove(enemy);
         enemiesDead++;
-
+        Debug.Log("Ha muerto un enemigo y quedan " + (spawnCount-enemiesDead));
         if(spawnCount == enemiesDead)
         {
             EndCombat();
