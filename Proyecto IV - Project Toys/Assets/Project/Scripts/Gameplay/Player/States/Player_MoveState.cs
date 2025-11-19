@@ -21,14 +21,14 @@ public class Player_MoveState : Player_GroundedState
     {
         base.Update();
 
-        if (player.moveInput == Vector2.zero)
+        if (player.cameraMoveInput == Vector2.zero)
         {
             stateMachine.ChangeState(player.idleState);
         }
         //RotatePlayerToMatchInput();
         Vector2 redirectedInput = player.MovementDirectionToCamera(player.moveInput);
         
-        player.SetVelocity(redirectedInput.x * player.moveSpeed, redirectedInput.y * player.moveSpeed);
+        player.SetVelocity(player.cameraMoveInput.x * player.moveSpeed, player.cameraMoveInput.y * player.moveSpeed);
     }
 
     

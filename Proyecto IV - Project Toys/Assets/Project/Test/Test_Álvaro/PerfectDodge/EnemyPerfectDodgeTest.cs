@@ -45,7 +45,7 @@ public class EnemyPerfectDodgeTest : MonoBehaviour
                 GoToRandomPoint();
                 break;
             case enemyStates.Pursuit:
-                Debug.Log("TE ENCONTRÉ");
+                Debug.Log("TE ENCONTRï¿½");
                 currentTime = 0;
                 agent.destination = playerTransform.position;
                 lastPlayerPosition = playerTransform.position;
@@ -120,7 +120,7 @@ public class EnemyPerfectDodgeTest : MonoBehaviour
     }
     public void DealDamage()
     {
-        Debug.Log("Pum te pego: " + damage + " de daño");
+        Debug.Log("Pum te pego: " + damage + " de daï¿½o");
     }
     #endregion
 
@@ -150,14 +150,14 @@ public class EnemyPerfectDodgeTest : MonoBehaviour
     #region PerfectDodge
     public void SetPerfectDodgeFlag()
     {
-        GameManager gm = FindAnyObjectByType<GameManager>();
+        PerfectDodgeManager gm = FindAnyObjectByType<PerfectDodgeManager>();
         gm.pDodgeEnemies.Add(this.gameObject);
         Debug.Log("He puesto la Flag de perfect dodge");
     }
 
     public void EndPerfectDodgeFlag()
     {
-        GameManager gm = FindAnyObjectByType<GameManager>();
+        PerfectDodgeManager gm = FindAnyObjectByType<PerfectDodgeManager>();
         gm.pDodgeEnemies.Remove(this.gameObject);
     }
     #endregion

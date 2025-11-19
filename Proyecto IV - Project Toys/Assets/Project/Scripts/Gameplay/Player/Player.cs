@@ -22,6 +22,7 @@ public class Player : Entity
 
     [Header("Movement Specs")]
     public Vector2 moveInput { get; private set; }
+    public Vector2 cameraMoveInput { get; private set; }
     public Camera cam;
     public float jumpForce = 5;
 
@@ -69,11 +70,11 @@ public class Player : Entity
     protected override void Update()
     {
         base.Update();
-        Vector2 transformedDir = MovementDirectionToCamera(moveInput);
+        cameraMoveInput = MovementDirectionToCamera(moveInput);
 
-        if(transformedDir.magnitude >= 0.1f)
+        if(cameraMoveInput.magnitude >= 0.1f)
         {
-            float targetAngle = Mathf.Atan2(transformedDir.x, transformedDir.y) * Mathf.Rad2Deg;
+            float targetAngle = Mathf.Atan2(cameraMoveInput.x, cameraMoveInput.y) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
         }

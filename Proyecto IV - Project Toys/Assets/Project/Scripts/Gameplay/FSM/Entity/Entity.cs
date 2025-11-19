@@ -109,10 +109,10 @@ public class Entity : MonoBehaviour
         {
             float angle = Vector3.Angle(Vector3.up, hit.normal);
 
-            // Cambiar color según si es pendiente válida o no
+            // Cambiar color segï¿½n si es pendiente vï¿½lida o no
             if (angle < maxSlopeAngle && angle != 0)
             {
-                Gizmos.color = Color.green; // Pendiente válida
+                Gizmos.color = Color.green; // Pendiente vï¿½lida
             }
             else if (angle == 0)
             {

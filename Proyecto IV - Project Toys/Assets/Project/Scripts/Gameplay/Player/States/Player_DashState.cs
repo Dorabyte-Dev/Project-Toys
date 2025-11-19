@@ -17,7 +17,7 @@ public class Player_DashState : Player_GroundedState
         base.Enter();
         stateTimer = player.dashDuration;
 
-        GameManager gm = Object.FindAnyObjectByType<GameManager>();
+        PerfectDodgeManager gm = Object.FindAnyObjectByType<PerfectDodgeManager>();
         isPerfectDodge = gm.pDodgeEnemies.Count > 0;
         if (isPerfectDodge)
         {
@@ -81,7 +81,7 @@ public class Player_DashState : Player_GroundedState
 
     private Vector3 GetDashDirection()
     {
-        Vector2 inputVector = player.moveInput;
+        Vector2 inputVector = player.cameraMoveInput;
         if (inputVector.magnitude < 0.1f)
             return player.transform.forward;
 

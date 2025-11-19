@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     private int enemiesDead;
     private List<GameObject> enemiesSpawned = new List<GameObject>();
     public UnityEvent endCombat;
-    
+    private IObjectFactory enemyFactory;
     private CameraManager camManager;
     private CameraSwitch cam;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,6 +20,7 @@ public class EnemySpawner : MonoBehaviour
     {
         cam = GetComponent<CameraSwitch>();
         camManager = FindAnyObjectByType<CameraManager>();
+        enemyFactory = new EnemyFactory();
     }
 
     // Update is called once per frame
@@ -45,8 +46,10 @@ public class EnemySpawner : MonoBehaviour
     {
         for(int i = 0; i < spawnCount; i++)
         {
+            //REWORK THIS PLEASE -Alvaro del futuro
             Vector3 newPosition = transform.position + new Vector3 (Random.Range(0, maxSpawnDistance), 0, Random.Range(0, maxSpawnDistance));
             GameObject newEnemy = Instantiate(enemy, newPosition, Quaternion.identity);
+            //GameObject newEnemy = enemyFactory.Get(enemy, newPosition);
             Enemy newEnemyScript = newEnemy.GetComponentInChildren<Enemy>();
             enemiesSpawned.Add(newEnemyScript.gameObject);
             newEnemyScript.spawner = this;
@@ -59,8 +62,8 @@ public class EnemySpawner : MonoBehaviour
         if (!enemiesSpawned.Contains(enemy)) return;
 
         enemiesSpawned.Remove(enemy);
+        //enemyFactory.Dispose(enemy);
         enemiesDead++;
-        Debug.Log("Ha muerto un enemigo y quedan " + (spawnCount-enemiesDead));
         if(spawnCount == enemiesDead)
         {
             EndCombat();

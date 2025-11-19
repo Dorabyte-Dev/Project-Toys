@@ -732,6 +732,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: dashDistance
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8468839315768395927, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
       propertyPath: m_Name
       value: Prefab_Player
@@ -783,7 +787,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8468839315768395927, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 808132025}
   m_SourcePrefab: {fileID: 100100000, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
 --- !u!4 &121491920 stripped
 Transform:
@@ -1779,6 +1786,24 @@ Transform:
   - {fileID: 277226919}
   m_Father: {fileID: 2052209139}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &548402566 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1947301891608671087, guid: 8acc271e859e58f4eb64844d4862d6a8, type: 3}
+  m_PrefabInstance: {fileID: 1136373685}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &548402569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548402566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1506602440b085e4eb0c58bcd6b75cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pDodgeEnemies: []
 --- !u!1001 &564219636
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2562,6 +2587,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
+--- !u!1 &808132024 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8468839315768395927, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+  m_PrefabInstance: {fileID: 121491919}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &808132025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808132024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c64a244188d21034b8fb4735152d1b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeshTrail
+  player: {fileID: 0}
+  meshDestroyDelay: 2
+  meshRefreshRate: 0.05
+  mat: {fileID: 2100000, guid: 8aa4df6d9239b284f8956fd0e74ace63, type: 2}
+  toggleTrail: 0
 --- !u!1001 &879084305
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3116,7 +3163,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1947301891608671087, guid: 8acc271e859e58f4eb64844d4862d6a8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 548402569}
   m_SourcePrefab: {fileID: 100100000, guid: 8acc271e859e58f4eb64844d4862d6a8, type: 3}
 --- !u!1001 &1137923411
 PrefabInstance:
