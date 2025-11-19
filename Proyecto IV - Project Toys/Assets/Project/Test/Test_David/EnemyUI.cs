@@ -20,6 +20,10 @@ public class EnemyUI : MonoBehaviour
     private RectTransform rectTransform;
     private Vector2 initialPosition;
     private TMP_Text damageText;
+    [Space(10)]
+
+    [Header("Config")]
+    [SerializeField]private float damageNumberVelocity;
 
     private void Awake()
     {
@@ -64,7 +68,7 @@ public class EnemyUI : MonoBehaviour
     private void DamageNumberAnimation()
     {
         rectTransform.anchoredPosition = initialPosition;
-        rectTransform.DOJumpAnchorPos(Vector2.right, 1, 1, .5f);
-        damageText.DOFade(0, .5f).OnComplete(() => damageNumber.SetActive(false));
+        rectTransform.DOJumpAnchorPos(Vector2.right, 1, 1, damageNumberVelocity);
+        damageText.DOFade(0, damageNumberVelocity).OnComplete(() => damageNumber.SetActive(false));
     }
 }
