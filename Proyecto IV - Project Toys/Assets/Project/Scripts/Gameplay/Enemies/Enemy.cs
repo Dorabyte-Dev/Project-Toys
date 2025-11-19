@@ -32,9 +32,10 @@ public class Enemy : Entity
     public int nearness;
 
     public NavMeshAgent agent;
-
+    public EnemySpawner spawner; //QuÃ© spawner lo ha generado
+    
     public int facingDirection = 1;
-
+    
     public Transform player { get; private set; }
 
     protected override void Awake()
@@ -70,6 +71,7 @@ public class Enemy : Entity
         stateMachine.ChangeState(flinchState);
     }
 
+    
     public void PlayerDeath()
     {
         stateMachine.ChangeState(idleState);
@@ -138,7 +140,7 @@ public class Enemy : Entity
     #region Damage
     public void DealDamage()
     {
-        Debug.Log("Pum te pego: " + damage + " de daño");
+        Debug.Log("Pum te pego: " + damage + " de daï¿½o");
     }
     #endregion
 }
