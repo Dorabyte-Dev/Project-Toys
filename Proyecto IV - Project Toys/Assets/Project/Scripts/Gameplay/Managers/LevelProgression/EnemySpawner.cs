@@ -47,7 +47,10 @@ public class EnemySpawner : MonoBehaviour
         for(int i = 0; i < spawnCount; i++)
         {
             //REWORK THIS PLEASE -Alvaro del futuro
+            //Codigo de la generacion aleatoria dentro de bounds
             Vector3 newPosition = transform.position + new Vector3 (Random.Range(0, maxSpawnDistance), 0, Random.Range(0, maxSpawnDistance));
+
+
             GameObject newEnemy = Instantiate(enemy, newPosition, Quaternion.identity);
             //GameObject newEnemy = enemyFactory.Get(enemy, newPosition);
             Enemy newEnemyScript = newEnemy.GetComponentInChildren<Enemy>();

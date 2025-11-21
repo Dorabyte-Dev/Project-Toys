@@ -32,7 +32,8 @@ public class Enemy : Entity
     public int nearness;
 
     public NavMeshAgent agent;
-    public EnemySpawner spawner; //Qué spawner lo ha generado
+    public EnemySpawner spawner; //Que spawner lo ha generado
+    public GameObject originalPrefab; //De que prefab se ha generado (util para la factory)
     
     public int facingDirection = 1;
     
