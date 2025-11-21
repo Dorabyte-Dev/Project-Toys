@@ -11,7 +11,8 @@ public class Enemy_DeadState : EnemyState
     {
         anim.enabled = false;
         enemy.agent.enabled = false;
-        enemy.spawner.EnemyDead(enemy.gameObject);
+        if (enemy.spawner != null)
+            enemy.spawner.EnemyDead(enemy.gameObject);
         stateMachine.SwitchOffStateMachine();
     }
 

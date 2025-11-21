@@ -45,6 +45,8 @@ public class Enemy : Entity
         agent.speed = moveSpeed;
         agent.acceleration = acceleration;
         agent.isStopped = false;
+        if(spawner ==null)
+            Debug.LogWarning("Spawner not assigned. Check GameObject to component of EnemySpawner.cs");
     }
     public override void DeadEntity()
     {
