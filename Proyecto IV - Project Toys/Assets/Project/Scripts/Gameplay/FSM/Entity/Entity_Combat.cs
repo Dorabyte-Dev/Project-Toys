@@ -22,6 +22,8 @@ public class Entity_Combat : MonoBehaviour
             Entity_Health targetHealth = target.GetComponent<Entity_Health>();
             if (targetHealth != null)
                 targetHealth?.TakeDamage(damage, this.transform);
+            else
+                Debug.LogWarning("Entity_Health not found on +"  + target.name);
         }
     }
 

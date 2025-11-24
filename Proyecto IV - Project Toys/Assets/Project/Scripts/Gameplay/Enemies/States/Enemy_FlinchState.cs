@@ -18,7 +18,18 @@ public class Enemy_FlinchState : EnemyState
         base.Update();
         if(stateTimer <= 0)
         {
-            stateMachine.ChangeState(enemy.idleState);
+            switch (enemy.nearness)
+            {
+                case 1:
+                    stateMachine.ChangeState(enemy.pursuitState);
+                    break;
+                case 2:
+                    stateMachine.ChangeState(enemy.waitAttackState);
+                    break;
+                case 0:
+                    stateMachine.ChangeState(enemy.idleState);
+                    break;
+            }
         }
     }
     public override void Exit()

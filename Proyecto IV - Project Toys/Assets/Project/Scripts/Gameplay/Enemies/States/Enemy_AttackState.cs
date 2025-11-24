@@ -16,18 +16,11 @@ public class Enemy_AttackState : EnemyState
     public override void Enter()
     {
         base.Enter();
-
-        if (!reachedAttack) 
-        {
-            stateMachine.ChangeState(enemy.pursuitState);
-            return;
-        }
-
-
+        
         enemy.isAttacking = true;
         //enemy.damageCollider.SetActive(true);
 
-        // Configurar velocidad de ataque (embestida rápida)
+        // Configurar velocidad de ataque (embestida rï¿½pida)
         enemy.agent.speed = enemy.attackSpeed;
         enemy.agent.acceleration = enemy.attackAcceleration;
         enemy.agent.destination = attackPoint;
@@ -38,7 +31,7 @@ public class Enemy_AttackState : EnemyState
     {
         base.Update();
 
-        // Verificar si llegó al punto de ataque
+        // Verificar si llegï¿½ al punto de ataque
         //if (hasStartedAttack && HasReachedDestination())
         if (HasReachedDestination())
         {
@@ -76,7 +69,7 @@ public class Enemy_AttackState : EnemyState
 
     private void FinishAttack()
     {
-        // Cambiar al estado de persecución
+        // Cambiar al estado de persecuciï¿½n
         stateMachine.ChangeState(enemy.pursuitState);
     }
 

@@ -27,10 +27,11 @@ public class Enemy : Entity
     public float flinchTime;
 
     [Header("Player Coords")]
-    [HideInInspector] public Transform playerTransform;
     public bool jugadorDetectado;
     public int nearness;
+    [HideInInspector] public Transform playerTransform;
 
+    [Space]
     public NavMeshAgent agent;
     public EnemySpawner spawner; //Que spawner lo ha generado
     public GameObject originalPrefab; //De que prefab se ha generado (util para la factory)
@@ -113,6 +114,7 @@ public class Enemy : Entity
     #region Player Detection
     public void UpdateStateBasedOnNearness()
     {
+        Debug.Log("Updating state based on nearness");
         switch (nearness)
         {
             case 0:
@@ -138,12 +140,11 @@ public class Enemy : Entity
                 break;
         }
     }
-    #endregion
 
-    #region Damage
-    public void DealDamage()
+    public void CallUpdateStateDetection()
     {
-        Debug.Log("Pum te pego: " + damage + " de da�o");
+        UpdateStateBasedOnNearness();
     }
     #endregion
+
 }

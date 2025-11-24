@@ -22,6 +22,15 @@ public class Enemy_PursuitState : EnemyState
         {
             enemy.agent.destination = enemy.playerTransform.position;
         }
+        switch (enemy.nearness)
+        {
+            case 2:
+                stateMachine.ChangeState(enemy.waitAttackState);
+                break;
+            case 0:
+                stateMachine.ChangeState(enemy.idleState);
+                break;
+        }
     }
 
     public override void Exit()
