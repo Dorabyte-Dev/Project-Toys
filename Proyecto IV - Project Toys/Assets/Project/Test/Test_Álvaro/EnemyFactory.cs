@@ -19,7 +19,6 @@ public class EnemyFactory : IObjectFactory
 
         GameObject obj = _pools[prefab].Get();
 
-        obj.transform.position = position;
         //Do Some Logic
 
         return obj;
@@ -56,7 +55,7 @@ public class EnemyFactory : IObjectFactory
     //Pool Callbacks
     private GameObject Create(GameObject prefab, Vector3 position)
     {
-        GameObject newEnemy = Object.Instantiate(prefab);
+        GameObject newEnemy = Object.Instantiate(prefab, position, Quaternion.identity);
         newEnemy.GetComponentInChildren<Enemy>().originalPrefab = prefab;
 
         //Instance new object
