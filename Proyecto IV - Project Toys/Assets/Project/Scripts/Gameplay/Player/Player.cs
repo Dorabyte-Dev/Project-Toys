@@ -13,6 +13,7 @@ public class Player : Entity
     public Player_DashState dashState { get; private set; }
     public Player_LightAttackState lightAttackState { get; private set; }
     public Player_DeathState deathState { get; private set; }
+    public Player_HeavyAttackState heavyState { get; private set; }
 
     [Header("Attack Details")]
     public Vector2[] attackVelocity;
@@ -46,6 +47,7 @@ public class Player : Entity
         dashState = new Player_DashState(this, stateMachine, "Dash");
         lightAttackState = new Player_LightAttackState(this, stateMachine, "LightPressed");
         deathState = new Player_DeathState(this, stateMachine, "death");
+        heavyState = new Player_HeavyAttackState(this, stateMachine, "HeavyPressed");
 
     }
     protected override void Start()
