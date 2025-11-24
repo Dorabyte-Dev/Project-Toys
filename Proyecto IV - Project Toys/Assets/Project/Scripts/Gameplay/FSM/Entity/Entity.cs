@@ -21,7 +21,7 @@ public class Entity : MonoBehaviour
     public float turnSmoothVelocity;
 
     [Header("Slope Detection")]
-    [SerializeField] private float maxSlopeAngle;
+    [SerializeField] private float maxSlopeAngle = 30f;
     [SerializeField] private RaycastHit slopeHit;
 
     protected virtual void Awake()
