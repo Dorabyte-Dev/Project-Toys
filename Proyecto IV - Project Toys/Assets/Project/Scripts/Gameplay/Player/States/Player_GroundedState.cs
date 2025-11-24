@@ -26,6 +26,9 @@ public class Player_GroundedState : PlayerState
 
         if (input.Player.LightAttack.WasPerformedThisFrame())
             stateMachine.ChangeState(player.lightAttackState);
+        
+        if(input.Player.HeavyAttack.WasPerformedThisFrame())
+            stateMachine.ChangeState(player.heavyState);
     }
     public override void Exit()
     {
