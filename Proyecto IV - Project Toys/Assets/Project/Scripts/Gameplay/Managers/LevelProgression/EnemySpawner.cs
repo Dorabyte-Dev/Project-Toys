@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
     public float spawnDelay;
     public int spawnCount;
     private int enemiesDead;
-    private List<GameObject> enemiesSpawned = new List<GameObject>();
+    [SerializeField]private List<GameObject> enemiesSpawned = new List<GameObject>();
     public UnityEvent endCombat;
     private IObjectFactory enemyFactory;
     private CameraManager camManager;

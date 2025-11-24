@@ -15,7 +15,7 @@ public class EnemyFactory : IObjectFactory
     public GameObject Get(GameObject prefab, Vector3 position)
     {
         if (!_pools.ContainsKey(prefab))
-            CreatePoolFor(prefab);
+            CreatePoolFor(prefab, position);
 
         GameObject obj = _pools[prefab].Get();
 
@@ -40,10 +40,10 @@ public class EnemyFactory : IObjectFactory
         
     }
 
-    private void CreatePoolFor(GameObject prefab)
+    private void CreatePoolFor(GameObject prefab, Vector3 position)
     {
         _pools[prefab] = new ObjectPool<GameObject>(
-            createFunc: () => Create(prefab),
+            createFunc: () => Create(prefab, position),
             actionOnGet: OnGet,
             actionOnRelease: OnRelease,
             actionOnDestroy: OnDestroyObject,
@@ -54,14 +54,14 @@ public class EnemyFactory : IObjectFactory
         Debug.Log("New Pool created");
     }
     //Pool Callbacks
-    private GameObject Create(GameObject prefab)
+    private GameObject Create(GameObject prefab, Vector3 position)
     {
-        var instance = Object.Instantiate(prefab);
+        GameObject newEnemy = Object.Instantiate(prefab);
+        newEnemy.GetComponentInChildren<Enemy>().originalPrefab = prefab;
 
         //Instance new object
 
-        return instance;
-        Debug.Log("New enemy created");
+        return newEnemy;
     }
 
     private void OnGet(GameObject obj)
