@@ -15,7 +15,11 @@ public class EnemyFactory : IObjectFactory
     public GameObject Get(GameObject prefab, Vector3 position)
     {
         if (!_pools.ContainsKey(prefab))
+        {
             CreatePoolFor(prefab, position);
+            Debug.LogWarning("Created new pool for " + prefab.name);
+        }
+            
 
         GameObject obj = _pools[prefab].Get();
 
@@ -30,7 +34,7 @@ public class EnemyFactory : IObjectFactory
         Enemy enemy = obj.GetComponent<Enemy>();
         if(enemy != null && enemy.originalPrefab != null) 
         {
-            _pools[enemy.originalPrefab].Release(obj);
+            _pools[enemy.originalPrefab].Release(obj.transform.parent.gameObject);
         }
         else
         {

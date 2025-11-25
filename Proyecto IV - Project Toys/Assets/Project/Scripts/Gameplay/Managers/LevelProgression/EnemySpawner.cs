@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -44,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
 
     public IEnumerator SpawnEnemies()
     {
-        for(int i = 0; i < spawnCount; i++)
+        for (int i = 0; i < spawnCount; i++)
         {
             //REWORK THIS PLEASE -Alvaro del futuro
             //Codigo de la generacion aleatoria dentro de bounds
@@ -52,6 +53,7 @@ public class EnemySpawner : MonoBehaviour
 
 
             GameObject newEnemy = Instantiate(enemy, newPosition, Quaternion.identity);
+            
             //GameObject newEnemy = enemyFactory.Get(enemy, newPosition);
             Enemy newEnemyScript = newEnemy.GetComponentInChildren<Enemy>();
             enemiesSpawned.Add(newEnemyScript.gameObject);
@@ -66,6 +68,7 @@ public class EnemySpawner : MonoBehaviour
 
         enemiesSpawned.Remove(enemy);
         //enemyFactory.Dispose(enemy);
+        //enemy.transform.parent.gameObject.SetActive(false);
         enemiesDead++;
         if(spawnCount == enemiesDead)
         {
