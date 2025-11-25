@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     private int enemiesDead;
     [SerializeField]private List<GameObject> enemiesSpawned = new List<GameObject>();
     public UnityEvent endCombat;
-    private IObjectFactory enemyFactory;
+    private static IObjectFactory enemyFactory;
     private CameraManager camManager;
     private CameraSwitch cam;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,7 +21,10 @@ public class EnemySpawner : MonoBehaviour
     {
         cam = GetComponent<CameraSwitch>();
         camManager = FindAnyObjectByType<CameraManager>();
-        enemyFactory = new EnemyFactory();
+        if(enemyFactory == null )
+        {
+            enemyFactory = new EnemyFactory();
+        }
     }
 
     // Update is called once per frame
@@ -52,9 +55,9 @@ public class EnemySpawner : MonoBehaviour
             Vector3 newPosition = transform.position + new Vector3 (Random.Range(0, maxSpawnDistance), 0, Random.Range(0, maxSpawnDistance));
 
 
-            GameObject newEnemy = Instantiate(enemy, newPosition, Quaternion.identity);
+            //GameObject newEnemy = Instantiate(enemy, newPosition, Quaternion.identity);
             
-            //GameObject newEnemy = enemyFactory.Get(enemy, newPosition);
+            GameObject newEnemy = enemyFactory.Get(enemy, newPosition);
             Enemy newEnemyScript = newEnemy.GetComponentInChildren<Enemy>();
             enemiesSpawned.Add(newEnemyScript.gameObject);
             newEnemyScript.spawner = this;
@@ -67,7 +70,7 @@ public class EnemySpawner : MonoBehaviour
         if (!enemiesSpawned.Contains(enemy)) return;
 
         enemiesSpawned.Remove(enemy);
-        //enemyFactory.Dispose(enemy);
+        enemyFactory.Dispose(enemy);
         //enemy.transform.parent.gameObject.SetActive(false);
         enemiesDead++;
         if(spawnCount == enemiesDead)
