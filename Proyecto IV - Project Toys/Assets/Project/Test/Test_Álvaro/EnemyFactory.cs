@@ -22,7 +22,7 @@ public class EnemyFactory : IObjectFactory
             
 
         GameObject obj = _pools[prefab].Get();
-
+        obj.GetComponentInChildren<NavMeshAgent>().Warp(position);
         //Do Some Logic
 
         return obj;
@@ -70,7 +70,7 @@ public class EnemyFactory : IObjectFactory
     private void OnGet(GameObject obj)
     {
         obj.SetActive(true);
-
+        
         Debug.Log("Enemy reused");
     }
 

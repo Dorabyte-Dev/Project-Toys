@@ -55,9 +55,9 @@ public class EnemySpawner : MonoBehaviour
             Vector3 newPosition = transform.position + new Vector3 (Random.Range(0, maxSpawnDistance), 0, Random.Range(0, maxSpawnDistance));
 
 
-            //GameObject newEnemy = Instantiate(enemy, newPosition, Quaternion.identity);
+            GameObject newEnemy = Instantiate(enemy, newPosition, Quaternion.identity);
             
-            GameObject newEnemy = enemyFactory.Get(enemy, newPosition);
+            //GameObject newEnemy = enemyFactory.Get(enemy, newPosition);
             Enemy newEnemyScript = newEnemy.GetComponentInChildren<Enemy>();
             enemiesSpawned.Add(newEnemyScript.gameObject);
             newEnemyScript.spawner = this;
@@ -70,7 +70,7 @@ public class EnemySpawner : MonoBehaviour
         if (!enemiesSpawned.Contains(enemy)) return;
 
         enemiesSpawned.Remove(enemy);
-        enemyFactory.Dispose(enemy);
+        //enemyFactory.Dispose(enemy);
         //enemy.transform.parent.gameObject.SetActive(false);
         enemiesDead++;
         if(spawnCount == enemiesDead)
