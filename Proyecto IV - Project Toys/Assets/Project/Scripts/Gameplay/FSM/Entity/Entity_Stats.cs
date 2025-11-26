@@ -5,6 +5,7 @@ public class Entity_Stats : MonoBehaviour
     public Stat maxHealth;
     public Stat vitality;
     public Stat attackDamage;
+    public Stat heavyDamage;
 
     public float GetMaxetHealth()
     {
@@ -18,6 +19,12 @@ public class Entity_Stats : MonoBehaviour
     {
         float damage = attackDamage.GetValue();
         return damage;
+    }
+    
+    public float GetMaxHeavyAttack()
+    {
+        float heavyAttackDamage = heavyDamage.GetValue();
+        return heavyAttackDamage;
     }
 
 }

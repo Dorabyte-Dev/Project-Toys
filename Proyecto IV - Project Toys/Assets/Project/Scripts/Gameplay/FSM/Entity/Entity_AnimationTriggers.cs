@@ -10,7 +10,6 @@ public class Entity_AnimationTriggers : MonoBehaviour
         entity = GetComponent<Entity>();
         entityCombat = GetComponent<Entity_Combat>();
     }
-
     public virtual void CurrentStateTrigger() 
     {
         entity.CurrentStateAnimationTrigger();
@@ -19,5 +18,10 @@ public class Entity_AnimationTriggers : MonoBehaviour
     public virtual void AttackTrigger()
     {
         entityCombat.PerformAttack();
+    }
+
+    public virtual void HeavyTrigger()
+    {
+        entityCombat.PerformHeavyAttack();
     }
 }
