@@ -15,11 +15,19 @@ public class Entity_Health : MonoBehaviour
         entity = GetComponent<Entity>();
         stats = GetComponent<Entity_Stats>();
         vfx = GetComponent<Entity_VFX>();
+        
+        
+    }
 
+    public virtual void OnEnable()
+    {
+        ResetStats();
+    }
+    public virtual void ResetStats()
+    {
         currentHp = stats.GetMaxetHealth();
         maxHp = stats.GetMaxetHealth();
     }
-
     public virtual void TakeDamage(float takeDamage, Transform damageDealer)
     {
         if (isDead)
