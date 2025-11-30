@@ -18,6 +18,9 @@ public class Enemy : Entity
     public float attackRange;
     public float waitTime;
     public float acceleration;
+    public float orbitDistance;
+    public float orbitSpeed;
+    [HideInInspector]public float orbitAngle;
 
     [Header("Enemy Attack Specs")]
     public float attackAcceleration;

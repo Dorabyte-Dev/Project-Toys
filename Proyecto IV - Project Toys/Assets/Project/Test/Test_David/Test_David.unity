@@ -1137,6 +1137,8 @@ MonoBehaviour:
     baseValue: 3
   attackDamage:
     baseValue: 0
+  heavyDamage:
+    baseValue: 0
 --- !u!114 &897056669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2793,6 +2795,14 @@ PrefabInstance:
     - target: {fileID: 1874491415246942145, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882986109669205406, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
+      propertyPath: orbitSpeed
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882986109669205406, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
+      propertyPath: orbitDistance
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

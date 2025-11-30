@@ -1,12 +1,16 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy_WaitAttackState : EnemyState
 {
     private Vector3 attackPoint;
     private Vector3 lastPlayerPosition;
     private Vector3 currentPosition;
+    private Vector3 directionToPlayer;
     private float currentTime;
     //private bool hasStartedAttack;
+
+    
     public Enemy_WaitAttackState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
     }
@@ -21,9 +25,8 @@ public class Enemy_WaitAttackState : EnemyState
         lastPlayerPosition = enemy.playerTransform != null ? enemy.playerTransform.position : enemy.transform.forward;
 
         // Calcular punto de ataque (hacia donde va a embestir)
-        Vector3 directionToPlayer = (lastPlayerPosition - currentPosition).normalized;
-        attackPoint = currentPosition + directionToPlayer * enemy.attackRange;
-        enemy.agent.destination = currentPosition + (lastPlayerPosition - currentPosition) * 0.25f;
+        
+        StopSmooth();
         //attackPoint = lastPlayerPosition;
 
         // DETENER al enemigo durante la carga del ataque
@@ -31,7 +34,7 @@ public class Enemy_WaitAttackState : EnemyState
         //enemy.agent.velocity = Vector3.zero;
 
         // Mirar hacia el objetivo
-        enemy.transform.LookAt(new Vector3(attackPoint.x, enemy.transform.position.y, attackPoint.z), Vector3.up);
+        LookToPlayer();
 
         // Animación de carga
         //anim.Play("WaitAttack");
@@ -40,6 +43,10 @@ public class Enemy_WaitAttackState : EnemyState
         //enemy.hasStartedAttack = false;
     }
 
+    private void LookToPlayer()
+    {
+        enemy.transform.LookAt(new Vector3(enemy.playerTransform.position.x, enemy.transform.position.y, enemy.playerTransform.position.z), Vector3.up);
+    }
 
     public override void Update()
     {
@@ -47,9 +54,12 @@ public class Enemy_WaitAttackState : EnemyState
 
         currentTime += Time.deltaTime;
         //if (currentTime >= enemy.waitTime && !hasStartedAttack)
+        //OrbitAroundPlayer();
+        LookToPlayer();
         if (currentTime >= enemy.waitTime)
         {
             Debug.Log("Cambiar a estado de ataque");
+            attackPoint = AttackPointToPlayer();
             enemy.attackState.SetParametersAttack(currentPosition, attackPoint);
             
             stateMachine.ChangeState(enemy.attackState);
@@ -60,5 +70,42 @@ public class Enemy_WaitAttackState : EnemyState
     {
         base.Exit();
         enemy.agent.isStopped = false;
+    }
+    private void StopSmooth()
+    {
+        enemy.agent.destination = currentPosition + (lastPlayerPosition - currentPosition) * 0.25f;
+    }
+
+    private Vector3 AttackPointToPlayer()
+    {
+        directionToPlayer = (enemy.playerTransform.position - currentPosition).normalized;
+        return currentPosition + directionToPlayer * enemy.attackRange;
+    }
+
+    private void OrbitAroundPlayer()
+    {
+        // 1. Aumentar el ángulo de órbita con el tiempo
+        // El Time.deltaTime * OrbitSpeed hace que el punto rote.
+        enemy.orbitAngle += Time.deltaTime * enemy.orbitSpeed;
+
+        // Asegurar que el ángulo no se desborde (opcional, por limpieza)
+        if (enemy.orbitAngle > 360f)
+        {
+            enemy.orbitAngle -= 360f;
+        }
+
+        // 2. Convertir el ángulo a radianes para las funciones trigonométricas
+        // Los ángulos en C# suelen ser en grados.
+        float angleInRad = enemy.orbitAngle * Mathf.Deg2Rad;
+
+        // 3. Calcular la nueva posición de destino (en un plano 2D, X y Z)
+        Vector3 targetPosition;
+        targetPosition.x = enemy.playerTransform.position.x + enemy.orbitDistance * Mathf.Cos(angleInRad);
+        targetPosition.y = enemy.playerTransform.position.y; // Mantener la altura del suelo
+        targetPosition.z = enemy.playerTransform.position.z + enemy.orbitDistance * Mathf.Sin(angleInRad);
+
+
+        // 4. Mover el NavMeshAgent al nuevo destino
+        enemy.agent.destination = targetPosition;
     }
 }
