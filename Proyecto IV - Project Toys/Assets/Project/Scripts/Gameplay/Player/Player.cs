@@ -21,6 +21,8 @@ public class Player : Entity
     public float comboResetTime = 1;
     private Coroutine queuedAttackCo;
 
+    public float comboBarAmount;
+    
     [Header("Movement Specs")]
     public Vector2 moveInput { get; private set; }
     public Vector2 cameraMoveInput { get; private set; }

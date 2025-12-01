@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class EnemyUI : MonoBehaviour
 {
+    [Header("Current UI Stats")] 
+    [SerializeField] private int currentDamageIndex;
+    
     [Header("Enemy Canvas")]
     public GameObject canvas;
     [Space(10)]
@@ -16,10 +19,10 @@ public class EnemyUI : MonoBehaviour
     [Space(10)]
 
     [Header("Enemy Damage Number")]
-    public GameObject damageNumber;
-    private RectTransform rectTransform;
+    public GameObject[] damageNumbers;
+    private RectTransform[] rectTransforms;
     private Vector2 initialPosition;
-    private TMP_Text damageText;
+    private TMP_Text[] damagesText;
     [Space(10)]
 
     [Header("Config")]
@@ -32,14 +35,25 @@ public class EnemyUI : MonoBehaviour
         {
             fill = GetComponent<Image>();
         }
-        rectTransform = damageNumber.GetComponent<RectTransform>();
-        damageText = damageNumber.GetComponent<TMP_Text>();
+        rectTransforms = new RectTransform[damageNumbers.Length];
+        damagesText = new TMP_Text[damageNumbers.Length];
     }
 
     void Start()
     {
-        initialPosition = rectTransform.anchoredPosition;
-        damageNumber.SetActive(false);
+        InitializeDamageNumber();
+    }
+
+    private void InitializeDamageNumber()
+    {
+        for (int i = 0; i < damageNumbers.Length; i++)
+        {
+            rectTransforms[i] = damageNumbers[i].GetComponent<RectTransform>();
+            damagesText[i] = damageNumbers[i].GetComponent<TMP_Text>();
+            damageNumbers[i].SetActive(false);
+        }
+        initialPosition = rectTransforms[0].anchoredPosition;
+        currentDamageIndex = 0;
     }
 
     void Update()
@@ -57,18 +71,26 @@ public class EnemyUI : MonoBehaviour
         fill.fillAmount = enemyLifeScript.currentHp / enemyLifeScript.maxHp;
     }
 
-    public void RecieveDamage(int damage)
+    public void ReceiveDamage(int damage)
     {
-        damageNumber.SetActive(true);
-        damageText.text = damage.ToString();
-        damageText.color = new Color(damageText.color.r, damageText.color.g, damageText.color.b, 1);
+        damageNumbers[currentDamageIndex].SetActive(true);
+        damagesText[currentDamageIndex].text = damage.ToString();
+        damagesText[currentDamageIndex].color = new Color(damagesText[currentDamageIndex].color.r, damagesText[currentDamageIndex].color.g, damagesText[currentDamageIndex].color.b, 1);
         DamageNumberAnimation();
     }
 
     private void DamageNumberAnimation()
     {
-        rectTransform.anchoredPosition = initialPosition;
-        rectTransform.DOJumpAnchorPos(Vector2.right, 1, 1, damageNumberVelocity);
-        damageText.DOFade(0, damageNumberVelocity).OnComplete(() => damageNumber.SetActive(false));
+        rectTransforms[currentDamageIndex].anchoredPosition = initialPosition;
+        rectTransforms[currentDamageIndex].DOJumpAnchorPos(Vector2.right, 1, 1, damageNumberVelocity);
+        damagesText[currentDamageIndex].DOFade(0, damageNumberVelocity).OnComplete(() =>
+        {
+            damageNumbers[currentDamageIndex].SetActive(false);
+        });
+        currentDamageIndex++;
+        if (currentDamageIndex >= damageNumbers.Length)
+        {
+            currentDamageIndex = 0;
+        }
     }
 }
