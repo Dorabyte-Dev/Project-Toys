@@ -43,6 +43,7 @@ public class Enemy_Health : Entity_Health
 
     private void FlintState()
     {
+        if(entity == null) return;
         entity.ChangeFlintState();
     }
 }

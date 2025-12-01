@@ -149,7 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 924047381019500463}
   m_Layer: 6
-  m_Name: EnemyFSM
+  m_Name: EnemyFSM_OBsolete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -943,15 +943,20 @@ MonoBehaviour:
   attackRange: 7.5
   waitTime: 2
   acceleration: 8
+  orbitDistance: 0
+  orbitSpeed: 0
+  orbitAngle: 0
   attackAcceleration: 20
   damage: 5
   attackSpeed: 9
   isAttacking: 0
   flinchTime: 0
-  playerTransform: {fileID: 0}
   jugadorDetectado: 0
   nearness: 0
+  playerTransform: {fileID: 0}
   agent: {fileID: 7460751841042790043}
+  spawner: {fileID: 0}
+  originalPrefab: {fileID: 0}
   facingDirection: 1
 --- !u!114 &8561845984213828677
 MonoBehaviour:
@@ -971,6 +976,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   entity: {fileID: 0}
   damage: 0
+  heavyDamage: 0
 --- !u!114 &5090806673367477134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -988,6 +994,8 @@ MonoBehaviour:
   vitality:
     baseValue: 0
   attackDamage:
+    baseValue: 0
+  heavyDamage:
     baseValue: 0
 --- !u!114 &154398888129707349
 MonoBehaviour:
@@ -1053,6 +1061,7 @@ MonoBehaviour:
   fill: {fileID: 8495876786094711774}
   lifeBar: {fileID: 1373350640436954872}
   damageNumber: {fileID: 3848554509756221651}
+  damageNumberVelocity: 0
 --- !u!4 &4149962373085363291 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d1c952205ab41e943a8d26bf7bd58d2e, type: 3}
