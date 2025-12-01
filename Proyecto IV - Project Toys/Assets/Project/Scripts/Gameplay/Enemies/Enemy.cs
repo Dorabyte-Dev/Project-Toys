@@ -43,6 +43,9 @@ public class Enemy : Entity
     public int facingDirection = 1;
     
     public Transform player { get; private set; }
+    
+    [Header("WaveManager Specs")]
+    public bool canAttackByManager; // permiso del manager para atacar
 
     protected override void Awake()
     {
@@ -53,7 +56,6 @@ public class Enemy : Entity
         agent.acceleration = acceleration;
         agent.isStopped = false;
     }
-
     
     public override void DeadEntity()
     {
@@ -99,11 +101,15 @@ public class Enemy : Entity
     private void OnEnable()
     {
         Player.OnPlayerDeath += PlayerDeath;
+        if (EnemyWaveManager.Instance != null)
+            EnemyWaveManager.Instance.RegisterEnemy(this);
     }
 
     private void OnDisable()
     {
         Player.OnPlayerDeath -= PlayerDeath;
+        if (EnemyWaveManager.Instance != null)
+            EnemyWaveManager.Instance?.UnregisterEnemy(this);
     }
 
     //public Transform GetPlayerReference()
@@ -163,4 +169,24 @@ public class Enemy : Entity
     }
     #endregion
 
+    #region Wave Manager
+    
+    public void AllowAttackFromManager()
+    {
+        canAttackByManager = true;
+        Debug.Log($"[Enemy] {name} recibió permiso para atacar.");
+    }
+
+    public void NotifyAttackFinished()
+    {
+        isAttacking = false;
+        canAttackByManager = false;
+    
+        if (EnemyWaveManager.Instance != null)
+            EnemyWaveManager.Instance.NotifyEnemyFinishedAttack(this);
+    
+        Debug.Log($"[Enemy] {name} notificó fin de ataque.");
+    }
+
+    #endregion
 }

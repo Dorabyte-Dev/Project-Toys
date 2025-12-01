@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Entity_VFX : MonoBehaviour
 {
+    private static readonly int Color1 = Shader.PropertyToID("_Color");
     private List<Material[]> originalMaterials = new List<Material[]>();
     private List<Color[]> originalColors = new List<Color[]>();
     private Coroutine changeCoroutine;
@@ -19,16 +20,22 @@ public class Entity_VFX : MonoBehaviour
 
     void Awake()
     {
-        SkinnedMeshRenderer[] skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
-        foreach (SkinnedMeshRenderer renderer in skinnedMeshRenderers)
+        SaveOriginalMaterials();
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void SaveOriginalMaterials()
+    {
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer render in renderers)
         {
             List<Color> colors = new List<Color>();
-            originalMaterials.Add(renderer.materials);
-            for (int i = 0; i < renderer.materials.Length; i++)
+            originalMaterials.Add(render.materials);
+            for (int i = 0; i < render.materials.Length; i++)
             {
-                if (renderer.materials[i].HasProperty("_Color"))
+                if (render.materials[i].HasProperty(Color1))
                 {
-                    colors.Add(renderer.materials[i].color);
+                    colors.Add(render.materials[i].color);
                 }
                 else
                 {
@@ -37,7 +44,6 @@ public class Entity_VFX : MonoBehaviour
             }
             originalColors.Add(colors.ToArray());
         }
-        rb = GetComponent<Rigidbody>();
     }
     // private void Update()
     // {
@@ -83,31 +89,31 @@ public class Entity_VFX : MonoBehaviour
 
     private void ChangeMaterialsToColor(Color color)
     {
-        SkinnedMeshRenderer[] skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
-        foreach (SkinnedMeshRenderer renderer in skinnedMeshRenderers)
+        Renderer[] skinnedMeshRenderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer render in skinnedMeshRenderers)
         {
-            Material[] newMaterials = new Material[renderer.materials.Length];
-            for (int i = 0; i < renderer.materials.Length; i++)
+            Material[] newMaterials = new Material[render.materials.Length];
+            for (int i = 0; i < render.materials.Length; i++)
             {
                 // Create a new temporary material instance
-                newMaterials[i] = new Material(renderer.materials[i]);
+                newMaterials[i] = new Material(render.materials[i]);
                 if (newMaterials[i].HasProperty("_Color"))
                 {
                     newMaterials[i].color = color;
                 }
             }
-            renderer.materials = newMaterials;
+            render.materials = newMaterials;
         }
     }
 
 
     private IEnumerator RevertMaterialsSmoothly(float duration)
     {
-        SkinnedMeshRenderer[] skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
 
 
         List<Color[]> currentColors = new List<Color[]>();
-        foreach (SkinnedMeshRenderer renderer in skinnedMeshRenderers)
+        foreach (Renderer renderer in renderers)
         {
             List<Color> colors = new List<Color>();
             for (int i = 0; i < renderer.materials.Length; i++)
@@ -134,13 +140,13 @@ public class Entity_VFX : MonoBehaviour
             float t = elapsedTime / duration;
 
 
-            for (int i = 0; i < skinnedMeshRenderers.Length; i++)
+            for (int i = 0; i < renderers.Length; i++)
             {
-                for (int j = 0; j < skinnedMeshRenderers[i].materials.Length; j++)
+                for (int j = 0; j < renderers[i].materials.Length; j++)
                 {
-                    if (skinnedMeshRenderers[i].materials[j].HasProperty("_Color"))
+                    if (renderers[i].materials[j].HasProperty("_Color"))
                     {
-                        skinnedMeshRenderers[i].materials[j].color = Color.Lerp(feedbackColor, originalColors[i][j], t);
+                        renderers[i].materials[j].color = Color.Lerp(feedbackColor, originalColors[i][j], t);
                     }
                 }
             }
@@ -150,9 +156,9 @@ public class Entity_VFX : MonoBehaviour
         }
 
 
-        for (int i = 0; i < skinnedMeshRenderers.Length; i++)
+        for (int i = 0; i < renderers.Length; i++)
         {
-            skinnedMeshRenderers[i].materials = originalMaterials[i];
+            renderers[i].materials = originalMaterials[i];
         }
     }
     #endregion

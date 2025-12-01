@@ -17,6 +17,12 @@ public class Enemy_Health : Entity_Health
             Debug.LogError("EnemyUI and Enemy Health are not in the same object");
         }
     }
+
+    public override void ResetStats()
+    {
+        base.ResetStats();
+    }
+
     public override void TakeDamage(float takeDamage, Transform damageDealer)
     {
         base.TakeDamage(takeDamage, damageDealer);
@@ -37,6 +43,7 @@ public class Enemy_Health : Entity_Health
 
     private void FlintState()
     {
+        if(entity == null) return;
         entity.ChangeFlintState();
     }
 }

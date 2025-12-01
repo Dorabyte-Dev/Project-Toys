@@ -2,5 +2,18 @@ using UnityEngine;
 
 public class Enemy_AnimationTriggers : Entity_AnimationTriggers
 {
-    private Enemy enemy;
+    [SerializeField]private Enemy enemy;
+
+    public override void Awake()
+    {
+        base.Awake();
+        enemy = GetComponent<Enemy>();
+    }
+
+    public void NotifyAttackFinished()
+    {
+        enemy.isAttacking = false;
+        enemy.canAttackByManager = false;
+        EnemyWaveManager.Instance?.NotifyEnemyFinishedAttack(enemy);
+    }
 }
