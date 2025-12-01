@@ -90,13 +90,15 @@ public class Enemy : Entity
     private void OnEnable()
     {
         Player.OnPlayerDeath += PlayerDeath;
-        EnemyWaveManager.Instance?.RegisterEnemy(this);
+        if (EnemyWaveManager.Instance != null)
+            EnemyWaveManager.Instance.RegisterEnemy(this);
     }
 
     private void OnDisable()
     {
         Player.OnPlayerDeath -= PlayerDeath;
-        EnemyWaveManager.Instance?.UnregisterEnemy(this);
+        if (EnemyWaveManager.Instance != null)
+            EnemyWaveManager.Instance?.UnregisterEnemy(this);
     }
 
     //public Transform GetPlayerReference()
@@ -157,10 +159,22 @@ public class Enemy : Entity
     #endregion
 
     #region Wave Manager
-
+    
     public void AllowAttackFromManager()
     {
         canAttackByManager = true;
+        Debug.Log($"[Enemy] {name} recibió permiso para atacar.");
+    }
+
+    public void NotifyAttackFinished()
+    {
+        isAttacking = false;
+        canAttackByManager = false;
+    
+        if (EnemyWaveManager.Instance != null)
+            EnemyWaveManager.Instance.NotifyEnemyFinishedAttack(this);
+    
+        Debug.Log($"[Enemy] {name} notificó fin de ataque.");
     }
 
     #endregion

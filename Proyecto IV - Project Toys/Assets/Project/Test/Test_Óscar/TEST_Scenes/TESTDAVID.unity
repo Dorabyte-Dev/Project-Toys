@@ -612,7 +612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1358670317803695474, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1874491415246942145, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1145,6 +1145,7 @@ MonoBehaviour:
   minAttackInterval: 1.5
   maxAttackInterval: 3
   activeEnemies: []
+  enemiesWaitingToAttack: []
   groupAttackTimer: 0
 --- !u!114 &674663960
 MonoBehaviour:
@@ -1679,6 +1680,7 @@ MonoBehaviour:
   minAttackInterval: 1.5
   maxAttackInterval: 3
   activeEnemies: []
+  enemiesWaitingToAttack: []
   groupAttackTimer: 0
 --- !u!114 &902545435
 MonoBehaviour:

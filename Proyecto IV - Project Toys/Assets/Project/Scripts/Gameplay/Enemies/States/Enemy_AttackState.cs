@@ -7,7 +7,6 @@ public class Enemy_AttackState : EnemyState
     private Vector3 currentPosition;
     private float currentTime;
     private bool reachedAttack;
-    //private bool hasStartedAttack;
 
     public Enemy_AttackState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
@@ -18,21 +17,19 @@ public class Enemy_AttackState : EnemyState
         base.Enter();
         
         enemy.isAttacking = true;
-        //enemy.damageCollider.SetActive(true);
+        Debug.Log($"[Enemy_AttackState] {enemy.name} entra en ataque.");
 
-        // Configurar velocidad de ataque (embestida r�pida)
+        // Configurar velocidad de ataque (embestida rápida)
         enemy.agent.speed = enemy.attackSpeed;
         enemy.agent.acceleration = enemy.attackAcceleration;
         enemy.agent.destination = attackPoint;
-
     }
 
     public override void Update()
     {
         base.Update();
 
-        // Verificar si lleg� al punto de ataque
-        //if (hasStartedAttack && HasReachedDestination())
+        // Verificar si llegó al punto de ataque
         if (HasReachedDestination())
         {
             FinishAttack();
@@ -42,8 +39,12 @@ public class Enemy_AttackState : EnemyState
     public override void Exit()
     {
         base.Exit();
-        enemy.isAttacking = false;
-        //enemy.damageCollider.SetActive(false);
+        
+        Debug.Log($"[Enemy_AttackState] {enemy.name} sale del ataque.");
+        
+        // IMPORTANTE: Notificar al manager que terminó el ataque
+        enemy.NotifyAttackFinished();
+        
         reachedAttack = false;
 
         // Restaurar velocidades normales
@@ -69,7 +70,7 @@ public class Enemy_AttackState : EnemyState
 
     private void FinishAttack()
     {
-        // Cambiar al estado de persecuci�n
+        // Cambiar al estado de persecución
         stateMachine.ChangeState(enemy.pursuitState);
     }
 
@@ -79,6 +80,4 @@ public class Enemy_AttackState : EnemyState
         attackPoint = attackP;
         reachedAttack = true;
     }
-    
-    
 }
