@@ -41,6 +41,9 @@ public class Enemy_WaitAttackState : EnemyState
 
         currentTime = 0;
         //enemy.hasStartedAttack = false;
+        
+        
+        enemy.orbitAngle = InitialiceOrbitAngle();
     }
 
     private void LookToPlayer()
@@ -54,7 +57,7 @@ public class Enemy_WaitAttackState : EnemyState
 
         currentTime += Time.deltaTime;
         //if (currentTime >= enemy.waitTime && !hasStartedAttack)
-        //OrbitAroundPlayer();
+        OrbitAroundPlayer();
         LookToPlayer();
         if (currentTime >= enemy.waitTime)
         {
@@ -78,8 +81,8 @@ public class Enemy_WaitAttackState : EnemyState
 
     private Vector3 AttackPointToPlayer()
     {
-        directionToPlayer = (enemy.playerTransform.position - currentPosition).normalized;
-        return currentPosition + directionToPlayer * enemy.attackRange;
+        directionToPlayer = (enemy.playerTransform.position - enemy.transform.position).normalized;
+        return enemy.transform.position + directionToPlayer * enemy.attackRange;
     }
 
     private void OrbitAroundPlayer()
@@ -109,8 +112,10 @@ public class Enemy_WaitAttackState : EnemyState
         enemy.agent.destination = targetPosition;
     }
 
-    private void InitialiceOrbitAngle()
+    private float InitialiceOrbitAngle()
     {
-        
+        Vector3 directionPlayerToEnemy = enemy.transform.position - enemy.playerTransform.position;
+        float angleInRadians = Mathf.Atan2(directionPlayerToEnemy.z, directionPlayerToEnemy.x);
+        return angleInRadians * Mathf.Rad2Deg;
     }
 }
