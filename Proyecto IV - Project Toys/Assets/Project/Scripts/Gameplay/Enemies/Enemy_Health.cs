@@ -27,7 +27,7 @@ public class Enemy_Health : Entity_Health
     {
         base.TakeDamage(takeDamage, damageDealer);
         //enemy.ChangeFlintState();
-        enemyUI.RecieveDamage((int)takeDamage);
+        enemyUI.ReceiveDamage((int)takeDamage);
         if (isDead)
             return;
     }
