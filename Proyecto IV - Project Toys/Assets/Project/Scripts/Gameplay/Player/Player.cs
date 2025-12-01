@@ -20,8 +20,21 @@ public class Player : Entity
     public float attackVelocityDuration = .1f;
     public float comboResetTime = 1;
     private Coroutine queuedAttackCo;
+    private Entity_Combat _combat;
+    private float _comboBarAmount;
 
-    public float comboBarAmount;
+    public float comboBarAmount
+    {
+        get { return _comboBarAmount; }
+        set
+        {
+            _comboBarAmount = Mathf.Clamp(value, 0, maxComboBarAmount);
+            SetComboBar(_comboBarAmount);
+        }
+    }
+    public float comboBarHitModifier;
+    public float comboBarPerfectDodgeModifier;
+    public float maxComboBarAmount;
     
     [Header("Movement Specs")]
     public Vector2 moveInput { get; private set; }
@@ -50,6 +63,8 @@ public class Player : Entity
         lightAttackState = new Player_LightAttackState(this, stateMachine, "LightPressed");
         deathState = new Player_DeathState(this, stateMachine, "death");
         heavyState = new Player_HeavyAttackState(this, stateMachine, "HeavyPressed");
+        _combat = GetComponent<Entity_Combat>();
+        _combat.targetHit.AddListener(OnEnemyHit);
 
     }
     protected override void Start()
@@ -84,6 +99,11 @@ public class Player : Entity
         }
 
     }
+
+    /*void SetComboBar()
+    {
+        ComboBarUIManage_comboBarAmount;
+    }*/
     
 
     //public void CallAnimationTrigger()
@@ -131,7 +151,11 @@ public class Player : Entity
         Vector3 moveVector2 = new Vector2(moveVector.x, moveVector.z);
         return moveVector2;
     }
-    
-    
 
+    private void OnEnemyHit()
+    {
+        comboBarAmount += comboBarHitModifier;
+    }
+
+    
 }
