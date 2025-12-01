@@ -6069,8 +6069,8 @@ MonoBehaviour:
   attackRange: 7.5
   waitTime: 2
   acceleration: 8
-  orbitDistance: 0
-  orbitSpeed: 0
+  orbitDistance: 5
+  orbitSpeed: 70
   orbitAngle: 0
   attackAcceleration: 20
   damage: 5
@@ -6192,6 +6192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_AnimationTriggers
   entity: {fileID: 0}
   entityCombat: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!114 &6178839278210920662
 MonoBehaviour:
   m_ObjectHideFlags: 0
