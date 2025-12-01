@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Entity_Combat : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Entity_Combat : MonoBehaviour
     [SerializeField] private Entity entity;
     [SerializeField] private float damage;
     [SerializeField] private float heavyDamage;
-
+    public UnityEvent targetHit;
     private void Awake()
     {
         entity = GetComponent<Entity>();
@@ -24,7 +25,10 @@ public class Entity_Combat : MonoBehaviour
             Entity_Health targetHealth = target.GetComponent<Entity_Health>();
             Debug.Log(target);
             if (targetHealth != null)
+            {
                 targetHealth?.TakeDamage(damage, this.transform);
+                targetHit?.Invoke();
+            }
             else
                 Debug.LogWarning("Entity_Health not found on +"  + target.name);
         }
