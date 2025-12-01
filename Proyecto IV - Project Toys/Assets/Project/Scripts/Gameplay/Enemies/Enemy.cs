@@ -38,6 +38,7 @@ public class Enemy : Entity
     public NavMeshAgent agent;
     public EnemySpawner spawner; //Que spawner lo ha generado
     public GameObject originalPrefab; //De que prefab se ha generado (util para la factory)
+    public Entity_Health health;
     
     public int facingDirection = 1;
     
@@ -47,6 +48,7 @@ public class Enemy : Entity
     {
         base.Awake();
         agent = GetComponent<NavMeshAgent>();
+        health = GetComponent<Enemy_Health>();
         agent.speed = moveSpeed;
         agent.acceleration = acceleration;
         agent.isStopped = false;
@@ -80,7 +82,16 @@ public class Enemy : Entity
         stateMachine.ChangeState(flinchState);
     }
 
-    
+    public void ResetStats()
+    {
+        stateMachine.SwitchOnStateMachine();
+        agent.enabled = true;
+        anim.enabled = true;
+        agent.speed = moveSpeed;
+        agent.acceleration = acceleration;
+        agent.isStopped = false;
+        health.ResetStats();
+    }
     public void PlayerDeath()
     {
         stateMachine.ChangeState(idleState);

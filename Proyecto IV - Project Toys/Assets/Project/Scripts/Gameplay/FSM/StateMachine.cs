@@ -27,4 +27,5 @@ public class StateMachine
     }
 
     public void SwitchOffStateMachine() => canChangeState = false;
+    public void SwitchOnStateMachine() => canChangeState = true;
 }

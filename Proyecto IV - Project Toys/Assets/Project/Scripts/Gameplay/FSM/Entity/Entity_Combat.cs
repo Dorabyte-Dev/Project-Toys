@@ -22,17 +22,20 @@ public class Entity_Combat : MonoBehaviour
         foreach (var target in GetDetectedColliders())
         {
             Entity_Health targetHealth = target.GetComponent<Entity_Health>();
+            Debug.Log(target);
             if (targetHealth != null)
                 targetHealth?.TakeDamage(damage, this.transform);
             else
                 Debug.LogWarning("Entity_Health not found on +"  + target.name);
         }
+        
     }
     public void PerformHeavyAttack()
     {
         foreach (var target in GetDetectedColliders())
         {
             Entity_Health targetHealth = target.GetComponent<Entity_Health>();
+            Debug.Log(target);
             if (targetHealth != null)
                 targetHealth?.TakeDamage(heavyDamage, this.transform);
             else

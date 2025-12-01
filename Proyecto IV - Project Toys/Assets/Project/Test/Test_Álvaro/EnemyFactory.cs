@@ -70,7 +70,7 @@ public class EnemyFactory : IObjectFactory
     private void OnGet(GameObject obj)
     {
         obj.SetActive(true);
-        
+        obj.GetComponentInChildren<Enemy>().ResetStats();
         Debug.Log("Enemy reused");
     }
 
