@@ -36,7 +36,7 @@ public class Enemy_WaitAttackState : EnemyState
         // Mirar hacia el objetivo
         LookToPlayer();
 
-        // Animación de carga
+        // Animaciï¿½n de carga
         //anim.Play("WaitAttack");
 
         currentTime = 0;
@@ -84,21 +84,21 @@ public class Enemy_WaitAttackState : EnemyState
 
     private void OrbitAroundPlayer()
     {
-        // 1. Aumentar el ángulo de órbita con el tiempo
+        // 1. Aumentar el ï¿½ngulo de ï¿½rbita con el tiempo
         // El Time.deltaTime * OrbitSpeed hace que el punto rote.
         enemy.orbitAngle += Time.deltaTime * enemy.orbitSpeed;
 
-        // Asegurar que el ángulo no se desborde (opcional, por limpieza)
+        // Asegurar que el ï¿½ngulo no se desborde (opcional, por limpieza)
         if (enemy.orbitAngle > 360f)
         {
             enemy.orbitAngle -= 360f;
         }
 
-        // 2. Convertir el ángulo a radianes para las funciones trigonométricas
-        // Los ángulos en C# suelen ser en grados.
+        // 2. Convertir el ï¿½ngulo a radianes para las funciones trigonomï¿½tricas
+        // Los ï¿½ngulos en C# suelen ser en grados.
         float angleInRad = enemy.orbitAngle * Mathf.Deg2Rad;
 
-        // 3. Calcular la nueva posición de destino (en un plano 2D, X y Z)
+        // 3. Calcular la nueva posiciï¿½n de destino (en un plano 2D, X y Z)
         Vector3 targetPosition;
         targetPosition.x = enemy.playerTransform.position.x + enemy.orbitDistance * Mathf.Cos(angleInRad);
         targetPosition.y = enemy.playerTransform.position.y; // Mantener la altura del suelo
@@ -107,5 +107,10 @@ public class Enemy_WaitAttackState : EnemyState
 
         // 4. Mover el NavMeshAgent al nuevo destino
         enemy.agent.destination = targetPosition;
+    }
+
+    private void InitialiceOrbitAngle()
+    {
+        
     }
 }
