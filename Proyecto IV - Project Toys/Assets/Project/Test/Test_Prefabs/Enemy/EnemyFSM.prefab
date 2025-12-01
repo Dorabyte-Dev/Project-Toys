@@ -537,7 +537,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1.25, y: 1, z: 1.25}
   m_Center: {x: 0, y: 0, z: 0}
@@ -5965,7 +5965,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -6069,17 +6069,22 @@ MonoBehaviour:
   attackRange: 7.5
   waitTime: 2
   acceleration: 8
+  orbitDistance: 5
+  orbitSpeed: 70
+  orbitAngle: 0
   attackAcceleration: 20
   damage: 5
   attackSpeed: 9
   isAttacking: 0
   flinchTime: 0.45
-  playerTransform: {fileID: 0}
   jugadorDetectado: 0
   nearness: 0
+  playerTransform: {fileID: 0}
   agent: {fileID: 3085236608815444426}
   spawner: {fileID: 0}
+  originalPrefab: {fileID: 0}
   facingDirection: 1
+  canAttackByManager: 0
 --- !u!114 &324225732850182800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6098,6 +6103,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   entity: {fileID: 0}
   damage: 0
+  heavyDamage: 0
 --- !u!114 &6000144413652210542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6116,6 +6122,8 @@ MonoBehaviour:
     baseValue: 0
   attackDamage:
     baseValue: 30
+  heavyDamage:
+    baseValue: 0
 --- !u!114 &2576317029188228018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6141,7 +6149,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867185682538759879}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56a597c11b8581049893541a16697240, type: 3}
   m_Name: 
@@ -6184,6 +6192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_AnimationTriggers
   entity: {fileID: 0}
   entityCombat: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!114 &6178839278210920662
 MonoBehaviour:
   m_ObjectHideFlags: 0

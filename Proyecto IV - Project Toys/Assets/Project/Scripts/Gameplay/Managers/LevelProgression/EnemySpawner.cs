@@ -19,6 +19,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Debug.Log(enemiesSpawned.Count);
         cam = GetComponent<CameraSwitch>();
         camManager = FindAnyObjectByType<CameraManager>();
         if(enemyFactory == null )
@@ -30,7 +31,10 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            StartCombat();
+        }
     }
 
     public void StartCombat()
@@ -56,9 +60,10 @@ public class EnemySpawner : MonoBehaviour
 
 
             GameObject newEnemy = Instantiate(enemy, newPosition, Quaternion.identity);
-            
             //GameObject newEnemy = enemyFactory.Get(enemy, newPosition);
             Enemy newEnemyScript = newEnemy.GetComponentInChildren<Enemy>();
+            //Instanciamos el WaveManager para registrarlo en la lista de enemigos
+            EnemyWaveManager.Instance?.RegisterEnemy(newEnemyScript);
             enemiesSpawned.Add(newEnemyScript.gameObject);
             newEnemyScript.spawner = this;
             yield return new WaitForSeconds(spawnDelay);
