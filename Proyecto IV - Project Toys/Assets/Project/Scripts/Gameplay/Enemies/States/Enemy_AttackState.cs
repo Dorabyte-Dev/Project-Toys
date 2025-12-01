@@ -79,4 +79,6 @@ public class Enemy_AttackState : EnemyState
         attackPoint = attackP;
         reachedAttack = true;
     }
+    
+    
 }

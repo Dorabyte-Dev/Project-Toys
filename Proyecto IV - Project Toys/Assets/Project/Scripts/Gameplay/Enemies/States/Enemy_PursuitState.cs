@@ -25,7 +25,10 @@ public class Enemy_PursuitState : EnemyState
         switch (enemy.nearness)
         {
             case 2:
-                stateMachine.ChangeState(enemy.waitAttackState);
+                if (enemy.canAttackByManager && !enemy.isAttacking)
+                {
+                    stateMachine.ChangeState(enemy.attackState);
+                }
                 break;
             case 0:
                 stateMachine.ChangeState(enemy.idleState);
