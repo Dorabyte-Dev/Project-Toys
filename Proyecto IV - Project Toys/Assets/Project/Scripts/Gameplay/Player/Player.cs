@@ -20,21 +20,25 @@ public class Player : Entity
     public float attackVelocityDuration = .1f;
     public float comboResetTime = 1;
     private Coroutine queuedAttackCo;
+    
+
+    [Header("Combo Bar Properties")]
+    
+    public float comboBarHitModifier;
+    public float comboBarPerfectDodgeModifier;
+    public float maxComboBarAmount;
     private Entity_Combat _combat;
     private float _comboBarAmount;
-
     public float comboBarAmount
     {
         get { return _comboBarAmount; }
         set
         {
             _comboBarAmount = Mathf.Clamp(value, 0, maxComboBarAmount);
-            SetComboBar(_comboBarAmount);
+            SetComboBar();
         }
     }
-    public float comboBarHitModifier;
-    public float comboBarPerfectDodgeModifier;
-    public float maxComboBarAmount;
+    [SerializeField]private ComboBarUIManager comboBarUIManager;
     
     [Header("Movement Specs")]
     public Vector2 moveInput { get; private set; }
@@ -71,7 +75,7 @@ public class Player : Entity
     {
         base.Start();
         stateMachine.Initialize(idleState);
-
+        SetComboBar();
         if (cam == null)
         {
            cam = Camera.main;
@@ -100,10 +104,11 @@ public class Player : Entity
 
     }
 
-    /*void SetComboBar()
+    void SetComboBar()
     {
-        ComboBarUIManage_comboBarAmount;
-    }*/
+        if(comboBarUIManager != null)
+            comboBarUIManager.FillAmount = _comboBarAmount/maxComboBarAmount;
+    }
     
 
     //public void CallAnimationTrigger()
