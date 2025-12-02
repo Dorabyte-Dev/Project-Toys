@@ -38,7 +38,10 @@ public class Player : Entity
             SetComboBar();
         }
     }
+    
+    [Header("UI References")]
     [SerializeField]private ComboBarUIManager comboBarUIManager;
+    private Entity_Health _health;
     
     [Header("Movement Specs")]
     public Vector2 moveInput { get; private set; }
@@ -67,6 +70,7 @@ public class Player : Entity
         lightAttackState = new Player_LightAttackState(this, stateMachine, "LightPressed");
         deathState = new Player_DeathState(this, stateMachine, "death");
         heavyState = new Player_HeavyAttackState(this, stateMachine, "HeavyPressed");
+        
         _combat = GetComponent<Entity_Combat>();
         _combat.targetHit.AddListener(OnEnemyHit);
 

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class ComboBarUIManager : MonoBehaviour
 {
+    public static ComboBarUIManager Instance;
     [SerializeField] private Image comboBarLeft;
     [SerializeField] private Image comboBarRight;
     private float _fillAmount;
@@ -26,5 +27,15 @@ public class ComboBarUIManager : MonoBehaviour
                 comboBarRight.color = Color.white;
             }
         }
+    }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
     }
 }
