@@ -3,15 +3,23 @@ using UnityEngine;
 
 public class PerfectDodgeManager : MonoBehaviour
 {
+    //Singleton
+
+
     //Perfect Dodge
-    public List<GameObject> pDodgeEnemies = new List<GameObject>();
-    void Start()
+    public static List<GameObject> pDodgeEnemies = new List<GameObject>();
+
+    public static void SetPerfectDodgeFlag(GameObject enemy)
     {
-        
+        pDodgeEnemies.Add(enemy);
+        Debug.Log("He puesto la Flag de perfect dodge");
     }
 
-    void Update()
+    public static void EndPerfectDodgeFlag(GameObject enemy)
     {
-        
+        if (pDodgeEnemies.Contains(enemy))
+        {
+            pDodgeEnemies.Remove(enemy);
+        }
     }
 }

@@ -151,14 +151,14 @@ public class EnemyPerfectDodgeTest : MonoBehaviour
     public void SetPerfectDodgeFlag()
     {
         PerfectDodgeManager gm = FindAnyObjectByType<PerfectDodgeManager>();
-        gm.pDodgeEnemies.Add(this.gameObject);
+        //gm.pDodgeEnemies.Add(this.gameObject);
         Debug.Log("He puesto la Flag de perfect dodge");
     }
 
     public void EndPerfectDodgeFlag()
     {
         PerfectDodgeManager gm = FindAnyObjectByType<PerfectDodgeManager>();
-        gm.pDodgeEnemies.Remove(this.gameObject);
+        //gm.pDodgeEnemies.Remove(this.gameObject);
     }
     #endregion
 }

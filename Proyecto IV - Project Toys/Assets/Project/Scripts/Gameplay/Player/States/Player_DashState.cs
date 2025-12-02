@@ -17,11 +17,11 @@ public class Player_DashState : Player_GroundedState
         base.Enter();
         stateTimer = player.dashDuration;
 
-        PerfectDodgeManager gm = Object.FindAnyObjectByType<PerfectDodgeManager>();
-        isPerfectDodge = gm.pDodgeEnemies.Count > 0;
+        //PerfectDodgeManager gm = Object.FindAnyObjectByType<PerfectDodgeManager>();
+        isPerfectDodge = PerfectDodgeManager.pDodgeEnemies.Count > 0;
         if (isPerfectDodge)
         {
-            PerfectDodge(gm.pDodgeEnemies[gm.pDodgeEnemies.Count - 1]);
+            PerfectDodge(PerfectDodgeManager.pDodgeEnemies[PerfectDodgeManager.pDodgeEnemies.Count - 1]);
         }
         else
         {

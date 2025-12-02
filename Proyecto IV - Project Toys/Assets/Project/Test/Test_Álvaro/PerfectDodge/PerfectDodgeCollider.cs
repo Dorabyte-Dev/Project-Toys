@@ -15,6 +15,17 @@ public class PerfectDodgeCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.CompareTag("Damage"))
+        {
+            PerfectDodgeManager.SetPerfectDodgeFlag(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Damage"))
+        {
+            PerfectDodgeManager.EndPerfectDodgeFlag(other.gameObject);
+        }
     }
 }

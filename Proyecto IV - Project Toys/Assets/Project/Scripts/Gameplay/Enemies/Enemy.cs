@@ -66,6 +66,7 @@ public class Enemy : Entity
     protected override void Start()
     {
         base.Start();
+        GetComponent<Entity_Combat>().targetHit.AddListener(OnPlayerDamaged);
         stateMachine.Initialize(idleState);
         if (spawner == null)
             Debug.LogWarning("Spawner not assigned. Check GameObject to component of EnemySpawner.cs");
@@ -188,5 +189,12 @@ public class Enemy : Entity
         Debug.Log($"[Enemy] {name} notificó fin de ataque.");
     }
 
+    #endregion
+
+    #region Perfect Dodge
+    void OnPlayerDamaged()
+    {
+        PerfectDodgeManager.EndPerfectDodgeFlag(this.gameObject);
+    }
     #endregion
 }

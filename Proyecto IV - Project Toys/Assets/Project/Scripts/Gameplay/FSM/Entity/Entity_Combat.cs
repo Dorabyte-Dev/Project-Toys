@@ -10,7 +10,7 @@ public class Entity_Combat : MonoBehaviour
     [SerializeField] private Entity entity;
     [SerializeField] private float damage;
     [SerializeField] private float heavyDamage;
-    public UnityEvent targetHit;
+    public UnityEvent targetHit; //Used by Player in ComboBar and by Enemy in PerfectDodge
     private void Awake()
     {
         entity = GetComponent<Entity>();
