@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
@@ -8,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
     public float maxSpawnDistance;
+    [SerializeField] private Collider spawnArea;
     public float spawnDelay;
     public int spawnCount;
     private int enemiesDead;
@@ -50,18 +52,18 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    public IEnumerator SpawnEnemies()
+    private IEnumerator SpawnEnemies()
     {
         for (int i = 0; i < spawnCount; i++)
         {
-            //REWORK THIS PLEASE -Alvaro del futuro
             //Codigo de la generacion aleatoria dentro de bounds
-            Vector3 newPosition = transform.position + new Vector3 (Random.Range(0, maxSpawnDistance), 0, Random.Range(0, maxSpawnDistance));
+            Vector3 newPosition = GetRandomNavMeshPoint(spawnArea);
 
 
             GameObject newEnemy = Instantiate(enemy, newPosition, Quaternion.identity);
             //GameObject newEnemy = enemyFactory.Get(enemy, newPosition);
             Enemy newEnemyScript = newEnemy.GetComponentInChildren<Enemy>();
+            
             //Instanciamos el WaveManager para registrarlo en la lista de enemigos
             EnemyWaveManager.Instance?.RegisterEnemy(newEnemyScript);
             enemiesSpawned.Add(newEnemyScript.gameObject);
@@ -96,5 +98,22 @@ public class EnemySpawner : MonoBehaviour
         }
 
         endCombat.Invoke();
+    }
+    
+    Vector3 GetRandomNavMeshPoint(Collider col)
+    {
+        Bounds bounds = col.bounds;
+        Vector3 randomPoint;
+
+        NavMeshHit hit;
+        do
+        {
+            randomPoint.x = Random.Range(bounds.min.x, bounds.max.x);
+            randomPoint.y = Random.Range(bounds.min.y, bounds.max.y);
+            randomPoint.z = Random.Range(bounds.min.z, bounds.max.z);
+        }
+        while (!NavMesh.SamplePosition(randomPoint, out hit, 1f, NavMesh.AllAreas));
+
+        return hit.position;
     }
 }
