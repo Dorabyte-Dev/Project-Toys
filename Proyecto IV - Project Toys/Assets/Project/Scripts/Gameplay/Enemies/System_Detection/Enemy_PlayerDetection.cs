@@ -11,11 +11,11 @@ public class Enemy_PlayerDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.gameObject.CompareTag("Player"))
         {
             enemy.nearness++;
-            enemy.UpdateStateBasedOnNearness();
+            enemy.playerTransform = other.transform;
+            Debug.Log($"[Detection] {enemy.name} nearness = {enemy.nearness} (ENTER)");
         }
     }
 
@@ -24,7 +24,6 @@ public class Enemy_PlayerDetection : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             enemy.playerTransform = other.transform;
-            enemy.UpdateStateBasedOnNearness();
         }
     }
 
@@ -33,7 +32,12 @@ public class Enemy_PlayerDetection : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             enemy.nearness--;
-            enemy.UpdateStateBasedOnNearness();
+            Debug.Log($"[Detection] {enemy.name} nearness = {enemy.nearness} (EXIT)");
+
+            if (enemy.nearness <= 0)
+            {
+                enemy.playerTransform = null;
+            }
         }
     }
 }

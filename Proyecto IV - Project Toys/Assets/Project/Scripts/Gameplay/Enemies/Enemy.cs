@@ -43,9 +43,15 @@ public class Enemy : Entity
     public int facingDirection = 1;
     
     public Transform player { get; private set; }
-    
-    [Header("WaveManager Specs")]
-    public bool canAttackByManager; // permiso del manager para atacar
+
+    [Header("Attack Cooldown System")]
+    public bool isOnAttackCooldown;
+    public float attackCooldown = 5f; // Tiempo en segundos antes de poder atacar de nuevo
+    private float attackCooldownTimer;
+    public float waitTimeToAttack;
+
+    [Header("Wave Manager Control")] 
+    public bool canAttackByManager;
 
     protected override void Awake()
     {
@@ -55,6 +61,25 @@ public class Enemy : Entity
         agent.speed = moveSpeed;
         agent.acceleration = acceleration;
         agent.isStopped = false;
+    }
+    
+    protected override void Update()
+    {
+        base.Update();
+
+        // Cooldown
+        if (isOnAttackCooldown)
+        {
+            attackCooldownTimer -= Time.deltaTime;
+            if (attackCooldownTimer <= 0f)
+            {
+                isOnAttackCooldown = false;
+                Debug.Log($"[{name}] Cooldown de ataque terminado, puede volver a atacar.");
+            }
+        }
+
+        // FSM básica (solo idle/move/pursuit)
+        UpdateFSMByNearness();
     }
     
     public override void DeadEntity()
@@ -134,63 +159,93 @@ public class Enemy : Entity
     //    return hit;
     //}
 
-    #region Player Detection
-    public void UpdateStateBasedOnNearness()
+    #region Player Detection + FSM básica
+
+    public void UpdateFSMByNearness()
     {
-        Debug.Log("Updating state based on nearness");
+        // No cambies nada si está muerto, flinch, o atacando
+        if (stateMachine.currentState == deadState || 
+            stateMachine.currentState == flinchState ||
+            isAttacking)
+            return;
+        
+        // Si está en lógica de ataque, NO tocar nada aquí
+        if (stateMachine.currentState == waitAttackState ||
+            stateMachine.currentState == attackState)
+            return;
+
         switch (nearness)
         {
             case 0:
-                if (!isAttacking)
+                // Sin jugador cerca: patrulla / idle
+                if (stateMachine.currentState != moveState && stateMachine.currentState != idleState)
                 {
                     stateMachine.ChangeState(moveState);
                 }
                 break;
+
             case 1:
-                if (!isAttacking)
+            case 2:
+                if (!canAttackByManager)
                 {
                     stateMachine.ChangeState(pursuitState);
                 }
                 break;
-            case 2:
-                if (!isAttacking)
-                {
-                    stateMachine.ChangeState(waitAttackState);
-                }
-                break;
-            default:
-                Debug.LogWarning("Error with the detect player system");
-                break;
         }
     }
 
-    public void CallUpdateStateDetection()
-    {
-        UpdateStateBasedOnNearness();
-    }
     #endregion
 
-    #region Wave Manager
-    
-    public void AllowAttackFromManager()
+    #region Attack Turn System
+
+    public void StartAttackCooldown()
     {
-        canAttackByManager = true;
-        Debug.Log($"[Enemy] {name} recibió permiso para atacar.");
+        isOnAttackCooldown = true;
+        attackCooldownTimer = attackCooldown;
+        Debug.Log($"[{name}] Inicia cooldown de ataque ({attackCooldown}s).");
+    }
+
+    public void NotifyAttackStarted()
+    {
+        isAttacking = true;
+        EnemyWaveManager.Instance.NotifyAttackStarted(this);
     }
 
     public void NotifyAttackFinished()
     {
+        Debug.Log($"[Enemy] {name} notificó fin de ataque.");
+    
+        // 1) Avisar al WaveManager
+        EnemyWaveManager.Instance.NotifyAttackEnded(this);
+    
+        // 2) Iniciar cooldown local
+        StartAttackCooldown();
+    
         isAttacking = false;
         canAttackByManager = false;
-    
-        if (EnemyWaveManager.Instance != null)
-            EnemyWaveManager.Instance.NotifyEnemyFinishedAttack(this);
-    
-        Debug.Log($"[Enemy] {name} notificó fin de ataque.");
+    }
+
+    public bool CanStartAttackNow()
+    {
+        return canAttackByManager && !isAttacking && !isOnAttackCooldown;
+    }
+    public void AllowAttackFromManager()
+    {
+        canAttackByManager = true;
+        Debug.Log($"[{name}] Recibe permiso del WaveManager para atacar.");
+    }
+    public void RevokeAttackPermission()
+    {
+        if (canAttackByManager)
+        {
+            canAttackByManager = false;
+            EnemyWaveManager.Instance.CancelAttackRequest(this);
+            Debug.Log($"[{name}] Permiso de ataque revocado.");
+        }
     }
 
     #endregion
-
+    
     #region Perfect Dodge
     void OnPlayerDamaged()
     {

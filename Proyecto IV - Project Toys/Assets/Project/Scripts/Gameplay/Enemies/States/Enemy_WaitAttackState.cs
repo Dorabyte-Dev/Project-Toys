@@ -1,121 +1,95 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Enemy_WaitAttackState : EnemyState
 {
-    private Vector3 attackPoint;
-    private Vector3 lastPlayerPosition;
-    private Vector3 currentPosition;
-    private Vector3 directionToPlayer;
     private float currentTime;
-    //private bool hasStartedAttack;
 
-    
-    public Enemy_WaitAttackState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
+    public Enemy_WaitAttackState(Enemy enemy, StateMachine stateMachine, string animBoolName)
+        : base(enemy, stateMachine, animBoolName)
     {
     }
 
     public override void Enter()
     {
         base.Enter();
-        enemy.isAttacking = true;
+        Debug.Log($"[{enemy.name}] Entra en WaitAttackState.");
 
-        // Guardar posiciones
-        currentPosition = enemy.transform.position;
-        lastPlayerPosition = enemy.playerTransform != null ? enemy.playerTransform.position : enemy.transform.forward;
+        // Notificar al manager que este enemigo está atacando
+        enemy.NotifyAttackStarted();
 
-        // Calcular punto de ataque (hacia donde va a embestir)
-        
-        StopSmooth();
-        //attackPoint = lastPlayerPosition;
+        currentTime = 0f;
 
-        // DETENER al enemigo durante la carga del ataque
-        //enemy.agent.isStopped = true;
-        //enemy.agent.velocity = Vector3.zero;
+        // Detener al enemigo
+        enemy.agent.isStopped = true;
+        enemy.agent.velocity = Vector3.zero;
 
-        // Mirar hacia el objetivo
-        LookToPlayer();
-
-        // Animaci�n de carga
-        //anim.Play("WaitAttack");
-
-        currentTime = 0;
-        //enemy.hasStartedAttack = false;
-        
-        
-        enemy.orbitAngle = InitialiceOrbitAngle();
-    }
-
-    private void LookToPlayer()
-    {
-        enemy.transform.LookAt(new Vector3(enemy.playerTransform.position.x, enemy.transform.position.y, enemy.playerTransform.position.z), Vector3.up);
+        // Mirar al jugador
+        if (enemy.playerTransform != null)
+        {
+            Vector3 direction = enemy.playerTransform.position - enemy.transform.position;
+            direction.y = 0;
+            if (direction != Vector3.zero)
+            {
+                enemy.transform.rotation = Quaternion.LookRotation(direction);
+            }
+        }
     }
 
     public override void Update()
     {
         base.Update();
 
+        // Solo abortar si se pierde completamente al jugador
+        // if (enemy.nearness <= 0 || enemy.playerTransform == null)
+        // {
+        //     Debug.Log($"[{enemy.name}] Pierde COMPLETAMENTE al jugador durante preparación -> Pursuit");
+        //     stateMachine.ChangeState(enemy.pursuitState);
+        //     return;
+        // }
+
         currentTime += Time.deltaTime;
-        //if (currentTime >= enemy.waitTime && !hasStartedAttack)
-        OrbitAroundPlayer();
-        LookToPlayer();
+
         if (currentTime >= enemy.waitTime)
         {
-            Debug.Log("Cambiar a estado de ataque");
-            attackPoint = AttackPointToPlayer();
-            enemy.attackState.SetParametersAttack(currentPosition, attackPoint);
-            
+            Debug.Log($"[{enemy.name}] Preparación lista -> AttackState");
+
+            Vector3 attackPoint = CalculateAttackPoint();
+            enemy.attackState.SetParametersAttack(enemy.transform.position, attackPoint);
+
+            enemy.agent.isStopped = false;
             stateMachine.ChangeState(enemy.attackState);
         }
-
     }
+
+    private Vector3 CalculateAttackPoint()
+    {
+
+        Vector3 enemyPos = enemy.transform.position;
+        Vector3 playerPos = enemy.playerTransform.position;
+
+        Vector3 dir = (playerPos - enemyPos);
+        dir.y = 0;
+        
+        if (dir.sqrMagnitude < 0.01f)
+        {
+            // Si está muy encima del player, usar forward del enemigo
+            dir = enemy.transform.forward;
+        }
+        else
+        {
+            dir.Normalize();
+        }
+
+        float dashDistance = 5f; // Distancia de embestida
+        Vector3 attackPoint = playerPos + dir * dashDistance;
+
+        Debug.Log($"[{enemy.name}] AttackPoint calculado: {attackPoint} (player en {playerPos})");
+        return attackPoint;
+    }
+
     public override void Exit()
     {
         base.Exit();
         enemy.agent.isStopped = false;
-    }
-    private void StopSmooth()
-    {
-        enemy.agent.destination = currentPosition + (lastPlayerPosition - currentPosition) * 0.25f;
-    }
-
-    private Vector3 AttackPointToPlayer()
-    {
-        directionToPlayer = (enemy.playerTransform.position - enemy.transform.position).normalized;
-        return enemy.transform.position + directionToPlayer * enemy.attackRange;
-    }
-
-    private void OrbitAroundPlayer()
-    {
-        // 1. Aumentar el �ngulo de �rbita con el tiempo
-        // El Time.deltaTime * OrbitSpeed hace que el punto rote.
-        enemy.orbitAngle += Time.deltaTime * enemy.orbitSpeed;
-
-        // Asegurar que el �ngulo no se desborde (opcional, por limpieza)
-        if (enemy.orbitAngle > 360f)
-        {
-            enemy.orbitAngle -= 360f;
-        }
-
-        // 2. Convertir el �ngulo a radianes para las funciones trigonom�tricas
-        // Los �ngulos en C# suelen ser en grados.
-        float angleInRad = enemy.orbitAngle * Mathf.Deg2Rad;
-
-        // 3. Calcular la nueva posici�n de destino (en un plano 2D, X y Z)
-        Vector3 targetPosition;
-        targetPosition.x = enemy.playerTransform.position.x + enemy.orbitDistance * Mathf.Cos(angleInRad);
-        targetPosition.y = enemy.playerTransform.position.y; // Mantener la altura del suelo
-        targetPosition.z = enemy.playerTransform.position.z + enemy.orbitDistance * Mathf.Sin(angleInRad);
-
-
-        // 4. Mover el NavMeshAgent al nuevo destino
-        enemy.agent.destination = targetPosition;
-    }
-
-    private float InitialiceOrbitAngle()
-    {
-        Vector3 directionPlayerToEnemy = enemy.transform.position - enemy.playerTransform.position;
-        float angleInRadians = Mathf.Atan2(directionPlayerToEnemy.z, directionPlayerToEnemy.x);
-        return angleInRadians * Mathf.Rad2Deg;
     }
 }
