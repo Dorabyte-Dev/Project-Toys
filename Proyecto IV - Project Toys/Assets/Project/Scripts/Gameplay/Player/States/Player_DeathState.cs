@@ -9,7 +9,8 @@ public class Player_DeathState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        input.Disable();
+        //input.Disable();
+        player.Respawn();
         player.SetVelocity(0,0);
     }
 

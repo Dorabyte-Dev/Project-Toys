@@ -40,7 +40,6 @@ public class Player : Entity
     }
     
     [Header("UI References")]
-    [SerializeField]private ComboBarUIManager comboBarUIManager;
     private Entity_Health _health;
     
     [Header("Movement Specs")]
@@ -57,6 +56,8 @@ public class Player : Entity
     public float perfectDodgeEnemyDistance = 1f;
     public Collider perfectDodgeCollider;
     public MeshTrail afterimageTrail;
+
+    [Header("Death Specs")] [SerializeField]private Transform activeCheckpoint;
 
     protected override void Awake()
     {
@@ -110,8 +111,8 @@ public class Player : Entity
 
     void SetComboBar()
     {
-        if(comboBarUIManager != null)
-            comboBarUIManager.FillAmount = _comboBarAmount/maxComboBarAmount;
+        if(UIManager.Instance != null)
+            UIManager.Instance.FillAmount = _comboBarAmount/maxComboBarAmount;
     }
     
 
@@ -164,6 +165,11 @@ public class Player : Entity
     private void OnEnemyHit()
     {
         comboBarAmount += comboBarHitModifier;
+    }
+
+    public void Respawn()
+    {
+        transform.position = activeCheckpoint.position;
     }
 
     
