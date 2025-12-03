@@ -5,32 +5,24 @@ public class EnemyWaveManager : MonoBehaviour
 {
     public static EnemyWaveManager Instance { get; private set; }
 
-    [Header("Group AI Settings")]
-    public int maxSimultaneousAttackers = 1;   // Solo 1 enemigo atacando a la vez
-    public float minAttackInterval = 1.5f;     // Tiempo mínimo entre ataques de grupo
-    public float maxAttackInterval = 3f;       // Tiempo máximo entre ataques de grupo
+    [Header("Attack Control")]
+    public int maxSimultaneousAttackers = 1;
 
-    [SerializeField] private List<Enemy> activeEnemies = new List<Enemy>();
-    [SerializeField] private List<Enemy> enemiesWaitingToAttack = new List<Enemy>(); // Enemigos que quieren atacar
-    [SerializeField] private float groupAttackTimer;
+    private List<Enemy> activeEnemies = new List<Enemy>();
+    private List<Enemy> currentAttackers = new List<Enemy>();
+    private List<Enemy> enemiesWaitingToAttack = new List<Enemy>();
 
     private void Awake()
     {
-        Debug.Log("[EnemyWaveManager] Awake");
-        if (Instance != null && Instance != this)
+        if (Instance == null)
+        {
+            Instance = this;
+            Debug.Log("[EnemyWaveManager] Awake");
+        }
+        else
         {
             Destroy(gameObject);
-            return;
         }
-        Instance = this;
-        
-        // Inicializar el timer para que empiece a contar desde el principio
-        groupAttackTimer = Random.Range(minAttackInterval, maxAttackInterval);
-    }
-
-    private void Update()
-    {
-        HandleGroupAttackLogic();
     }
 
     public void RegisterEnemy(Enemy enemy)
@@ -38,81 +30,90 @@ public class EnemyWaveManager : MonoBehaviour
         if (!activeEnemies.Contains(enemy))
         {
             activeEnemies.Add(enemy);
-            Debug.Log($"[EnemyWaveManager] Enemigo registrado: {enemy.name}. Total activos: {activeEnemies.Count}");
+            Debug.Log($"[WaveManager] {enemy.name} registrado. Total: {activeEnemies.Count}");
         }
     }
 
     public void UnregisterEnemy(Enemy enemy)
     {
         activeEnemies.Remove(enemy);
+        currentAttackers.Remove(enemy);
         enemiesWaitingToAttack.Remove(enemy);
-        Debug.Log($"[EnemyWaveManager] Enemigo desregistrado: {enemy.name}. Total activos: {activeEnemies.Count}");
+        Debug.Log($"[WaveManager] {enemy.name} desregistrado. Total: {activeEnemies.Count}");
     }
 
-    // Llamado por el enemigo cuando QUIERE atacar (está en rango)
     public void RequestAttackPermission(Enemy enemy)
     {
-        if (!enemiesWaitingToAttack.Contains(enemy) && !enemy.isAttacking)
+        if (!enemy || enemiesWaitingToAttack.Contains(enemy))
+            return;
+
+        // NO añadir si está en cooldown
+        if (enemy.isOnAttackCooldown)
         {
-            enemiesWaitingToAttack.Add(enemy);
-            Debug.Log($"[EnemyWaveManager] {enemy.name} solicita permiso de ataque. En cola: {enemiesWaitingToAttack.Count}");
+            Debug.Log($"[WaveManager] {enemy.name} en cooldown, no puede pedir turno.");
+            return;
         }
+
+        enemiesWaitingToAttack.Add(enemy);
+        Debug.Log($"[WaveManager] {enemy.name} solicita turno. En espera: {enemiesWaitingToAttack.Count}");
+
+        TryGrantNextAttack();
     }
 
-    // Llamado por el enemigo cuando ya NO quiere atacar (salió de rango o cambió de estado)
     public void CancelAttackRequest(Enemy enemy)
     {
         if (enemiesWaitingToAttack.Contains(enemy))
         {
             enemiesWaitingToAttack.Remove(enemy);
-            Debug.Log($"[EnemyWaveManager] {enemy.name} cancela solicitud de ataque.");
+            Debug.Log($"[WaveManager] {enemy.name} cancela solicitud.");
         }
     }
 
-    // Llamado cuando el enemigo TERMINA su ataque
-    public void NotifyEnemyFinishedAttack(Enemy enemy)
+    public void NotifyAttackStarted(Enemy enemy)
     {
-        Debug.Log($"[EnemyWaveManager] {enemy.name} terminó su ataque.");
-        enemy.canAttackByManager = false;
-        
-        // Reiniciar el timer para dar oportunidad al siguiente
-        groupAttackTimer = Random.Range(minAttackInterval, maxAttackInterval);
+        if (!currentAttackers.Contains(enemy))
+        {
+            currentAttackers.Add(enemy);
+        }
+        Debug.Log($"[WaveManager] {enemy.name} START attack. Attacking: {currentAttackers.Count}/{maxSimultaneousAttackers}");
     }
 
-    private void HandleGroupAttackLogic()
+    public void NotifyAttackEnded(Enemy enemy)
     {
-        if (activeEnemies.Count == 0 || enemiesWaitingToAttack.Count == 0)
+        currentAttackers.Remove(enemy);
+        Debug.Log($"[WaveManager] {enemy.name} END attack. Attacking: {currentAttackers.Count}/{maxSimultaneousAttackers}");
+
+        TryGrantNextAttack();
+    }
+
+    private void TryGrantNextAttack()
+    {
+        if (currentAttackers.Count >= maxSimultaneousAttackers)
             return;
 
-        groupAttackTimer -= Time.deltaTime;
-        if (groupAttackTimer > 0)
-            return;
-
-        // Contar cuántos están atacando actualmente
-        int currentlyAttacking = 0;
-        foreach (var e in activeEnemies)
+        for (int i = 0; i < enemiesWaitingToAttack.Count; i++)
         {
-            if (e != null && e.isAttacking)
-                currentlyAttacking++;
-        }
-
-        if (currentlyAttacking >= maxSimultaneousAttackers)
-            return;
-
-        // Dar permiso al primero de la lista de espera
-        if (enemiesWaitingToAttack.Count > 0)
-        {
-            Enemy next = enemiesWaitingToAttack[0];
-            enemiesWaitingToAttack.RemoveAt(0);
-
-            if (next != null && !next.isAttacking)
+            Enemy e = enemiesWaitingToAttack[i];
+            
+            if (e == null)
             {
-                next.AllowAttackFromManager();
-                Debug.Log($"[EnemyWaveManager] Permiso concedido a {next.name}. Atacando ahora: {currentlyAttacking + 1}/{maxSimultaneousAttackers}");
-                
-                // Reiniciar timer
-                groupAttackTimer = Random.Range(minAttackInterval, maxAttackInterval);
+                enemiesWaitingToAttack.RemoveAt(i);
+                i--;
+                continue;
             }
+
+            // NO dar turno si está en cooldown
+            if (e.isOnAttackCooldown)
+            {
+                Debug.Log($"[WaveManager] {e.name} en cooldown, se salta.");
+                continue;
+            }
+
+            // Dar permiso
+            e.AllowAttackFromManager();
+            enemiesWaitingToAttack.RemoveAt(i);
+            Debug.Log($"[WaveManager] {e.name} recibe permiso para atacar.");
+            return;
         }
     }
 
@@ -120,4 +121,6 @@ public class EnemyWaveManager : MonoBehaviour
     {
         return activeEnemies.Count == 0;
     }
+    
+    
 }

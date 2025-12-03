@@ -654,6 +654,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7882986109669205406, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
+      propertyPath: waitTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882986109669205406, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
+      propertyPath: attackCooldown
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1123,6 +1131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemy: {fileID: 407321309}
   maxSpawnDistance: 5
+  spawnArea: {fileID: 0}
   spawnDelay: 1
   spawnCount: 6
   enemiesSpawned: []
@@ -1142,11 +1151,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWaveManager
   maxSimultaneousAttackers: 1
-  minAttackInterval: 1.5
-  maxAttackInterval: 3
-  activeEnemies: []
-  enemiesWaitingToAttack: []
-  groupAttackTimer: 0
 --- !u!114 &674663960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1388,7 +1392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1506602440b085e4eb0c58bcd6b75cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PerfectDodgeManager
-  pDodgeEnemies: []
 --- !u!4 &770803184
 Transform:
   m_ObjectHideFlags: 0
@@ -1514,6 +1517,10 @@ MonoBehaviour:
   - {x: 0.0000000039108805, y: 8.37e-43}
   attackVelocityDuration: 0.1
   comboResetTime: 1
+  comboBarHitModifier: 0
+  comboBarPerfectDodgeModifier: 0
+  maxComboBarAmount: 0
+  comboBarUIManager: {fileID: 0}
   cam: {fileID: 0}
   jumpForce: 5
   dashDuration: 0.25
@@ -1677,11 +1684,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWaveManager
   maxSimultaneousAttackers: 1
-  minAttackInterval: 1.5
-  maxAttackInterval: 3
-  activeEnemies: []
-  enemiesWaitingToAttack: []
-  groupAttackTimer: 0
 --- !u!114 &902545435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1696,8 +1698,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemy: {fileID: 1358670317803695474, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
   maxSpawnDistance: 5
+  spawnArea: {fileID: 1948768917}
   spawnDelay: 1
-  spawnCount: 6
+  spawnCount: 2
   enemiesSpawned: []
   endCombat:
     m_PersistentCalls:
@@ -2910,6 +2913,59 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816989567}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1948768916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1948768918}
+  - component: {fileID: 1948768917}
+  m_Layer: 31
+  m_Name: SpawnArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1948768917
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948768916}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.32212326, y: 1, z: 0.1825181}
+  m_Center: {x: 0.06498024, y: 0, z: 0.12438016}
+--- !u!4 &1948768918
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948768916}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2075158302}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2005440847
 GameObject:
   m_ObjectHideFlags: 0
@@ -3197,7 +3253,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 76.28, y: 0.34, z: 64.8}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1948768918}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2601390178921864808
