@@ -11,7 +11,8 @@ public class MeshTrail : MonoBehaviour
     public float meshDestroyDelay = 2f;
     [Header("Mesh Related")]
     public float meshRefreshRate = 0.05f;
-    private MeshFilter meshFilter;
+    //private MeshFilter meshFilter;
+    private SkinnedMeshRenderer[] skinnedMeshRenderers;
 
     [Header("Shader Related")]
     public Material mat;
@@ -39,27 +40,33 @@ public class MeshTrail : MonoBehaviour
         {
             timeActive -= meshRefreshRate;
 
-            if(meshFilter == null)
+            if(skinnedMeshRenderers == null)
             {
-                meshFilter = GetComponent<MeshFilter>();
+                skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
             }
-            GameObject newMesh = new GameObject();
-            newMesh.transform.SetPositionAndRotation(transform.position, transform.rotation);
-            newMesh.transform.localScale = transform.localScale;
 
-            MeshRenderer rend = newMesh.AddComponent<MeshRenderer>();
-            MeshFilter filter = newMesh.AddComponent<MeshFilter>();
+            foreach (SkinnedMeshRenderer skin in skinnedMeshRenderers)
+            {
+                GameObject newMesh = new GameObject();
+                newMesh.transform.SetPositionAndRotation(transform.position, transform.rotation);
+                newMesh.transform.localScale = transform.localScale;
 
-            filter.mesh = meshFilter.mesh;
-            rend.material = mat;
-            rend.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-            rend.material.DOFade(0, meshDestroyDelay);
+                MeshRenderer rend = newMesh.AddComponent<MeshRenderer>();
+                MeshFilter filter = newMesh.AddComponent<MeshFilter>();
+                
+                Mesh mesh = new Mesh();
+                skin.BakeMesh(mesh);
 
-            Destroy(newMesh, meshDestroyDelay);
+                filter.mesh = mesh;
+                rend.material = mat;
+                rend.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                rend.material.DOFade(0, meshDestroyDelay);
 
-            yield return new WaitForSeconds(meshRefreshRate);
+                Destroy(newMesh, meshDestroyDelay);
+
+                yield return new WaitForSeconds(meshRefreshRate);
+            }
         }
-
         isTrailActive = false;
     }
 }

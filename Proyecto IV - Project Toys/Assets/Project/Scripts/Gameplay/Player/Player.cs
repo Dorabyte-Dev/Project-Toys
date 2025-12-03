@@ -54,7 +54,6 @@ public class Player : Entity
 
     public float perfectDodgeDuration = .25f;
     public float perfectDodgeEnemyDistance = 1f;
-    public Collider perfectDodgeCollider;
     public MeshTrail afterimageTrail;
 
     [Header("Death Specs")] [SerializeField]private Transform activeCheckpoint;
@@ -170,7 +169,14 @@ public class Player : Entity
     public void Respawn()
     {
         transform.position = activeCheckpoint.position;
+        CameraManager.instance.SwitchOffCombatCamera(activeCheckpoint.GetComponent<Checkpoint>().checkpointCamera);
     }
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Checkpoint"))
+        {
+            activeCheckpoint = other.transform;
+        }
+    }
 }
