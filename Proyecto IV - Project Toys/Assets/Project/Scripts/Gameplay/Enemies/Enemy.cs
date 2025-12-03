@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class Enemy : Entity
 {
     public Enemy_IdleState idleState;   // ESTADO DE IDLE
-    public Enemy_MoveState moveState;    // ESTADO DE MOVIMIENTO
+    public Enemy_MoveState moveState;    // ESTADO DE MOVIMIENTO\ WANDER
     public Enemy_PursuitState pursuitState;  // ESTADO DE PERSECUCION
     public Enemy_WaitAttackState waitAttackState; // ESTADO DE ESPERA DEL ATAQUE
     public Enemy_AttackState attackState;    // ESTADO DE ATTACK
@@ -29,10 +29,13 @@ public class Enemy : Entity
     public bool isAttacking;
     public float flinchTime;
 
-    [Header("Player Coords")]
+    [Header("Player Coords")] 
+    public float pursuitPlayerRange;
+    public float attackPlayerRange;
     public bool jugadorDetectado;
     public int nearness;
     [HideInInspector] public Transform playerTransform;
+    [HideInInspector] public float distanceToPlayer;
 
     [Space]
     public NavMeshAgent agent;
@@ -55,6 +58,8 @@ public class Enemy : Entity
         agent.speed = moveSpeed;
         agent.acceleration = acceleration;
         agent.isStopped = false;
+        playerTransform = GameObject.FindWithTag("Player").transform;
+        if(playerTransform == null) Debug.LogError("No player found");
     }
     
     public override void DeadEntity()
@@ -67,7 +72,7 @@ public class Enemy : Entity
     {
         base.Start();
         GetComponent<Entity_Combat>().targetHit.AddListener(OnPlayerDamaged);
-        stateMachine.Initialize(idleState);
+        //stateMachine.Initialize(idleState);
         if (spawner == null)
             Debug.LogWarning("Spawner not assigned. Check GameObject to component of EnemySpawner.cs");
     }
@@ -135,39 +140,46 @@ public class Enemy : Entity
     //}
 
     #region Player Detection
-    public void UpdateStateBasedOnNearness()
-    {
-        Debug.Log("Updating state based on nearness");
-        switch (nearness)
-        {
-            case 0:
-                if (!isAttacking)
-                {
-                    stateMachine.ChangeState(moveState);
-                }
-                break;
-            case 1:
-                if (!isAttacking)
-                {
-                    stateMachine.ChangeState(pursuitState);
-                }
-                break;
-            case 2:
-                if (!isAttacking)
-                {
-                    stateMachine.ChangeState(waitAttackState);
-                }
-                break;
-            default:
-                Debug.LogWarning("Error with the detect player system");
-                break;
-        }
-    }
 
-    public void CallUpdateStateDetection()
+    public float CheckPlayerDistance()
     {
-        UpdateStateBasedOnNearness();
+        float distance;
+        distance = (transform.position - playerTransform.position).sqrMagnitude;
+        return distance;
     }
+    // public void UpdateStateBasedOnNearness()
+    // {
+    //     Debug.Log("Updating state based on nearness");
+    //     switch (nearness)
+    //     {
+    //         case 0:
+    //             if (!isAttacking)
+    //             {
+    //                 stateMachine.ChangeState(moveState);
+    //             }
+    //             break;
+    //         case 1:
+    //             if (!isAttacking)
+    //             {
+    //                 stateMachine.ChangeState(pursuitState);
+    //             }
+    //             break;
+    //         case 2:
+    //             if (!isAttacking)
+    //             {
+    //                 stateMachine.ChangeState(waitAttackState);
+    //             }
+    //             break;
+    //         default:
+    //             Debug.LogWarning("Error with the detect player system");
+    //             break;
+    //     }
+    // }
+
+    // public void CallUpdateStateDetection()
+    // {
+    //     UpdateStateBasedOnNearness();
+    // }
     #endregion
 
     #region Wave Manager

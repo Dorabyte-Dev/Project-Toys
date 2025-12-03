@@ -15,7 +15,7 @@ public class Enemy_PlayerDetection : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             enemy.nearness++;
-            enemy.UpdateStateBasedOnNearness();
+            //enemy.UpdateStateBasedOnNearness();
         }
     }
 
@@ -24,7 +24,7 @@ public class Enemy_PlayerDetection : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             enemy.playerTransform = other.transform;
-            enemy.UpdateStateBasedOnNearness();
+            //enemy.UpdateStateBasedOnNearness();
         }
     }
 
@@ -33,7 +33,7 @@ public class Enemy_PlayerDetection : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             enemy.nearness--;
-            enemy.UpdateStateBasedOnNearness();
+            //enemy.UpdateStateBasedOnNearness();
         }
     }
 }

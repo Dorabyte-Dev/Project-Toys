@@ -10,7 +10,7 @@ public class Enemy_IdleState : EnemyState
     {
         base.Enter();
 
-        stateTimer = 1f;
+        stateTimer = 0.25f;
         //enemy.SetVelocity(0f, 0f);
     }
 

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyState : EntityState
@@ -13,4 +14,15 @@ public class EnemyState : EntityState
         rb = enemy.rb;
         anim = enemy.anim;
     }
+    
+    protected void GetDistanceToPlayer()
+    {
+        enemy.distanceToPlayer = enemy.CheckPlayerDistance();
+    }
+    
+    // protected IEnumerator GetDistanceToPlayer(float waitTime)
+    // {
+    //     enemy.distanceToPlayer = enemy.CheckPlayerDistance();
+    //     yield return new WaitForSeconds(waitTime);
+    // }
 }

@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class Enemy_MoveState : EnemyState
 {
+    
     public Enemy_MoveState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
     }
@@ -16,7 +17,7 @@ public class Enemy_MoveState : EnemyState
     public override void Update()
     {
         base.Update();
-
+        GetDistanceToPlayer();
         if (!enemy.groundDetected)
         {
             stateMachine.ChangeState(enemy.idleState);
@@ -24,12 +25,19 @@ public class Enemy_MoveState : EnemyState
             return;
         }
 
-        // Verificar si llegó al destino
+        if (enemy.distanceToPlayer < enemy.pursuitPlayerRange)
+        {
+            stateMachine.ChangeState(enemy.pursuitState);
+        }
+        // Verificar si ha llegado al destino
         if (HasReachedDestination())
         {
             stateMachine.ChangeState(enemy.idleState);
+            //GoToRandomPoint();
         }
     }
+
+    
 
     public void GoToRandomPoint()
     {
