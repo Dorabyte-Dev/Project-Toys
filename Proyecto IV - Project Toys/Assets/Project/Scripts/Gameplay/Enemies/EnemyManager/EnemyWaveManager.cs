@@ -12,17 +12,22 @@ public class EnemyWaveManager : MonoBehaviour
 
     [SerializeField] private List<Enemy> activeEnemies = new List<Enemy>();
     [SerializeField] private List<Enemy> enemiesWaitingToAttack = new List<Enemy>(); // Enemigos que quieren atacar
+    private Queue<Enemy> attackQueue = new Queue<Enemy>();
     [SerializeField] private float groupAttackTimer;
 
     private void Awake()
     {
         Debug.Log("[EnemyWaveManager] Awake");
-        if (Instance != null && Instance != this)
+        //Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
         {
             Destroy(gameObject);
             return;
         }
-        Instance = this;
         
         // Inicializar el timer para que empiece a contar desde el principio
         groupAttackTimer = Random.Range(minAttackInterval, maxAttackInterval);
@@ -30,7 +35,8 @@ public class EnemyWaveManager : MonoBehaviour
 
     private void Update()
     {
-        HandleGroupAttackLogic();
+        //HandleGroupAttackLogic();
+        UpdateSerializedList();
     }
 
     public void RegisterEnemy(Enemy enemy)
@@ -45,18 +51,34 @@ public class EnemyWaveManager : MonoBehaviour
     public void UnregisterEnemy(Enemy enemy)
     {
         activeEnemies.Remove(enemy);
-        enemiesWaitingToAttack.Remove(enemy);
+        //enemiesWaitingToAttack.Remove(enemy);
         Debug.Log($"[EnemyWaveManager] Enemigo desregistrado: {enemy.name}. Total activos: {activeEnemies.Count}");
     }
 
     // Llamado por el enemigo cuando QUIERE atacar (está en rango)
-    public void RequestAttackPermission(Enemy enemy)
+    // public void RequestAttackPermission(Enemy enemy)
+    // {
+    //     if (!enemiesWaitingToAttack.Contains(enemy) && !enemy.isAttacking)
+    //     {
+    //         enemiesWaitingToAttack.Add(enemy);
+    //         Debug.Log($"[EnemyWaveManager] {enemy.name} solicita permiso de ataque. En cola: {enemiesWaitingToAttack.Count}");
+    //     }
+    // }
+    public bool RequestAttackPermission(Enemy enemy)
     {
-        if (!enemiesWaitingToAttack.Contains(enemy) && !enemy.isAttacking)
+        bool result = false;
+        if (!attackQueue.Contains(enemy))
         {
-            enemiesWaitingToAttack.Add(enemy);
-            Debug.Log($"[EnemyWaveManager] {enemy.name} solicita permiso de ataque. En cola: {enemiesWaitingToAttack.Count}");
+            attackQueue.Enqueue(enemy);
         }
+
+        if (attackQueue.Peek() == enemy)
+        {
+            result = true;
+        }
+
+        UpdateSerializedList();
+        return result;
     }
 
     // Llamado por el enemigo cuando ya NO quiere atacar (salió de rango o cambió de estado)
@@ -70,13 +92,22 @@ public class EnemyWaveManager : MonoBehaviour
     }
 
     // Llamado cuando el enemigo TERMINA su ataque
+    // public void NotifyEnemyFinishedAttack(Enemy enemy)
+    // {
+    //     Debug.Log($"[EnemyWaveManager] {enemy.name} terminó su ataque.");
+    //     enemy.canAttackByManager = false;
+    //     
+    //     // Reiniciar el timer para dar oportunidad al siguiente
+    //     groupAttackTimer = Random.Range(minAttackInterval, maxAttackInterval);
+    // }
+    
     public void NotifyEnemyFinishedAttack(Enemy enemy)
     {
         Debug.Log($"[EnemyWaveManager] {enemy.name} terminó su ataque.");
-        enemy.canAttackByManager = false;
-        
+        attackQueue.Dequeue();
+        UpdateSerializedList();
         // Reiniciar el timer para dar oportunidad al siguiente
-        groupAttackTimer = Random.Range(minAttackInterval, maxAttackInterval);
+        //groupAttackTimer = Random.Range(minAttackInterval, maxAttackInterval);
     }
 
     private void HandleGroupAttackLogic()
@@ -119,5 +150,11 @@ public class EnemyWaveManager : MonoBehaviour
     public bool IsWaveCleared()
     {
         return activeEnemies.Count == 0;
+    }
+    
+    private void UpdateSerializedList()
+    {
+        // Copia los contenidos de la Queue a la lista para que Unity los guarde/muestre.
+        enemiesWaitingToAttack = new List<Enemy>(attackQueue);
     }
 }

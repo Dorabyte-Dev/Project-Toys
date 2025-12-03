@@ -108,7 +108,7 @@ public class Enemy : Entity
     {
         Player.OnPlayerDeath += PlayerDeath;
         if (EnemyWaveManager.Instance != null)
-            EnemyWaveManager.Instance.RegisterEnemy(this);
+            EnemyWaveManager.Instance?.RegisterEnemy(this);
     }
 
     private void OnDisable()

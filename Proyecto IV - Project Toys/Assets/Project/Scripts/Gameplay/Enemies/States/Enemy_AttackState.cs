@@ -43,7 +43,8 @@ public class Enemy_AttackState : EnemyState
         Debug.Log($"[Enemy_AttackState] {enemy.name} sale del ataque.");
         
         // IMPORTANTE: Notificar al manager que terminó el ataque
-        enemy.NotifyAttackFinished();
+        //enemy.NotifyAttackFinished();
+        EnemyWaveManager.Instance.NotifyEnemyFinishedAttack(enemy);
         
         reachedAttack = false;
 

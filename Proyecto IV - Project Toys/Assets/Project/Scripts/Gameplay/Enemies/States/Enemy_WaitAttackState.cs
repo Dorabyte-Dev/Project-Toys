@@ -54,18 +54,26 @@ public class Enemy_WaitAttackState : EnemyState
     public override void Update()
     {
         base.Update();
-
+        enemy.canAttackByManager = EnemyWaveManager.Instance.RequestAttackPermission(enemy);
         currentTime += Time.deltaTime;
         //if (currentTime >= enemy.waitTime && !hasStartedAttack)
         OrbitAroundPlayer();
         LookToPlayer();
         if (currentTime >= enemy.waitTime)
         {
-            Debug.Log("Cambiar a estado de ataque");
-            attackPoint = AttackPointToPlayer();
-            enemy.attackState.SetParametersAttack(currentPosition, attackPoint);
+            if (enemy.canAttackByManager)
+            {
+                Debug.Log("Cambiar a estado de ataque");
+                attackPoint = AttackPointToPlayer();
+                enemy.attackState.SetParametersAttack(currentPosition, attackPoint);
             
-            stateMachine.ChangeState(enemy.attackState);
+                stateMachine.ChangeState(enemy.attackState);
+            }
+            else
+            {
+                currentTime = 0;
+            }
+            
         }
 
     }

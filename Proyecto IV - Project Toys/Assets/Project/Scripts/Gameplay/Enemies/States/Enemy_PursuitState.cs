@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Enemy_PursuitState : EnemyState
 {
-    private bool hasRequestedAttack;
+    //private bool hasRequestedAttack;
 
     public Enemy_PursuitState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
@@ -14,7 +14,8 @@ public class Enemy_PursuitState : EnemyState
         base.Enter();
         enemy.agent.speed = enemy.moveSpeed;
         enemy.agent.acceleration = enemy.acceleration;
-        hasRequestedAttack = false;
+        //hasRequestedAttack = false;
+        //Debug.Log("Entering Pursuit State");
     }
 
     public override void Update()
@@ -77,11 +78,11 @@ public class Enemy_PursuitState : EnemyState
         base.Exit();
         
         // Si sale del estado sin haber atacado, cancelar solicitud
-        if (hasRequestedAttack && !enemy.isAttacking)
-        {
-            EnemyWaveManager.Instance?.CancelAttackRequest(enemy);
-            hasRequestedAttack = false;
-        }
+        // if (hasRequestedAttack && !enemy.isAttacking)
+        // {
+        //     EnemyWaveManager.Instance?.CancelAttackRequest(enemy);
+        //     hasRequestedAttack = false;
+        // }
     }
     
     
