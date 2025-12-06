@@ -42,19 +42,26 @@ public class BlockButton : MonoBehaviour
 
     private IEnumerator Shake()
     {
+        Vector3 startPos = transform.position;  // posición actual real
         float time = 0.1f;
+
         while (time > 0)
         {
             time -= Time.deltaTime;
-            transform.localPosition = originalPos + Random.insideUnitSphere * shakeIntensity;
+            transform.position = startPos + Random.insideUnitSphere * shakeIntensity;
             yield return null;
         }
-        transform.localPosition = originalPos;
+
+        transform.position = startPos;
     }
 
     private void BreakBlock()
     {
-        Instantiate(brokenPrefab, transform.position, transform.rotation);
-        Destroy(gameObject);  // Destruye el bloque original
+        GameObject broken = Instantiate(brokenPrefab, transform.position, transform.rotation);
+
+        // Copiar escala del bloque original
+        broken.transform.localScale = transform.localScale;
+
+        Destroy(gameObject);
     }
 }
