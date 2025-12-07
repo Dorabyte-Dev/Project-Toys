@@ -1398,15 +1398,14 @@ MonoBehaviour:
   comboBarHitModifier: 0
   comboBarPerfectDodgeModifier: 0
   maxComboBarAmount: 0
-  comboBarUIManager: {fileID: 0}
   cam: {fileID: 0}
   jumpForce: 5
   dashDuration: 0.25
   dashDistance: 4
   perfectDodgeDuration: 0.25
   perfectDodgeEnemyDistance: 1
-  perfectDodgeCollider: {fileID: 0}
   afterimageTrail: {fileID: 0}
+  activeCheckpoint: {fileID: 0}
 --- !u!54 &897056671
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1562,7 +1561,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
