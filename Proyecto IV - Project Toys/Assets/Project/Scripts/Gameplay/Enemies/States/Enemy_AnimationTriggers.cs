@@ -13,7 +13,5 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
     public void NotifyAttackFinished()
     {
         enemy.isAttacking = false;
-        enemy.canAttackByManager = false;
-        EnemyWaveManager.Instance?.NotifyEnemyFinishedAttack(enemy);
     }
 }

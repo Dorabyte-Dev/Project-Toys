@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,21 @@ public class PerfectDodgeManager : MonoBehaviour
 
     //Perfect Dodge
     public static List<GameObject> pDodgeEnemies = new List<GameObject>();
+    //Non static list to debug in inspector
+    public List<GameObject> debug_pDodgeEnemies = new List<GameObject>();
+
+
+    public void Start()
+    {
+        //Invert the static list to the non static one for debugging
+        pDodgeEnemies = debug_pDodgeEnemies;
+
+    }
+
+    private void Update()
+    {
+        debug_pDodgeEnemies = pDodgeEnemies;
+    }
 
     public static void SetPerfectDodgeFlag(GameObject enemy)
     {

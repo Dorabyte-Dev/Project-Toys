@@ -101,14 +101,15 @@ public class Player_DashState : Player_GroundedState
         Vector3 pDodgeCurvePoint = player.transform.position + direction / 2 + Vector3.Cross(direction, Vector3.up).normalized * direction.magnitude / 1.25f;
 
         Vector3[] curvePoints = new Vector3[] { player.transform.position, pDodgeCurvePoint, pDodgePosition };
-        Camera.main.fieldOfView = 30;
+        CameraManager.instance.ToggleZoom();
+        //CameraManager.instance.activeCamera.Lens.FieldOfView = 30;
         Time.timeScale = 0.25f;
 
         if(player.afterimageTrail != null)
         {
             player.afterimageTrail.toggleTrail = true;
         }
-        rb.DOPath(curvePoints, player.dashDuration).OnComplete(() => { Time.timeScale = 1f; Camera.main.fieldOfView = 60; });
+        rb.DOPath(curvePoints, player.dashDuration).OnComplete(() => { Time.timeScale = 1f; /*CameraManager.instance.activeCamera.Lens.FieldOfView = 60;*/CameraManager.instance.UntoggleZoom(); });
         
 
     }

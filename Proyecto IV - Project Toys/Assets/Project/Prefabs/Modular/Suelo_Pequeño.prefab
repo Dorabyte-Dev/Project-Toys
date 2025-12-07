@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 6389784397389282783}
   - component: {fileID: 5995577929636762342}
   - component: {fileID: 6894599185479270657}
-  m_Layer: 0
+  - component: {fileID: 1458647257000772202}
+  m_Layer: 31
   m_Name: "Suelo_Peque\xF1o"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,3 +90,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1458647257000772202
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6895077313368215845}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 0.25, z: 2}
+  m_Center: {x: 0, y: -0.125, z: 0}

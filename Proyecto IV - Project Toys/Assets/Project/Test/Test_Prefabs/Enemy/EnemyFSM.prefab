@@ -6659,7 +6659,7 @@ MonoBehaviour:
   maxSlopeAngle: 30
   range: 5
   attackRange: 7.5
-  waitTime: 2
+  waitTime: 1.5
   acceleration: 8
   orbitDistance: 5
   orbitSpeed: 70
@@ -6675,8 +6675,8 @@ MonoBehaviour:
   agent: {fileID: 3085236608815444426}
   spawner: {fileID: 0}
   originalPrefab: {fileID: 0}
+  health: {fileID: 0}
   facingDirection: 1
-  canAttackByManager: 0
 --- !u!114 &324225732850182800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6696,6 +6696,9 @@ MonoBehaviour:
   entity: {fileID: 0}
   damage: 0
   heavyDamage: 0
+  targetHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6000144413652210542
 MonoBehaviour:
   m_ObjectHideFlags: 0

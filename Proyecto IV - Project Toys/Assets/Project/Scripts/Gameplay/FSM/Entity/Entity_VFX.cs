@@ -58,7 +58,7 @@ public class Entity_VFX : MonoBehaviour
     {
         TriggerMaterialChange();
         StartCoroutine(PushFeedback());
-        Shake(shakeDuration, shakeStrength);
+        //Shake(shakeDuration, shakeStrength);
     }
 
     #region ColoredFeedback

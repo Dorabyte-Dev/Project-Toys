@@ -21,7 +21,6 @@ public class EnemySpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log(enemiesSpawned.Count);
         cam = GetComponent<CameraSwitch>();
         camManager = FindAnyObjectByType<CameraManager>();
         if(enemyFactory == null )
