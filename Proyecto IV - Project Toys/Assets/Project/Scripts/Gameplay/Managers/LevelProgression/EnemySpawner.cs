@@ -8,7 +8,6 @@ using UnityEngine.Serialization;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
-    public float maxSpawnDistance;
     [SerializeField] private Collider spawnArea;
     public float spawnDelay;
     public int spawnCount;
@@ -32,10 +31,6 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            StartCombat();
-        }
     }
 
     public void StartCombat()
@@ -98,7 +93,18 @@ public class EnemySpawner : MonoBehaviour
 
         endCombat.Invoke();
     }
-    
+
+
+    public void ResetCombat()
+    {
+        foreach (GameObject enemy in enemiesSpawned)
+        {
+            Destroy(enemy);
+            
+        }
+        enemiesDead = 0;
+        enemiesSpawned.Clear();
+    }
     Vector3 GetRandomNavMeshPoint(Collider col)
     {
         Bounds bounds = col.bounds;

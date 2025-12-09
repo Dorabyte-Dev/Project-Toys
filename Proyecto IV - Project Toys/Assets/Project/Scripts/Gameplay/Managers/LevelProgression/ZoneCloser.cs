@@ -77,4 +77,25 @@ public class ZoneCloser : MonoBehaviour
         }
         Debug.Log("ZoneOpen");
     }
+    
+    public void ResetZoneCloser()
+    {
+        hasBeenActivated = false;
+        foreach(ZoneDoor door in doors)
+        {
+            if (door.startClosed)
+            {
+                door.Close();
+            }
+            else
+            {
+                door.Open();
+            }
+        }
+    }
+    
+    public void DebugReset()
+    {
+        Debug.LogError("CloseZoneEvent Called");
+    }
 }

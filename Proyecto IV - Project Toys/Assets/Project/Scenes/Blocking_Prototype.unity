@@ -747,9 +747,17 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: maxSlopeAngle
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
       propertyPath: afterimageTrail
       value: 
       objectReference: {fileID: 808132025}
+    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: activeCheckpoint
+      value: 
+      objectReference: {fileID: 1179728591}
     - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
       propertyPath: comboBarUIManager
       value: 
@@ -4634,6 +4642,34 @@ PrefabInstance:
       propertyPath: 'doors.Array.data[3]'
       value: 
       objectReference: {fileID: 1935765243}
+    - target: {fileID: 4425657504631967383, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: zoneEvent.uEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425657504631967383, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: zoneEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425657504631967383, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: zoneEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1350987052}
+    - target: {fileID: 4425657504631967383, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: zoneEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425657504631967383, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: zoneEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: DebugReset
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425657504631967383, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: zoneEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ZoneCloser, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425657504631967383, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: zoneEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5473662141905821864, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
       propertyPath: cam
       value: 
@@ -4704,6 +4740,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7386688615636963305, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
   m_PrefabInstance: {fileID: 1350987048}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1350987052 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4425657504631967383, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+  m_PrefabInstance: {fileID: 1350987048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f90ec0de03e444ba6ed3f4e0bc353d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1351515989 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 52361805505633545, guid: 44fbba1a34948264ab35b2541f4395f1, type: 3}

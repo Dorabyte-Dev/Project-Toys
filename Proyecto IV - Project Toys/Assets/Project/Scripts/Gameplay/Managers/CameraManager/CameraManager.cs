@@ -126,4 +126,14 @@ public class CameraManager : MonoBehaviour
         // TODO: Implementar zoom para RotationComposer
         Debug.LogWarning("ToggleZoom no está implementado para cámaras con RotationComposer");
     }
+
+    public void ResetColliders()
+    {
+        //Reset all camera collider scripts in the scene
+        CameraCollider[] colliders = FindObjectsByType<CameraCollider>(FindObjectsSortMode.None);
+        foreach (CameraCollider col in colliders)
+        {            
+            col.hasBeenActivated = false;
+        }
+    }
 }

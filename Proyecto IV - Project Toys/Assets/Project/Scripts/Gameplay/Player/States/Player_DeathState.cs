@@ -13,6 +13,7 @@ public class Player_DeathState : PlayerState
         //input.Disable();
         player.Respawn();
         player.SetVelocity(0,0);
+        stateMachine.ChangeState(player.idleState);
     }
 
     public override void Update()

@@ -73,6 +73,7 @@ public class Player : Entity
         
         _combat = GetComponent<Entity_Combat>();
         _combat.targetHit.AddListener(OnEnemyHit);
+        _health = GetComponent<Entity_Health>();
 
     }
     protected override void Start()
@@ -168,8 +169,19 @@ public class Player : Entity
 
     public void Respawn()
     {
-        transform.position = activeCheckpoint.position;
+        rb.position = activeCheckpoint.position;
+        
+        CameraManager.instance.UnToggleOnCombatCamera();
         CameraManager.instance.SwitchOffCombatCamera(activeCheckpoint.GetComponent<Checkpoint>().checkpointCamera);
+        _health.ResetStats();
+        comboBarAmount = 0;
+        //stateMachine.ChangeState(idleState);
+        //Optimize later: reset all spawners in the scene
+        foreach(EnemySpawner spawner in FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None))
+        {
+            spawner.ResetCombat();
+            spawner.GetComponent<ZoneCloser>().ResetZoneCloser();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
