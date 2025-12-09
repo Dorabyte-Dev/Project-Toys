@@ -17,7 +17,7 @@ public class EnemyWaveManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("[EnemyWaveManager] Awake");
+        //Debug.Log("[EnemyWaveManager] Awake");
         //Singleton
         if (Instance == null)
         {
@@ -26,7 +26,7 @@ public class EnemyWaveManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            return;
+            //return;
         }
         
         // Inicializar el timer para que empiece a contar desde el principio
@@ -43,7 +43,7 @@ public class EnemyWaveManager : MonoBehaviour
         if (!activeEnemies.Contains(enemy))
         {
             activeEnemies.Add(enemy);
-            Debug.Log($"[EnemyWaveManager] Enemigo registrado: {enemy.name}. Total activos: {activeEnemies.Count}");
+            //Debug.Log($"[EnemyWaveManager] Enemigo registrado: {enemy.name}. Total activos: {activeEnemies.Count}");
         }
     }
 
@@ -51,7 +51,7 @@ public class EnemyWaveManager : MonoBehaviour
     {
         activeEnemies.Remove(enemy);
         //enemiesWaitingToAttack.Remove(enemy);
-        Debug.Log($"[EnemyWaveManager] Enemigo desregistrado: {enemy.name}. Total activos: {activeEnemies.Count}");
+        //Debug.Log($"[EnemyWaveManager] Enemigo desregistrado: {enemy.name}. Total activos: {activeEnemies.Count}");
     }
 
     // Llamado por el enemigo cuando QUIERE atacar (está en rango)
@@ -76,7 +76,6 @@ public class EnemyWaveManager : MonoBehaviour
             result = true;
         }
 
-        UpdateSerializedList();
         return result;
     }
 
@@ -102,9 +101,8 @@ public class EnemyWaveManager : MonoBehaviour
     
     public void NotifyEnemyFinishedAttack(Enemy enemy)
     {
-        Debug.Log($"[EnemyWaveManager] {enemy.name} terminó su ataque.");
+        //Debug.Log($"[EnemyWaveManager] {enemy.name} terminó su ataque.");
         _attackQueue.Dequeue();
-        UpdateSerializedList();
     }
 
     // private void HandleGroupAttackLogic()
