@@ -86,7 +86,7 @@ public class Enemy : Entity
     public override void ChangeFlintState()
     {
         base.ChangeFlintState();
-        Debug.Log("Entro en flichState");
+        //Debug.Log("Entro en flichState");
         stateMachine.ChangeState(flinchState);
     }
 
@@ -116,6 +116,11 @@ public class Enemy : Entity
         Player.OnPlayerDeath -= PlayerDeath;
         if (EnemyWaveManager.Instance != null)
             EnemyWaveManager.Instance?.UnregisterEnemy(this);
+    }
+
+    public void EnemyDeathTest()
+    {
+        Destroy(this.gameObject);
     }
 
     //public Transform GetPlayerReference()

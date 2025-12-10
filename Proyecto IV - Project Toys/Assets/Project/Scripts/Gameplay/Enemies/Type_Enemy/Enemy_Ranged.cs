@@ -9,7 +9,7 @@ public class Enemy_Ranged : Enemy
         moveState = new Enemy_MoveState(this, stateMachine, "move");
         pursuitState = new Enemy_PursuitState(this, stateMachine, "pursuit");
         attackState = new Enemy_AttackState(this, stateMachine, "attack");
-        deadState = new Enemy_DeadState(this, stateMachine, "idle");
+        deadState = new Enemy_DeadState(this, stateMachine, "dead");
         flinchState = new Enemy_FlinchState(this, stateMachine, "flinch");
     }
 
