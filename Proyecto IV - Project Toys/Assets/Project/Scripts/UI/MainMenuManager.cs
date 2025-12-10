@@ -17,8 +17,7 @@ public class MenuManager : MonoBehaviour
     void PlayGame()
     {
         Debug.Log("PLAY pulsado");
-        // Aquí cargarás la escena del juego
-        // SceneManager.LoadScene("GameScene");
+        
     }
 
     void OpenOptions()

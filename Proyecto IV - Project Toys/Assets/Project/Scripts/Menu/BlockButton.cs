@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class BlockButton : MonoBehaviour
 {
@@ -62,6 +63,9 @@ public class BlockButton : MonoBehaviour
         // Copiar escala del bloque original
         broken.transform.localScale = transform.localScale;
 
+        Fader.Instance.FadeToScene("Game");
+
         Destroy(gameObject);
+        
     }
 }
