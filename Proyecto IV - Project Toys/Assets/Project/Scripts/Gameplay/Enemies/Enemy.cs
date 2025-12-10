@@ -28,6 +28,8 @@ public class Enemy : Entity
     public float attackSpeed;
     public bool isAttacking;
     public float flinchTime;
+    [HideInInspector] public bool hasAttacked;
+    private Entity_Combat _combat;
 
     [Header("Player Coords")] 
     public float pursuitPlayerRange;
@@ -123,6 +125,7 @@ public class Enemy : Entity
         Destroy(this.gameObject);
     }
 
+
     //public Transform GetPlayerReference()
     //{
     //    if (player == null)
@@ -212,6 +215,7 @@ public class Enemy : Entity
     void OnPlayerDamaged()
     {
         PerfectDodgeManager.EndPerfectDodgeFlag(this.gameObject);
+        hasAttacked = true;
     }
     #endregion
 }

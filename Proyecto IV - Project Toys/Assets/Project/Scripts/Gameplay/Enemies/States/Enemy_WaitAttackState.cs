@@ -18,7 +18,7 @@ public class Enemy_WaitAttackState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemy.isAttacking = true;
+        //enemy.isAttacking = true;
 
         // Guardar posiciones
         currentPosition = enemy.transform.position;
