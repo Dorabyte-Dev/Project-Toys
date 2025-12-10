@@ -10,13 +10,13 @@ public class MenuManager : MonoBehaviour
 
     public void PlayGame()
     {
-        Fader.Instance.FadeToScene("Game");
+        Fader.Instance.FadeToScene("Blocking_Prototype");
     }
 
     public void OpenOptions()
     {
         Debug.Log("OPTIONS pulsado");
-        // Aquí abrirás tu menú de opciones
+        // Aquï¿½ abrirï¿½s tu menï¿½ de opciones
     }
 
     public void ExitGame()
