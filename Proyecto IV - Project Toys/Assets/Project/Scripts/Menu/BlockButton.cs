@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class BlockButton : MonoBehaviour
 {
     public System.Action onClick;
-
+    public UnityEvent DestroyBlock;
     public ParticleSystem hitParticles;  // Tus partículas
     public GameObject brokenPrefab;      // El bloque roto
     public float shakeIntensity = 0.05f;
@@ -63,7 +64,8 @@ public class BlockButton : MonoBehaviour
         // Copiar escala del bloque original
         broken.transform.localScale = transform.localScale;
 
-        Fader.Instance.FadeToScene("Game");
+        DestroyBlock?.Invoke();
+        //Fader.Instance.FadeToScene("Game");
 
         Destroy(gameObject);
         

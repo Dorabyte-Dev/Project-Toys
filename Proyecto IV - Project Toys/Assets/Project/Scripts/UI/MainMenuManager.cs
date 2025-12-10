@@ -3,30 +3,23 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public BlockButton playBlock;
+    /*public BlockButton playBlock;
     public BlockButton optionsBlock;
-    public BlockButton exitBlock;
+    public BlockButton exitBlock;*/
 
-    void Start()
+
+    public void PlayGame()
     {
-        playBlock.onClick = PlayGame;
-        optionsBlock.onClick = OpenOptions;
-        exitBlock.onClick = ExitGame;
+        Fader.Instance.FadeToScene("Game");
     }
 
-    void PlayGame()
-    {
-        Debug.Log("PLAY pulsado");
-        
-    }
-
-    void OpenOptions()
+    public void OpenOptions()
     {
         Debug.Log("OPTIONS pulsado");
         // Aquí abrirás tu menú de opciones
     }
 
-    void ExitGame()
+    public void ExitGame()
     {
         Debug.Log("EXIT pulsado");
         Application.Quit();

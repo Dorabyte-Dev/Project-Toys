@@ -230,6 +230,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc7993e9afabc9943b36434d34a38094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  DestroyBlock:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1261286001}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: OpenOptions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   hitParticles: {fileID: 1696731180}
   brokenPrefab: {fileID: 3832891616867822029, guid: 7ace4517ed4505e429f1f5f60fd34423, type: 3}
   shakeIntensity: 0.05
@@ -313,6 +328,68 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.3998918, y: 0.9428657, z: 0.34181133}
   m_Center: {x: -0.115011446, y: -0.36588323, z: 0.17090563}
+--- !u!1 &134842233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 134842235}
+  - component: {fileID: 134842234}
+  m_Layer: 0
+  m_Name: FlechaText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &134842234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134842233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.DecalProjector
+  m_Material: {fileID: 2100000, guid: ef338bd40282658469ba62a2e06704ed, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_TransparentTextureResolution:
+    m_Override: 256
+    m_UseOverride: 1
+    m_Level: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0.01893194, z: -0.17533809}
+  m_Size: {x: 0.1, y: 0.33, z: 0.09559749}
+  m_FadeFactor: 1
+  m_Version: 3
+--- !u!4 &134842235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134842233}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.6964607, y: -0.12223965, z: 0.12223965, w: 0.6964607}
+  m_LocalPosition: {x: -1.445, y: 2.919, z: -7.648}
+  m_LocalScale: {x: 0.99293, y: 0.99293, z: 0.99293}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 19.91}
 --- !u!1 &162222380 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 752a0323fbe1fd04982979b2f7fde062, type: 3}
@@ -330,6 +407,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc7993e9afabc9943b36434d34a38094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  DestroyBlock:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1261286001}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: PlayGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   hitParticles: {fileID: 1696731180}
   brokenPrefab: {fileID: 3832891616867822029, guid: f4aece0fd49f66c4f98a83533cf42dd2, type: 3}
   shakeIntensity: 0.05
@@ -382,6 +474,130 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0581267, y: 1.8686762, z: 2.3821309}
   m_Center: {x: 0.00000011920932, y: 0.9492463, z: -0.0000004768372}
+--- !u!1 &191655211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 191655213}
+  - component: {fileID: 191655212}
+  m_Layer: 0
+  m_Name: StartText (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &191655212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191655211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.DecalProjector
+  m_Material: {fileID: 2100000, guid: b5aa305b64bb02e42a8da0a6da2c86df, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 0.9999999}
+  m_UVBias: {x: 0, y: 0.000000062088176}
+  m_AffectsTransparency: 0
+  m_TransparentTextureResolution:
+    m_Override: 256
+    m_UseOverride: 1
+    m_Level: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0.006884344, z: -0.1740885}
+  m_Size: {x: 0.25, y: 0.11999999, z: 0.08825311}
+  m_FadeFactor: 1
+  m_Version: 3
+--- !u!4 &191655213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191655211}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7063774, y: -0.03211002, z: 0.03211002, w: 0.7063774}
+  m_LocalPosition: {x: -0.746, y: 2.919, z: -8.511}
+  m_LocalScale: {x: 0.99293, y: 0.99293, z: 0.99293}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 5.205}
+--- !u!1 &375029971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 375029973}
+  - component: {fileID: 375029972}
+  m_Layer: 0
+  m_Name: StartText (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &375029972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375029971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.DecalProjector
+  m_Material: {fileID: 2100000, guid: 48aab780b3251c540b1016fcd190fbe1, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 0.99999994}
+  m_UVBias: {x: 0, y: 0.000000031044088}
+  m_AffectsTransparency: 0
+  m_TransparentTextureResolution:
+    m_Override: 256
+    m_UseOverride: 1
+    m_Level: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0.021800423, z: -0.15530299}
+  m_Size: {x: 0.89, y: 0.38, z: 0.2}
+  m_FadeFactor: 1
+  m_Version: 3
+--- !u!4 &375029973
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375029971}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.6814975, y: -0.18857662, z: 0.18857662, w: 0.6814975}
+  m_LocalPosition: {x: -0.027, y: 2.919, z: -8.179}
+  m_LocalScale: {x: 0.99293, y: 0.99293, z: 0.99293}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 30.935}
 --- !u!4 &379729448 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 21aed98281e30724aaaa5d42c042c878, type: 3}
@@ -667,7 +883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ec24a2800ad9654b91ba4424cf4c1d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.553139
+      value: 14.67
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ec24a2800ad9654b91ba4424cf4c1d6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -675,7 +891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ec24a2800ad9654b91ba4424cf4c1d6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.993006
+      value: -10.07
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ec24a2800ad9654b91ba4424cf4c1d6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1144,7 +1360,7 @@ GameObject:
   - component: {fileID: 1011952102}
   - component: {fileID: 1011952101}
   m_Layer: 0
-  m_Name: Decal Projector
+  m_Name: StartText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1167,8 +1383,8 @@ MonoBehaviour:
   m_FadeScale: 0.9
   m_StartAngleFade: 180
   m_EndAngleFade: 180
-  m_UVScale: {x: 1, y: 1}
-  m_UVBias: {x: 0, y: 0}
+  m_UVScale: {x: 1, y: 0.99999994}
+  m_UVBias: {x: 0, y: 0.000000031044088}
   m_AffectsTransparency: 0
   m_TransparentTextureResolution:
     m_Override: 256
@@ -1176,8 +1392,8 @@ MonoBehaviour:
     m_Level: 0
   m_DecalLayerMask: 1
   m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0.027537376, z: 0}
-  m_Size: {x: 1, y: 0.48, z: 1}
+  m_Offset: {x: 0, y: 0.027537376, z: -0.16900212}
+  m_Size: {x: 1, y: 0.47999996, z: 0.21764183}
   m_FadeFactor: 1
   m_Version: 3
 --- !u!4 &1011952102
@@ -1188,13 +1404,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1011952100}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6964607, y: -0.12223965, z: 0.12223965, w: 0.6964607}
-  m_LocalPosition: {x: -1.243, y: 2.919, z: -7.983}
+  m_LocalRotation: {x: 0.70343673, y: -0.07195026, z: 0.07195026, w: 0.70343673}
+  m_LocalPosition: {x: -1.231, y: 2.919, z: -8.041}
   m_LocalScale: {x: 0.99293, y: 0.99293, z: 0.99293}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 19.91}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 11.68}
 --- !u!1 &1158603741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,9 +1663,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3c15ff2b6901d47918ce684587d4dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
-  playBlock: {fileID: 162222385}
-  optionsBlock: {fileID: 42871030}
-  exitBlock: {fileID: 1426419222}
 --- !u!1 &1274344810
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,6 +1849,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc7993e9afabc9943b36434d34a38094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  DestroyBlock:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1261286001}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   hitParticles: {fileID: 1696731180}
   brokenPrefab: {fileID: 3832891616867822029, guid: 456d9efcd5d35d94b8bb8aeed3617b25, type: 3}
   shakeIntensity: 0.05
@@ -2595,6 +2823,68 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 1349486740451364976, guid: 8ed492356c793484c9f1c23e0a4774cc, type: 3}
   m_PrefabInstance: {fileID: 608197568}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1710811137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1710811139}
+  - component: {fileID: 1710811138}
+  m_Layer: 0
+  m_Name: FlechaText (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1710811138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710811137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.DecalProjector
+  m_Material: {fileID: 2100000, guid: 1cb8eafe98128eb4b84bda23d7551a0c, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_TransparentTextureResolution:
+    m_Override: 256
+    m_UseOverride: 1
+    m_Level: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0.02581628, z: -0.17533809}
+  m_Size: {x: 0.14, y: 0.45, z: 0.09559749}
+  m_FadeFactor: 1
+  m_Version: 3
+--- !u!4 &1710811139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710811137}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.6537688, y: -0.2812673, z: 0.27441585, w: 0.6466615}
+  m_LocalPosition: {x: -0.281, y: 2.919, z: -7.807}
+  m_LocalScale: {x: 0.99293, y: 0.99293, z: 0.99293}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 90.79999, y: 20.813004, z: 67.087}
 --- !u!1 &1713572894
 GameObject:
   m_ObjectHideFlags: 0
@@ -2757,13 +3047,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751206040}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17748544, y: -0, z: -0, w: 0.98412347}
-  m_LocalPosition: {x: 0, y: 3.71, z: -10}
+  m_LocalRotation: {x: 0.22970997, y: 0, z: 0, w: 0.97325915}
+  m_LocalPosition: {x: 0, y: 4.19, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 20.447, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 26.56, y: 0, z: 0}
 --- !u!114 &1751206044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3063,7 +3353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0586a5ff7552437479cd52ef6d6c480c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.629139
+      value: 11.69
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0586a5ff7552437479cd52ef6d6c480c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3071,7 +3361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0586a5ff7552437479cd52ef6d6c480c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.041006
+      value: -10.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0586a5ff7552437479cd52ef6d6c480c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3130,6 +3420,68 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0586a5ff7552437479cd52ef6d6c480c, type: 3}
+--- !u!1 &1865161977
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1865161979}
+  - component: {fileID: 1865161978}
+  m_Layer: 0
+  m_Name: FlechaText (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1865161978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865161977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.DecalProjector
+  m_Material: {fileID: 2100000, guid: 47ab940cf294f234cb3366850f2108b9, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_TransparentTextureResolution:
+    m_Override: 256
+    m_UseOverride: 1
+    m_Level: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0.17669812, z: -0.17533809}
+  m_Size: {x: 0.84, y: 3.08, z: 0.09559749}
+  m_FadeFactor: 1
+  m_Version: 3
+--- !u!4 &1865161979
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865161977}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.70709926, y: -0.003266054, z: 0.003266054, w: 0.70709926}
+  m_LocalPosition: {x: -0.979, y: 2.919, z: -7.007}
+  m_LocalScale: {x: 0.99293, y: 0.99293, z: 0.99293}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0.529}
 --- !u!4 &2119492589 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e403250d6c04af84dae2715d47779457, type: 3}
@@ -3151,3 +3503,8 @@ SceneRoots:
   - {fileID: 608197568}
   - {fileID: 1480306703}
   - {fileID: 1011952102}
+  - {fileID: 191655213}
+  - {fileID: 375029973}
+  - {fileID: 134842235}
+  - {fileID: 1865161979}
+  - {fileID: 1710811139}
