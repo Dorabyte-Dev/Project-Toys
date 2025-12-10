@@ -1,13 +1,12 @@
 using UnityEngine;
-using System.Collections;
-using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using DG.Tweening;
 
 public class BlockButton : MonoBehaviour
 {
     public System.Action onClick;
     public UnityEvent DestroyBlock;
-    public ParticleSystem hitParticles;  // Tus partículas
+    public ParticleSystem hitParticles;  // Tus partï¿½culas
     public GameObject brokenPrefab;      // El bloque roto
     public float shakeIntensity = 0.05f;
     public int hitsToBreak = 3;
@@ -22,14 +21,19 @@ public class BlockButton : MonoBehaviour
 
     private void OnMouseDown()
     {
+        BlockHit();
+    }
+
+    private void BlockHit()
+    {
         currentHits++;
 
-        // Vibración
-        StartCoroutine(Shake());
+        // VibraciÃ³n
+        Shake();
 
-        // Partículas
-        if (hitParticles != null)
-            hitParticles.Play();
+        // Partï¿½culas
+        /*if (hitParticles != null)
+            hitParticles.Play();*/
 
         // Si se ha roto
         if (currentHits >= hitsToBreak)
@@ -42,19 +46,10 @@ public class BlockButton : MonoBehaviour
         }
     }
 
-    private IEnumerator Shake()
+    private void Shake()
     {
-        Vector3 startPos = transform.position;  // posición actual real
-        float time = 0.1f;
-
-        while (time > 0)
-        {
-            time -= Time.deltaTime;
-            transform.position = startPos + Random.insideUnitSphere * shakeIntensity;
-            yield return null;
-        }
-
-        transform.position = startPos;
+        transform.DOShakePosition(0.1f, shakeIntensity)
+            .SetEase(Ease.OutQuad);
     }
 
     private void BreakBlock()

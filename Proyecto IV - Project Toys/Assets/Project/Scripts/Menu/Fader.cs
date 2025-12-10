@@ -22,6 +22,7 @@ public class Fader : MonoBehaviour
         canvasGroup.DOFade(1f, 1f).OnComplete(() =>
         {
             SceneManager.LoadScene(sceneName);
+            SceneManager.LoadScene("PostProcesado_Iluminacion", LoadSceneMode.Additive);
         });
     }
 }
