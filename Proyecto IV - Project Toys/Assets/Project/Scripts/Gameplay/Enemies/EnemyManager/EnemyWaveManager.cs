@@ -50,8 +50,15 @@ public class EnemyWaveManager : MonoBehaviour
     public void UnregisterEnemy(Enemy enemy)
     {
         activeEnemies.Remove(enemy);
-        //enemiesWaitingToAttack.Remove(enemy);
-        //Debug.Log($"[EnemyWaveManager] Enemigo desregistrado: {enemy.name}. Total activos: {activeEnemies.Count}");
+        UnregisterFromQueue(enemy);
+        Debug.Log($"[EnemyWaveManager] Enemigo desregistrado: {enemy.name}. Total activos: {activeEnemies.Count}");
+    }
+
+    private void UnregisterFromQueue(Enemy enemy)
+    {
+        enemiesWaitingToAttack = new List<Enemy>(_attackQueue);
+        enemiesWaitingToAttack.Remove(enemy);
+        _attackQueue = new Queue<Enemy>(enemiesWaitingToAttack);
     }
 
     // Llamado por el enemigo cuando QUIERE atacar (está en rango)
