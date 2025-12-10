@@ -28,6 +28,8 @@ public class Enemy : Entity
     public float attackSpeed;
     public bool isAttacking;
     public float flinchTime;
+    [HideInInspector] public bool hasAttacked;
+    private Entity_Combat _combat;
 
     [Header("Player Coords")] 
     public float pursuitPlayerRange;
@@ -86,7 +88,7 @@ public class Enemy : Entity
     public override void ChangeFlintState()
     {
         base.ChangeFlintState();
-        Debug.Log("Entro en flichState");
+        //Debug.Log("Entro en flichState");
         stateMachine.ChangeState(flinchState);
     }
 
@@ -117,6 +119,12 @@ public class Enemy : Entity
         if (EnemyWaveManager.Instance != null)
             EnemyWaveManager.Instance?.UnregisterEnemy(this);
     }
+
+    public void EnemyDeathTest()
+    {
+        Destroy(this.gameObject);
+    }
+
 
     //public Transform GetPlayerReference()
     //{
@@ -207,6 +215,7 @@ public class Enemy : Entity
     void OnPlayerDamaged()
     {
         PerfectDodgeManager.EndPerfectDodgeFlag(this.gameObject);
+        hasAttacked = true;
     }
     #endregion
 }

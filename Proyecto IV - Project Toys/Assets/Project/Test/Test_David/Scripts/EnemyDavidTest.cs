@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.VersionControl.Asset;
 
 public class EnemyDavidTest : MonoBehaviour
 {
@@ -48,7 +47,7 @@ public class EnemyDavidTest : MonoBehaviour
                 GoToRandomPoint();
                 break;
             case enemyStates.Pursuit:
-                Debug.Log("TE ENCONTRÉ");
+                Debug.Log("TE ENCONTRï¿½");
                 currentTime = 0;
                 agent.destination = playerTransform.position;
                 lastPlayerPosition = playerTransform.position;
@@ -131,7 +130,7 @@ public class EnemyDavidTest : MonoBehaviour
     {
         if(cooldownTime>= cooldown)
         {
-            Debug.Log("Pum te pego: " + damage + " de daño");
+            Debug.Log("Pum te pego: " + damage + " de daï¿½o");
             cooldownTime = 0f;
         }
         

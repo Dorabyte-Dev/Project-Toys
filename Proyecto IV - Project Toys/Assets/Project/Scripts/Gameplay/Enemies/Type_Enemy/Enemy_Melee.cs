@@ -12,7 +12,7 @@ public class Enemy_Melee : Enemy
         pursuitState = new Enemy_PursuitState(this, stateMachine, "pursuit");
         attackState = new Enemy_AttackState(this, stateMachine, "attack");
         waitAttackState = new Enemy_WaitAttackState(this, stateMachine, "waitAttack");
-        deadState = new Enemy_DeadState(this, stateMachine, "idle");
+        deadState = new Enemy_DeadState(this, stateMachine, "dead");
         flinchState = new Enemy_FlinchState(this, stateMachine, "flinch");
     }
 

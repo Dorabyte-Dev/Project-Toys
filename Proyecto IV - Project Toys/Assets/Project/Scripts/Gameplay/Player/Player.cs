@@ -14,6 +14,7 @@ public class Player : Entity
     public Player_LightAttackState lightAttackState { get; private set; }
     public Player_DeathState deathState { get; private set; }
     public Player_HeavyAttackState heavyState { get; private set; }
+    public Player_KillState killState { get; private set; }
 
     [Header("Attack Details")]
     public Vector2[] attackVelocity;
@@ -70,6 +71,7 @@ public class Player : Entity
         lightAttackState = new Player_LightAttackState(this, stateMachine, "LightPressed");
         deathState = new Player_DeathState(this, stateMachine, "death");
         heavyState = new Player_HeavyAttackState(this, stateMachine, "HeavyPressed");
+        killState = new Player_KillState(this,  stateMachine, "kill");
         
         _combat = GetComponent<Entity_Combat>();
         _combat.targetHit.AddListener(OnEnemyHit);

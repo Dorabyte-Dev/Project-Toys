@@ -16,21 +16,28 @@ public class Enemy_FlinchState : EnemyState
     public override void Update()
     {
         base.Update();
-        if(stateTimer <= 0)
+        // if(stateTimer <= 0)
+        // {
+        //     switch (enemy.nearness)
+        //     {
+        //         case 1:
+        //             stateMachine.ChangeState(enemy.pursuitState);
+        //             break;
+        //         case 2:
+        //             stateMachine.ChangeState(enemy.waitAttackState);
+        //             break;
+        //         case 0:
+        //             stateMachine.ChangeState(enemy.idleState);
+        //             break;
+        //     }
+        // }
+        GetDistanceToPlayer();
+        if (enemy.health.currentHp <= 0)
         {
-            switch (enemy.nearness)
-            {
-                case 1:
-                    stateMachine.ChangeState(enemy.pursuitState);
-                    break;
-                case 2:
-                    stateMachine.ChangeState(enemy.waitAttackState);
-                    break;
-                case 0:
-                    stateMachine.ChangeState(enemy.idleState);
-                    break;
-            }
+            enemy.DeadEntity();
+            return;
         }
+        stateMachine.ChangeState(enemy.moveState);
     }
     public override void Exit()
     {
