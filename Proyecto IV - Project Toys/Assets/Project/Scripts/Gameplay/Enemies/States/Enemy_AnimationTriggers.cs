@@ -14,4 +14,16 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
     {
         enemy.isAttacking = false;
     }
+
+    public override void AttackTrigger()
+    {
+        if(enemy.hasAttacked) return;
+        base.AttackTrigger();
+    }
+
+    public override void HeavyTrigger()
+    {
+        if(enemy.hasAttacked) return;
+        base.HeavyTrigger();
+    }
 }
