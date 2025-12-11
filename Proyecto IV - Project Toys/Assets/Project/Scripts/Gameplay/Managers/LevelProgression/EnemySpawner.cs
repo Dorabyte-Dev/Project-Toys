@@ -10,7 +10,8 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemy;
     [SerializeField] private Collider spawnArea;
     public float spawnDelay;
-    public int spawnCount;
+    private int currentWave;
+    [FormerlySerializedAs("spawnCount")] public int[] wavesSpawnCount;
     private int enemiesDead;
     [SerializeField]private List<GameObject> enemiesSpawned = new List<GameObject>();
     public UnityEvent endCombat;
@@ -35,6 +36,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void StartCombat()
     {
+        currentWave = 0;
         StartCoroutine(SpawnEnemies());
         if(cam != null && camManager != null)
         {
@@ -48,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
-        for (int i = 0; i < spawnCount; i++)
+        for (int i = 0; i < wavesSpawnCount[currentWave]; i++)
         {
             //Codigo de la generacion aleatoria dentro de bounds
             Vector3 newPosition = GetRandomNavMeshPoint(spawnArea);
@@ -74,9 +76,18 @@ public class EnemySpawner : MonoBehaviour
         //enemyFactory.Dispose(enemy);
         //enemy.transform.parent.gameObject.SetActive(false);
         enemiesDead++;
-        if(spawnCount == enemiesDead)
+        if(wavesSpawnCount[currentWave] == enemiesDead)
         {
-            EndCombat();
+            if(currentWave + 1 < wavesSpawnCount.Length)
+            {
+                currentWave++;
+                enemiesDead = 0;
+                StartCoroutine(SpawnEnemies());
+            }
+            else
+            {
+                EndCombat();
+            }
         }
     }
 
