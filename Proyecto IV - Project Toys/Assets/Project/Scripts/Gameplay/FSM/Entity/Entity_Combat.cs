@@ -3,6 +3,8 @@ using UnityEngine.Events;
 
 public class Entity_Combat : MonoBehaviour
 {
+    //POR FAVOR NECESITAMOS QUE HAYA UN PLAYER_COMBAT Y UN ENEMY_COMBAT
+    
     [Header("Target Detection")]
     [SerializeField] public LayerMask whatIsTarget;
 
@@ -27,10 +29,23 @@ public class Entity_Combat : MonoBehaviour
             if (targetHealth != null)
             {
                 targetHealth?.TakeDamage(damage, this.transform);
+                
                 targetHit?.Invoke();
             }
+            else if(target.CompareTag("pDodge"))
+            {
+                //Debug.Log("Perfect Dodge Triggered");
+                if(GetComponent<Enemy>() != null)
+                {
+                    PerfectDodgeManager.SetPerfectDodgeFlag(entity.gameObject);
+                }
+                
+            }
             else
+            {
                 Debug.LogWarning("Entity_Health not found on +"  + target.name);
+            }
+                
         }
         
     }

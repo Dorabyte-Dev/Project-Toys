@@ -14,7 +14,8 @@ public class CameraManager : MonoBehaviour
     [SerializeField]private float zoomAmount = 30f;
     private bool isZoomedIn = false;
     private float originalCameraDistance;
-    
+    private Vector3 originalCameraPosition;
+
     public static CameraManager instance;
     private void Awake()
     {
@@ -118,13 +119,26 @@ public class CameraManager : MonoBehaviour
 
     private void ToggleZoomRotationComposer()
     {
-        // TODO: Implementar zoom para RotationComposer
-        Debug.LogWarning("ToggleZoom no está implementado para cámaras con RotationComposer");
+        Transform player = activeCamera.Target.TrackingTarget;
+        // Guardar la distancia original
+        originalCameraPosition = activeCamera.transform.position;
+        
+        Vector3 direction = player.position - originalCameraPosition;
+        // Calcular la nueva distancia aplicando el porcentaje de zoom
+        Vector3 targetPosition = originalCameraPosition + direction * zoomAmount / 100f;
+            
+        // Animar hacia la distancia con zoom
+        DOTween.To(() => activeCamera.transform.position,
+            x => activeCamera.transform.position = x,
+            targetPosition,
+            0.1f).SetEase(Ease.OutCirc);
     }
     private void UntoggleZoomRotationComposer()
     {
-        // TODO: Implementar zoom para RotationComposer
-        Debug.LogWarning("ToggleZoom no está implementado para cámaras con RotationComposer");
+        DOTween.To(() => activeCamera.transform.position,
+            x => activeCamera.transform.position = x,
+            originalCameraPosition,
+            0.1f).SetEase(Ease.OutCirc);
     }
 
     public void ResetColliders()

@@ -96,8 +96,8 @@ public class Player_DashState : Player_GroundedState
         Debug.LogWarning("Perfect");
 
         //Calculate position to move
-        Vector3 direction =  enemy.transform.position - player.transform.position;
-        Vector3 pDodgePosition = enemy.transform.position + direction.normalized * player.perfectDodgeEnemyDistance;
+        Vector3 direction =  new Vector3(enemy.transform.position.x - player.transform.position.x, 0f, enemy.transform.position.z - player.transform.position.z);
+        Vector3 pDodgePosition = new Vector3(enemy.transform.position.x, player.transform.position.y, enemy.transform.position.z) + direction.normalized * player.perfectDodgeEnemyDistance;
         Vector3 pDodgeCurvePoint = player.transform.position + direction / 2 + Vector3.Cross(direction, Vector3.up).normalized * direction.magnitude / 1.25f;
 
         Vector3[] curvePoints = new Vector3[] { player.transform.position, pDodgeCurvePoint, pDodgePosition };

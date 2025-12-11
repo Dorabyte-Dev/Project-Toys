@@ -38,4 +38,9 @@ public class PerfectDodgeManager : MonoBehaviour
             pDodgeEnemies.Remove(enemy);
         }
     }
+    
+    public static void WipePerfectDodgeFlags()
+    {
+        pDodgeEnemies.Clear();
+    }
 }
