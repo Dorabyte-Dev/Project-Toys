@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     
     [SerializeField] private Image comboBarLeft;
     [SerializeField] private Image comboBarRight;
+    [HideInInspector]public bool IsComboBarFull => FillAmount >= 1f;
     private float _fillAmount;
     public float FillAmount
     {

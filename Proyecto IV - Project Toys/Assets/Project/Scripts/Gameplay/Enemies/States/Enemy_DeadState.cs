@@ -19,7 +19,7 @@ public class Enemy_DeadState : EnemyState
         enemy.agent.enabled = false;
         if (enemy.spawner != null)
             enemy.spawner.EnemyDead(enemy.gameObject);
-        stateMachine.SwitchOffStateMachine();
+        //stateMachine.SwitchOffStateMachine();
         //enemy.EnemyDeathTest();
     }
 

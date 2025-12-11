@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : Entity
 {
@@ -14,16 +15,16 @@ public class Player : Entity
     public Player_LightAttackState lightAttackState { get; private set; }
     public Player_DeathState deathState { get; private set; }
     public Player_HeavyAttackState heavyState { get; private set; }
-    public Player_KillState killState { get; private set; }
+    public Player_ExecutionState executionState { get; private set; }
 
     [Header("Attack Details")]
     public Vector2[] attackVelocity;
     public float attackVelocityDuration = .1f;
     public float comboResetTime = 1;
     private Coroutine queuedAttackCo;
-    
 
-    [Header("Combo Bar Properties")]
+
+    [Header("Combo Bar Properties")] 
     
     public float comboBarHitModifier;
     public float comboBarPerfectDodgeModifier;
@@ -39,6 +40,14 @@ public class Player : Entity
             SetComboBar();
         }
     }
+    private bool _isComboBarFull;
+    
+    [Header("Execution Properties")]
+    public float executionRadius;
+    [HideInInspector] public Transform executionTarget;
+    [HideInInspector] public Enemy executionEnemy;
+    
+    [Space(20)]
     
     [Header("UI References")]
     private Entity_Health _health;
@@ -71,7 +80,7 @@ public class Player : Entity
         lightAttackState = new Player_LightAttackState(this, stateMachine, "LightPressed");
         deathState = new Player_DeathState(this, stateMachine, "death");
         heavyState = new Player_HeavyAttackState(this, stateMachine, "HeavyPressed");
-        killState = new Player_KillState(this,  stateMachine, "kill");
+        executionState = new Player_ExecutionState(this,  stateMachine, "kill");
         
         _combat = GetComponent<Entity_Combat>();
         _combat.targetHit.AddListener(OnEnemyHit);
@@ -109,12 +118,55 @@ public class Player : Entity
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
         }
 
+        if (_isComboBarFull)
+        {
+            executionTarget = GetExecutionEnemy();
+            executionEnemy = executionTarget.GetComponent<Enemy>();
+        }
+
+    }
+
+    private Collider[] GetNearEnemiesCollider()
+    {
+        return Physics.OverlapSphere(transform.position, executionRadius, _combat.whatIsTarget);
+    }
+    
+    private Transform GetExecutionEnemy() 
+    {
+        Collider[] colliders = GetNearEnemiesCollider();
+        if (colliders == null || colliders.Length == 0) return null;
+        Transform nearestEnemy = null;
+        float minDistance = Mathf.Infinity;
+
+        foreach (Collider collider in colliders)
+        {
+            float distance = Vector3.Distance(transform.position, collider.transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                nearestEnemy = collider.transform;
+            }
+        }
+
+        return nearestEnemy;
+    }
+
+    public bool CanExecute()
+    {
+        if (executionTarget)
+        {
+            return true;
+        }
+        return false;
     }
 
     void SetComboBar()
     {
-        if(UIManager.Instance != null)
+        if (UIManager.Instance != null)
+        {
             UIManager.Instance.FillAmount = _comboBarAmount/maxComboBarAmount;
+            _isComboBarFull = UIManager.Instance.IsComboBarFull;
+        }
     }
     
 
