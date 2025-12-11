@@ -11,6 +11,7 @@ public class Enemy : Entity
     public Enemy_AttackState attackState;    // ESTADO DE ATTACK
     public Enemy_DeadState deadState; // ESTADO DE MUERTE
     public Enemy_FlinchState flinchState; // ESTADO DE ATURDIMIENTO
+    public Enemy_ExecutionState executionState; // ESTADO DE EJECUCION
 
 
     [Header("Enemy Specs")]
@@ -105,6 +106,11 @@ public class Enemy : Entity
     public void PlayerDeath()
     {
         stateMachine.ChangeState(idleState);
+    }
+
+    public void ChangeEnemyState(EnemyState newState)
+    {
+        stateMachine.ChangeState(newState);
     }
     private void OnEnable()
     {

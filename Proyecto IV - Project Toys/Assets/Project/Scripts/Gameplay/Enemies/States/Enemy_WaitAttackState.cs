@@ -63,7 +63,7 @@ public class Enemy_WaitAttackState : EnemyState
         {
             if (enemy.canAttackByManager)
             {
-                Debug.Log("Cambiar a estado de ataque");
+                //Debug.Log("Cambiar a estado de ataque");
                 attackPoint = AttackPointToPlayer();
                 enemy.attackState.SetParametersAttack(currentPosition, attackPoint);
             
