@@ -4,7 +4,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class Entity : MonoBehaviour
 {
-    public Animator anim { get; private set; }
+    public Animator anim;
     public Rigidbody rb { get; private set; }
     protected StateMachine stateMachine;
 
@@ -26,10 +26,13 @@ public class Entity : MonoBehaviour
 
     protected virtual void Awake()
     {
-        anim = GetComponent<Animator>();
-        if (anim == null)
+        if (!anim)
         {
-            Debug.LogWarning("Animator component not found on " + gameObject.name);
+            anim = GetComponent<Animator>();
+            if (anim == null)
+            {
+                Debug.LogWarning("Animator component not found on " + gameObject.name);
+            }
         }
         rb = GetComponent<Rigidbody>();
         stateMachine = new StateMachine();
