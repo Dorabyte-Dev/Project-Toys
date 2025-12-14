@@ -27,6 +27,8 @@ public class PerfectDodgeManager : MonoBehaviour
 
     public static void SetPerfectDodgeFlag(GameObject enemy)
     {
+        if (pDodgeEnemies.Contains(enemy)) return;
+        
         pDodgeEnemies.Add(enemy);
         Debug.Log("He puesto la Flag de perfect dodge");
     }

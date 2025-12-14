@@ -2005,6 +2005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25a701ad5f936f45873cddec0c18884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  anim: {fileID: 0}
   groundCheckDistance: 0.67
   whatIsGround:
     serializedVersion: 2
@@ -2015,21 +2016,27 @@ MonoBehaviour:
   moveSpeed: 5
   turnSmoothTime: 3
   turnSmoothVelocity: 0
-  maxSlopeAngle: 0
+  maxSlopeAngle: 30
   attackVelocity:
   - {x: -4.9133917e-24, y: 8.34e-43}
   - {x: 0.0000000039108805, y: 8.37e-43}
   - {x: 0.0000000039108805, y: 8.37e-43}
   attackVelocityDuration: 0.1
   comboResetTime: 1
+  comboBarHitModifier: 0
+  comboBarPerfectDodgeModifier: 0
+  maxComboBarAmount: 0
+  executionRadius: 0
+  executionTarget: {fileID: 0}
+  executionEnemy: {fileID: 0}
   cam: {fileID: 0}
   jumpForce: 5
   dashDuration: 0.25
   dashDistance: 20
   perfectDodgeDuration: 0.25
   perfectDodgeEnemyDistance: 1
-  perfectDodgeCollider: {fileID: 0}
   afterimageTrail: {fileID: 0}
+  activeCheckpoint: {fileID: 0}
 --- !u!114 &8117969304232054725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2064,6 +2071,8 @@ MonoBehaviour:
     baseValue: 3
   attackDamage:
     baseValue: 40
+  heavyDamage:
+    baseValue: 0
 --- !u!95 &2371286157433658125
 Animator:
   serializedVersion: 7
@@ -2168,6 +2177,10 @@ MonoBehaviour:
   stats: {fileID: 0}
   entity: {fileID: 0}
   damage: 0
+  heavyDamage: 0
+  targetHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7557495564978101515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2185,6 +2198,9 @@ MonoBehaviour:
   feedbackDuration: 0.5
   pushStrengh: 15
   pushDuration: 0.1
+  shakeDuration: 1
+  shakeStrength: 1
+  randomShake: 0.2
 --- !u!1 &8687599312691348133
 GameObject:
   m_ObjectHideFlags: 0

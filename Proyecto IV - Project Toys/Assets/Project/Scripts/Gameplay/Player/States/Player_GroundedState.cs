@@ -21,7 +21,7 @@ public class Player_GroundedState : PlayerState
         if (input.Player.Jump.WasPerformedThisFrame())
             stateMachine.ChangeState(player.jumpState);
 
-        if (input.Player.Dash.WasPerformedThisFrame())
+        if (input.Player.Dash.WasPerformedThisFrame() && player.CanDash())
             stateMachine.ChangeState(player.dashState);
 
         if (input.Player.LightAttack.WasPerformedThisFrame())

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -61,7 +62,9 @@ public class Player : Entity
     [Header("Dash Specs")]
     public float dashDuration = .25f;
     public float dashDistance = 20f;
-
+    public float dashCooldown = .5f;
+    private float _dashCooldownTimer;
+    
     public float perfectDodgeDuration = .25f;
     public float perfectDodgeEnemyDistance = 1f;
     public MeshTrail afterimageTrail;
@@ -244,5 +247,16 @@ public class Player : Entity
         {
             activeCheckpoint = other.transform;
         }
+    }
+
+    public void SetDashCooldown()
+    {
+        _dashCooldownTimer = dashCooldown;
+        DOTween.To(() => _dashCooldownTimer, x => _dashCooldownTimer = x, 0, dashCooldown);
+    }
+
+    public bool CanDash()
+    {
+        return _dashCooldownTimer <= 0f;
     }
 }
