@@ -10,13 +10,18 @@ public class BlockButton : MonoBehaviour
     public GameObject brokenPrefab;      // El bloque roto
     public float shakeIntensity = 0.05f;
     public int hitsToBreak = 3;
+    public Renderer renderer;
 
     private int currentHits = 0;
-    private Vector3 originalPos;
 
+    private void Awake()
+    {
+        if (renderer == null)
+            renderer = GetComponent<Renderer>();
+    }
     private void Start()
     {
-        originalPos = transform.localPosition;
+        
     }
 
     private void OnMouseDown()
@@ -24,7 +29,7 @@ public class BlockButton : MonoBehaviour
         BlockHit();
     }
 
-    private void BlockHit()
+    public void BlockHit()
     {
         currentHits++;
 
@@ -39,10 +44,6 @@ public class BlockButton : MonoBehaviour
         if (currentHits >= hitsToBreak)
         {
             BreakBlock();
-        }
-        else
-        {
-            onClick?.Invoke();
         }
     }
 

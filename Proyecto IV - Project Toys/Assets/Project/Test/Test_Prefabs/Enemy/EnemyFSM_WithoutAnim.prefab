@@ -2368,7 +2368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8841350204957780913}
   m_Layer: 6
-  m_Name: EnemyFSM_DistanceDetection
+  m_Name: EnemyFSM_WithoutAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6550,6 +6550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3973147eb358b549916f8373d24b8c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Melee
+  anim: {fileID: 0}
   groundCheckDistance: 0.72
   whatIsGround:
     serializedVersion: 2
@@ -6573,6 +6574,7 @@ MonoBehaviour:
   attackSpeed: 9
   isAttacking: 0
   flinchTime: 0.45
+  hasAttacked: 0
   pursuitPlayerRange: 100
   attackPlayerRange: 30
   jugadorDetectado: 0
@@ -6599,7 +6601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Entity_Combat
   whatIsTarget:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 520
   stats: {fileID: 0}
   entity: {fileID: 0}
   damage: 0

@@ -40,7 +40,7 @@ public class ZoneCloser : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("I detected " +  other.gameObject.name + "with layer being " + playerMask.ToString() + "and condition is " + (playerMask & (1 << other.gameObject.layer)));
+        //Debug.Log("I detected " +  other.gameObject.name + "with layer being " + playerMask.ToString() + "and condition is " + (playerMask & (1 << other.gameObject.layer)));
         if ((playerMask & (1 << other.gameObject.layer)) != 0 && !hasBeenActivated)
         {
             //Disable the Zone Closer

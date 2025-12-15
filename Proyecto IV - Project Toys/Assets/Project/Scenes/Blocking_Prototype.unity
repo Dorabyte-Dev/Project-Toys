@@ -755,6 +755,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 808132025}
     - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: executionRadius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
       propertyPath: activeCheckpoint
       value: 
       objectReference: {fileID: 1179728591}
@@ -983,19 +987,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.1349418
+      value: 0.13493681
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.010411654
+      value: 0.010411268
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.98786277
+      value: 0.9878635
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.076220155
+      value: -0.07622021
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1070,6 +1074,18 @@ PrefabInstance:
       propertyPath: _enemy
       value: 
       objectReference: {fileID: 1358670317803695474, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: wavesSpawnCount.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: 'wavesSpawnCount.Array.data[0]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: 'wavesSpawnCount.Array.data[1]'
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6879558466093839332, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
       propertyPath: m_Size.x
       value: 19.19777
@@ -2943,19 +2959,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.09349961
+      value: -0.09350386
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.006504696
+      value: -0.0065049953
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9931975
+      value: 0.9931971
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.06909598
+      value: -0.06909601
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3265,6 +3281,71 @@ MonoBehaviour:
   m_IgnoreFromBuild: 1
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!1001 &938433403
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2387739980641822441, guid: 5f49c3a969c6e5541a5e607cbd274c3b, type: 3}
+      propertyPath: maxHealth.baseValue
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3258279143136638772, guid: 5f49c3a969c6e5541a5e607cbd274c3b, type: 3}
+      propertyPath: m_Name
+      value: Enemigo prueba
+      objectReference: {fileID: 0}
+    - target: {fileID: 3258279143136638772, guid: 5f49c3a969c6e5541a5e607cbd274c3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841350204957780913, guid: 5f49c3a969c6e5541a5e607cbd274c3b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 22.254059
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841350204957780913, guid: 5f49c3a969c6e5541a5e607cbd274c3b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841350204957780913, guid: 5f49c3a969c6e5541a5e607cbd274c3b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -99.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841350204957780913, guid: 5f49c3a969c6e5541a5e607cbd274c3b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841350204957780913, guid: 5f49c3a969c6e5541a5e607cbd274c3b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841350204957780913, guid: 5f49c3a969c6e5541a5e607cbd274c3b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841350204957780913, guid: 5f49c3a969c6e5541a5e607cbd274c3b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841350204957780913, guid: 5f49c3a969c6e5541a5e607cbd274c3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841350204957780913, guid: 5f49c3a969c6e5541a5e607cbd274c3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841350204957780913, guid: 5f49c3a969c6e5541a5e607cbd274c3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f49c3a969c6e5541a5e607cbd274c3b, type: 3}
 --- !u!1 &974342179
 GameObject:
   m_ObjectHideFlags: 0
@@ -3442,6 +3523,18 @@ PrefabInstance:
       propertyPath: _enemy
       value: 
       objectReference: {fileID: 1358670317803695474, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: wavesSpawnCount.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: 'wavesSpawnCount.Array.data[0]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: 'wavesSpawnCount.Array.data[1]'
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6879558466093839332, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
       propertyPath: m_Size.x
       value: 5.259784
@@ -4392,19 +4485,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.06312703
+      value: 0.063122
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0042291344
+      value: 0.004228797
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9957645
+      value: 0.9957648
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.06671026
+      value: -0.06671028
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4698,6 +4791,18 @@ PrefabInstance:
       propertyPath: spawnCount
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: wavesSpawnCount.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: 'wavesSpawnCount.Array.data[0]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: 'wavesSpawnCount.Array.data[1]'
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7254266260994921759, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
       propertyPath: m_Name
       value: AreaManager_1
@@ -4712,7 +4817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7386688615636963305, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -32.94851
+      value: -32.55
       objectReference: {fileID: 0}
     - target: {fileID: 7386688615636963305, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4949,7 +5054,7 @@ GameObject:
   - component: {fileID: 1438563295}
   - component: {fileID: 1438563292}
   - component: {fileID: 1438563291}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PerfectDodgeCollider
   m_TagString: pDodge
   m_Icon: {fileID: 0}
@@ -5433,19 +5538,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.2981035
+      value: -0.29810834
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0045183897
+      value: -0.0045184633
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.95441324
+      value: 0.95441175
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.014466153
+      value: -0.014466131
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5759,19 +5864,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.1929619
+      value: -0.19296685
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.014294829
+      value: -0.014295196
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.97842103
+      value: 0.9784201
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0724825
+      value: -0.07248242
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6103,6 +6208,18 @@ PrefabInstance:
       propertyPath: _enemy
       value: 
       objectReference: {fileID: 1358670317803695474, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: wavesSpawnCount.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: 'wavesSpawnCount.Array.data[0]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: 'wavesSpawnCount.Array.data[1]'
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6879558466093839332, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
       propertyPath: m_Size.x
       value: 19.19777
@@ -6472,6 +6589,18 @@ PrefabInstance:
       propertyPath: _enemy
       value: 
       objectReference: {fileID: 1358670317803695474, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: wavesSpawnCount.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: 'wavesSpawnCount.Array.data[0]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: 'wavesSpawnCount.Array.data[1]'
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6879558466093839332, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
       propertyPath: m_Size.x
       value: 23.510262
@@ -7146,6 +7275,18 @@ PrefabInstance:
       propertyPath: _enemy
       value: 
       objectReference: {fileID: 1358670317803695474, guid: 904c81446326e444297f4d25bcf866aa, type: 3}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: wavesSpawnCount.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: 'wavesSpawnCount.Array.data[0]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329964376912069661, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
+      propertyPath: 'wavesSpawnCount.Array.data[1]'
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6879558466093839332, guid: 900e9b32cce5de74aa3d9c9b8ac0a246, type: 3}
       propertyPath: m_Size.x
       value: 15.260269
@@ -7347,19 +7488,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.32514358
+      value: 0.3251388
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.016489007
+      value: 0.016488763
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9443074
+      value: 0.94430906
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.04788866
+      value: -0.04788874
       objectReference: {fileID: 0}
     - target: {fileID: 5968698104148174476, guid: 014afdf8e28f2af41a0cf53b2f197a79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7822,3 +7963,4 @@ SceneRoots:
   - {fileID: 1903588641}
   - {fileID: 127879120}
   - {fileID: 459338832}
+  - {fileID: 938433403}
