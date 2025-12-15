@@ -15,11 +15,11 @@ public class Player_GroundedState : PlayerState
     {
         base.Update();
 
-        if(rb.linearVelocity.y < 0 && !player.groundDetected)
-            stateMachine.ChangeState(player.fallState);
+        /*if(rb.linearVelocity.y < 0 && !player.groundDetected)
+            stateMachine.ChangeState(player.fallState);*/
 
-        if (input.Player.Jump.WasPerformedThisFrame())
-            stateMachine.ChangeState(player.jumpState);
+        /*if (input.Player.Jump.WasPerformedThisFrame())
+            stateMachine.ChangeState(player.jumpState);*/
 
         if (input.Player.Dash.WasPerformedThisFrame() && player.CanDash())
             stateMachine.ChangeState(player.dashState);
