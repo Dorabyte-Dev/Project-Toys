@@ -34,7 +34,12 @@ public class PerfectDodgeManager : MonoBehaviour
     {
         if (pDodgeEnemies.Contains(enemy))
         {
+            Debug.Log("Flag Removed");
             pDodgeEnemies.Remove(enemy);
+        }
+        else
+        {
+            Debug.LogWarning("List doesn't contain the enemy");
         }
     }
     
