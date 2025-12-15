@@ -64,7 +64,18 @@ public class CameraManager : MonoBehaviour
         currentOffCombatCamera = cam;
         currentOffCombatCamera.RaisePriority(offCombatPriority);
     }
-    
+    //Switch OnCombat Camera
+    public void SwitchOnCombatCamera(CameraSwitch cam)
+    {
+        if (currentOnCombatCamera == cam) return;
+
+        if(currentOnCombatCamera != null)
+        {
+            currentOnCombatCamera.LowerPriority(onCombatPriority);
+        }
+        currentOnCombatCamera = cam;
+        currentOnCombatCamera.RaisePriority(onCombatPriority);
+    }
     public void ToggleZoom()
     {
         bool isPositionComposer = activeCamera.TryGetComponent<CinemachinePositionComposer>(out positionComposer);

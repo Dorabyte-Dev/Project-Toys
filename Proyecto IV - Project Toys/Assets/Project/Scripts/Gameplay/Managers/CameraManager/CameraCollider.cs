@@ -7,6 +7,8 @@ public class CameraCollider : MonoBehaviour
     public LayerMask playerMask;
     private CameraManager camManager;
     [SerializeField]private CameraSwitch cam;
+
+    [SerializeField]private bool isOnCombat = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,7 +29,14 @@ public class CameraCollider : MonoBehaviour
     {
         if ((playerMask & (1 << other.gameObject.layer)) != 0 && !hasBeenActivated)
         {
-            camManager.SwitchOffCombatCamera(cam);
+            if (isOnCombat)
+            {
+                camManager.SwitchOnCombatCamera(cam);
+            }
+            else
+            {
+                camManager.SwitchOffCombatCamera(cam);
+            }
         }
     }
 }
