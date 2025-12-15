@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PerfectDodgeManager : MonoBehaviour
 {
-    //Singleton
-
-
     //Perfect Dodge
     public static List<GameObject> pDodgeEnemies = new List<GameObject>();
     //Non-static list to debug in inspector

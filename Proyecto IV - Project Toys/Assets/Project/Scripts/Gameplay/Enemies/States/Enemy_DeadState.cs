@@ -17,6 +17,7 @@ public class Enemy_DeadState : EnemyState
         Debug.Log("Entro en deadState");
         //anim.enabled = false;
         enemy.agent.enabled = false;
+        PerfectDodgeManager.EndPerfectDodgeFlag(enemy.gameObject);
         if (enemy.spawner != null)
             enemy.spawner.EnemyDead(enemy.gameObject);
         //stateMachine.SwitchOffStateMachine();

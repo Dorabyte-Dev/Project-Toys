@@ -110,6 +110,7 @@ public class EnemyWaveManager : MonoBehaviour
     {
         //Debug.Log($"[EnemyWaveManager] {enemy.name} terminó su ataque.");
         _attackQueue.Dequeue();
+        PerfectDodgeManager.SetPerfectDodgeFlag(enemy.gameObject);
     }
 
     // private void HandleGroupAttackLogic()
