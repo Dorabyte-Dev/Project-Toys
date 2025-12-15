@@ -142,7 +142,7 @@ public class MenuManager : MonoBehaviour
 
     public void PlayGame()
     {
-        Fader.Instance.FadeToScene("Blocking_Prototype");
+        Fader.Instance.FadeToScene("Game");
     }
 
     public void OpenOptions()
