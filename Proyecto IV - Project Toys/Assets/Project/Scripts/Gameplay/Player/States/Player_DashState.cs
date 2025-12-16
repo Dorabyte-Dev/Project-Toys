@@ -29,12 +29,12 @@ public class Player_DashState : Player_GroundedState
         stateTimer = player.dashDuration;
         player.SetDashCooldown();
         
-        _isPerfectDodge = PerfectDodgeManager.pDodgeEnemies.Count > 0;
+        _isPerfectDodge = PerfectDodgeManager.IsPerfectDodge();
         
         if (_isPerfectDodge)
         {
             // Execute perfect dodge towards the last detected enemy
-            PerfectDodge(PerfectDodgeManager.pDodgeEnemies[^1]);
+            PerfectDodge(PerfectDodgeManager.GetPerfectDodgeEnemy());
         }
         else
         {

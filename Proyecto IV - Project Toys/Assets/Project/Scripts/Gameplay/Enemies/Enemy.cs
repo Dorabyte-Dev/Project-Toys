@@ -124,6 +124,7 @@ public class Enemy : Entity
         Player.OnPlayerDeath -= PlayerDeath;
         if (EnemyWaveManager.Instance != null)
             EnemyWaveManager.Instance?.UnregisterEnemy(this);
+        PerfectDodgeManager.EndPerfectDodgeFlag(this.gameObject);
     }
 
     public void EnemyDeathTest()

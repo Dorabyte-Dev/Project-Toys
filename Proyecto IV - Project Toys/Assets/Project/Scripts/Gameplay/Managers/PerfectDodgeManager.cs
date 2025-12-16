@@ -42,6 +42,38 @@ public class PerfectDodgeManager : MonoBehaviour
             Debug.LogWarning("List doesn't contain the enemy");
         }
     }
+
+    public static bool IsPerfectDodge()
+    {
+        if (pDodgeEnemies.Count <= 0) return false;
+
+        bool b = false;
+        foreach (GameObject enemy in pDodgeEnemies)
+        {
+            if (enemy != null)
+            {
+                b = true;
+                break;
+            }
+        }
+
+        return b;
+    }
+    
+    public static GameObject GetPerfectDodgeEnemy()
+    {
+        if (pDodgeEnemies.Count <= 0) return null;
+
+        for (int i = pDodgeEnemies.Count - 1; i >= 0; i--)
+        {
+            if (pDodgeEnemies[i] != null)
+            {
+                return pDodgeEnemies[i];
+            }
+        }
+
+        return null;
+    }
     
     public static void WipePerfectDodgeFlags()
     {
