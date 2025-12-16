@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 using DG.Tweening;
@@ -16,6 +17,8 @@ public class CameraManager : MonoBehaviour
     private float originalCameraDistance;
     private Vector3 originalCameraPosition;
 
+    private Queue<CinemachineCamera> _zoomedCameras = new Queue<CinemachineCamera>();
+    private CinemachineCamera _currentZoomedCamera;
     public static CameraManager instance;
     private void Awake()
     {
@@ -78,7 +81,10 @@ public class CameraManager : MonoBehaviour
     }
     public void ToggleZoom()
     {
-        bool isPositionComposer = activeCamera.TryGetComponent<CinemachinePositionComposer>(out positionComposer);
+        _zoomedCameras.Enqueue(activeCamera);
+        _currentZoomedCamera = activeCamera;
+        
+        bool isPositionComposer = _currentZoomedCamera.TryGetComponent<CinemachinePositionComposer>(out positionComposer);
 
         if (isPositionComposer)
         {
@@ -88,11 +94,15 @@ public class CameraManager : MonoBehaviour
         {
             ToggleZoomRotationComposer();
         }
+        
+        
+
     }
 
     public void UntoggleZoom()
     {
-        bool isPositionComposer = activeCamera.TryGetComponent<CinemachinePositionComposer>(out positionComposer);
+        _currentZoomedCamera = _zoomedCameras.Dequeue();
+        bool isPositionComposer = _currentZoomedCamera.TryGetComponent<CinemachinePositionComposer>(out positionComposer);
 
         if (isPositionComposer)
         {
@@ -130,24 +140,24 @@ public class CameraManager : MonoBehaviour
 
     private void ToggleZoomRotationComposer()
     {
-        Transform player = activeCamera.Target.TrackingTarget;
+        Transform player = _currentZoomedCamera.Target.TrackingTarget;
         // Guardar la distancia original
-        originalCameraPosition = activeCamera.transform.position;
+        originalCameraPosition = _currentZoomedCamera.transform.position;
         
         Vector3 direction = player.position - originalCameraPosition;
         // Calcular la nueva distancia aplicando el porcentaje de zoom
         Vector3 targetPosition = originalCameraPosition + direction * zoomAmount / 100f;
             
         // Animar hacia la distancia con zoom
-        DOTween.To(() => activeCamera.transform.position,
-            x => activeCamera.transform.position = x,
+        DOTween.To(() => _currentZoomedCamera.transform.position,
+            x => _currentZoomedCamera.transform.position = x,
             targetPosition,
             0.1f).SetEase(Ease.OutCirc);
     }
     private void UntoggleZoomRotationComposer()
     {
-        DOTween.To(() => activeCamera.transform.position,
-            x => activeCamera.transform.position = x,
+        DOTween.To(() => _currentZoomedCamera.transform.position,
+            x => _currentZoomedCamera.transform.position = x,
             originalCameraPosition,
             0.1f).SetEase(Ease.OutCirc);
     }
