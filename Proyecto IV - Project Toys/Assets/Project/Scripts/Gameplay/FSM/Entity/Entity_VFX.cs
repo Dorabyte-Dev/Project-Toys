@@ -196,17 +196,20 @@ public class Entity_VFX : MonoBehaviour
         {
             vfxGraph.Play();
         }
-        
-        if (meshMaterials.Length > 0)
+
+        if (meshMaterials != null)
         {
-            while(meshMaterials[0].GetFloat("_DissolveAmount") < 1f)
+            if (meshMaterials.Length > 0)
             {
-                for (int i = 0; i < meshMaterials.Length; i++)
+                while(meshMaterials[0].GetFloat("_DissolveAmount") < 1f)
                 {
-                    float currentDissolve = meshMaterials[i].GetFloat("_DissolveAmount");
-                    meshMaterials[i].SetFloat("_DissolveAmount", currentDissolve + dissolveRate);
+                    for (int i = 0; i < meshMaterials.Length; i++)
+                    {
+                        float currentDissolve = meshMaterials[i].GetFloat("_DissolveAmount");
+                        meshMaterials[i].SetFloat("_DissolveAmount", currentDissolve + dissolveRate);
+                    }
+                    yield return new WaitForSeconds(refreshRate);
                 }
-                yield return new WaitForSeconds(refreshRate);
             }
         }
     }

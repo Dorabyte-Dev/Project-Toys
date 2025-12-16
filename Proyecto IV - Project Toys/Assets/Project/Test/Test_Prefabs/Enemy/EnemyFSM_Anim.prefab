@@ -4505,6 +4505,8 @@ GameObject:
   - component: {fileID: 5196770737186411756}
   - component: {fileID: 8974153532169194853}
   - component: {fileID: 1836122523888112386}
+  - component: {fileID: 5125921313042920375}
+  - component: {fileID: 5952093358812938678}
   m_Layer: 0
   m_Name: VFX_Dissolve
   m_TagString: Untagged
@@ -4536,8 +4538,8 @@ VisualEffect:
   m_GameObject: {fileID: 7054470713792975609}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 0082e30f90fae3748ad38da5fbe68dcc, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1
@@ -4549,9 +4551,9 @@ VisualEffect:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 357.82434, y: 1.3472464, z: 354.64578}
+      - m_Value: {x: -0, y: 0, z: 0}
         m_Name: Transform_angles
-        m_Overridden: 0
+        m_Overridden: 1
       - m_Value: {x: 0, y: 0, z: 0}
         m_Name: Transform_position
         m_Overridden: 1
@@ -4623,6 +4625,38 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5125921313042920375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7054470713792975609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdafc37f32b176349b1684c4455b98e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VisualEffectGraph.Runtime::UnityEngine.VFX.Utility.VFXPropertyBinder
+  m_ExecuteInEditor: 1
+  m_Bindings:
+  - {fileID: 5952093358812938678}
+  m_VisualEffect: {fileID: 8974153532169194853}
+--- !u!114 &5952093358812938678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7054470713792975609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdfea1f838247c40921a07afedde962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VisualEffectGraph.Runtime::UnityEngine.VFX.Utility.VFXTransformBinder
+  Space: 0
+  m_Property:
+    m_Name: Transform
+  Target: {fileID: 5196770737186411756}
 --- !u!1 &7180746202422950567
 GameObject:
   m_ObjectHideFlags: 0
@@ -5934,6 +5968,10 @@ MonoBehaviour:
   feedbackDuration: 0.5
   pushStrengh: 15
   pushDuration: 0.1
+  renderMesh: {fileID: 7431876637211601282}
+  vfxGraph: {fileID: 8974153532169194853}
+  dissolveRate: 0.0125
+  refreshRate: 0.025
   shakeDuration: 1
   shakeStrength: 1
   randomShake: 0.2
