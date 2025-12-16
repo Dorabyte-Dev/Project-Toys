@@ -46,5 +46,6 @@ public class Entity_Health : MonoBehaviour
     {
         isDead = true;
         entity.DeadEntity();
+        vfx.DeathVFX_Feedback();
     }
 }

@@ -1,19 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Entity_VFX : MonoBehaviour
 {
     private static readonly int Color1 = Shader.PropertyToID("_Color");
+    
+    [SerializeField] private Rigidbody rb;
+    [Header("ColorChange")]
+    public Color feedbackColor;
+    public float feedbackDuration;
     private List<Material[]> originalMaterials = new List<Material[]>();
     private List<Color[]> originalColors = new List<Color[]>();
     private Coroutine changeCoroutine;
     private Coroutine revertCoroutine;
-    [SerializeField] private Rigidbody rb;
-    public Color feedbackColor;
-    public float feedbackDuration;
+    [Header("PushFeedback")]
     public float pushStrengh;
     [Range(0, 1)] public float pushDuration;
+    [Header("DissolveFeedback")]
+    public Renderer renderMesh;
+    public VisualEffect vfxGraph;
+    private Material[] meshMaterials;
+    public float dissolveRate = 0.0125f;
+    public float refreshRate = 0.025f;
+    [Header("ShakeFeedback")]
     [SerializeField] private float shakeDuration = 1;
     [SerializeField] private float shakeStrength = 1;
     [SerializeField] private float randomShake = 0.2f;
@@ -22,6 +33,10 @@ public class Entity_VFX : MonoBehaviour
     {
         SaveOriginalMaterials();
         rb = GetComponent<Rigidbody>();
+        if (renderMesh)
+        {
+            meshMaterials = renderMesh.materials;
+        }
     }
 
     private void SaveOriginalMaterials()
@@ -59,6 +74,11 @@ public class Entity_VFX : MonoBehaviour
         TriggerMaterialChange();
         StartCoroutine(PushFeedback());
         //Shake(shakeDuration, shakeStrength);
+    }
+    
+    public void DeathVFX_Feedback()
+    {
+        StartCoroutine(Dissolve());
     }
 
     #region ColoredFeedback
@@ -169,6 +189,30 @@ public class Entity_VFX : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
     }
 
+    #region DissolveFeedback
+    public IEnumerator Dissolve()
+    {
+        if (vfxGraph)
+        {
+            vfxGraph.Play();
+        }
+        
+        if (meshMaterials.Length > 0)
+        {
+            while(meshMaterials[0].GetFloat("_DissolveAmount") < 1f)
+            {
+                for (int i = 0; i < meshMaterials.Length; i++)
+                {
+                    float currentDissolve = meshMaterials[i].GetFloat("_DissolveAmount");
+                    meshMaterials[i].SetFloat("_DissolveAmount", currentDissolve + dissolveRate);
+                }
+                yield return new WaitForSeconds(refreshRate);
+            }
+        }
+    }
+    
+
+    #endregion
     private void Shake(float duration, float magnitude)
     {
         StartCoroutine(ShakeCoroutine(duration, magnitude));
