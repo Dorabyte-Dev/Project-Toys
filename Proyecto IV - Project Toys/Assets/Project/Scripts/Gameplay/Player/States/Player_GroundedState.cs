@@ -27,8 +27,11 @@ public class Player_GroundedState : PlayerState
         if (input.Player.LightAttack.WasPerformedThisFrame())
             stateMachine.ChangeState(player.lightAttackState);
         
-        if(input.Player.HeavyAttack.WasPerformedThisFrame())
+        /*if(input.Player.HeavyAttack.WasPerformedThisFrame())
             stateMachine.ChangeState(player.heavyState);
+        */
+        if (input.Player.HeavyAttack.WasPerformedThisFrame())
+            //stateMachine.ChangeState(/* Combo System State*/);
 
         if (input.Player.Execution.WasPerformedThisFrame())
             if (player.CanExecute())
