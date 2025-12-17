@@ -5528,7 +5528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Entity_Stats
   maxHealth:
-    baseValue: 100
+    baseValue: 1e+9
   vitality:
     baseValue: 0
   attackDamage:
@@ -5584,8 +5584,12 @@ MonoBehaviour:
   rb: {fileID: 0}
   feedbackColor: {r: 1, g: 1, b: 1, a: 0}
   feedbackDuration: 0.5
-  pushStrengh: 15
-  pushDuration: 0.1
+  pushStrengh: 0
+  pushDuration: 0
+  renderMesh: {fileID: 0}
+  vfxGraph: {fileID: 0}
+  dissolveRate: 0.0125
+  refreshRate: 0.025
   shakeDuration: 1
   shakeStrength: 1
   randomShake: 0.2

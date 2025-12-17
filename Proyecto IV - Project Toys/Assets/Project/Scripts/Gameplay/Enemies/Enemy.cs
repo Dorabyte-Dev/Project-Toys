@@ -130,6 +130,7 @@ public class Enemy : Entity
     public void EnemyDeathTest()
     {
         Destroy(this.gameObject);
+        //this.gameObject.SetActive(false);
     }
 
 
