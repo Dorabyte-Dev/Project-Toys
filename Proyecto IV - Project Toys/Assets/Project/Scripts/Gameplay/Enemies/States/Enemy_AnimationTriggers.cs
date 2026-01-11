@@ -18,6 +18,7 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
     public override void AttackTrigger()
     {
         if(enemy.hasAttacked) return;
+        Debug.LogError("Enemy Attack Triggered");
         base.AttackTrigger();
     }
 

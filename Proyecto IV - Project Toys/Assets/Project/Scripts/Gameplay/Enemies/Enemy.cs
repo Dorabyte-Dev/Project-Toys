@@ -108,6 +108,11 @@ public class Enemy : Entity
         stateMachine.ChangeState(idleState);
     }
 
+    public void StopAttacking()
+    {
+        stateMachine.ChangeState(pursuitState);
+    }
+
     public void ChangeEnemyState(EnemyState newState)
     {
         stateMachine.ChangeState(newState);

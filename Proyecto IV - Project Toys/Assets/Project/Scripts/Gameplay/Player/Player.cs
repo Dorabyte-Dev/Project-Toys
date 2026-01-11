@@ -124,7 +124,7 @@ public class Player : Entity
         if (_isComboBarFull)
         {
             executionTarget = GetExecutionEnemy();
-            if(!executionEnemy) return;
+            if(!executionTarget) return;
             executionEnemy = executionTarget.GetComponent<Enemy>();
         }
 

@@ -31,6 +31,7 @@ public class Player_GroundedState : PlayerState
             stateMachine.ChangeState(player.heavyState);
 
         if (input.Player.Execution.WasPerformedThisFrame())
+        {
             if (player.CanExecute())
             {
                 player.executionEnemy.ChangeEnemyState(player.executionEnemy.executionState);
@@ -38,6 +39,7 @@ public class Player_GroundedState : PlayerState
             } 
             else
                 Debug.Log("Cannot execute now.");
+        }
         
     }
     public override void Exit()

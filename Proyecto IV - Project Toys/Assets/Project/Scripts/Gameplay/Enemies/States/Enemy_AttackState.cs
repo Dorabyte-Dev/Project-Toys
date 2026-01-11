@@ -32,7 +32,7 @@ public class Enemy_AttackState : EnemyState
         // Verificar si llegó al punto de ataque
         if (HasReachedDestination())
         {
-            FinishAttack();
+            enemy.StopAttacking();
         }
     }
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -66,6 +67,4 @@ public class Entity_Combat : MonoBehaviour
     {
         return Physics.OverlapSphere(entity.targetCheck.position, entity.targetCheckRadius, whatIsTarget);
     }
-
-    
 }

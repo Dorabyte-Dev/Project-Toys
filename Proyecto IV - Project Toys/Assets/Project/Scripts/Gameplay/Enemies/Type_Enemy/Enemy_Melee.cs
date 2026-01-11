@@ -22,4 +22,10 @@ public class Enemy_Melee : Enemy
         base.Start();
         stateMachine.Initialize(idleState);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(targetCheck.position, targetCheckRadius);
+    }
 }
