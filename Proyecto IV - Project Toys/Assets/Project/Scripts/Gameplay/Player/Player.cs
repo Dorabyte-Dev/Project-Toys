@@ -47,7 +47,7 @@ public class Player : Entity
     public float executionRadius;
     [HideInInspector] public Transform executionTarget;
     [HideInInspector] public Enemy executionEnemy;
-    
+    [SerializeField] public LayerMask executionTargetLayer;
     [Space(20)]
     
     [Header("UI References")]
@@ -124,6 +124,7 @@ public class Player : Entity
         if (_isComboBarFull)
         {
             executionTarget = GetExecutionEnemy();
+            if(!executionEnemy) return;
             executionEnemy = executionTarget.GetComponent<Enemy>();
         }
 
@@ -131,7 +132,7 @@ public class Player : Entity
 
     private Collider[] GetNearEnemiesCollider()
     {
-        return Physics.OverlapSphere(transform.position, executionRadius, _combat.whatIsTarget);
+        return Physics.OverlapSphere(transform.position, executionRadius, executionTargetLayer);
     }
     
     private Transform GetExecutionEnemy() 

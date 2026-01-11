@@ -667,6 +667,72 @@ Transform:
   - {fileID: 3478357328771682550}
   m_Father: {fileID: 7732600664297018348}
   m_LocalEulerAnglesHint: {x: 0.005575913, y: 0.016400872, z: -0.11121154}
+--- !u!1 &2737875176911543348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3086476952732928126}
+  - component: {fileID: 6136201984332156956}
+  - component: {fileID: 1876948882874136663}
+  m_Layer: 9
+  m_Name: PerfectDodgeCollider
+  m_TagString: pDodge
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3086476952732928126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2737875176911543348}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8581962557178675611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6136201984332156956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2737875176911543348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c063fa48d9154784a9a70edd49780888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PerfectDodgeCollider
+--- !u!135 &1876948882874136663
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2737875176911543348}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2776885553279945367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1968,6 +2034,7 @@ GameObject:
   - component: {fileID: 5148689385665901950}
   - component: {fileID: 5480860084257296330}
   - component: {fileID: 7557495564978101515}
+  - component: {fileID: 2730310664641327203}
   m_Layer: 3
   m_Name: Prefab_Player
   m_TagString: Player
@@ -1991,6 +2058,7 @@ Transform:
   - {fileID: 1730559594266008710}
   - {fileID: 8214329324492891584}
   - {fileID: 1199177712668120761}
+  - {fileID: 3086476952732928126}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5763861305979521097
@@ -2012,7 +2080,7 @@ MonoBehaviour:
     m_Bits: 2147483648
   groundCheck: {fileID: 8581962557178675611}
   targetCheck: {fileID: 1199177712668120761}
-  targetCheckRadius: 3
+  targetCheckRadius: 1.5
   moveSpeed: 5
   turnSmoothTime: 3
   turnSmoothVelocity: 0
@@ -2023,19 +2091,23 @@ MonoBehaviour:
   - {x: 0.0000000039108805, y: 8.37e-43}
   attackVelocityDuration: 0.1
   comboResetTime: 1
-  comboBarHitModifier: 0
-  comboBarPerfectDodgeModifier: 0
-  maxComboBarAmount: 0
-  executionRadius: 0
+  comboBarHitModifier: 10
+  comboBarPerfectDodgeModifier: 25
+  maxComboBarAmount: 100
+  executionRadius: 30
   executionTarget: {fileID: 0}
   executionEnemy: {fileID: 0}
+  executionTargetLayer:
+    serializedVersion: 2
+    m_Bits: 64
   cam: {fileID: 0}
   jumpForce: 5
   dashDuration: 0.25
-  dashDistance: 20
+  dashDistance: 4
+  dashCooldown: 0.5
   perfectDodgeDuration: 0.25
   perfectDodgeEnemyDistance: 1
-  afterimageTrail: {fileID: 0}
+  afterimageTrail: {fileID: 2730310664641327203}
   activeCheckpoint: {fileID: 0}
 --- !u!114 &8117969304232054725
 MonoBehaviour:
@@ -2066,13 +2138,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth:
-    baseValue: 100
+    baseValue: 300
   vitality:
     baseValue: 3
   attackDamage:
     baseValue: 40
   heavyDamage:
-    baseValue: 0
+    baseValue: 80
 --- !u!95 &2371286157433658125
 Animator:
   serializedVersion: 7
@@ -2119,9 +2191,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &6284514865084978977
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2173,7 +2245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Entity_Combat
   whatIsTarget:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1088
   stats: {fileID: 0}
   entity: {fileID: 0}
   damage: 0
@@ -2196,11 +2268,32 @@ MonoBehaviour:
   rb: {fileID: 0}
   feedbackColor: {r: 1, g: 1, b: 1, a: 0}
   feedbackDuration: 0.5
-  pushStrengh: 15
-  pushDuration: 0.1
+  pushStrengh: 5
+  pushDuration: 0.05
+  renderMesh: {fileID: 0}
+  vfxGraph: {fileID: 0}
+  dissolveRate: 0.0125
+  refreshRate: 0.025
   shakeDuration: 1
   shakeStrength: 1
   randomShake: 0.2
+--- !u!114 &2730310664641327203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8468839315768395927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c64a244188d21034b8fb4735152d1b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeshTrail
+  player: {fileID: 0}
+  meshDestroyDelay: 2
+  meshRefreshRate: 0.02
+  mat: {fileID: 2100000, guid: 8aa4df6d9239b284f8956fd0e74ace63, type: 2}
+  toggleTrail: 0
 --- !u!1 &8687599312691348133
 GameObject:
   m_ObjectHideFlags: 0

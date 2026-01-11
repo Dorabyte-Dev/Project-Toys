@@ -29,7 +29,7 @@ public class Entity_Combat : MonoBehaviour
             if (targetHealth != null)
             {
                 targetHealth?.TakeDamage(damage, this.transform);
-                
+                if(targetHealth.invincibleMode) return; //If target is invincible, do not trigger hit events
                 targetHit?.Invoke();
             }
             else if(target.CompareTag("pDodge"))
