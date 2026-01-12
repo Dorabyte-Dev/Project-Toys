@@ -51,7 +51,7 @@ public class EnemyWaveManager : MonoBehaviour
     {
         activeEnemies.Remove(enemy);
         UnregisterFromQueue(enemy);
-        Debug.Log($"[EnemyWaveManager] Enemigo desregistrado: {enemy.name}. Total activos: {activeEnemies.Count}");
+        //Debug.Log($"[EnemyWaveManager] Enemigo desregistrado: {enemy.name}. Total activos: {activeEnemies.Count}");
     }
 
     private void UnregisterFromQueue(Enemy enemy)
