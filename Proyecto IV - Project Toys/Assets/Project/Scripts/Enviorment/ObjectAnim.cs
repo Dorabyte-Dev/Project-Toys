@@ -17,8 +17,11 @@ public class ObjectAnim : MonoBehaviour
     }
 
     public TweenAnimation[] tweens;
+    
+    private Tween currentTween;
     public void PlayAnimation()
     {
+        currentTween.Kill(true);
         Sequence totalSequence = DOTween.Sequence();
         foreach (var tween in tweens)
         {
@@ -36,10 +39,12 @@ public class ObjectAnim : MonoBehaviour
             totalSequence.Append(seq);
         }
         totalSequence.Play();
+        currentTween = totalSequence;
     }
     
     public void PlayTween(int index)
     {
+        currentTween.Kill(true);
         if (index < 0 || index >= tweens.Length) return;
         var tween = tweens[index];
         Sequence seq = DOTween.Sequence();
@@ -53,5 +58,6 @@ public class ObjectAnim : MonoBehaviour
         }
         seq.OnComplete(() => tween.onComplete?.Invoke());
         seq.Play();
+        currentTween = seq;
     }
 }
