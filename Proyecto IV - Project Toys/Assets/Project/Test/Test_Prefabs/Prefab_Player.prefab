@@ -1089,6 +1089,37 @@ Transform:
   - {fileID: 3653532746462419741}
   m_Father: {fileID: 9102133491024279415}
   m_LocalEulerAnglesHint: {x: 19.8675, y: -0.28001952, z: -1.5034449}
+--- !u!1 &4610145876380764234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4395184669273791191}
+  m_Layer: 3
+  m_Name: XRayVFXPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4395184669273791191
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4610145876380764234}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.785, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8581962557178675611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4693852045694429087
 GameObject:
   m_ObjectHideFlags: 0
@@ -2059,6 +2090,7 @@ Transform:
   - {fileID: 8214329324492891584}
   - {fileID: 1199177712668120761}
   - {fileID: 3086476952732928126}
+  - {fileID: 4395184669273791191}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5763861305979521097
@@ -2125,6 +2157,7 @@ MonoBehaviour:
   vfx: {fileID: 0}
   currentHp: 0
   maxHp: 0
+  invincibleMode: 0
 --- !u!114 &7013267686598043822
 MonoBehaviour:
   m_ObjectHideFlags: 0
