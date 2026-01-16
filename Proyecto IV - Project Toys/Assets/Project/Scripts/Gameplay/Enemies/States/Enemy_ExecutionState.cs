@@ -10,21 +10,24 @@ public class Enemy_ExecutionState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Entered Enemy_ExecutionState");
-        enemy.agent.isStopped = true;
+        /*Debug.Log("Entered Enemy_ExecutionState");
+        enemy.agent.isStopped = true;*/
+        enemy.Execution_Enter();
     }
 
     public override void Update()
     {
         base.Update();
-        enemy.gameObject.transform.DOShakeScale(1f, 0.1f, 5).OnComplete(() =>
+        /*enemy.gameObject.transform.DOShakeScale(1f, 0.1f, 5).OnComplete(() =>
         {
             stateMachine.ChangeState(enemy.deadState);
-        });
+        });*/
+        enemy.Execution_Update();
     }
 
     public override void Exit()
     {
         base.Exit();
+        enemy.Execution_Exit();
     }
 }

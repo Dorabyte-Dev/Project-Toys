@@ -12,16 +12,17 @@ public class Enemy_PursuitState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemy.agent.speed = enemy.moveSpeed;
+        /*enemy.agent.speed = enemy.moveSpeed;
         enemy.agent.acceleration = enemy.acceleration;
         //hasRequestedAttack = false;
-        //Debug.Log("Entering Pursuit State");
+        //Debug.Log("Entering Pursuit State");*/
+        enemy.Pursuit_Enter();
     }
 
     public override void Update()
     {
         base.Update();
-        GetDistanceToPlayer();
+        /*GetDistanceToPlayer();
         // Perseguir al jugador
         if (enemy.playerTransform != null)
         {
@@ -34,55 +35,14 @@ public class Enemy_PursuitState : EnemyState
             {
                 stateMachine.ChangeState(enemy.moveState);
             }
-        }
-
-        // switch (enemy.nearness)
-        // {
-        //     case 2: // En rango de ataque
-        //         // Solicitar permiso si aún no lo ha hecho
-        //         if (!hasRequestedAttack && !enemy.isAttacking)
-        //         {
-        //             EnemyWaveManager.Instance?.RequestAttackPermission(enemy);
-        //             hasRequestedAttack = true;
-        //         }
-        //
-        //         // Si tiene permiso, atacar
-        //         if (enemy.canAttackByManager && !enemy.isAttacking)
-        //         {
-        //             stateMachine.ChangeState(enemy.waitAttackState);
-        //         }
-        //         break;
-        //
-        //     case 1: // Sigue persiguiendo
-        //         // Si había solicitado ataque pero salió de rango, cancelar
-        //         if (hasRequestedAttack)
-        //         {
-        //             EnemyWaveManager.Instance?.CancelAttackRequest(enemy);
-        //             hasRequestedAttack = false;
-        //         }
-        //         break;
-        //
-        //     case 0: // Muy lejos, volver a idle
-        //         if (hasRequestedAttack)
-        //         {
-        //             EnemyWaveManager.Instance?.CancelAttackRequest(enemy);
-        //             hasRequestedAttack = false;
-        //         }
-        //         stateMachine.ChangeState(enemy.idleState);
-        //         break;
-        // }
+        }*/
+        enemy.Pursuit_Update();
     }
 
     public override void Exit()
     {
         base.Exit();
-        
-        // Si sale del estado sin haber atacado, cancelar solicitud
-        // if (hasRequestedAttack && !enemy.isAttacking)
-        // {
-        //     EnemyWaveManager.Instance?.CancelAttackRequest(enemy);
-        //     hasRequestedAttack = false;
-        // }
+        enemy.Pursuit_Exit();
     }
     
     

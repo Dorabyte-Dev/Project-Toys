@@ -9,18 +9,21 @@ public class Enemy_IdleState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        stateTimer = 0.25f;
+        //stateTimer = 0.25f;
         //enemy.SetVelocity(0f, 0f);
+        enemy.Idle_Enter();
     }
 
     public override void Update()
     {
         base.Update();
-        if (stateTimer < 0f)
-            stateMachine.ChangeState(enemy.moveState);
+        /*if (stateTimer < 0f)
+            stateMachine.ChangeState(enemy.moveState);*/
+        enemy.Idle_Update();
     }
     public override void Exit()
     {
         base.Exit();
+        enemy.Idle_Exit();
     }
 }

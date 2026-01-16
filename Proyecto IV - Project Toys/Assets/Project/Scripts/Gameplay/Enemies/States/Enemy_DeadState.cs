@@ -14,25 +14,27 @@ public class Enemy_DeadState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Entro en deadState");
+        /*Debug.Log("Entro en deadState");
         //anim.enabled = false;
         enemy.agent.enabled = false;
         PerfectDodgeManager.EndPerfectDodgeFlag(enemy.gameObject);
         if (enemy.spawner != null)
             enemy.spawner.EnemyDead(enemy.gameObject);
         //stateMachine.SwitchOffStateMachine();
-        //enemy.EnemyDeathTest();
+        //enemy.EnemyDeathTest();*/
+        enemy.Dead_Enter();
     }
 
 
     public override void Update()
     {
         base.Update();
+        enemy.Dead_Update();
     }
     public override void Exit()
     {
-        Debug.Log("Salgo de deadState");
         base.Exit();
+        enemy.Dead_Exit();
     }
 
     

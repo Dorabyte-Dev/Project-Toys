@@ -8,16 +8,22 @@ public class Enemy_MoveState : EnemyState
     {
     }
 
-    public override void Enter()
+    /*public override void Enter()
     {
         base.Enter();
         GoToRandomPoint();
+    }*/
+
+    public override void Enter()
+    {
+        base.Enter();
+        enemy.Move_Enter();
     }
 
     public override void Update()
     {
         base.Update();
-        GetDistanceToPlayer();
+        /*GetDistanceToPlayer();
         if (!enemy.groundDetected)
         {
             stateMachine.ChangeState(enemy.idleState);
@@ -34,12 +40,18 @@ public class Enemy_MoveState : EnemyState
         {
             stateMachine.ChangeState(enemy.idleState);
             //GoToRandomPoint();
-        }
+        }*/
+        enemy.Move_Update();
+    }
+    public override void Exit()
+    {
+        base.Exit();
+        enemy.Move_Exit();
     }
 
     
 
-    public void GoToRandomPoint()
+    /*private void GoToRandomPoint()
     {
         if (enemy.agent.pathPending || !enemy.agent.isOnNavMesh)
             return;
@@ -62,7 +74,7 @@ public class Enemy_MoveState : EnemyState
         return false;
     }
 
-    public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
+    private static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
     {
         Vector3 randDirection = Random.insideUnitSphere * dist;
 
@@ -73,5 +85,5 @@ public class Enemy_MoveState : EnemyState
         NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
 
         return navHit.position;
-    }
+    }*/
 }

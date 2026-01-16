@@ -3,11 +3,11 @@ using UnityEngine.AI;
 
 public class Enemy_WaitAttackState : EnemyState
 {
-    private Vector3 attackPoint;
-    private Vector3 lastPlayerPosition;
-    private Vector3 currentPosition;
-    private Vector3 directionToPlayer;
-    private float currentTime;
+    // private Vector3 attackPoint;
+    // private Vector3 lastPlayerPosition;
+    // private Vector3 currentPosition;
+    // private Vector3 directionToPlayer;
+    // private float currentTime;
     //private bool hasStartedAttack;
 
     
@@ -15,43 +15,46 @@ public class Enemy_WaitAttackState : EnemyState
     {
     }
 
+    // public override void Enter()
+    // {
+    //     base.Enter();
+    //     //enemy.isAttacking = true;
+    //
+    //     // Guardar posiciones
+    //     currentPosition = enemy.transform.position;
+    //     lastPlayerPosition = enemy.playerTransform != null ? enemy.playerTransform.position : enemy.transform.forward;
+    //
+    //     // Calcular punto de ataque (hacia donde va a embestir)
+    //     
+    //     StopSmooth();
+    //     //attackPoint = lastPlayerPosition;
+    //
+    //     // DETENER al enemigo durante la carga del ataque
+    //     //enemy.agent.isStopped = true;
+    //     //enemy.agent.velocity = Vector3.zero;
+    //
+    //     // Mirar hacia el objetivo
+    //     LookToPlayer();
+    //
+    //     // Animaci�n de carga
+    //     //anim.Play("WaitAttack");
+    //
+    //     currentTime = 0;
+    //     //enemy.hasStartedAttack = false;
+    //     
+    //     
+    //     enemy.orbitAngle = InitialiceOrbitAngle();
+    // }
+    
     public override void Enter()
     {
         base.Enter();
-        //enemy.isAttacking = true;
-
-        // Guardar posiciones
-        currentPosition = enemy.transform.position;
-        lastPlayerPosition = enemy.playerTransform != null ? enemy.playerTransform.position : enemy.transform.forward;
-
-        // Calcular punto de ataque (hacia donde va a embestir)
-        
-        StopSmooth();
-        //attackPoint = lastPlayerPosition;
-
-        // DETENER al enemigo durante la carga del ataque
-        //enemy.agent.isStopped = true;
-        //enemy.agent.velocity = Vector3.zero;
-
-        // Mirar hacia el objetivo
-        LookToPlayer();
-
-        // Animaci�n de carga
-        //anim.Play("WaitAttack");
-
-        currentTime = 0;
-        //enemy.hasStartedAttack = false;
-        
-        
-        enemy.orbitAngle = InitialiceOrbitAngle();
+        enemy.WaitAttack_Enter();
     }
 
-    private void LookToPlayer()
-    {
-        enemy.transform.LookAt(new Vector3(enemy.playerTransform.position.x, enemy.transform.position.y, enemy.playerTransform.position.z), Vector3.up);
-    }
+    
 
-    public override void Update()
+    /*public override void Update()
     {
         base.Update();
         enemy.canAttackByManager = EnemyWaveManager.Instance.RequestAttackPermission(enemy);
@@ -76,11 +79,27 @@ public class Enemy_WaitAttackState : EnemyState
             
         }
 
+    }*/
+    
+    public override void Update()
+    {
+        base.Update();
+        enemy.WaitAttack_Update();
     }
-    public override void Exit()
+    /*public override void Exit()
     {
         base.Exit();
         enemy.agent.isStopped = false;
+    }*/
+    public override void Exit()
+    {
+        base.Exit();
+        enemy.WaitAttack_Exit();
+    }
+    
+    /*private void LookToPlayer()
+    {
+        enemy.transform.LookAt(new Vector3(enemy.playerTransform.position.x, enemy.transform.position.y, enemy.playerTransform.position.z), Vector3.up);
     }
     private void StopSmooth()
     {
@@ -125,5 +144,5 @@ public class Enemy_WaitAttackState : EnemyState
         Vector3 directionPlayerToEnemy = enemy.transform.position - enemy.playerTransform.position;
         float angleInRadians = Mathf.Atan2(directionPlayerToEnemy.z, directionPlayerToEnemy.x);
         return angleInRadians * Mathf.Rad2Deg;
-    }
+    }*/
 }

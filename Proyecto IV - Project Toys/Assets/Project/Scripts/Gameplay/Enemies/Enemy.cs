@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : Entity
+public class Enemy : Entity, IEnemyStates
 {
     public Enemy_IdleState idleState;   // ESTADO DE IDLE
     public Enemy_MoveState moveState;    // ESTADO DE MOVIMIENTO\ WANDER
@@ -12,7 +12,13 @@ public class Enemy : Entity
     public Enemy_DeadState deadState; // ESTADO DE MUERTE
     public Enemy_FlinchState flinchState; // ESTADO DE ATURDIMIENTO
     public Enemy_ExecutionState executionState; // ESTADO DE EJECUCION
-
+    public enum EnemyTypes
+    {
+        Melee,
+        Ranged,
+        Tank
+    }
+    [HideInInspector] public EnemyTypes enemyType;
 
     [Header("Enemy Specs")]
     public float range;
@@ -28,7 +34,6 @@ public class Enemy : Entity
     public int damage;
     public float attackSpeed;
     public bool isAttacking;
-    public float flinchTime;
     [HideInInspector] public bool hasAttacked;
     private Entity_Combat _combat;
 
@@ -103,14 +108,13 @@ public class Enemy : Entity
         agent.isStopped = false;
         health.ResetStats();
     }
-    public void PlayerDeath()
-    {
-        stateMachine.ChangeState(idleState);
-    }
-
     public void StopAttacking()
     {
         stateMachine.ChangeState(pursuitState);
+    }
+    public void PlayerDeath()
+    {
+        stateMachine.ChangeState(idleState);
     }
 
     public void ChangeEnemyState(EnemyState newState)
@@ -167,6 +171,11 @@ public class Enemy : Entity
         float distance;
         distance = (transform.position - playerTransform.position).sqrMagnitude;
         return distance;
+    }
+    
+    public void GetDistanceToPlayer()
+    {
+        distanceToPlayer = CheckPlayerDistance();
     }
     // public void UpdateStateBasedOnNearness()
     // {
@@ -230,5 +239,34 @@ public class Enemy : Entity
         PerfectDodgeManager.EndPerfectDodgeFlag(this.gameObject);
         hasAttacked = true;
     }
+    #endregion
+
+    #region StatesFunctions
+
+    public virtual void Idle_Enter(){}
+    public virtual void Idle_Update(){}
+    public virtual void Idle_Exit(){}
+    public virtual void Move_Enter(){}
+    public virtual void Move_Update(){}
+    public virtual void Move_Exit(){}
+    public virtual void Pursuit_Enter(){}
+    public virtual void Pursuit_Update(){}
+    public virtual void Pursuit_Exit(){}
+    public virtual void Attack_Enter(){}
+    public virtual void Attack_Update(){}
+    public virtual void Attack_Exit(){}
+    public virtual void WaitAttack_Enter(){}
+    public virtual void WaitAttack_Update(){}
+    public virtual void WaitAttack_Exit(){}
+    public virtual void Dead_Enter(){}
+    public virtual void Dead_Update(){}
+    public virtual void Dead_Exit(){}
+    public virtual void Flinch_Enter(){}
+    public virtual void Flinch_Update(){}
+    public virtual void Flinch_Exit(){}
+    public virtual void Execution_Enter(){}
+    public virtual void Execution_Update(){}
+    public virtual void Execution_Exit(){}
+
     #endregion
 }
