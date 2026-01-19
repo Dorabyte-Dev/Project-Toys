@@ -142,6 +142,12 @@ public class Enemy : Entity, IEnemyStates
         //this.gameObject.SetActive(false);
     }
 
+    #region Common Enemy Methods
+    protected void LookToPlayer()
+    {
+        transform.LookAt(new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z), Vector3.up);
+    }
+    #endregion
 
     //public Transform GetPlayerReference()
     //{

@@ -54,7 +54,9 @@ public class Enemy_Melee : Enemy
     }
 
     #region IdleFunctions
-
+    /* =======================================================================================
+     * STATE: IDLE
+     * ======================================================================================= */
     public override void Idle_Enter()
     {
         base.Idle_Enter();
@@ -76,6 +78,9 @@ public class Enemy_Melee : Enemy
 
     #endregion
     #region MoveFunctions
+    /* =======================================================================================
+     * STATE: MOVE
+     * ======================================================================================= */
     private void GoToRandomPoint()
     {
         if (agent.pathPending || !agent.isOnNavMesh)
@@ -145,7 +150,9 @@ public class Enemy_Melee : Enemy
     }
     #endregion
     #region PursuitFunctions
-
+    /* =======================================================================================
+     * STATE: PURSUIT
+     * ======================================================================================= */
     public override void Pursuit_Enter()
     {
         base.Pursuit_Enter();
@@ -177,7 +184,9 @@ public class Enemy_Melee : Enemy
 
     #endregion
     #region AttackFunctions
-
+    /* =======================================================================================
+     * STATE: ATTACK
+     * ======================================================================================= */
     public void SetParametersAttack(Vector3 currentP, Vector3 attackP)
     {
         _currentPosition = currentP;
@@ -218,10 +227,10 @@ public class Enemy_Melee : Enemy
     }
     #endregion
     #region WaitAttackFunctions
-    private void LookToPlayer()
-    {
-        transform.LookAt(new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z), Vector3.up);
-    }
+    /* =======================================================================================
+     * STATE: WAIT ATTACK
+     * ======================================================================================= */
+    
     private void StopSmooth()
     {
         agent.destination = _currentPosition + (_lastPlayerPosition - _currentPosition) * 0.25f;
@@ -331,7 +340,9 @@ public class Enemy_Melee : Enemy
 
     #endregion
     #region DeadFunctions
-
+    /* =======================================================================================
+     * STATE: DEAD
+     * ======================================================================================= */
     public override void Dead_Enter()
     {
         base.Dead_Enter();
@@ -356,6 +367,9 @@ public class Enemy_Melee : Enemy
     }
     #endregion
     #region FLinchFunctions
+    /* =======================================================================================
+     * STATE: FLINCH
+     * ======================================================================================= */
     public override void Flinch_Enter()
     {
         base.Flinch_Enter();
@@ -385,7 +399,9 @@ public class Enemy_Melee : Enemy
 
     #endregion
     #region ExecutionFunctions
-
+    /* =======================================================================================
+     * STATE: EXECUTION
+     * ======================================================================================= */
     public override void Execution_Enter()
     {
         base.Execution_Enter();
