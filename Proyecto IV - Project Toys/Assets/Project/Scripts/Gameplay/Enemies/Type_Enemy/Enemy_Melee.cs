@@ -8,9 +8,9 @@ public class Enemy_Melee : Enemy
     private bool hasStartedAttack;
     
     [Header("States Timer Settings")]
-    private float _stateTimer;
     public float flinchTime;
     public float idleTime;
+    private float _stateTimer;
 
     #region WaitAttackVariables
     private Vector3 _attackPoint;
