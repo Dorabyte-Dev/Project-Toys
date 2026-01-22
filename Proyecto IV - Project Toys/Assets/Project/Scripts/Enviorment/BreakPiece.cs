@@ -8,7 +8,7 @@ public class BreakPiece : MonoBehaviour
         parent = GetComponentInParent<Break_Object>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(parent.tagName))
         {
@@ -17,5 +17,5 @@ public class BreakPiece : MonoBehaviour
                 parent.ActivateDestruction();
             }
         }
-    }
+    }*/
 }

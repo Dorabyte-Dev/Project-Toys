@@ -23,8 +23,10 @@ public class Entity_Combat : MonoBehaviour
     }
     public void PerformAttack()
     {
+        Debug.Log("Start Attack");
         foreach (var target in GetDetectedColliders())
         {
+            Debug.Log(target.name);  
             Entity_Health targetHealth = target.GetComponent<Entity_Health>();
             //Debug.Log(target);
             if (targetHealth != null)
@@ -41,6 +43,12 @@ public class Entity_Combat : MonoBehaviour
                     PerfectDodgeManager.SetPerfectDodgeFlag(entity.gameObject);
                 }
                 
+            }
+            else if (target.CompareTag("dObject"))
+            {
+                Break_Object breakObject = target.GetComponent<Break_Object>();
+                if (breakObject != null)
+                    breakObject.ActivateDestruction();
             }
             else
             {
