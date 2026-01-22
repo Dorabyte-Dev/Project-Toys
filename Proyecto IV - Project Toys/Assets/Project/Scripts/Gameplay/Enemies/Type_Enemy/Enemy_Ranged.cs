@@ -5,8 +5,7 @@ public class Enemy_Ranged : Enemy
 {
     [Header("Ranged Enemy Prefabs and References")]
     public GameObject projectilePrefab;
-    public Transform projectileSpawnPoint;
-    public Transform projectileRotationPivot;
+    public Transform projectileSpawnPointCenter;
     
     [Header("Ranged Enemy Settings")]
     public float detectionRadius = 10f;
@@ -69,9 +68,9 @@ public class Enemy_Ranged : Enemy
     private Vector3 GetProjectilePosition(int step, float angleStep)
     {
         float angle = step * angleStep;
-        float projectileXPosition = projectileSpawnPoint.position.x + Mathf.Cos(angle * Mathf.Deg2Rad) * projectileRotationRadius;
-        float projectileZPosition = projectileSpawnPoint.position.z + Mathf.Sin(angle * Mathf.Deg2Rad) * projectileRotationRadius;
-        Vector3 projectilePosition = new Vector3(projectileXPosition, projectileSpawnPoint.position.y, projectileZPosition);
+        float projectileXPosition = projectileSpawnPointCenter.position.x + Mathf.Cos(angle * Mathf.Deg2Rad) * projectileRotationRadius;
+        float projectileZPosition = projectileSpawnPointCenter.position.z + Mathf.Sin(angle * Mathf.Deg2Rad) * projectileRotationRadius;
+        Vector3 projectilePosition = new Vector3(projectileXPosition, projectileSpawnPointCenter.position.y, projectileZPosition);
         return projectilePosition;
     }
 
@@ -80,7 +79,7 @@ public class Enemy_Ranged : Enemy
         //Logica de rotacion de proyectiles alrededor del pivote
         foreach (var projectile in projectiles)
         {
-            projectile.transform.RotateAround(projectileRotationPivot.position, Vector3.up, projectileRotationSpeed * Time.deltaTime);
+            projectile.transform.RotateAround(projectileSpawnPointCenter.position, Vector3.up, projectileRotationSpeed * Time.deltaTime);
         }
     }
     

@@ -20,28 +20,18 @@ public class Enemy : Entity, IEnemyStates
     }
     [HideInInspector] public EnemyTypes enemyType;
 
-    [Header("Enemy Specs")]
-    public float range;
-    public float attackRange;
-    public float waitTime;
+    [Header("Enemy Agent Specs")]
     public float acceleration;
-    public float orbitDistance;
-    public float orbitSpeed;
-    [HideInInspector]public float orbitAngle;
-
+    
     [Header("Enemy Attack Specs")]
-    public float attackAcceleration;
     public int damage;
-    public float attackSpeed;
-    public bool isAttacking;
+    [HideInInspector]public bool isAttacking;
     [HideInInspector] public bool hasAttacked;
+    
     private Entity_Combat _combat;
 
     [Header("Player Coords")] 
-    public float pursuitPlayerRange;
-    public float attackPlayerRange;
-    public bool jugadorDetectado;
-    public int nearness;
+    [HideInInspector] public int nearness;
     [HideInInspector] public Transform playerTransform;
     [HideInInspector] public float distanceToPlayer;
 
