@@ -34,8 +34,6 @@ public class Enemy_Melee : Enemy
     {
         base.Awake();
 
-        enemyType = EnemyTypes.Melee;   
-
         idleState = new Enemy_IdleState(this, stateMachine, "idle");
         moveState = new Enemy_MoveState(this, stateMachine, "move");
         pursuitState = new Enemy_PursuitState(this, stateMachine, "pursuit");

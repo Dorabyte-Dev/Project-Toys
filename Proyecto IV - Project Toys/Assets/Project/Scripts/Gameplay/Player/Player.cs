@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 public class Player : Entity
 {
     public static event Action OnPlayerDeath;
+    #region States
     public PlayerInputSystem input { get; private set; }
     public Player_IdleState idleState { get; private set; }
     public Player_MoveState moveState { get; private set; }
@@ -17,6 +18,8 @@ public class Player : Entity
     public Player_DeathState deathState { get; private set; }
     public Player_HeavyAttackState heavyState { get; private set; }
     public Player_ExecutionState executionState { get; private set; }
+
+    #endregion
 
     [Header("Attack Details")]
     public Vector2[] attackVelocity;
@@ -30,7 +33,6 @@ public class Player : Entity
     public float comboBarHitModifier;
     public float comboBarPerfectDodgeModifier;
     public float maxComboBarAmount;
-    private Entity_Combat _combat;
     private float _comboBarAmount;
     public float comboBarAmount
     {
@@ -48,10 +50,7 @@ public class Player : Entity
     [HideInInspector] public Transform executionTarget;
     [HideInInspector] public Enemy executionEnemy;
     [SerializeField] public LayerMask executionTargetLayer;
-    [Space(20)]
     
-    [Header("UI References")]
-    private Entity_Health _health;
     
     [Header("Movement Specs")]
     public Vector2 moveInput { get; private set; }
@@ -86,8 +85,11 @@ public class Player : Entity
         executionState = new Player_ExecutionState(this,  stateMachine, "kill");
         
         _combat = GetComponent<Entity_Combat>();
-        _combat.targetHit.AddListener(OnEnemyHit);
         _health = GetComponent<Entity_Health>();
+        _vfx = GetComponent<Entity_VFX>();
+        _animationTriggers = GetComponent<Entity_AnimationTriggers>();
+        _combat.targetHit.AddListener(OnEnemyHit);
+        
 
     }
     protected override void Start()
@@ -155,14 +157,7 @@ public class Player : Entity
         return nearestEnemy;
     }
 
-    public bool CanExecute()
-    {
-        if (executionTarget)
-        {
-            return true;
-        }
-        return false;
-    }
+    public bool CanExecute() => executionTarget;
 
     void SetComboBar()
     {

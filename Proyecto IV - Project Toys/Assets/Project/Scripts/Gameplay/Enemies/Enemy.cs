@@ -12,13 +12,6 @@ public class Enemy : Entity, IEnemyStates
     public Enemy_DeadState deadState; // ESTADO DE MUERTE
     public Enemy_FlinchState flinchState; // ESTADO DE ATURDIMIENTO
     public Enemy_ExecutionState executionState; // ESTADO DE EJECUCION
-    public enum EnemyTypes
-    {
-        Melee,
-        Ranged,
-        Tank
-    }
-    [HideInInspector] public EnemyTypes enemyType;
 
     [Header("Enemy Agent Specs")]
     public float acceleration;
@@ -27,8 +20,6 @@ public class Enemy : Entity, IEnemyStates
     public int damage;
     [HideInInspector]public bool isAttacking;
     [HideInInspector] public bool hasAttacked;
-    
-    private Entity_Combat _combat;
 
     [Header("Player Coords")] 
     [HideInInspector] public int nearness;
@@ -69,7 +60,11 @@ public class Enemy : Entity, IEnemyStates
     protected override void Start()
     {
         base.Start();
-        GetComponent<Entity_Combat>().targetHit.AddListener(OnPlayerDamaged);
+        _combat = GetComponent<Entity_Combat>();
+        _animationTriggers = GetComponent<Entity_AnimationTriggers>();
+        _health = GetComponent<Entity_Health>();
+        _vfx = GetComponent<Entity_VFX>();
+        _combat.targetHit.AddListener(OnPlayerDamaged);
         //stateMachine.Initialize(idleState);
         if (spawner == null)
             Debug.LogWarning("Spawner not assigned. Check GameObject to component of EnemySpawner.cs");
@@ -81,10 +76,8 @@ public class Enemy : Entity, IEnemyStates
         transform.Rotate(0f, 180f, 0f);
     }
 
-    public override void ChangeFlintState()
+    public void ChangeFlintState()
     {
-        base.ChangeFlintState();
-        //Debug.Log("Entro en flichState");
         stateMachine.ChangeState(flinchState);
     }
 
@@ -126,11 +119,11 @@ public class Enemy : Entity, IEnemyStates
         PerfectDodgeManager.EndPerfectDodgeFlag(this.gameObject);
     }
 
-    public void EnemyDeathTest()
+    /*public void EnemyDeathTest()
     {
         Destroy(this.gameObject);
         //this.gameObject.SetActive(false);
-    }
+    }*/
 
     #region Common Enemy Methods
     protected void LookToPlayer()
@@ -173,44 +166,11 @@ public class Enemy : Entity, IEnemyStates
     {
         distanceToPlayer = CheckPlayerDistance();
     }
-    // public void UpdateStateBasedOnNearness()
-    // {
-    //     Debug.Log("Updating state based on nearness");
-    //     switch (nearness)
-    //     {
-    //         case 0:
-    //             if (!isAttacking)
-    //             {
-    //                 stateMachine.ChangeState(moveState);
-    //             }
-    //             break;
-    //         case 1:
-    //             if (!isAttacking)
-    //             {
-    //                 stateMachine.ChangeState(pursuitState);
-    //             }
-    //             break;
-    //         case 2:
-    //             if (!isAttacking)
-    //             {
-    //                 stateMachine.ChangeState(waitAttackState);
-    //             }
-    //             break;
-    //         default:
-    //             Debug.LogWarning("Error with the detect player system");
-    //             break;
-    //     }
-    // }
-
-    // public void CallUpdateStateDetection()
-    // {
-    //     UpdateStateBasedOnNearness();
-    // }
     #endregion
 
     #region Wave Manager
     
-    public void AllowAttackFromManager()
+    /*public void AllowAttackFromManager()
     {
         canAttackByManager = true;
         Debug.Log($"[Enemy] {name} recibió permiso para atacar.");
@@ -225,7 +185,7 @@ public class Enemy : Entity, IEnemyStates
             EnemyWaveManager.Instance.NotifyEnemyFinishedAttack(this);
     
         Debug.Log($"[Enemy] {name} notificó fin de ataque.");
-    }
+    }*/
 
     #endregion
 

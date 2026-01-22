@@ -24,8 +24,6 @@ public class Enemy_Ranged : Enemy
     {
         base.Awake();
 
-        enemyType = EnemyTypes.Ranged;
-
         idleState = new Enemy_IdleState(this, stateMachine, "idle");
         moveState = new Enemy_MoveState(this, stateMachine, "move");
         pursuitState = new Enemy_PursuitState(this, stateMachine, "pursuit");

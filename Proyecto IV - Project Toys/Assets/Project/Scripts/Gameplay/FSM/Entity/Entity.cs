@@ -23,6 +23,13 @@ public class Entity : MonoBehaviour
     [Header("Slope Detection")]
     [SerializeField] private float maxSlopeAngle = 30f;
     [SerializeField] private RaycastHit slopeHit;
+    
+    
+    protected Entity_Combat _combat;
+    protected Entity_Health _health;
+    protected Entity_Stats stats;
+    protected Entity_AnimationTriggers _animationTriggers;
+    protected Entity_VFX _vfx;
 
     protected virtual void Awake()
     {
@@ -90,16 +97,10 @@ public class Entity : MonoBehaviour
     }
     public virtual void DeadEntity() 
     {
-
     
     }
 
-    public virtual void ChangeFlintState()
-    {
-
-    }
-
-    private void OnDrawGizmos()
+    private void OnDrawGizmos() // Visualizacion de rayos y deteccion de pendientes
     {
         float rayDistance = 1f * 0.5f + 0.3f;
 
