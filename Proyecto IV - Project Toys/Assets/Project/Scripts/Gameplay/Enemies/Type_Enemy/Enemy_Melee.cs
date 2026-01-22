@@ -6,11 +6,22 @@ public class Enemy_Melee : Enemy
 {
     [Space(30)]
     private bool hasStartedAttack;
-    
+    [Header("Enemy Melee Settings")]
+    public float range;
+    public float attackRange;
+    public float waitTime;
+    public float attackAcceleration;
+    public float attackSpeed;
+    public float pursuitPlayerRange;
+    public float attackPlayerRange;
+    [Header("Orbit Settings")]
+    public float orbitDistance;
+    public float orbitSpeed;
+    [HideInInspector]public float orbitAngle;
     [Header("States Timer Settings")]
-    private float _stateTimer;
     public float flinchTime;
     public float idleTime;
+    private float _stateTimer;
 
     #region WaitAttackVariables
     private Vector3 _attackPoint;

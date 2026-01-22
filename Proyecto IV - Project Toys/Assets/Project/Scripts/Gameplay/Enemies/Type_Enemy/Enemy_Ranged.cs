@@ -3,13 +3,23 @@ using UnityEngine;
 
 public class Enemy_Ranged : Enemy
 {
+    [Header("Ranged Enemy Prefabs and References")]
+    public GameObject projectilePrefab;
+    public Transform projectileSpawnPointCenter;
     
+    [Header("Ranged Enemy Settings")]
     public float detectionRadius = 10f;
     public float fleeRadius = 5f;
     
+    [Header("Projectile Settings")]
+    public int maxProjectiles = 5;
+    public float projectileRotationSpeed = 10f;
+    public float projectileRotationRadius = 3f;
+    private GameObject[] _projectiles;
+    
     [Header("States Timer Settings")]
-    private float _stateTimer;
     public float flinchTime;
+    private float _stateTimer;
     protected override void Awake()
     {
         base.Awake();
@@ -35,7 +45,45 @@ public class Enemy_Ranged : Enemy
         base.Update();
         _stateTimer -= Time.deltaTime;
     }
+    #region ProjectileFuntions
+    private void InvokeProjectiles()
+    {
+        //Logica de invocacion de proyectiles
+        if (_projectiles.Length <= 0)
+        {
+            _projectiles = new GameObject[maxProjectiles];
+        }
+        float angleStep = 360f / maxProjectiles;
+        
+        for (int i = 0; i < _projectiles.Length; i++)
+        {
+            //Calcular posicion en circulo del proyectil
+            Vector3 projectilePosition = GetProjectilePosition(i, angleStep);
+            //Instanciar proyectil en la posicion calculada
+            _projectiles[i] = Instantiate(projectilePrefab);
+            _projectiles[i].transform.position = projectilePosition;
+        }
+    }
 
+    private Vector3 GetProjectilePosition(int step, float angleStep)
+    {
+        float angle = step * angleStep;
+        float projectileXPosition = projectileSpawnPointCenter.position.x + Mathf.Cos(angle * Mathf.Deg2Rad) * projectileRotationRadius;
+        float projectileZPosition = projectileSpawnPointCenter.position.z + Mathf.Sin(angle * Mathf.Deg2Rad) * projectileRotationRadius;
+        Vector3 projectilePosition = new Vector3(projectileXPosition, projectileSpawnPointCenter.position.y, projectileZPosition);
+        return projectilePosition;
+    }
+
+    private void RotateProjectilesAroundPivot(GameObject[] projectiles)
+    {
+        //Logica de rotacion de proyectiles alrededor del pivote
+        foreach (var projectile in projectiles)
+        {
+            projectile.transform.RotateAround(projectileSpawnPointCenter.position, Vector3.up, projectileRotationSpeed * Time.deltaTime);
+        }
+    }
+    
+    #endregion
     #region IdleFunctions
     /* =======================================================================================
      * STATE: IDLE
@@ -43,7 +91,7 @@ public class Enemy_Ranged : Enemy
     public override void Idle_Enter()
     {
         base.Idle_Enter();
-        //Invocar proyectiles aqui
+        InvokeProjectiles();
     }
     public override void Idle_Update()
     {
