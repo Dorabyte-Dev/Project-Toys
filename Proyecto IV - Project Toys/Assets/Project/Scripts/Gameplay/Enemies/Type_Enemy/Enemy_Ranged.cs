@@ -54,12 +54,27 @@ public class Enemy_Ranged : Enemy
         {
             _projectiles = new GameObject[maxProjectiles];
         }
-
+        float angleStep = 360f / maxProjectiles;
+        
         for (int i = 0; i < _projectiles.Length; i++)
         {
+            //Calcular posicion en circulo del proyectil
+            Vector3 projectilePosition = GetProjectilePosition(i, angleStep);
+            //Instanciar proyectil en la posicion calculada
             _projectiles[i] = Instantiate(projectilePrefab);
+            _projectiles[i].transform.position = projectilePosition;
         }
     }
+
+    private Vector3 GetProjectilePosition(int step, float angleStep)
+    {
+        float angle = step * angleStep;
+        float projectileXPosition = projectileSpawnPoint.position.x + Mathf.Cos(angle * Mathf.Deg2Rad) * projectileRotationRadius;
+        float projectileZPosition = projectileSpawnPoint.position.z + Mathf.Sin(angle * Mathf.Deg2Rad) * projectileRotationRadius;
+        Vector3 projectilePosition = new Vector3(projectileXPosition, projectileSpawnPoint.position.y, projectileZPosition);
+        return projectilePosition;
+    }
+
     private void RotateProjectilesAroundPivot(GameObject[] projectiles)
     {
         //Logica de rotacion de proyectiles alrededor del pivote
