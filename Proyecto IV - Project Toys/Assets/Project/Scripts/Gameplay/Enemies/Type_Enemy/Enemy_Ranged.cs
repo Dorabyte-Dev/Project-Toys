@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -10,12 +11,15 @@ public class Enemy_Ranged : Enemy
     [Header("Ranged Enemy Settings")]
     public float detectionRadius = 10f;
     public float fleeRadius = 5f;
+    public float timeWaitToSendWaveManagerRequest;
+    private float _currentWaitTime;
     
     [Header("Projectile Settings")]
     public int maxProjectiles = 5;
     public float projectileRotationSpeed = 10f;
     public float projectileRotationRadius = 3f;
-    private GameObject[] _projectiles;
+    private List<GameObject> _projectiles;
+    private Proyectil _projectile;
     
     [Header("States Timer Settings")]
     public float flinchTime;
@@ -46,20 +50,29 @@ public class Enemy_Ranged : Enemy
     #region ProjectileFuntions
     private void InvokeProjectiles()
     {
+        if(_projectiles == null) _projectiles = new List<GameObject>(maxProjectiles);
         //Logica de invocacion de proyectiles
-        if (_projectiles.Length <= 0)
+        /*if (_projectiles.Count <= 0)
         {
-            _projectiles = new GameObject[maxProjectiles];
-        }
+            _projectiles = new List<GameObject>(maxProjectiles);
+        }*/
         float angleStep = 360f / maxProjectiles;
         
-        for (int i = 0; i < _projectiles.Length; i++)
+        int projectilePositionsCount = _projectiles != null ? _projectiles.Count : 0;
+        while (_projectiles.Count < maxProjectiles)
         {
+            if (projectilePositionsCount >= maxProjectiles)
+            {
+                Debug.LogWarning("Start of infinite loop prevention in InvokeProjectiles");
+                break;
+            }
             //Calcular posicion en circulo del proyectil
-            Vector3 projectilePosition = GetProjectilePosition(i, angleStep);
+            Vector3 projectilePosition = GetProjectilePosition(projectilePositionsCount, angleStep);
             //Instanciar proyectil en la posicion calculada
-            _projectiles[i] = Instantiate(projectilePrefab);
-            _projectiles[i].transform.position = projectilePosition;
+            _projectiles.Add(Instantiate(projectilePrefab));
+            _projectiles[projectilePositionsCount].transform.position = projectilePosition;
+            _projectiles[projectilePositionsCount].transform.parent = projectileSpawnPointCenter;
+            projectilePositionsCount++;
         }
     }
 
@@ -158,7 +171,7 @@ public class Enemy_Ranged : Enemy
         base.Attack_Update();
         LookToPlayer();
         
-        //Logica de ataque a distancia (Lanza un proyectil de 5 cada 2 segundos)
+        //Logica de ataque a distancia (Lanza 1 de 5 proyectiles cada 2 segundos)
     }
     public override void Attack_Exit()
     {
@@ -169,10 +182,20 @@ public class Enemy_Ranged : Enemy
     /* =======================================================================================
      * STATE: WAIT ATTACK
      * ======================================================================================= */
+    void CheckAndReloadProjectiles()
+    {
+        if (_projectiles.Count < maxProjectiles)
+        {
+            InvokeProjectiles();
+        }
+    }
     public override void WaitAttack_Enter()
     {
         base.WaitAttack_Enter();
         //Detectar si tiene todos los proyectiles. En caso de no tenerlos, recargarlos.
+        CheckAndReloadProjectiles();
+        
+        _currentWaitTime = 0;
     }
 
     public override void WaitAttack_Update()
@@ -183,6 +206,19 @@ public class Enemy_Ranged : Enemy
         LookToPlayer();
         
         //Detectar si puede atacar (Si tiene proyectiles y si el manager le dio permiso)
+        if (_currentWaitTime >= timeWaitToSendWaveManagerRequest)
+        {
+            if (canAttackByManager)
+            {
+                //Cambiar al estado de ataque
+                
+                stateMachine.ChangeState(attackState);
+            }
+            else
+            {
+                _currentWaitTime = 0;
+            }
+        }
     }
     public override void WaitAttack_Exit()
     {
