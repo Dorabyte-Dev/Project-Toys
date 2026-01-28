@@ -1155,11 +1155,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694712086}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!137 &782142368 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 7431876637211601282, guid: e2274234345257440ac9d23e55f16835, type: 3}
-  m_PrefabInstance: {fileID: 718552612484972110}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &789638580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,7 +1615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c212a25c538b24990d2d63fec03aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DissolveScript
-  renderMesh: {fileID: 782142368}
+  renderMesh: {fileID: 0}
   vfxGraph: {fileID: 0}
   dissolveRate: 0.0125
   refreshRate: 0.025
@@ -3113,7 +3108,7 @@ MonoBehaviour:
   Space: 1
   m_Property:
     m_Name: Transform
-  Target: {fileID: 1654727086}
+  Target: {fileID: 0}
 --- !u!114 &1274760791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3221,7 +3216,7 @@ VisualEffect:
       m_Array: []
     m_NamedObject:
       m_Array:
-      - m_Value: {fileID: 782142368}
+      - m_Value: {fileID: 0}
         m_Name: SkinnedMeshRender
         m_Overridden: 1
     m_Bool:
@@ -8544,11 +8539,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49c4d5e1bcc7da4fbe384e9252c4447, type: 3}
---- !u!4 &1654727086 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1976527139429758756, guid: e2274234345257440ac9d23e55f16835, type: 3}
-  m_PrefabInstance: {fileID: 718552612484972110}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1744619679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8921,6 +8911,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1836122523888112386, guid: e2274234345257440ac9d23e55f16835, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6043451786427423066, guid: e2274234345257440ac9d23e55f16835, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.78
@@ -8964,6 +8958,10 @@ PrefabInstance:
     - target: {fileID: 6442816506326136239, guid: e2274234345257440ac9d23e55f16835, type: 3}
       propertyPath: m_Name
       value: EnemyFSM
+      objectReference: {fileID: 0}
+    - target: {fileID: 6442816506326136239, guid: e2274234345257440ac9d23e55f16835, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9082,6 +9080,26 @@ PrefabInstance:
     - target: {fileID: 2810943244668541113, guid: e9bbec8268376f94f8688e7e8c17a120, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306217097648647204, guid: e9bbec8268376f94f8688e7e8c17a120, type: 3}
+      propertyPath: fleeRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306217097648647204, guid: e9bbec8268376f94f8688e7e8c17a120, type: 3}
+      propertyPath: detectionRadius
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306217097648647204, guid: e9bbec8268376f94f8688e7e8c17a120, type: 3}
+      propertyPath: projectileSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306217097648647204, guid: e9bbec8268376f94f8688e7e8c17a120, type: 3}
+      propertyPath: projectileRotationSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306217097648647204, guid: e9bbec8268376f94f8688e7e8c17a120, type: 3}
+      propertyPath: timeWaitToSendWaveManagerRequest
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4769032548351789038, guid: e9bbec8268376f94f8688e7e8c17a120, type: 3}
       propertyPath: m_Name
