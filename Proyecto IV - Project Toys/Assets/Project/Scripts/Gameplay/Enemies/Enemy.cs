@@ -161,8 +161,13 @@ public class Enemy : Entity, IEnemyStates
         distance = (transform.position - playerTransform.position).sqrMagnitude;
         return distance;
     }
+
+    public Vector3 GetPlayerDirection()
+    {
+        return playerTransform.position - transform.position;
+    }
     
-    public void GetDistanceToPlayer()
+    protected void GetDistanceToPlayer()
     {
         distanceToPlayer = CheckPlayerDistance();
     }

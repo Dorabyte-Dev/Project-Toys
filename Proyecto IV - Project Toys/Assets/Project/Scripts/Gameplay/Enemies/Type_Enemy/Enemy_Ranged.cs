@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy_Ranged : Enemy
@@ -20,6 +21,8 @@ public class Enemy_Ranged : Enemy
     public float projectileRotationRadius = 3f;
     private List<GameObject> _projectiles;
     private Proyectil _projectile;
+    public float projectileSpeed;
+    
     
     [Header("States Timer Settings")]
     public float flinchTime;
@@ -32,6 +35,7 @@ public class Enemy_Ranged : Enemy
         moveState = new Enemy_MoveState(this, stateMachine, "move");
         pursuitState = new Enemy_PursuitState(this, stateMachine, "pursuit");
         attackState = new Enemy_AttackState(this, stateMachine, "attack");
+        waitAttackState = new Enemy_WaitAttackState(this, stateMachine, "waitAttack");
         deadState = new Enemy_DeadState(this, stateMachine, "dead");
         flinchState = new Enemy_FlinchState(this, stateMachine, "flinch");
         executionState = new Enemy_ExecutionState(this, stateMachine, "execution");
@@ -46,6 +50,14 @@ public class Enemy_Ranged : Enemy
     {
         base.Update();
         _stateTimer -= Time.deltaTime;
+        RotateProjectilesAroundPivot(_projectiles);
+    }
+    
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.darkRed;
+        Gizmos.DrawWireSphere(transform.position, fleeRadius);
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
     #region ProjectileFuntions
     private void InvokeProjectiles()
@@ -85,9 +97,9 @@ public class Enemy_Ranged : Enemy
         return projectilePosition;
     }
 
-    private void RotateProjectilesAroundPivot(GameObject[] projectiles)
+    private void RotateProjectilesAroundPivot(List<GameObject> projectiles)
     {
-        //Logica de rotacion de proyectiles alrededor del pivote
+        if(projectiles == null) return;
         foreach (var projectile in projectiles)
         {
             projectile.transform.RotateAround(projectileSpawnPointCenter.position, Vector3.up, projectileRotationSpeed * Time.deltaTime);
@@ -111,10 +123,12 @@ public class Enemy_Ranged : Enemy
         if (distanceToPlayer <= fleeRadius)
         {
             stateMachine.ChangeState(moveState);
+            Debug.Log("Change to moveState");
         }
         else if (distanceToPlayer <= detectionRadius)
         {
             stateMachine.ChangeState(waitAttackState);
+            Debug.Log("Change to WaitState");
         }
         
     }
@@ -165,6 +179,7 @@ public class Enemy_Ranged : Enemy
     public override void Attack_Enter()
     {
         base.Attack_Enter();
+        Invoke(nameof(ThrowProjectile),2);
     }
     public override void Attack_Update()
     {
@@ -172,10 +187,28 @@ public class Enemy_Ranged : Enemy
         LookToPlayer();
         
         //Logica de ataque a distancia (Lanza 1 de 5 proyectiles cada 2 segundos)
+        
     }
     public override void Attack_Exit()
     {
         base.Attack_Exit();
+        CancelInvoke(nameof(ThrowProjectile));
+    }
+
+    public void ThrowProjectile()
+    {
+        if (_projectiles.Count <= 0)
+        {
+            Debug.LogError("Enemy Ranged: Trying to throw a projectile but no projectiles have been found");
+            return;
+        }
+        _projectile = _projectiles[0].GetComponent<Proyectil>();
+        _projectiles.RemoveAt(0);
+
+        _projectile.direction = GetPlayerDirection().normalized;
+        _projectile.speed = projectileSpeed;
+        _projectile.Release();
+        _projectile = null;
     }
     #endregion
     #region WaitAttackFunctions

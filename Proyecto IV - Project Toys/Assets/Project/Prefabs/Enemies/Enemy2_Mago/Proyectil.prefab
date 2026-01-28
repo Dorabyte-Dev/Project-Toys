@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 89daf81f8e8f6634da726cbca859ca38, type: 3}
+  - {fileID: 6326613446835631741, guid: 9ab01a89b806bc444a07636c670df3db, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 1845317200470542865}
   - component: {fileID: 4765060529831422967}
   - component: {fileID: 8294219978920613584}
+  - component: {fileID: 8364797587560375651}
   m_Layer: 0
   m_Name: Proyectil
   m_TagString: Untagged
@@ -135,6 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f221bc47dbb51e24f85ec1256cbd8c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Proyectil
+  projectileType: 0
+  direction: {x: 0, y: 0, z: 0}
+  speed: 0
 --- !u!65 &8294219978920613584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -156,3 +160,30 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &8364797587560375651
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2737077844218251050}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
