@@ -15,6 +15,7 @@ public class Enemy_Ranged : Enemy
     public float timeWaitToSendWaveManagerRequest;
     private float _currentWaitTime;
     
+    
     [Header("Projectile Settings")]
     public int maxProjectiles = 5;
     public float projectileRotationSpeed = 10f;
@@ -22,13 +23,14 @@ public class Enemy_Ranged : Enemy
     private List<GameObject> _projectiles;
     private Proyectil _projectile;
     public float projectileSpeed;
+    public float invokeProjectileSpeed = 1f;
     public float timeBetweenThrows = 2f;
     public float projectileTargetHeightOffset = 1.5f;
     
     [Header("States Timer Settings")]
     public float flinchTime;
     private float _stateTimer;
-    protected override void Awake()
+    protected override void Awake() 
     {
         base.Awake();
 
@@ -46,6 +48,7 @@ public class Enemy_Ranged : Enemy
     {
         base.Start();
         stateMachine.Initialize(idleState);
+        anim.SetFloat("invokeSpeed", invokeProjectileSpeed);
     }
     protected override void Update()
     {
@@ -61,7 +64,7 @@ public class Enemy_Ranged : Enemy
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
     #region ProjectileFuntions
-    public void InvokeProjectiles()
+    private void InvokeProjectiles()
     {
         if(_projectiles == null) _projectiles = new List<GameObject>(maxProjectiles);
         //Logica de invocacion de proyectiles
@@ -167,12 +170,16 @@ public class Enemy_Ranged : Enemy
     public override void Extra_Update()
     {
         base.Extra_Update();
+        GetDistanceToPlayer();
+        if (distanceToPlayer <= fleeRadius)
+        {
+            stateMachine.ChangeState(moveState);
+        }
     }
 
     public override void Extra_Exit()
     {
         base.Extra_Exit();
-        InvokeProjectiles();
     }
     #endregion
     #region AttackFunctions
@@ -211,6 +218,7 @@ public class Enemy_Ranged : Enemy
         _projectile.speed = projectileSpeed;
         _projectile.transform.parent = null;
         _projectile.Release();
+        _projectile.OnPlayerHit += OnProjectileHitPlayer;
         _projectile = null;
 
         if (_projectiles.Count <= 0)
@@ -218,6 +226,12 @@ public class Enemy_Ranged : Enemy
             stateMachine.ChangeState(extraState);
         }
     }
+
+    private void OnProjectileHitPlayer()
+    {
+        Debug.Log("Projectile hit the player! <b><size=20>GILIPOLLAS</size></b> ");
+    }
+
     #endregion
     #region WaitAttackFunctions
     /* =======================================================================================

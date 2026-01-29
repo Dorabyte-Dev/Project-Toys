@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 2097350293706948831}
   - component: {fileID: 4306217097648647204}
   - component: {fileID: 139983596963872420}
-  - component: {fileID: 1427160582101765062}
-  - component: {fileID: 2206468988445419567}
+  - component: {fileID: 8341894172028517276}
   - component: {fileID: 3836154247853298079}
-  - component: {fileID: 4708350051324467057}
+  - component: {fileID: 5992654983409202014}
   - component: {fileID: 6740698139904491967}
   - component: {fileID: 4330826503213067450}
   - component: {fileID: 2515948468701629260}
@@ -82,17 +81,22 @@ MonoBehaviour:
   originalPrefab: {fileID: 0}
   health: {fileID: 0}
   facingDirection: 1
+  combat: {fileID: 0}
+  _health: {fileID: 0}
+  _animationTriggers: {fileID: 0}
+  _vfx: {fileID: 0}
   canAttackByManager: 0
   projectilePrefab: {fileID: 2737077844218251050, guid: a99e0e69feab86f40bce4cf1fcdfec8f, type: 3}
   projectileSpawnPointCenter: {fileID: 6511287505534582692}
-  detectionRadius: 10
-  fleeRadius: 5
-  timeWaitToSendWaveManagerRequest: 0
+  detectionRadius: 11
+  fleeRadius: 4
+  timeWaitToSendWaveManagerRequest: 2
   maxProjectiles: 5
-  projectileRotationSpeed: 10
+  projectileRotationSpeed: 50
   projectileRotationRadius: 1
-  projectileSpeed: 0
-  timeBetweenThrows: 2
+  projectileSpeed: 10
+  invokeProjectileSpeed: 1
+  timeBetweenThrows: 0.5
   projectileTargetHeightOffset: 1.5
   flinchTime: 1
 --- !u!195 &139983596963872420
@@ -117,7 +121,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1427160582101765062
+--- !u!114 &8341894172028517276
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,9 +130,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1607952563234576997}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3300367c596a48947a2c6ae15c0f9b25, type: 3}
+  m_Script: {fileID: 11500000, guid: 7070a813d8154878af54a8f395f5c9af, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Entity_Combat
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Combat
   whatIsTarget:
     serializedVersion: 2
     m_Bits: 520
@@ -139,26 +143,6 @@ MonoBehaviour:
   targetHit:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2206468988445419567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1607952563234576997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cf0e2cb974c9ff41be8495e81e4e981, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Entity_Stats
-  maxHealth:
-    baseValue: 0
-  vitality:
-    baseValue: 0
-  attackDamage:
-    baseValue: 0
-  heavyDamage:
-    baseValue: 0
 --- !u!114 &3836154247853298079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +162,7 @@ MonoBehaviour:
   invincibleMode: 0
   enemy: {fileID: 0}
   enemyUI: {fileID: 0}
---- !u!114 &4708350051324467057
+--- !u!114 &5992654983409202014
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,9 +171,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1607952563234576997}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d9cdf3465f35574298a72b3213c3bf3, type: 3}
+  m_Script: {fileID: 11500000, guid: ded6eb4f453b49b0b6981f5230d039fd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Entity_VFX
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy_VFX
   rb: {fileID: 0}
   feedbackColor: {r: 0, g: 0, b: 0, a: 0}
   feedbackDuration: 0
