@@ -24,12 +24,6 @@ public class Entity : MonoBehaviour
     [SerializeField] private float maxSlopeAngle = 30f;
     [SerializeField] private RaycastHit slopeHit;
     
-    
-    protected Entity_Combat _combat;
-    protected Entity_Health _health;
-    protected Entity_Stats stats;
-    protected Entity_AnimationTriggers _animationTriggers;
-    protected Entity_VFX _vfx;
 
     protected virtual void Awake()
     {

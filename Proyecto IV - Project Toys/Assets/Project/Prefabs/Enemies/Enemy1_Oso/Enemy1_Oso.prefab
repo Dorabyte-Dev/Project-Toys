@@ -4289,10 +4289,12 @@ GameObject:
   - component: {fileID: 3203009401779903167}
   - component: {fileID: 7117305009099249655}
   - component: {fileID: 2695351602436985292}
+  - component: {fileID: 6033026481213273524}
   - component: {fileID: 3997593177914876775}
   - component: {fileID: 3843823875526603045}
   - component: {fileID: 7069640712222691578}
   - component: {fileID: 1732363745663154456}
+  - component: {fileID: 5180912079474492569}
   - component: {fileID: 8313501829526440140}
   - component: {fileID: 3459010090942442744}
   - component: {fileID: 4149592444398514215}
@@ -4429,6 +4431,10 @@ MonoBehaviour:
   originalPrefab: {fileID: 0}
   health: {fileID: 0}
   facingDirection: 1
+  combat: {fileID: 0}
+  _health: {fileID: 0}
+  _animationTriggers: {fileID: 0}
+  _vfx: {fileID: 0}
   canAttackByManager: 0
   range: 5
   attackRange: 7.5
@@ -4449,11 +4455,33 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6509402435267491086}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3300367c596a48947a2c6ae15c0f9b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Entity_Combat
+  whatIsTarget:
+    serializedVersion: 2
+    m_Bits: 520
+  stats: {fileID: 0}
+  entity: {fileID: 0}
+  damage: 0
+  heavyDamage: 0
+  targetHit:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6033026481213273524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6509402435267491086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7070a813d8154878af54a8f395f5c9af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Combat
   whatIsTarget:
     serializedVersion: 2
     m_Bits: 520
@@ -4526,11 +4554,35 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6509402435267491086}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d9cdf3465f35574298a72b3213c3bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Entity_VFX
+  rb: {fileID: 0}
+  feedbackColor: {r: 1, g: 1, b: 1, a: 0}
+  feedbackDuration: 0.5
+  pushStrengh: 15
+  pushDuration: 0.1
+  renderMesh: {fileID: 0}
+  vfxGraph: {fileID: 8974153532169194853}
+  dissolveRate: 0.015
+  refreshRate: 0.025
+  shakeDuration: 1
+  shakeStrength: 1
+  randomShake: 0.2
+--- !u!114 &5180912079474492569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6509402435267491086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded6eb4f453b49b0b6981f5230d039fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy_VFX
   rb: {fileID: 0}
   feedbackColor: {r: 1, g: 1, b: 1, a: 0}
   feedbackDuration: 0.5

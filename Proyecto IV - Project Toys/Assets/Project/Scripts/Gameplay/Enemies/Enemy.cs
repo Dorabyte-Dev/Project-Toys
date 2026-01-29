@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 public class Enemy : Entity, IEnemyStates
 {
@@ -37,6 +38,11 @@ public class Enemy : Entity, IEnemyStates
     
     public Transform player { get; private set; }
     
+    public Enemy_Combat combat;
+    public Enemy_Health _health;
+    public Enemy_AnimationTriggers _animationTriggers;
+    public Enemy_VFX _vfx;
+    
     [Header("WaveManager Specs")]
     public bool canAttackByManager; // permiso del manager para atacar
 
@@ -61,11 +67,11 @@ public class Enemy : Entity, IEnemyStates
     protected override void Start()
     {
         base.Start();
-        _combat = GetComponent<Entity_Combat>();
-        _animationTriggers = GetComponent<Entity_AnimationTriggers>();
-        _health = GetComponent<Entity_Health>();
-        _vfx = GetComponent<Entity_VFX>();
-        _combat.targetHit.AddListener(OnPlayerDamaged);
+        combat = GetComponent<Enemy_Combat>();
+        _animationTriggers = GetComponent<Enemy_AnimationTriggers>();
+        _health = GetComponent<Enemy_Health>();
+        _vfx = GetComponent<Enemy_VFX>();
+        combat.targetHit.AddListener(OnPlayerDamaged);
         //stateMachine.Initialize(idleState);
         if (spawner == null)
             Debug.LogWarning("Spawner not assigned. Check GameObject to component of EnemySpawner.cs");

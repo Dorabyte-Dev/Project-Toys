@@ -70,6 +70,12 @@ public class Player : Entity
 
     [Header("Death Specs")] [SerializeField]private Transform activeCheckpoint;
 
+
+    public Player_Combat _combat;
+    public Player_Health _health;
+    public Player_AnimationTriggers _animationTriggers;
+    public Player_VFX _vfx;
+    
     protected override void Awake()
     {
         base.Awake();
@@ -84,10 +90,10 @@ public class Player : Entity
         heavyState = new Player_HeavyAttackState(this, stateMachine, "HeavyPressed");
         executionState = new Player_ExecutionState(this,  stateMachine, "kill");
         
-        _combat = GetComponent<Entity_Combat>();
-        _health = GetComponent<Entity_Health>();
-        _vfx = GetComponent<Entity_VFX>();
-        _animationTriggers = GetComponent<Entity_AnimationTriggers>();
+        _combat = GetComponent<Player_Combat>();
+        _health = GetComponent<Player_Health>();
+        _vfx = GetComponent<Player_VFX>();
+        _animationTriggers = GetComponent<Player_AnimationTriggers>();
         _combat.targetHit.AddListener(OnEnemyHit);
         
 

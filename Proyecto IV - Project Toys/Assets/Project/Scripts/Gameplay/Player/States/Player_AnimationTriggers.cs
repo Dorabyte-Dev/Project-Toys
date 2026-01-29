@@ -9,4 +9,9 @@ public class Player_AnimationTriggers : Entity_AnimationTriggers
         base.Awake();
         player = GetComponent<Player>();
     }
+
+    public void TriggerAttackVFX()
+    {
+         player._vfx.Slash();
+    }
 }
