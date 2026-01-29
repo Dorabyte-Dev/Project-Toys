@@ -362,7 +362,7 @@ public class Enemy_Melee : Enemy
         if (spawner != null)
             spawner.EnemyDead(this.gameObject);
         //stateMachine.SwitchOffStateMachine();
-        //enemy.EnemyDeathTest();
+        Destroy(this.gameObject);
     }
     public override void Dead_Update()
     {

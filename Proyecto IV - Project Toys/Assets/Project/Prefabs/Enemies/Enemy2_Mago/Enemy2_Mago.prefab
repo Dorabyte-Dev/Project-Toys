@@ -87,9 +87,13 @@ MonoBehaviour:
   projectileSpawnPointCenter: {fileID: 6511287505534582692}
   detectionRadius: 10
   fleeRadius: 5
+  timeWaitToSendWaveManagerRequest: 0
   maxProjectiles: 5
   projectileRotationSpeed: 10
   projectileRotationRadius: 1
+  projectileSpeed: 0
+  timeBetweenThrows: 2
+  projectileTargetHeightOffset: 1.5
   flinchTime: 1
 --- !u!195 &139983596963872420
 NavMeshAgent:
@@ -246,7 +250,7 @@ Animator:
   m_GameObject: {fileID: 1607952563234576997}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a11a89f9681b67b47860673e2047eb06, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

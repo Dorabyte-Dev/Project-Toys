@@ -172,6 +172,7 @@ public class Enemy_Ranged : Enemy
     public override void Extra_Exit()
     {
         base.Extra_Exit();
+        InvokeProjectiles();
     }
     #endregion
     #region AttackFunctions
