@@ -23,7 +23,7 @@ public class Entity_Combat : MonoBehaviour
     }
     public void PerformAttack()
     {
-        Debug.Log("Start Attack");
+        //Debug.Log("Start Attack");
         foreach (var target in GetDetectedColliders())
         {
             Debug.Log(target.name);  
