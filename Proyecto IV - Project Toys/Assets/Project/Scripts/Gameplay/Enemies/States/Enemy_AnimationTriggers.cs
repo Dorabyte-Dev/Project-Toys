@@ -19,6 +19,11 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
     {
         enemy.ChangeEnemyState(enemy.deadState);
     }
+    
+    public void FinishInvokeProjectile()
+    {
+        enemy.ChangeEnemyState(enemy.waitAttackState);
+    }
 
     public override void AttackTrigger()
     {

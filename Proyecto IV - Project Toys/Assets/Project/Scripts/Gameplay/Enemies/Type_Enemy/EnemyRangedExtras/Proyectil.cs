@@ -14,6 +14,7 @@ public class Proyectil : MonoBehaviour
     
     [HideInInspector] public Vector3 direction;
     [HideInInspector] public float speed;
+    public Action OnPlayerHit { get; set; }
 
     private void Awake()
     {
@@ -55,6 +56,15 @@ public class Proyectil : MonoBehaviour
                           " Pronto volveré al Restaurante Gusteau, hambriento");
                     break;
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            OnPlayerHit?.Invoke();
+            Destroy(gameObject);
         }
     }
 
