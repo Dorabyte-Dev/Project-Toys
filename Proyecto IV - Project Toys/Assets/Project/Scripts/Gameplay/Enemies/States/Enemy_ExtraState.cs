@@ -8,19 +8,19 @@ public class Enemy_ExtraState : EnemyState
     {
         base.Enter();
         
-        enemy.Idle_Enter();
+        enemy.Extra_Enter();
     }
 
     public override void Update()
     {
         base.Update();
         
-        enemy.Idle_Update();
+        enemy.Extra_Update();
     }
     public override void Exit()
     {
         base.Exit();
         
-        enemy.Idle_Exit();
+        enemy.Extra_Exit();
     }
 }
