@@ -14,6 +14,11 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
     {
         enemy.isAttacking = false;
     }
+    
+    public void DeathAnimationTrigger()
+    {
+        enemy.ChangeEnemyState(enemy.deadState);
+    }
 
     public override void AttackTrigger()
     {

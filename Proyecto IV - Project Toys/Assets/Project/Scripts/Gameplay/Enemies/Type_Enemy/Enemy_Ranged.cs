@@ -179,7 +179,7 @@ public class Enemy_Ranged : Enemy
     public override void Attack_Enter()
     {
         base.Attack_Enter();
-        Invoke(nameof(ThrowProjectile),2);
+        InvokeRepeating(nameof(ThrowProjectile),0, 2);
     }
     public override void Attack_Update()
     {
@@ -207,6 +207,7 @@ public class Enemy_Ranged : Enemy
 
         _projectile.direction = GetPlayerDirection().normalized;
         _projectile.speed = projectileSpeed;
+        _projectile.transform.parent = null;
         _projectile.Release();
         _projectile = null;
     }
@@ -235,6 +236,8 @@ public class Enemy_Ranged : Enemy
     {
         base.WaitAttack_Update();
         canAttackByManager = EnemyWaveManager.Instance.RequestAttackPermission(this);
+        
+        _currentWaitTime += Time.deltaTime;
         
         LookToPlayer();
         
