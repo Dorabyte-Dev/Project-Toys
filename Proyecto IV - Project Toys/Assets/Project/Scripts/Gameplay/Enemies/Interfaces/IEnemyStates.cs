@@ -42,4 +42,9 @@ public interface IEnemyStates
     public void Execution_Update();
     public void Execution_Exit();
     #endregion
+    #region Extra
+    public void Extra_Enter();
+    public void Extra_Update();
+    public void Extra_Exit();
+    #endregion
 }

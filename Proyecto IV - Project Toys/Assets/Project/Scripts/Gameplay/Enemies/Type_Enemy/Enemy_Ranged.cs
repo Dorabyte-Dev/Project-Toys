@@ -22,7 +22,8 @@ public class Enemy_Ranged : Enemy
     private List<GameObject> _projectiles;
     private Proyectil _projectile;
     public float projectileSpeed;
-    
+    public float timeBetweenThrows = 2f;
+    public float projectileTargetHeightOffset = 1.5f;
     
     [Header("States Timer Settings")]
     public float flinchTime;
@@ -33,7 +34,7 @@ public class Enemy_Ranged : Enemy
 
         idleState = new Enemy_IdleState(this, stateMachine, "idle");
         moveState = new Enemy_MoveState(this, stateMachine, "move");
-        pursuitState = new Enemy_PursuitState(this, stateMachine, "pursuit");
+        extraState = new Enemy_ExtraState(this, stateMachine, "extra");
         attackState = new Enemy_AttackState(this, stateMachine, "attack");
         waitAttackState = new Enemy_WaitAttackState(this, stateMachine, "waitAttack");
         deadState = new Enemy_DeadState(this, stateMachine, "dead");
@@ -60,7 +61,7 @@ public class Enemy_Ranged : Enemy
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
     #region ProjectileFuntions
-    private void InvokeProjectiles()
+    public void InvokeProjectiles()
     {
         if(_projectiles == null) _projectiles = new List<GameObject>(maxProjectiles);
         //Logica de invocacion de proyectiles
@@ -154,22 +155,23 @@ public class Enemy_Ranged : Enemy
         base.Move_Exit();
     }
     #endregion
-    #region PursuitFunctions
+    #region ExtraFunctions
     /* =======================================================================================
-     * STATE: PURSUIT
+     * STATE: EXTRA (En este caso, invocar proyectiles)
      * ======================================================================================= */
-    public override void Pursuit_Enter()
+    public override void Extra_Enter()
     {
-        base.Pursuit_Enter();
-    }
-    public override void Pursuit_Update()
-    {
-        base.Pursuit_Update();
+        base.Extra_Enter();
     }
 
-    public override void Pursuit_Exit()
+    public override void Extra_Update()
     {
-        base.Pursuit_Exit();
+        base.Extra_Update();
+    }
+
+    public override void Extra_Exit()
+    {
+        base.Extra_Exit();
     }
     #endregion
     #region AttackFunctions
@@ -179,15 +181,12 @@ public class Enemy_Ranged : Enemy
     public override void Attack_Enter()
     {
         base.Attack_Enter();
-        InvokeRepeating(nameof(ThrowProjectile),0, 2);
+        InvokeRepeating(nameof(ThrowProjectile),0, timeBetweenThrows);
     }
     public override void Attack_Update()
     {
         base.Attack_Update();
         LookToPlayer();
-        
-        //Logica de ataque a distancia (Lanza 1 de 5 proyectiles cada 2 segundos)
-        
     }
     public override void Attack_Exit()
     {
@@ -205,11 +204,18 @@ public class Enemy_Ranged : Enemy
         _projectile = _projectiles[0].GetComponent<Proyectil>();
         _projectiles.RemoveAt(0);
 
-        _projectile.direction = GetPlayerDirection().normalized;
+        //_projectile.direction = GetPlayerDirection().normalized;
+        Vector3 targetPosition = playerTransform.position + Vector3.up * projectileTargetHeightOffset;
+        _projectile.direction = (targetPosition - _projectile.transform.position).normalized;
         _projectile.speed = projectileSpeed;
         _projectile.transform.parent = null;
         _projectile.Release();
         _projectile = null;
+
+        if (_projectiles.Count <= 0)
+        {
+            stateMachine.ChangeState(extraState);
+        }
     }
     #endregion
     #region WaitAttackFunctions

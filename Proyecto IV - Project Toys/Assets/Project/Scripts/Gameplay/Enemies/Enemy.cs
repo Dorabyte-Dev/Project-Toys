@@ -12,6 +12,7 @@ public class Enemy : Entity, IEnemyStates
     public Enemy_DeadState deadState; // ESTADO DE MUERTE
     public Enemy_FlinchState flinchState; // ESTADO DE ATURDIMIENTO
     public Enemy_ExecutionState executionState; // ESTADO DE EJECUCION
+    public Enemy_ExtraState extraState; // ESTADO EXTRA PERSONALIZADO
 
     [Header("Enemy Agent Specs")]
     public float acceleration;
@@ -228,6 +229,8 @@ public class Enemy : Entity, IEnemyStates
     public virtual void Execution_Enter(){}
     public virtual void Execution_Update(){}
     public virtual void Execution_Exit(){}
-
+    public virtual void Extra_Enter(){}
+    public virtual void Extra_Update(){}
+    public virtual void Extra_Exit(){}
     #endregion
 }
