@@ -129,7 +129,7 @@ public class Enemy_Ranged : Enemy
             stateMachine.ChangeState(moveState);
             Debug.Log("Change to moveState");
         }
-        else if (distanceToPlayer <= detectionRadius)
+        if (distanceToPlayer <= detectionRadius)
         {
             stateMachine.ChangeState(waitAttackState);
             Debug.Log("Change to WaitState");
