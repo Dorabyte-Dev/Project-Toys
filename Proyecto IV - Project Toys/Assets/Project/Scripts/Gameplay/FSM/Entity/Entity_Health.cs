@@ -29,7 +29,7 @@ public class Entity_Health : MonoBehaviour
     {
         if (isDead)
             return;
-        vfx.DamageVFX_Feedback();
+        vfx.DamageVFX_Feedback(damageDealer);
         ReduceHp(takeDamage);
     }
 

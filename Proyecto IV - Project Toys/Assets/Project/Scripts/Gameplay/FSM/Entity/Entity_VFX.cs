@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.VFX;
 
 public class Entity_VFX : MonoBehaviour
@@ -15,8 +16,8 @@ public class Entity_VFX : MonoBehaviour
     private List<Color[]> originalColors = new List<Color[]>();
     private Coroutine changeCoroutine;
     private Coroutine revertCoroutine;
-    [Header("PushFeedback")]
-    public float pushStrengh;
+    [FormerlySerializedAs("pushStrengh")] [Header("PushFeedback")]
+    public float pushStrength;
     [Range(0, 1)] public float pushDuration;
     [Header("DissolveFeedback")]
     public Renderer renderMesh;
@@ -69,10 +70,11 @@ public class Entity_VFX : MonoBehaviour
     //     }
     // }
 
-    public void DamageVFX_Feedback()
+    public void DamageVFX_Feedback(Transform damageDealer)
     {
         TriggerMaterialChange();
-        StartCoroutine(PushFeedback());
+        Vector3 pushDirection = (transform.position - damageDealer.position).normalized;
+        StartCoroutine(PushFeedback(pushDirection));
         //Shake(shakeDuration, shakeStrength);
     }
     
@@ -182,11 +184,29 @@ public class Entity_VFX : MonoBehaviour
         }
     }
     #endregion
-    private IEnumerator PushFeedback()
+
+    private IEnumerator PushFeedback(Vector3 direction)
     {
-        rb.AddForce(-transform.forward * pushStrengh, ForceMode.VelocityChange);    //En el caso normal ser�a la direcci�n del ataque, pero aun no tengo como comprobarlo
-        yield return new WaitForSecondsRealtime(pushDuration);
+        //Add player movement disable
+        
+        // Rigidbody
+        rb.AddForce(direction * pushStrength, ForceMode.VelocityChange);
+        yield return new WaitForSeconds(pushDuration);
         rb.linearVelocity = Vector3.zero;
+
+        //Add player movement enable
+        
+        //CharacterController (?)
+        /*
+            CharacterController cc = GetComponent<CharacterController>();
+            float elapsed = 0f;
+            while (elapsed < pushDuration)
+            {
+                cc.Move(direction * pushStrengh * Time.unscaledDeltaTime);
+                elapsed += Time.unscaledDeltaTime;
+                yield return null;
+            }
+        */
     }
 
     #region DissolveFeedback
