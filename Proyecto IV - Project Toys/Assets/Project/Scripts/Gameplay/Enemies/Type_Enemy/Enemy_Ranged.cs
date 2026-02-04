@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy_Ranged : Enemy
 {
@@ -11,7 +12,9 @@ public class Enemy_Ranged : Enemy
     
     [Header("Ranged Enemy Settings")]
     public float detectionRadius = 10f;
+    private float _squaredDetectionRadius => detectionRadius * detectionRadius;
     public float fleeRadius = 5f;
+    private float _squaredFleeRadius => fleeRadius * fleeRadius;
     public float timeWaitToSendWaveManagerRequest;
     private float _currentWaitTime;
     
@@ -19,6 +22,7 @@ public class Enemy_Ranged : Enemy
     [Header("Projectile Settings")]
     public int maxProjectiles = 5;
     public float projectileRotationSpeed = 10f;
+    public int projectileDamage = 20;
     public float projectileRotationRadius = 3f;
     private List<GameObject> _projectiles;
     private Proyectil _projectile;
@@ -124,12 +128,12 @@ public class Enemy_Ranged : Enemy
     {
         base.Idle_Update();
         GetDistanceToPlayer();
-        if (distanceToPlayer <= fleeRadius)
+        if (distanceToPlayer <= _squaredFleeRadius)
         {
             stateMachine.ChangeState(moveState);
             Debug.Log("Change to moveState");
         }
-        if (distanceToPlayer <= detectionRadius)
+        if (distanceToPlayer <= _squaredDetectionRadius)
         {
             stateMachine.ChangeState(waitAttackState);
             Debug.Log("Change to WaitState");
@@ -152,10 +156,49 @@ public class Enemy_Ranged : Enemy
     public override void Move_Update()
     {
         base.Move_Update();
+        GetDistanceToPlayer();
+        if(distanceToPlayer >= _squaredFleeRadius)
+        {
+            stateMachine.ChangeState(idleState);
+        }
     }
     public override void Move_Exit()
     {
         base.Move_Exit();
+    }
+    
+    private void FleePlayer()
+    {
+        Vector3 fleeDirection = (transform.position - playerTransform.position).normalized;
+        Vector3 fleePoint = GetFleePoint(fleeDirection);
+        if(Vector3.Distance(fleePoint, transform.position) < 1.0f)
+        {
+            
+        }
+        agent.SetDestination(fleePoint);
+    }
+    
+    private Vector3 GetFleePoint(Vector3 direction)
+    {
+        Vector3 targetPoint = transform.position + direction * fleeRadius;
+        NavMeshHit hit;
+        NavMesh.SamplePosition(targetPoint, out hit, 2.0f, NavMesh.AllAreas);
+        return hit.position;
+    }
+    
+    private bool HasReachedDestination()
+    {
+        if (!agent.pathPending)
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     #endregion
     #region ExtraFunctions
@@ -171,7 +214,7 @@ public class Enemy_Ranged : Enemy
     {
         base.Extra_Update();
         GetDistanceToPlayer();
-        if (distanceToPlayer <= fleeRadius)
+        if (distanceToPlayer <= _squaredFleeRadius)
         {
             stateMachine.ChangeState(moveState);
         }
@@ -230,6 +273,7 @@ public class Enemy_Ranged : Enemy
     private void OnProjectileHitPlayer()
     {
         Debug.Log("Projectile hit the player! <b><size=20>GILIPOLLAS</size></b> ");
+        playerTransform.gameObject.GetComponent<Player_Health>().TakeDamage(projectileDamage, this.transform);
     }
 
     #endregion

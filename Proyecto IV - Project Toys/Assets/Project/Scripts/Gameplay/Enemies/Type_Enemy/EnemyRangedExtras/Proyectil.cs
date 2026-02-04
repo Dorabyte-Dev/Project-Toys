@@ -72,4 +72,6 @@ public class Proyectil : MonoBehaviour
     {
         _isReleased = true;
     }
+    
+    
 }
