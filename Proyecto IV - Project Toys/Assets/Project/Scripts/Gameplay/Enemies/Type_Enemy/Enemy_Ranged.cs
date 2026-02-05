@@ -66,9 +66,11 @@ public class Enemy_Ranged : Enemy
     
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.darkRed;
+        Gizmos.color = Color.greenYellow;
         Gizmos.DrawWireSphere(transform.position, fleeRadius);
+        Gizmos.color = Color.darkGreen;
         Gizmos.DrawWireSphere(transform.position, stopFleeRadius);
+        Gizmos.color = Color.darkRed;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
     #region ProjectileFuntions

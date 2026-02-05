@@ -504,9 +504,11 @@ MonoBehaviour:
   projectileSpawnPointCenter: {fileID: 6511287505534582692}
   detectionRadius: 11
   fleeRadius: 4
+  stopFleeRadius: 6
   timeWaitToSendWaveManagerRequest: 2
   maxProjectiles: 5
   projectileRotationSpeed: 50
+  projectileDamage: 20
   projectileRotationRadius: 1
   projectileSpeed: 10
   invokeProjectileSpeed: 1
@@ -572,7 +574,7 @@ MonoBehaviour:
   entity: {fileID: 0}
   vfx: {fileID: 0}
   currentHp: 0
-  maxHp: 0
+  maxHp: 100
   invincibleMode: 0
   enemy: {fileID: 0}
   enemyUI: {fileID: 0}
@@ -591,7 +593,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   feedbackColor: {r: 0, g: 0, b: 0, a: 0}
   feedbackDuration: 0
-  pushStrengh: 0
+  pushStrength: 0
   pushDuration: 0
   renderMesh: {fileID: 8380496215879658630}
   vfxGraph: {fileID: 3678050857501795739}

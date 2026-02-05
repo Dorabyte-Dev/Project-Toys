@@ -42,7 +42,6 @@ public class Entity_Combat : MonoBehaviour
                 {
                     PerfectDodgeManager.SetPerfectDodgeFlag(entity.gameObject);
                 }
-                
             }
             else if (target.CompareTag("dObject"))
             {
