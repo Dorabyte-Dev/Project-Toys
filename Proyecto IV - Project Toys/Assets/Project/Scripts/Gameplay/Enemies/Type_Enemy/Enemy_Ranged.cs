@@ -12,9 +12,11 @@ public class Enemy_Ranged : Enemy
     
     [Header("Ranged Enemy Settings")]
     public float detectionRadius = 10f;
-    private float _squaredDetectionRadius => detectionRadius * detectionRadius;
+    private float _detectionRadius => detectionRadius * detectionRadius;    //Se utiliza el cuadrado del radio porque la distancia se calcula con .sqrMagnitude, lo que mejora el rendimiento al evitar la raíz cuadrada.
     public float fleeRadius = 5f;
-    private float _squaredFleeRadius => fleeRadius * fleeRadius;
+    private float _fleeRadius => fleeRadius * fleeRadius;
+    public float stopFleeRadius = 7.5f;
+    private float _stopFleeRadius => stopFleeRadius * stopFleeRadius;
     public float timeWaitToSendWaveManagerRequest;
     private float _currentWaitTime;
     
@@ -51,8 +53,9 @@ public class Enemy_Ranged : Enemy
     protected override void Start()
     {
         base.Start();
-        stateMachine.Initialize(idleState);
+        _projectiles ??= new List<GameObject>(maxProjectiles);
         anim.SetFloat("invokeSpeed", invokeProjectileSpeed);
+        stateMachine.Initialize(idleState);
     }
     protected override void Update()
     {
@@ -65,6 +68,7 @@ public class Enemy_Ranged : Enemy
     {
         Gizmos.color = Color.darkRed;
         Gizmos.DrawWireSphere(transform.position, fleeRadius);
+        Gizmos.DrawWireSphere(transform.position, stopFleeRadius);
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
     #region ProjectileFuntions
@@ -122,18 +126,22 @@ public class Enemy_Ranged : Enemy
     public override void Idle_Enter()
     {
         base.Idle_Enter();
-        InvokeProjectiles();
+        //InvokeProjectiles();
+        if(_projectiles.Count < maxProjectiles)
+        {
+            stateMachine.ChangeState(extraState);
+        }
     }
     public override void Idle_Update()
     {
         base.Idle_Update();
         GetDistanceToPlayer();
-        if (distanceToPlayer <= _squaredFleeRadius)
+        if (distanceToPlayer <= _fleeRadius)
         {
             stateMachine.ChangeState(moveState);
             Debug.Log("Change to moveState");
         }
-        if (distanceToPlayer <= _squaredDetectionRadius)
+        if (distanceToPlayer <= _detectionRadius)
         {
             stateMachine.ChangeState(waitAttackState);
             Debug.Log("Change to WaitState");
@@ -152,28 +160,53 @@ public class Enemy_Ranged : Enemy
     public override void Move_Enter()
     {
         base.Move_Enter();
+        agent.isStopped = false;
     }
     public override void Move_Update()
     {
         base.Move_Update();
         GetDistanceToPlayer();
-        if(distanceToPlayer >= _squaredFleeRadius)
+        if(distanceToPlayer >= _stopFleeRadius)
         {
             stateMachine.ChangeState(idleState);
+        }
+        else
+        {
+            FleePlayer();
         }
     }
     public override void Move_Exit()
     {
         base.Move_Exit();
+        agent.isStopped = true;
+        agent.ResetPath();
     }
     
     private void FleePlayer()
     {
         Vector3 fleeDirection = (transform.position - playerTransform.position).normalized;
         Vector3 fleePoint = GetFleePoint(fleeDirection);
+        Debug.Log(Vector3.Distance(fleePoint, transform.position));
         if(Vector3.Distance(fleePoint, transform.position) < 1.0f)
         {
+            Vector3 rightDirection = Vector3.Cross(Vector3.up, fleeDirection).normalized;
+            Vector3 leftDirection = -rightDirection;
             
+            RaycastHit rightHit, leftHit;
+            Physics.Raycast(transform.position, rightDirection, out rightHit, rightDirection.magnitude);
+            Physics.Raycast(transform.position, leftDirection, out leftHit, leftDirection.magnitude);
+            
+            float rightDistance = rightHit.collider != null ? rightHit.distance : Mathf.Infinity;
+            float leftDistance = leftHit.collider != null ? leftHit.distance : Mathf.Infinity;
+            
+            if (rightDistance > leftDistance)
+            {
+                fleePoint = GetFleePoint(rightDirection);
+            }
+            else
+            {
+                fleePoint = GetFleePoint(leftDirection);
+            }
         }
         agent.SetDestination(fleePoint);
     }
@@ -182,8 +215,16 @@ public class Enemy_Ranged : Enemy
     {
         Vector3 targetPoint = transform.position + direction * fleeRadius;
         NavMeshHit hit;
-        NavMesh.SamplePosition(targetPoint, out hit, 2.0f, NavMesh.AllAreas);
-        return hit.position;
+        /*NavMesh.SamplePosition(targetPoint, out hit, 2.0f, NavMesh.AllAreas);
+        return hit.position;*/
+        if (NavMesh.SamplePosition(targetPoint, out hit, 2.0f, NavMesh.AllAreas))
+        {
+            return hit.position;
+        }
+        else
+        {
+            return transform.position; 
+        }
     }
     
     private bool HasReachedDestination()
@@ -214,7 +255,7 @@ public class Enemy_Ranged : Enemy
     {
         base.Extra_Update();
         GetDistanceToPlayer();
-        if (distanceToPlayer <= _squaredFleeRadius)
+        if (distanceToPlayer <= _fleeRadius)
         {
             stateMachine.ChangeState(moveState);
         }
@@ -223,6 +264,7 @@ public class Enemy_Ranged : Enemy
     public override void Extra_Exit()
     {
         base.Extra_Exit();
+        InvokeProjectiles();    //Cambia de estado por animation trigger.
     }
     #endregion
     #region AttackFunctions
@@ -238,6 +280,11 @@ public class Enemy_Ranged : Enemy
     {
         base.Attack_Update();
         LookToPlayer();
+        GetDistanceToPlayer();
+        if (distanceToPlayer <= _fleeRadius)
+        {
+            stateMachine.ChangeState(moveState);
+        }
     }
     public override void Attack_Exit()
     {
@@ -285,7 +332,8 @@ public class Enemy_Ranged : Enemy
     {
         if (_projectiles.Count < maxProjectiles)
         {
-            InvokeProjectiles();
+            //InvokeProjectiles();
+            stateMachine.ChangeState(extraState);
         }
     }
     public override void WaitAttack_Enter()
@@ -306,19 +354,23 @@ public class Enemy_Ranged : Enemy
         
         LookToPlayer();
         
-        //Detectar si puede atacar (Si tiene proyectiles y si el manager le dio permiso)
         if (_currentWaitTime >= timeWaitToSendWaveManagerRequest)
         {
             if (canAttackByManager)
             {
-                //Cambiar al estado de ataque
-                
                 stateMachine.ChangeState(attackState);
             }
             else
             {
                 _currentWaitTime = 0;
             }
+        }
+        
+        GetDistanceToPlayer();
+        
+        if(distanceToPlayer <= _fleeRadius)
+        {
+            stateMachine.ChangeState(moveState);
         }
     }
     public override void WaitAttack_Exit()

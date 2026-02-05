@@ -64,6 +64,7 @@ public class Proyectil : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             OnPlayerHit?.Invoke();
+            
             Destroy(gameObject);
         }
     }

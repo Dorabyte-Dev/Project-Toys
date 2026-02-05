@@ -22,7 +22,7 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
     
     public void FinishInvokeProjectile()
     {
-        enemy.ChangeEnemyState(enemy.waitAttackState);
+        enemy.ChangeEnemyState(enemy.idleState);
     }
 
     public override void AttackTrigger()
