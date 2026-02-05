@@ -30,7 +30,7 @@ public class Entity_VFX : MonoBehaviour
     [SerializeField] private float shakeStrength = 1;
     [SerializeField] private float randomShake = 0.2f;
 
-    void Awake()
+    protected virtual void Awake()
     {
         SaveOriginalMaterials();
         rb = GetComponent<Rigidbody>();

@@ -4,7 +4,7 @@ public class Entity_Health : MonoBehaviour
 {
     public Entity entity;
     private Entity_Stats stats;
-    [SerializeField] private Entity_VFX vfx;
+    [SerializeField] protected Entity_VFX vfx;
 
     public float currentHp;
     public float maxHp;
