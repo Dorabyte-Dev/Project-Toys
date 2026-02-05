@@ -207,6 +207,7 @@ public class Enemy_Melee : Enemy
         agent.speed = attackSpeed;
         agent.acceleration = attackAcceleration;
         agent.destination = _attackPoint;
+        _vfx.ShineEffect();
     }
     public override void Attack_Update()
     {
