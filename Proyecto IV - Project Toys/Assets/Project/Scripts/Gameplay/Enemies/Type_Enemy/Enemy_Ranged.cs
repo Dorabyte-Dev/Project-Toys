@@ -319,7 +319,7 @@ public class Enemy_Ranged : Enemy
 
     private void OnProjectileHitPlayer()
     {
-        Debug.Log("Projectile hit the player! <b><size=20>GILIPOLLAS</size></b> ");
+        //Debug.Log("Projectile hit the player! <b><size=20>GILIPOLLAS</size></b> ");
         playerTransform.gameObject.GetComponent<Player_Health>().TakeDamage(projectileDamage, this.transform);
     }
 
