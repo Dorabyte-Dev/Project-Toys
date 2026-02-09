@@ -42,7 +42,7 @@ public class Player_HeavyAttackState : PlayerState
         base.Update();
         HandleAttackVelocity();
 
-        if (input.Player.LightAttack.WasPressedThisFrame())
+        if (input.Player.HeavyAttack.WasPressedThisFrame())
            QueueNextAttack();
 
         if (triggerCalled)

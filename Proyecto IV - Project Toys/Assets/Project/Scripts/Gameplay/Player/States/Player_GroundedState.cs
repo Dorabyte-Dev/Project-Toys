@@ -24,14 +24,31 @@ public class Player_GroundedState : PlayerState
         if (input.Player.Dash.WasPerformedThisFrame() && player.CanDash())
             stateMachine.ChangeState(player.dashState);
 
-        if (input.Player.LightAttack.WasPerformedThisFrame())
+        /*if (input.Player.LightAttack.WasPerformedThisFrame())
             stateMachine.ChangeState(player.lightAttackState);
         
+<<<<<<< Updated upstream
         /*if(input.Player.HeavyAttack.WasPerformedThisFrame())
             stateMachine.ChangeState(player.heavyState);
         */
         if (input.Player.HeavyAttack.WasPerformedThisFrame())
             //stateMachine.ChangeState(/* Combo System State*/);
+=======
+        if(input.Player.HeavyAttack.WasPerformedThisFrame())
+            stateMachine.ChangeState(player.heavyState);*/
+
+        if (input.Player.LightAttack.WasPerformedThisFrame())
+        {
+            player.comboSystem.isHeavy = false;
+            stateMachine.ChangeState(player.comboSystem);
+        }
+
+        if(input.Player.HeavyAttack.WasPerformedThisFrame())
+        {
+            player.comboSystem.isHeavy = true;
+            stateMachine.ChangeState(player.comboSystem);
+        }
+>>>>>>> Stashed changes
 
         if (input.Player.Execution.WasPerformedThisFrame())
             if (player.CanExecute())

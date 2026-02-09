@@ -17,6 +17,7 @@ public class Player : Entity
     public Player_DeathState deathState { get; private set; }
     public Player_HeavyAttackState heavyState { get; private set; }
     public Player_ExecutionState executionState { get; private set; }
+    public Player_ComboSystem comboSystem { get; private set; }
 
     [Header("Attack Details")]
     public Vector2[] attackVelocity;
@@ -80,10 +81,11 @@ public class Player : Entity
         jumpState = new Player_JumpState(this, stateMachine, "jumpFall");
         fallState = new Player_FallState(this, stateMachine, "jumpFall");
         dashState = new Player_DashState(this, stateMachine, "Dash");
-        lightAttackState = new Player_LightAttackState(this, stateMachine, "LightPressed");
+        //lightAttackState = new Player_LightAttackState(this, stateMachine, "LightPressed");
         deathState = new Player_DeathState(this, stateMachine, "death");
-        heavyState = new Player_HeavyAttackState(this, stateMachine, "HeavyPressed");
+        //heavyState = new Player_HeavyAttackState(this, stateMachine, "HeavyPressed");
         executionState = new Player_ExecutionState(this,  stateMachine, "kill");
+        comboSystem = new Player_ComboSystem(this, stateMachine, "HeavyPressed");
         
         _combat = GetComponent<Entity_Combat>();
         _combat.targetHit.AddListener(OnEnemyHit);
