@@ -66,7 +66,6 @@ GameObject:
   - component: {fileID: 5165273250951490172}
   - component: {fileID: 4425657504631967383}
   - component: {fileID: 6329964376912069661}
-  - component: {fileID: 5473662141905821864}
   m_Layer: 0
   m_Name: AreaManager
   m_TagString: Untagged
@@ -189,24 +188,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 5227708263877531541, guid: 60c1709c5ee981d4481c8ec4faa6b551, type: 3}
-  maxSpawnDistance: 5
   spawnArea: {fileID: 2970447464171516005}
   spawnDelay: 1
-  spawnCount: 6
+  wavesSpawnCount: 
   enemiesSpawned: []
   endCombat:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5473662141905821864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7254266260994921759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b50e5193bb76b44b973acd4115fba84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}

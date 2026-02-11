@@ -3,5 +3,5 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    public CameraSwitch checkpointCamera;
+    public CameraGroup checkpointCameraGroup;
 }

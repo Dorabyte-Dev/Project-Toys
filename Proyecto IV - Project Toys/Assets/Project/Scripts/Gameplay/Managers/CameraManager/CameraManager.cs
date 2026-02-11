@@ -2,13 +2,15 @@ using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Serialization;
 
 public class CameraManager : MonoBehaviour
 {
     private CameraSwitch currentOffCombatCamera;
     private CameraSwitch currentOnCombatCamera;
-    [SerializeField]private int offCombatPriority;
-    [SerializeField]private int onCombatPriority;
+    private CameraGroup activeCameraGroup;
+    public int offCombatPriority;
+    public int onCombatPriority;
     private CinemachineBrain cameraBrain;
     public CinemachineCamera activeCamera => cameraBrain.ActiveVirtualCamera as CinemachineCamera;
     private CinemachinePositionComposer positionComposer;
@@ -16,9 +18,32 @@ public class CameraManager : MonoBehaviour
     private bool isZoomedIn = false;
     private float originalCameraDistance;
     private Vector3 originalCameraPosition;
+    private bool isOnCombat;
+
+    public bool IsOnCombat
+    {
+        get => isOnCombat;
+        set
+        {
+            isOnCombat = value;
+                if (activeCameraGroup != null)
+                {
+                    if (isOnCombat)
+                    {
+                        activeCameraGroup.SwitchToCombat();
+                    }
+                    else
+                    {
+                        activeCameraGroup.SwitchToExploration();
+                    }
+                }
+        }
+    }
+
 
     private Queue<CinemachineCamera> _zoomedCameras = new Queue<CinemachineCamera>();
     private CinemachineCamera _currentZoomedCamera;
+    
     public static CameraManager instance;
     private void Awake()
     {
@@ -44,19 +69,19 @@ public class CameraManager : MonoBehaviour
     {
         
     }
-
+    
+    #region Old Camera System
     public void ToggleOnCombatCamera(CameraSwitch cam)
     {
-        currentOnCombatCamera = cam;
-        currentOnCombatCamera.RaisePriority(onCombatPriority);
+        IsOnCombat = true;
     }
 
     public void UnToggleOnCombatCamera()
     {
-        currentOnCombatCamera.LowerPriority(onCombatPriority);
+        IsOnCombat = false;
     }
 
-    public void SwitchOffCombatCamera(CameraSwitch cam)
+    /*public void SwitchOffCombatCamera(CameraSwitch cam)
     {
         if (currentOffCombatCamera == cam) return;
 
@@ -66,9 +91,9 @@ public class CameraManager : MonoBehaviour
         }
         currentOffCombatCamera = cam;
         currentOffCombatCamera.RaisePriority(offCombatPriority);
-    }
+    }*/
     //Switch OnCombat Camera
-    public void SwitchOnCombatCamera(CameraSwitch cam)
+    /*public void SwitchOnCombatCamera(CameraSwitch cam)
     {
         if (currentOnCombatCamera == cam) return;
 
@@ -78,7 +103,19 @@ public class CameraManager : MonoBehaviour
         }
         currentOnCombatCamera = cam;
         currentOnCombatCamera.RaisePriority(onCombatPriority);
+    }*/
+    #endregion
+    
+    
+    public void SwitchCameraGroup(CameraGroup camGroup)
+    {
+        activeCameraGroup.SwitchOffGroup();
+        activeCameraGroup = camGroup;
+        activeCameraGroup.SwitchOnGroup();
     }
+
+    #region Zoom
+
     public void ToggleZoom()
     {
         _zoomedCameras.Enqueue(activeCamera);
@@ -161,6 +198,9 @@ public class CameraManager : MonoBehaviour
             originalCameraPosition,
             0.1f).SetEase(Ease.OutCirc);
     }
+
+    #endregion
+    
 
     public void ResetColliders()
     {

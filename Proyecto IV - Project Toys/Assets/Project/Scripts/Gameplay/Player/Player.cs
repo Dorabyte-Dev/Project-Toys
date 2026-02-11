@@ -231,7 +231,8 @@ public class Player : Entity
         rb.position = activeCheckpoint.position;
         
         CameraManager.instance.UnToggleOnCombatCamera();
-        CameraManager.instance.SwitchOffCombatCamera(activeCheckpoint.GetComponent<Checkpoint>().checkpointCamera);
+        //CameraManager.instance.SwitchOffCombatCamera(activeCheckpoint.GetComponent<Checkpoint>().checkpointCamera);
+        CameraManager.instance.SwitchCameraGroup(activeCheckpoint.GetComponent<Checkpoint>().checkpointCameraGroup);
         _health.ResetStats();
         comboBarAmount = 0;
         //stateMachine.ChangeState(idleState);

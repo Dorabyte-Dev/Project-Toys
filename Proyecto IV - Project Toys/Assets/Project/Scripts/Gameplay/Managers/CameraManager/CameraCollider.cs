@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using static ZoneCloser;
 
 public class CameraCollider : MonoBehaviour
@@ -6,16 +7,15 @@ public class CameraCollider : MonoBehaviour
     public bool hasBeenActivated;
     public LayerMask playerMask;
     private CameraManager camManager;
-    [SerializeField]private CameraSwitch cam;
+    [FormerlySerializedAs("cam")] [SerializeField]private CameraGroup camGroup;
 
-    [SerializeField]private bool isOnCombat = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        camManager = FindAnyObjectByType<CameraManager>();
-        if(cam == null)
+        camManager = CameraManager.instance;
+        if(camGroup == null)
         {
-            cam = GetComponent<CameraSwitch>();
+            Debug.LogError($"CameraCollider with name: {name} has not been assigned a CameraGroup! Please assign one in the inspector.");
         }
     }
 
@@ -29,14 +29,7 @@ public class CameraCollider : MonoBehaviour
     {
         if ((playerMask & (1 << other.gameObject.layer)) != 0 && !hasBeenActivated)
         {
-            if (isOnCombat)
-            {
-                camManager.SwitchOnCombatCamera(cam);
-            }
-            else
-            {
-                camManager.SwitchOffCombatCamera(cam);
-            }
+            camManager.SwitchCameraGroup(camGroup);
         }
     }
 }
