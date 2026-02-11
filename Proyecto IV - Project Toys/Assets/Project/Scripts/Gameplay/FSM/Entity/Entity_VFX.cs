@@ -42,7 +42,7 @@ public class Entity_VFX : MonoBehaviour
 
     private void SaveOriginalMaterials()
     {
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        Renderer[] renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
         foreach (Renderer render in renderers)
         {
             List<Color> colors = new List<Color>();
@@ -111,7 +111,7 @@ public class Entity_VFX : MonoBehaviour
 
     private void ChangeMaterialsToColor(Color color)
     {
-        Renderer[] skinnedMeshRenderers = GetComponentsInChildren<Renderer>();
+        Renderer[] skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
         foreach (Renderer render in skinnedMeshRenderers)
         {
             Material[] newMaterials = new Material[render.materials.Length];
@@ -131,8 +131,7 @@ public class Entity_VFX : MonoBehaviour
 
     private IEnumerator RevertMaterialsSmoothly(float duration)
     {
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
-
+        Renderer[] renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
 
         List<Color[]> currentColors = new List<Color[]>();
         foreach (Renderer renderer in renderers)

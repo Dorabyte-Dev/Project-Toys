@@ -188,7 +188,7 @@ public class Enemy_Ranged : Enemy
     {
         Vector3 fleeDirection = (transform.position - playerTransform.position).normalized;
         Vector3 fleePoint = GetFleePoint(fleeDirection);
-        Debug.Log(Vector3.Distance(fleePoint, transform.position));
+        //Debug.Log(Vector3.Distance(fleePoint, transform.position));
         if(Vector3.Distance(fleePoint, transform.position) < 1.0f)
         {
             Vector3 rightDirection = Vector3.Cross(Vector3.up, fleeDirection).normalized;
@@ -387,6 +387,19 @@ public class Enemy_Ranged : Enemy
     public override void Dead_Enter()
     {
         base.Dead_Enter();
+        agent.enabled = false;
+        PerfectDodgeManager.EndPerfectDodgeFlag(this.gameObject);
+        if (spawner != null)
+            spawner.EnemyDead(this.gameObject);
+        if(_projectiles.Count <= 0) return;
+        foreach (var projectile in _projectiles)
+        {
+            Proyectil proyectil = projectile.GetComponent<Proyectil>();
+            if (proyectil != null)
+            {
+                proyectil.DestroyProjectile();
+            }
+        }
     }
     public override void Dead_Update()
     {

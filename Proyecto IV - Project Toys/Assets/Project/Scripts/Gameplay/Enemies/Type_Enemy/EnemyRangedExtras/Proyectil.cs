@@ -73,6 +73,11 @@ public class Proyectil : MonoBehaviour
     {
         _isReleased = true;
     }
+
+    public void DestroyProjectile()
+    {
+        Destroy(this.gameObject);
+    }
     
     
 }
