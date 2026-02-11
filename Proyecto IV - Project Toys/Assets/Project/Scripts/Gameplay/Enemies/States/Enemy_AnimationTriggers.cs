@@ -14,6 +14,11 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
     {
         enemy.isAttacking = false;
     }
+
+    public void DestroyEnemy()
+    {
+        Destroy(gameObject);
+    }
     
     public void DeathAnimationTrigger()
     {
