@@ -71,7 +71,7 @@ public class CameraManager : MonoBehaviour
     }
     
     #region Old Camera System
-    public void ToggleOnCombatCamera(CameraSwitch cam)
+    public void ToggleOnCombatCamera()
     {
         IsOnCombat = true;
     }
@@ -109,7 +109,10 @@ public class CameraManager : MonoBehaviour
     
     public void SwitchCameraGroup(CameraGroup camGroup)
     {
-        activeCameraGroup.SwitchOffGroup();
+        if (activeCameraGroup)
+        {
+            activeCameraGroup.SwitchOffGroup();
+        }
         activeCameraGroup = camGroup;
         activeCameraGroup.SwitchOnGroup();
     }
