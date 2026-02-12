@@ -9,15 +9,15 @@ public class CameraGroup : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if(explorationCamera == null)
+        if(explorationCamera.cam == null)
         {
-            combatCamera = explorationCamera;
+            explorationCamera.cam = combatCamera.cam;
         }
-        else if(combatCamera == null)
+        else if(combatCamera.cam == null)
         {
-            explorationCamera = combatCamera;
+            combatCamera.cam = explorationCamera.cam;
         }
-        else if(explorationCamera == null && combatCamera == null)
+        else if(explorationCamera.cam == null && combatCamera.cam == null)
         {
             Debug.LogError($"CameraGroup with name: {name} has not been assigned any cameras! Please assign at least one in the inspector.");
         }
