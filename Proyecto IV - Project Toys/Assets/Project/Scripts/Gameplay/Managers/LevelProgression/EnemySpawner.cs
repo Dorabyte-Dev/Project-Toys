@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        cam = GetComponent<CameraSwitch>();
+        //cam = GetComponent<CameraSwitch>();
         camManager = FindAnyObjectByType<CameraManager>();
         if(enemyFactory == null )
         {
@@ -32,6 +32,12 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        #if UNITY_EDITOR 
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            StartCombat();
+        }
+        #endif
     }
 
     public void StartCombat()

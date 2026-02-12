@@ -395,7 +395,6 @@ GameObject:
   - component: {fileID: 193186890}
   - component: {fileID: 193186889}
   - component: {fileID: 193186888}
-  - component: {fileID: 193186887}
   m_Layer: 0
   m_Name: EnemyWaveManager
   m_TagString: Untagged
@@ -403,19 +402,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &193186887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 193186886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b50e5193bb76b44b973acd4115fba84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraSwitch
-  cam: {fileID: 789638583}
 --- !u!114 &193186888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,10 +428,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b761ae37697862b44bd16fb38346d251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemy: {fileID: 3258279143136638772, guid: 5f49c3a969c6e5541a5e607cbd274c3b, type: 3}
+  enemy: {fileID: 1955201731186878869, guid: ebc3a5c63da66644bb70139db388e845, type: 3}
   spawnArea: {fileID: 968612280}
   spawnDelay: 1
-  wavesSpawnCount: 
+  wavesSpawnCount: 03000000
   enemiesSpawned: []
   endCombat:
     m_PersistentCalls:
@@ -1432,6 +1418,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5868768335894663017, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: invincibleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8468839315768395927, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
       propertyPath: m_Name
       value: Prefab_Player
@@ -4555,6 +4545,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy2_Mago
       objectReference: {fileID: 0}
+    - target: {fileID: 1955201731186878869, guid: ebc3a5c63da66644bb70139db388e845, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3308874024549469877, guid: ebc3a5c63da66644bb70139db388e845, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -4605,7 +4599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8969406321667235167, guid: ebc3a5c63da66644bb70139db388e845, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
