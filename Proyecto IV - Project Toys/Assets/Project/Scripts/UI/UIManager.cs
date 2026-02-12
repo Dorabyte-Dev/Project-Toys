@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-    [SerializeField]private Entity_Health playerHealth;
+    [SerializeField]private Player player;
     [SerializeField] private Image healthBar;
     private float _healthBarFillAmount;
     public float HealthBarFillAmount
@@ -20,18 +20,18 @@ public class UIManager : MonoBehaviour
     
     [SerializeField] private Image comboBarLeft;
     [SerializeField] private Image comboBarRight;
-    [HideInInspector]public bool IsComboBarFull => FillAmount >= 1f;
-    private float _fillAmount;
-    public float FillAmount
+    [HideInInspector]public bool IsComboBarFull => ComboBarFillAmount >= 1f;
+    private float _comboBarFillAmount;
+    public float ComboBarFillAmount
     {
-        get => _fillAmount;
+        get => _comboBarFillAmount;
         set 
         {
-            _fillAmount = Mathf.Clamp01(value);
-            comboBarLeft.fillAmount = _fillAmount;
-            comboBarRight.fillAmount = _fillAmount;
+            _comboBarFillAmount = Mathf.Clamp01(value);
+            comboBarLeft.fillAmount = _comboBarFillAmount;
+            comboBarRight.fillAmount = _comboBarFillAmount;
 
-            if(_fillAmount == 1)
+            if(Mathf.Approximately(_comboBarFillAmount, 1))
             {
                 comboBarLeft.color = Color.green;
                 comboBarRight.color = Color.green;
@@ -54,8 +54,16 @@ public class UIManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        if (player == null)
+        {
+            player = FindAnyObjectByType<Player>();
+        }
+    }
+
     private void Update()
     {
-        HealthBarFillAmount = playerHealth.currentHp / playerHealth.maxHp;
+        HealthBarFillAmount = player.GetCurrentHealth() / player.GetMaxHealth();
     }
 }

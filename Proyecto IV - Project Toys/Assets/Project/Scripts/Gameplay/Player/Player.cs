@@ -169,7 +169,7 @@ public class Player : Entity
     {
         if (UIManager.Instance != null)
         {
-            UIManager.Instance.FillAmount = _comboBarAmount/maxComboBarAmount;
+            UIManager.Instance.ComboBarFillAmount = _comboBarAmount/maxComboBarAmount;
             _isComboBarFull = UIManager.Instance.IsComboBarFull;
         }
     }
@@ -262,4 +262,7 @@ public class Player : Entity
     {
         return _dashCooldownTimer <= 0f;
     }
+
+    public float GetCurrentHealth() => _health.currentHp;
+    public float GetMaxHealth() => _health.maxHp;
 }
