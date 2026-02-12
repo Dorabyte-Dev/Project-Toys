@@ -12,7 +12,7 @@ public class MeshTrail : MonoBehaviour
     [Header("Mesh Related")]
     public float meshRefreshRate = 0.05f;
     //private MeshFilter meshFilter;
-    private SkinnedMeshRenderer[] skinnedMeshRenderers;
+    [SerializeField]private SkinnedMeshRenderer[] skinnedMeshRenderers;
 
     [Header("Shader Related")]
     public Material mat;
@@ -26,20 +26,29 @@ public class MeshTrail : MonoBehaviour
     }
     void Update()
     {
-        if (toggleTrail && !isTrailActive)
+        /*if (toggleTrail && !isTrailActive)
         {
             toggleTrail = false;
             isTrailActive = true;
             StartCoroutine(ActivateTrail(player.dashDuration));
-        }
+        }*/
     }
 
-    IEnumerator ActivateTrail (float timeActive)
+    public void ToggleTrail()
     {
-        while(timeActive > 0)
-        {
-            timeActive -= meshRefreshRate;
+        toggleTrail = true;
+        StartCoroutine(ActivateTrail());
+    }
 
+    public void UnToggleTrail()
+    {
+        toggleTrail = false;
+    }
+
+    IEnumerator ActivateTrail()
+    {
+        while(toggleTrail)
+        {
             if(skinnedMeshRenderers == null)
             {
                 skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -48,7 +57,7 @@ public class MeshTrail : MonoBehaviour
             foreach (SkinnedMeshRenderer skin in skinnedMeshRenderers)
             {
                 GameObject newMesh = new GameObject();
-                newMesh.transform.SetPositionAndRotation(transform.position, transform.rotation);
+                newMesh.transform.SetPositionAndRotation(skin.transform.position, skin.transform.rotation);
                 newMesh.transform.localScale = transform.localScale;
 
                 MeshRenderer rend = newMesh.AddComponent<MeshRenderer>();
@@ -64,7 +73,7 @@ public class MeshTrail : MonoBehaviour
 
                 Destroy(newMesh, meshDestroyDelay);
 
-                yield return new WaitForSeconds(meshRefreshRate);
+                yield return new WaitForSecondsRealtime(meshRefreshRate);
             }
         }
         isTrailActive = false;

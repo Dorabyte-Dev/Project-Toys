@@ -129,7 +129,7 @@ public class Player_DashState : Player_GroundedState
     /// <param name="enemy">The enemy GameObject to dodge around</param>
     void PerfectDodge(GameObject enemy)
     {
-        Debug.LogWarning("Perfect");
+        Debug.LogWarning("Perfect Dodge Duration =  " + player.perfectDodgeDuration);
 
         // Calculate direction vector from player to enemy (horizontal only)
         Vector3 direction =  new Vector3(
@@ -160,14 +160,15 @@ public class Player_DashState : Player_GroundedState
         // Enable afterimage trail effect if available
         if(player.afterimageTrail != null)
         {
-            player.afterimageTrail.toggleTrail = true;
+            player.afterimageTrail.ToggleTrail();
         }
         
         // Execute curved movement with DOTween, restore normal time on completion
-        rb.DOPath(curvePoints, player.dashDuration).OnComplete(() => 
+        rb.DOPath(curvePoints, player.perfectDodgeDuration).OnComplete(() => 
         { 
             Time.timeScale = 1f;
             CameraManager.instance.UntoggleZoom(); 
+            player.afterimageTrail.UnToggleTrail();
         });
     }
 }
