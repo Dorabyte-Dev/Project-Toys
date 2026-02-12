@@ -61,6 +61,7 @@ public class Enemy_Ranged : Enemy
     {
         base.Update();
         _stateTimer -= Time.deltaTime;
+        Debug.Log(_projectiles.Count + " projectiles");
         RotateProjectilesAroundPivot(_projectiles);
     }
     
@@ -227,21 +228,6 @@ public class Enemy_Ranged : Enemy
         {
             return transform.position; 
         }
-    }
-    
-    private bool HasReachedDestination()
-    {
-        if (!agent.pathPending)
-        {
-            if (agent.remainingDistance <= agent.stoppingDistance)
-            {
-                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
     #endregion
     #region ExtraFunctions
