@@ -291,6 +291,7 @@ public class Enemy_Ranged : Enemy
     public override void Attack_Exit()
     {
         base.Attack_Exit();
+        EnemyWaveManager.Instance.NotifyEnemyFinishedAttack(this);
         CancelInvoke(nameof(ThrowProjectile));
     }
 

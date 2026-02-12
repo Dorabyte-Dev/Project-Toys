@@ -22,6 +22,11 @@ public class Proyectil : MonoBehaviour
         _rb.isKinematic = true;
     }
 
+    private void Start()
+    {
+        Invoke(nameof(DestroyProjectile), 7.5f);
+    }
+
 
     void FixedUpdate()
     {

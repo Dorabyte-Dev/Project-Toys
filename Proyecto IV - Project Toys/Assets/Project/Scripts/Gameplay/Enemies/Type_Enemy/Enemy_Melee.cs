@@ -288,30 +288,18 @@ public class Enemy_Melee : Enemy
     public override void WaitAttack_Enter()
     {
         base.WaitAttack_Enter();
-        //enemy.isAttacking = true;
-
-        // Guardar posiciones
         _currentPosition = transform.position;
         _lastPlayerPosition = playerTransform != null ? playerTransform.position : transform.forward;
-
-        // Calcular punto de ataque (hacia donde va a embestir)
         
         StopSmooth();
-        //attackPoint = lastPlayerPosition;
-
+        
         // DETENER al enemigo durante la carga del ataque
         //enemy.agent.isStopped = true;
         //enemy.agent.velocity = Vector3.zero;
 
-        // Mirar hacia el objetivo
         LookToPlayer();
 
-        // Animaci�n de carga
-        //anim.Play("WaitAttack");
-
         _currentTime = 0;
-        //enemy.hasStartedAttack = false;
-        
         
         orbitAngle = InitializeOrbitAngle();
     }
