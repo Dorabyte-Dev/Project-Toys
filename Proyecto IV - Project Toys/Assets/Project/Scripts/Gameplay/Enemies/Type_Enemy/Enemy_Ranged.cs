@@ -61,7 +61,6 @@ public class Enemy_Ranged : Enemy
     {
         base.Update();
         _stateTimer -= Time.deltaTime;
-        Debug.Log(_projectiles.Count + " projectiles");
         RotateProjectilesAroundPivot(_projectiles);
     }
     
@@ -117,8 +116,22 @@ public class Enemy_Ranged : Enemy
         if(projectiles == null) return;
         foreach (var projectile in projectiles)
         {
+            if(projectile == null) continue;
             projectile.transform.RotateAround(projectileSpawnPointCenter.position, Vector3.up, projectileRotationSpeed * Time.deltaTime);
         }
+    }
+    
+    private void DestroyProjectiles()
+    {
+        foreach (var projectile in _projectiles)
+        {
+            Proyectil proyectil = projectile.GetComponent<Proyectil>();
+            if (proyectil != null)
+            {
+                proyectil.DestroyProjectile();
+            }
+        }
+        _projectiles.Clear();
     }
     
     #endregion
@@ -129,11 +142,8 @@ public class Enemy_Ranged : Enemy
     public override void Idle_Enter()
     {
         base.Idle_Enter();
-        //InvokeProjectiles();
-        if(_projectiles.Count < maxProjectiles)
-        {
-            stateMachine.ChangeState(extraState);
-        }
+        
+        CheckAndReloadProjectiles();
     }
     public override void Idle_Update()
     {
@@ -142,12 +152,10 @@ public class Enemy_Ranged : Enemy
         if (distanceToPlayer <= _fleeRadius)
         {
             stateMachine.ChangeState(moveState);
-            Debug.Log("Change to moveState");
         }
         if (distanceToPlayer <= _detectionRadius)
         {
             stateMachine.ChangeState(waitAttackState);
-            Debug.Log("Change to WaitState");
         }
         
     }
@@ -189,7 +197,7 @@ public class Enemy_Ranged : Enemy
     {
         Vector3 fleeDirection = (transform.position - playerTransform.position).normalized;
         Vector3 fleePoint = GetFleePoint(fleeDirection);
-        //Debug.Log(Vector3.Distance(fleePoint, transform.position));
+        
         if(Vector3.Distance(fleePoint, transform.position) < 1.0f)
         {
             Vector3 rightDirection = Vector3.Cross(Vector3.up, fleeDirection).normalized;
@@ -237,6 +245,7 @@ public class Enemy_Ranged : Enemy
     public override void Extra_Enter()
     {
         base.Extra_Enter();
+        
     }
 
     public override void Extra_Update()
@@ -252,6 +261,7 @@ public class Enemy_Ranged : Enemy
     public override void Extra_Exit()
     {
         base.Extra_Exit();
+        DestroyProjectiles(); //Aseguramos que no haya proyectiles antes de invocar nuevos para que no clippen los antiguos con los nuevos.
         InvokeProjectiles();    //Cambia de estado por animation trigger.
     }
     #endregion
@@ -379,15 +389,11 @@ public class Enemy_Ranged : Enemy
         if (spawner != null)
             spawner.EnemyDead(this.gameObject);
         if(_projectiles.Count <= 0) return;
-        foreach (var projectile in _projectiles)
-        {
-            Proyectil proyectil = projectile.GetComponent<Proyectil>();
-            if (proyectil != null)
-            {
-                proyectil.DestroyProjectile();
-            }
-        }
+        DestroyProjectiles();
     }
+
+    
+
     public override void Dead_Update()
     {
         base.Dead_Update();
