@@ -1,9 +1,9 @@
 using UnityEngine;
 
 
-public class Player_LightAttackState : PlayerState
+public class Player_LightAttackState
 {
-    private float lightAttackVelocityTimer;
+    /*private float lightAttackVelocityTimer;
     private float lastTimeLightAttacked;
 
     private bool lightComboAttackQueued;
@@ -88,6 +88,6 @@ public class Player_LightAttackState : PlayerState
 
         if (lightComboIndex > lightComboLimit)
             lightComboIndex = firstLightComboIndex;
-    }
+    }*/
 
 }

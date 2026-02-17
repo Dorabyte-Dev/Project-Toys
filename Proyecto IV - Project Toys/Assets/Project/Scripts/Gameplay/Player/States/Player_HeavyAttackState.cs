@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Player_HeavyAttackState : PlayerState
+public class Player_HeavyAttackState
 {
-    private float heavyAttackVelocityTimer;
+    /*private float heavyAttackVelocityTimer;
     private float lastTimeHeavyAttacked;
 
     private bool heavyComboAttackQueued;
@@ -86,7 +86,7 @@ public class Player_HeavyAttackState : PlayerState
 
         if (heavyComboIndex > heavyComboLimit)
             heavyComboIndex = firstHeavyComboIndex;
-    }
+    }*/
 
 
 }

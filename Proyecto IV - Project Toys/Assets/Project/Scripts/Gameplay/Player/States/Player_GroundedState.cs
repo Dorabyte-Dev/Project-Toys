@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Player_GroundedState : PlayerState
 {
+
     public Player_GroundedState(Player player, StateMachine stateMachine, string stateName) : base(player, stateMachine, stateName)
     {
     }
@@ -25,10 +26,17 @@ public class Player_GroundedState : PlayerState
             stateMachine.ChangeState(player.dashState);
 
         if (input.Player.LightAttack.WasPerformedThisFrame())
-            stateMachine.ChangeState(player.lightAttackState);
+        {
+            stateMachine.ChangeState(player.comboSystemState);
+            player.anim.SetTrigger("LightTrigger"); //Change Later
+        }
+
+        if (input.Player.HeavyAttack.WasPerformedThisFrame())
+        {
+            stateMachine.ChangeState(player.comboSystemState);
+            player.anim.SetTrigger("HeavyTrigger");  //Change Later
+        }
         
-        if(input.Player.HeavyAttack.WasPerformedThisFrame())
-            stateMachine.ChangeState(player.heavyState);
 
         if (input.Player.Execution.WasPerformedThisFrame())
         {

@@ -14,14 +14,20 @@ public class Player : Entity
     public Player_JumpState jumpState { get; private set; }
     public Player_FallState fallState { get; private set; }
     public Player_DashState dashState { get; private set; }
-    public Player_LightAttackState lightAttackState { get; private set; }
+    //public Player_LightAttackState lightAttackState { get; private set; }
+    public Player_ComboSystem comboSystemState { get; private set; }
     public Player_DeathState deathState { get; private set; }
-    public Player_HeavyAttackState heavyState { get; private set; }
+    //public Player_HeavyAttackState heavyState { get; private set; }
     public Player_ExecutionState executionState { get; private set; }
 
     #endregion
 
-    [Header("Attack Details")]
+    [Header("Attack Details")] 
+    
+    public AttackData currentAttack;
+    
+    
+    //Old
     public Vector2[] attackVelocity;
     public float attackVelocityDuration = .1f;
     public float comboResetTime = 1;
@@ -76,6 +82,7 @@ public class Player : Entity
     public Player_AnimationTriggers _animationTriggers;
     public Player_VFX _vfx;
     
+
     protected override void Awake()
     {
         base.Awake();
@@ -85,9 +92,9 @@ public class Player : Entity
         jumpState = new Player_JumpState(this, stateMachine, "jumpFall");
         fallState = new Player_FallState(this, stateMachine, "jumpFall");
         dashState = new Player_DashState(this, stateMachine, "Dash");
-        lightAttackState = new Player_LightAttackState(this, stateMachine, "LightPressed");
         deathState = new Player_DeathState(this, stateMachine, "death");
-        heavyState = new Player_HeavyAttackState(this, stateMachine, "HeavyPressed");
+        comboSystemState = new Player_ComboSystem(this, stateMachine, "AttackPressed");
+        //heavyState = new Player_HeavyAttackState(this, stateMachine, "HeavyPressed");
         executionState = new Player_ExecutionState(this,  stateMachine, "kill");
         
         _combat = GetComponent<Player_Combat>();
@@ -95,6 +102,8 @@ public class Player : Entity
         _vfx = GetComponent<Player_VFX>();
         _animationTriggers = GetComponent<Player_AnimationTriggers>();
         _combat.targetHit.AddListener(OnEnemyHit);
+        
+        
         
 
     }
@@ -193,7 +202,7 @@ public class Player : Entity
         stateMachine.ChangeState(deathState);
     }
 
-    public void EnterAttackStateWithDelay()
+    /*public void EnterAttackStateWithDelay()
     {
         if(queuedAttackCo != null)
             StopCoroutine(queuedAttackCo);
@@ -204,8 +213,8 @@ public class Player : Entity
     private IEnumerator EnterAttackStateWithDelayCo()
     {
         yield return new WaitForEndOfFrame();
-        stateMachine.ChangeState(lightAttackState);
-    }
+        stateMachine.ChangeState(comboSystemState);
+    }*/
     
     public Vector2 MovementDirectionToCamera(Vector2 _moveInput)
     {
@@ -242,6 +251,25 @@ public class Player : Entity
             spawner.ResetCombat();
             spawner.GetComponent<ZoneCloser>().ResetZoneCloser();
         }
+    }
+
+    public void OnComboAttackStarted(AttackData attack)
+    {
+        currentAttack = attack;
+    }
+    public void OnComboAttackEnded()
+    {
+        
+    }
+    public void OnComboEnded()
+    {
+        stateMachine.ChangeState(idleState);
+        Invoke(nameof(ForgetPreviousAttack), 1);
+    }
+
+    private void ForgetPreviousAttack()
+    {
+        currentAttack = null;
     }
 
     private void OnTriggerEnter(Collider other)
