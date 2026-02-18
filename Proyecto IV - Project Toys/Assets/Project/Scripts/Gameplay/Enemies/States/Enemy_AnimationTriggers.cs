@@ -18,6 +18,8 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
     public void DestroyEnemy()
     {
         Destroy(gameObject);
+        /*enemy.mesh.enabled = false;
+        Invoke(nameof(Destroy), 5);*/
     }
     
     public void DeathAnimationTrigger()

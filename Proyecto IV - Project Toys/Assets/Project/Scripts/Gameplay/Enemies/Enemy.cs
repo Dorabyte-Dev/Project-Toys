@@ -28,7 +28,8 @@ public class Enemy : Entity, IEnemyStates
     [HideInInspector] public Transform playerTransform;
     [HideInInspector] public float distanceToPlayer;
 
-    [Space]
+    [Space] 
+    [HideInInspector] public Renderer mesh;
     public NavMeshAgent agent;
     public EnemySpawner spawner; //Que spawner lo ha generado
     public GameObject originalPrefab; //De que prefab se ha generado (util para la factory)
@@ -49,6 +50,7 @@ public class Enemy : Entity, IEnemyStates
     protected override void Awake()
     {
         base.Awake();
+        mesh = GetComponentInChildren<Renderer>();
         agent = GetComponent<NavMeshAgent>();
         health = GetComponent<Enemy_Health>();
         agent.speed = moveSpeed;
