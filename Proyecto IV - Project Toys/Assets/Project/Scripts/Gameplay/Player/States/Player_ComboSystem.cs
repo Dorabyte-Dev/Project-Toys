@@ -13,7 +13,7 @@ public class Player_ComboSystem : PlayerState
     //private const int firstComboIndex = 1;
 
     //bools
-    public bool isHeavy;
+    public bool isLightAttack;
     private enum AttackType
     {
         Light,
@@ -35,9 +35,16 @@ public class Player_ComboSystem : PlayerState
 
         if (player.currentAttack != null)
         {
-            //anim.CrossFade(player.currentAttack.name, .25f /*player.attackTransitionDuration*/);
-            anim.Play(player.currentAttack.name);
-
+            AttackData nextAttack = isLightAttack ? player.currentAttack.nextLightAttack : player.currentAttack.nextHeavyAttack;
+            if (nextAttack != null)
+            {
+                anim.CrossFade(nextAttack.name, .25f /*player.attackTransitionDuration*/);
+                Debug.Log("Making Crossfade");
+            }            
+        }
+        else
+        {
+            Debug.Log("No Crossfade");
         }
     }
 

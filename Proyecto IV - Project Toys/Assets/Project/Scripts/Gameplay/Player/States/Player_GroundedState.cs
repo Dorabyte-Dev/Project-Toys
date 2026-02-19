@@ -28,13 +28,15 @@ public class Player_GroundedState : PlayerState
         if (input.Player.LightAttack.WasPerformedThisFrame())
         {
             stateMachine.ChangeState(player.comboSystemState);
-            player.anim.SetTrigger("LightTrigger"); //Change Later
+            Debug.Log("Light Attack Performed");
+            player.CheckAttackBuffer(true);
+            
         }
 
         if (input.Player.HeavyAttack.WasPerformedThisFrame())
         {
             stateMachine.ChangeState(player.comboSystemState);
-            player.anim.SetTrigger("HeavyTrigger");  //Change Later
+            player.CheckAttackBuffer(false);
         }
         
 
