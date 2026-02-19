@@ -390,6 +390,7 @@ public class Enemy_Ranged : Enemy
             spawner.EnemyDead(this.gameObject);
         if(_projectiles.Count <= 0) return;
         DestroyProjectiles();
+        stateMachine.SwitchOffStateMachine();
     }
 
     
@@ -427,6 +428,14 @@ public class Enemy_Ranged : Enemy
     {
         base.Flinch_Exit();
         agent.isStopped = false;
+    }
+    
+    public override void ChangeFlinchState()
+    {
+        if (_health.currentHp >= 0)
+        {
+            stateMachine.ChangeState(flinchState);
+        }
     }
     #endregion
     #region ExecutionFunctions

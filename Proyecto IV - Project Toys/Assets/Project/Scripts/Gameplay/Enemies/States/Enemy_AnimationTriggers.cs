@@ -30,6 +30,11 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
         Destroy(gameObject);
     }
     
+    public void AttackFinished()
+    {
+        enemy.ChangeEnemyState(enemy.pursuitState);
+    }
+    
     public void DeathAnimationTrigger()
     {
         enemy.ChangeEnemyState(enemy.deadState);

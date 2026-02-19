@@ -4,6 +4,8 @@ public class Enemy_Health : Entity_Health
 {
     [SerializeField] private Enemy enemy;
     public EnemyUI enemyUI;
+
+    [HideInInspector] public float damageReceived;
     public override void Awake()
     {
         base.Awake();
@@ -38,15 +40,11 @@ public class Enemy_Health : Entity_Health
     public override void ReduceHp(float damage)
     {
         base.ReduceHp(damage);
-        if (currentHp > 0)
+        enemy.ChangeFlinchState();
+        damageReceived += damage;
+        /*if (currentHp > 0)
         {
             FlintState();
-        }
-    }
-
-    private void FlintState()
-    {
-        if(enemy == null) return;
-        enemy.ChangeFlintState();
+        }*/
     }
 }

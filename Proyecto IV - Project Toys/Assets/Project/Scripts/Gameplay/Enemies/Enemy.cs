@@ -86,11 +86,6 @@ public class Enemy : Entity, IEnemyStates
         transform.Rotate(0f, 180f, 0f);
     }
 
-    public void ChangeFlintState()
-    {
-        stateMachine.ChangeState(flinchState);
-    }
-
     public void ResetStats()
     {
         stateMachine.SwitchOnStateMachine();
@@ -141,28 +136,11 @@ public class Enemy : Entity, IEnemyStates
     {
         transform.LookAt(new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z), Vector3.up);
     }
+    public virtual void ChangeFlinchState()
+    {
+        
+    }
     #endregion
-
-    //public Transform GetPlayerReference()
-    //{
-    //    if (player == null)
-    //        player == PlayerDetected().transform;
-    //    return player;
-    //}
-
-    //private RaycastHit PlayerDetected()
-    //{
-    //    RaycastHit hit =
-    //        Physics.Raycast(transform.position, transform.forward, out hit, range)
-    //    if (Physics.Raycast(transform.position, directionToPlayer, out hit, range))
-    //    {
-    //        if (hit.transform.CompareTag("Player"))
-    //        {
-    //            return hit;
-    //        }
-    //    }
-    //    return hit;
-    //}
 
     #region Player Detection
 
@@ -182,27 +160,6 @@ public class Enemy : Entity, IEnemyStates
     {
         distanceToPlayer = CheckPlayerDistance();
     }
-    #endregion
-
-    #region Wave Manager
-    
-    /*public void AllowAttackFromManager()
-    {
-        canAttackByManager = true;
-        Debug.Log($"[Enemy] {name} recibió permiso para atacar.");
-    }
-
-    public void NotifyAttackFinished()
-    {
-        isAttacking = false;
-        canAttackByManager = false;
-    
-        if (EnemyWaveManager.Instance != null)
-            EnemyWaveManager.Instance.NotifyEnemyFinishedAttack(this);
-    
-        Debug.Log($"[Enemy] {name} notificó fin de ataque.");
-    }*/
-
     #endregion
 
     #region Perfect Dodge

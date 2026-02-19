@@ -394,6 +394,14 @@ public class Enemy_Melee : Enemy
         agent.isStopped = false;
     }
 
+    public override void ChangeFlinchState()
+    {
+        if (_health.currentHp >= 0)
+        {
+            stateMachine.ChangeState(flinchState);
+        }
+    }
+
     #endregion
     #region ExecutionFunctions
     /* =======================================================================================
