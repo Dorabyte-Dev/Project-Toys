@@ -269,6 +269,7 @@ public class Player : Entity
     private IEnumerator ForgetPreviousAttack(float time)
     {
         float elapsedTime = 0;
+        Debug.Log("Current Attack Start Forget");
         while (elapsedTime < time)
         {
             //if (anim.GetBool("AttackPressed")) break;
