@@ -74,6 +74,7 @@ public class Enemy : Entity, IEnemyStates
         _health = GetComponent<Enemy_Health>();
         _vfx = GetComponent<Enemy_VFX>();
         combat.targetHit.AddListener(OnPlayerDamaged);
+        _vfx.OnDissolveComplete += _animationTriggers.DisableAndDestroyEnemy;
         //stateMachine.Initialize(idleState);
         if (spawner == null)
             Debug.LogWarning("Spawner not assigned. Check GameObject to component of EnemySpawner.cs");
@@ -123,6 +124,7 @@ public class Enemy : Entity, IEnemyStates
     private void OnDisable()
     {
         Player.OnPlayerDeath -= PlayerDeath;
+        _vfx.OnDissolveComplete -= _animationTriggers.DisableAndDestroyEnemy;
         if (EnemyWaveManager.Instance != null)
             EnemyWaveManager.Instance?.UnregisterEnemy(this);
         PerfectDodgeManager.EndPerfectDodgeFlag(this.gameObject);

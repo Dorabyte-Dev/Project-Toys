@@ -15,11 +15,19 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
         enemy.isAttacking = false;
     }
 
-    public void DestroyEnemy()
+    public void DisableAndDestroyEnemy()
+    {
+        //Destroy(gameObject);
+        Debug.Log("[Enemy_AnimationTriggers] DisableAndDestroyEnemy called");
+        enemy.agent.isStopped = true;
+        enemy.mesh.enabled = false;     //De momento se queda así hasta que se aplique bien el efecto de dissolve, para que no se quede el modelo en medio sin hacer nada.
+        enemy._health.enemyUI.canvas.SetActive(false);
+        Invoke(nameof(DestroyEnemy), 5);        //De momento se queda así hasta que se aplique la pool de los enemigos.
+    }
+    
+    private void DestroyEnemy()
     {
         Destroy(gameObject);
-        /*enemy.mesh.enabled = false;
-        Invoke(nameof(Destroy), 5);*/
     }
     
     public void DeathAnimationTrigger()

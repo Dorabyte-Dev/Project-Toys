@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.VFX;
+using Random = UnityEngine.Random;
 
 public class Entity_VFX : MonoBehaviour
 {
@@ -22,6 +24,7 @@ public class Entity_VFX : MonoBehaviour
     [Header("DissolveFeedback")]
     public Renderer renderMesh;
     public VisualEffect vfxGraph;
+    public event Action OnDissolveComplete;
     private Material[] meshMaterials;
     public float dissolveRate = 0.0125f;
     public float refreshRate = 0.025f;
@@ -231,6 +234,7 @@ public class Entity_VFX : MonoBehaviour
                 }
             }
         }
+        OnDissolveComplete?.Invoke();
     }
     
 
