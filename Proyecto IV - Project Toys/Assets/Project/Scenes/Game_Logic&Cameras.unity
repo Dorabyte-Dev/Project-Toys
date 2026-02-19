@@ -2977,6 +2977,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -67.19537
       objectReference: {fileID: 0}
+    - target: {fileID: 4395184669273791191, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.602
+      objectReference: {fileID: 0}
     - target: {fileID: 4446542058532427199, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -47.537537
@@ -11780,19 +11784,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3421ecc99d2033449b57ca01d513ff0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeeThroughWallManager
-  player: {fileID: 121491921}
+  player: {fileID: 121491920}
+  shaderTarget: {fileID: 121491921}
   wallMask:
     serializedVersion: 2
     m_Bits: 1610612736
   mainCamera: {fileID: 0}
-  maxCutoutSize: 0.13
-  falloffSize: 0.05
+  maxCutoutSize: 0.35
+  falloffSize: 0.2
   smoothSpeedIn: 8
   smoothSpeedOut: 6
-  invertX: 0
-  invertY: 0
-  useAlternativeAspect: 0
-  manualOffset: {x: 0, y: 0}
+  isObstructed: 0
 --- !u!1001 &1275650385
 PrefabInstance:
   m_ObjectHideFlags: 0
