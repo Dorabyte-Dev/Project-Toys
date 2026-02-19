@@ -25,13 +25,9 @@ public class Player : Entity
     [Header("Attack Details")] 
     
     public AttackData currentAttack;
-    
-    
-    //Old
-    public Vector2[] attackVelocity;
-    public float attackVelocityDuration = .1f;
     public float comboResetTime = 1;
-    private Coroutine queuedAttackCo;
+    [Range(0, 1)]public float comboBufferUnlockThreshold;
+    private IEnumerator _activeForgetCoroutine; //Change to Tween when possible
 
 
     [Header("Combo Bar Properties")] 
@@ -81,7 +77,7 @@ public class Player : Entity
     public Player_Health _health;
     public Player_AnimationTriggers _animationTriggers;
     public Player_VFX _vfx;
-    private IEnumerator activeForgetCoroutine; //Change to Tween when possible
+    
 
 
     protected override void Awake()
@@ -255,19 +251,19 @@ public class Player : Entity
 #region Event Callbacks from StateMachineBehaviours
     public void OnComboStarted()
     {
-        if (activeForgetCoroutine != null)
+        if (_activeForgetCoroutine != null)
         {
             Debug.LogWarning("Coroutine Stopped");
-            StopCoroutine(activeForgetCoroutine);
-            activeForgetCoroutine = null;
+            StopCoroutine(_activeForgetCoroutine);
+            _activeForgetCoroutine = null;
         }
             
     }
     public void OnComboEnded()
     {
         stateMachine.ChangeState(idleState);
-        activeForgetCoroutine = ForgetPreviousAttack(comboResetTime);
-        StartCoroutine(activeForgetCoroutine);
+        _activeForgetCoroutine = ForgetPreviousAttack(comboResetTime);
+        StartCoroutine(_activeForgetCoroutine);
     }
     public void OnComboAttackStarted(AttackData attack)
     {
@@ -290,7 +286,7 @@ public class Player : Entity
             yield return null;
         }
         Debug.Log("Current Attack Forgotten");
-        activeForgetCoroutine = null;
+        _activeForgetCoroutine = null;
         currentAttack = null;
     }
 

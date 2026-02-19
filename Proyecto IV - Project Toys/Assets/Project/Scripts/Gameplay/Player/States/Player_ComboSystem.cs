@@ -14,6 +14,7 @@ public class Player_ComboSystem : PlayerState
 
     //bools
     public bool isLightAttack;
+    private float attackTimer;
     private enum AttackType
     {
         Light,
@@ -59,11 +60,14 @@ public class Player_ComboSystem : PlayerState
         base.Update();
         HandleAttackVelocity();
 
-        if (input.Player.LightAttack.WasPressedThisFrame())
-            QueueNextAttack(AttackType.Light);
+        if (player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= player.comboBufferUnlockThreshold)
+        {
+            if (input.Player.LightAttack.WasPressedThisFrame())
+                QueueNextAttack(AttackType.Light);
         
-        if(input.Player.HeavyAttack.WasPressedThisFrame())
-            QueueNextAttack(AttackType.Heavy);
+            if(input.Player.HeavyAttack.WasPressedThisFrame())
+                QueueNextAttack(AttackType.Heavy);
+        }
         
         
     }
@@ -87,7 +91,6 @@ public class Player_ComboSystem : PlayerState
                 throw new ArgumentOutOfRangeException();
         }
     }
-
     #region Crap
 
     /*private void LoadNextAttack(AttackData data)
@@ -122,5 +125,4 @@ public class Player_ComboSystem : PlayerState
     }
 
     #endregion
-    
 }
