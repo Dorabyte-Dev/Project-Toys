@@ -264,11 +264,19 @@ public class Player : Entity
     public void OnComboEnded()
     {
         stateMachine.ChangeState(idleState);
-        Invoke(nameof(ForgetPreviousAttack), 1);
+        StartCoroutine(ForgetPreviousAttack(comboResetTime));
     }
 
-    private void ForgetPreviousAttack()
+    private IEnumerator ForgetPreviousAttack(float time)
     {
+        float elapsedTime = 0;
+        while (elapsedTime < time)
+        {
+            if(!anim.GetBool("AttackPressed")) yield break;
+            
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
         currentAttack = null;
     }
 
