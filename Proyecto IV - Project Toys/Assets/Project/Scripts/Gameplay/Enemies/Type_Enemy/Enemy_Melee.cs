@@ -346,11 +346,11 @@ public class Enemy_Melee : Enemy
         base.Dead_Enter();
         Debug.Log("Entro en deadState");
         //anim.enabled = false;
-        agent.enabled = false;
+        agent.isStopped = true;
         PerfectDodgeManager.EndPerfectDodgeFlag(this.gameObject);
         if (spawner != null)
             spawner.EnemyDead(this.gameObject);
-        //stateMachine.SwitchOffStateMachine();
+        stateMachine.SwitchOffStateMachine();
         //Destroy(this.gameObject);
     }
     public override void Dead_Update()
@@ -361,7 +361,6 @@ public class Enemy_Melee : Enemy
     public override void Dead_Exit()
     {
         base.Dead_Exit();
-        Debug.Log("Salgo de deadState");
     }
     #endregion
     #region FLinchFunctions
