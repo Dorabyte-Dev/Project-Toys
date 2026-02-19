@@ -81,7 +81,8 @@ public class Player : Entity
     public Player_Health _health;
     public Player_AnimationTriggers _animationTriggers;
     public Player_VFX _vfx;
-    
+    private IEnumerator activeForgetCoroutine; //Change to Tween when possible
+
 
     protected override void Awake()
     {
@@ -251,7 +252,23 @@ public class Player : Entity
             spawner.GetComponent<ZoneCloser>().ResetZoneCloser();
         }
     }
-
+#region Event Callbacks from StateMachineBehaviours
+    public void OnComboStarted()
+    {
+        if (activeForgetCoroutine != null)
+        {
+            Debug.LogWarning("Coroutine Stopped");
+            StopCoroutine(activeForgetCoroutine);
+            activeForgetCoroutine = null;
+        }
+            
+    }
+    public void OnComboEnded()
+    {
+        stateMachine.ChangeState(idleState);
+        activeForgetCoroutine = ForgetPreviousAttack(comboResetTime);
+        StartCoroutine(activeForgetCoroutine);
+    }
     public void OnComboAttackStarted(AttackData attack)
     {
         currentAttack = attack;
@@ -260,24 +277,20 @@ public class Player : Entity
     {
         
     }
-    public void OnComboEnded()
-    {
-        stateMachine.ChangeState(idleState);
-        StartCoroutine(ForgetPreviousAttack(comboResetTime));
-    }
-
+#endregion
+    
+    
     private IEnumerator ForgetPreviousAttack(float time)
     {
         float elapsedTime = 0;
         Debug.Log("Current Attack Start Forget");
         while (elapsedTime < time)
         {
-            //if (anim.GetBool("AttackPressed")) break;
-            
             elapsedTime += Time.deltaTime;
             yield return null;
         }
         Debug.Log("Current Attack Forgotten");
+        activeForgetCoroutine = null;
         currentAttack = null;
     }
 
@@ -305,15 +318,26 @@ public class Player : Entity
 
     public void CheckAttackBuffer(bool isLightAttack)
     {
-        if (currentAttack != null)
+        
+
+        if (currentAttack != null) 
         {
-            comboSystemState.isLightAttack = isLightAttack;
-            Debug.Log("Checking Attack Buffer: AttackBuffer active");
+            AttackData nextAttack = isLightAttack ? currentAttack.nextLightAttack : currentAttack.nextHeavyAttack;
+            if (nextAttack != null)
+            {
+                comboSystemState.isLightAttack = isLightAttack;
+                Debug.Log("Checking Attack Buffer: AttackBuffer active");
+            }
+            else
+            {
+                anim.SetTrigger(isLightAttack ? "LightTrigger" : "HeavyTrigger"); //Change Later
+                Debug.Log("Checking Attack Buffer: Starting Over");
+            }
         }
         else
         {
             anim.SetTrigger(isLightAttack ? "LightTrigger" : "HeavyTrigger"); //Change Later
-            Debug.Log("Checking Attack Buffer: Starting Over");
+            Debug.Log("Checking Attack Buffer: Starting From Zero");
         }
     }
 }

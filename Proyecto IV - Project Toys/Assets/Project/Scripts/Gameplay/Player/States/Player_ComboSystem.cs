@@ -33,18 +33,17 @@ public class Player_ComboSystem : PlayerState
     {
         base.Enter();
 
+        player.OnComboStarted();
         if (player.currentAttack != null)
         {
             AttackData nextAttack = isLightAttack ? player.currentAttack.nextLightAttack : player.currentAttack.nextHeavyAttack;
             if (nextAttack != null)
             {
                 anim.CrossFade(nextAttack.name, .25f /*player.attackTransitionDuration*/);
-                Debug.Log("Making Crossfade");
-            }            
+            }
         }
         else
         {
-            Debug.Log("No Crossfade");
         }
     }
 
@@ -56,6 +55,7 @@ public class Player_ComboSystem : PlayerState
 
     public override void Update()
     {
+        
         base.Update();
         HandleAttackVelocity();
 
