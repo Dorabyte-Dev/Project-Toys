@@ -8,7 +8,7 @@ public class ComboAttackStateBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
        animator.GetComponent<Player>().OnComboAttackStarted(_attackData); 
-       animator.GetComponent<Player>().comboSystemState.Test();
+       //animator.GetComponent<Player>().comboSystemState.Test();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

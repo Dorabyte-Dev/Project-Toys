@@ -19,6 +19,8 @@ public class ComboStateMachineBehaviour : StateMachineBehaviour
     public override void OnStateMachineExit(Animator animator, int stateMachinePathHash)
     {
         base.OnStateMachineExit(animator, stateMachinePathHash);
+        animator.ResetTrigger("LightTrigger");
+        animator.ResetTrigger("HeavyTrigger");
         OnComboStateMachineExit?.Invoke();
     }
 

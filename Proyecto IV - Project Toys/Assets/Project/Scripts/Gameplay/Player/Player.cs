@@ -94,7 +94,6 @@ public class Player : Entity
         dashState = new Player_DashState(this, stateMachine, "Dash");
         deathState = new Player_DeathState(this, stateMachine, "death");
         comboSystemState = new Player_ComboSystem(this, stateMachine, "AttackPressed");
-        //heavyState = new Player_HeavyAttackState(this, stateMachine, "HeavyPressed");
         executionState = new Player_ExecutionState(this,  stateMachine, "kill");
         
         _combat = GetComponent<Player_Combat>();
@@ -270,13 +269,15 @@ public class Player : Entity
     private IEnumerator ForgetPreviousAttack(float time)
     {
         float elapsedTime = 0;
+        Debug.Log("Current Attack Start Forget");
         while (elapsedTime < time)
         {
-            if(!anim.GetBool("AttackPressed")) yield break;
+            //if (anim.GetBool("AttackPressed")) break;
             
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        Debug.Log("Current Attack Forgotten");
         currentAttack = null;
     }
 
@@ -301,4 +302,18 @@ public class Player : Entity
 
     public float GetCurrentHealth() => _health.currentHp;
     public float GetMaxHealth() => _health.maxHp;
+
+    public void CheckAttackBuffer(bool isLightAttack)
+    {
+        if (currentAttack != null)
+        {
+            comboSystemState.isLightAttack = isLightAttack;
+            Debug.Log("Checking Attack Buffer: AttackBuffer active");
+        }
+        else
+        {
+            anim.SetTrigger(isLightAttack ? "LightTrigger" : "HeavyTrigger"); //Change Later
+            Debug.Log("Checking Attack Buffer: Starting Over");
+        }
+    }
 }
