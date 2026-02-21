@@ -19,6 +19,8 @@ public class Player_MoveState : Player_GroundedState
 
     public override void Update()
     {
+        player.SetVelocity(player.cameraMoveInput.x * player.moveSpeed, player.cameraMoveInput.y * player.moveSpeed);
+        
         base.Update();
 
         if (player.cameraMoveInput == Vector2.zero)
@@ -28,7 +30,7 @@ public class Player_MoveState : Player_GroundedState
         //RotatePlayerToMatchInput();
         Vector2 redirectedInput = player.MovementDirectionToCamera(player.moveInput);
         
-        player.SetVelocity(player.cameraMoveInput.x * player.moveSpeed, player.cameraMoveInput.y * player.moveSpeed);
+        
     }
 
     

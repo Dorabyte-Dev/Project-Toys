@@ -33,7 +33,8 @@ public class Player_ComboSystem : PlayerState
     public override void Enter()
     {
         base.Enter();
-
+        player.SetVelocity(0, 0);
+        Debug.Log("Player has entered Combo System State.");
         player.OnComboStarted();
         if (player.currentAttack != null)
         {
@@ -58,6 +59,7 @@ public class Player_ComboSystem : PlayerState
     {
         
         base.Update();
+        //player.SetVelocity(0,0);
         HandleAttackVelocity();
 
         if (player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= player.comboBufferUnlockThreshold)
