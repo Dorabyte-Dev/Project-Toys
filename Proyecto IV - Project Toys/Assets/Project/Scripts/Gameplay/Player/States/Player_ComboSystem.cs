@@ -60,7 +60,7 @@ public class Player_ComboSystem : PlayerState
         
         base.Update();
         //player.SetVelocity(0,0);
-        HandleAttackVelocity();
+        ApplyAttackVelocity();
 
         if (player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= player.comboBufferUnlockThreshold)
         {
@@ -73,7 +73,23 @@ public class Player_ComboSystem : PlayerState
         
         
     }
-
+    
+    private void ApplyAttackVelocity()
+    {Debug.Log("Applying attack velocity");
+        float normalizedTime = player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        if (normalizedTime > player.currentAttack.attackVelocityDurationStart
+            && normalizedTime < player.currentAttack.attackVelocityDurationEnd)
+        {
+            Vector2 attackVelocity = player.currentAttack.attackVelocity * player.transform.forward;
+            player.SetVelocity(attackVelocity.x, attackVelocity.y);
+        }
+        else
+        {
+            player.SetVelocity(0, 0);
+        }
+        
+    }
+    
     public void Test()
     {
         Debug.Log("My motionValue is " +  player.currentAttack.motionValue);
@@ -107,14 +123,6 @@ public class Player_ComboSystem : PlayerState
 
         if (AttackVelocityTimer < 0)
             player.SetVelocity(0, rb.linearVelocity.y);*/
-    }
-
-    private void ApplyAttackVelocity()
-    {
-        /*Vector2 attackVelocity = player.attackVelocity[ComboIndex - 1];
-
-        AttackVelocityTimer = player.attackVelocityDuration;
-        player.SetVelocity(attackVelocity.x, attackVelocity.y);*/
     }
 
     private void ResetComboIndexIfNeeded()

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class Entity_Combat : MonoBehaviour
 {
@@ -11,14 +12,14 @@ public class Entity_Combat : MonoBehaviour
 
     [SerializeField] private Entity_Stats stats;
     [SerializeField] private Entity entity;
-    [SerializeField] private float damage;
+    [FormerlySerializedAs("damage")] [SerializeField] private float baseDamage;
     [SerializeField] private float heavyDamage;
     public UnityEvent targetHit; //Used by Player in ComboBar and by Enemy in PerfectDodge
     private void Awake()
     {
         entity = GetComponent<Entity>();
         stats = GetComponent<Entity_Stats>();
-        damage = stats.GetMaxAttack();
+        baseDamage = stats.GetMaxAttack();
         heavyDamage = stats.GetMaxHeavyAttack();
     }
     public void PerformAttack()
@@ -31,7 +32,7 @@ public class Entity_Combat : MonoBehaviour
             //Debug.Log(target);
             if (targetHealth != null)
             {
-                targetHealth?.TakeDamage(damage, this.transform);
+                targetHealth?.TakeDamage(baseDamage, this.transform);
                 if(targetHealth.invincibleMode) return; //If target is invincible, do not trigger hit events
                 targetHit?.Invoke();
             }

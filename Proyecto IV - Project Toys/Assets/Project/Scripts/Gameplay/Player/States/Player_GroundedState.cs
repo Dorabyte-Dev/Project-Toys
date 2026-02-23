@@ -15,7 +15,8 @@ public class Player_GroundedState : PlayerState
     public override void Update()
     {
         base.Update();
-
+        
+        
         /*if(rb.linearVelocity.y < 0 && !player.groundDetected)
             stateMachine.ChangeState(player.fallState);*/
 

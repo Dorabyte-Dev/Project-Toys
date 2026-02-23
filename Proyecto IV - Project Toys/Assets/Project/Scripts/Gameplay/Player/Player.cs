@@ -141,13 +141,6 @@ public class Player : Entity
         Debug.Log("Current State: " + stateMachine.currentState);
         cameraMoveInput = MovementDirectionToCamera(moveInput);
 
-        if(cameraMoveInput.magnitude >= 0.1f)
-        {
-            float targetAngle = Mathf.Atan2(cameraMoveInput.x, cameraMoveInput.y) * Mathf.Rad2Deg;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
-        }
-
         if (_isComboBarFull)
         {
             executionTarget = GetExecutionEnemy();
@@ -226,6 +219,17 @@ public class Player : Entity
         Vector3 moveVector2 = new Vector2(moveVector.x, moveVector.z);
         return moveVector2;
     }
+
+    public void RotatePlayerToMatchInput()
+    {
+        if(cameraMoveInput.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(cameraMoveInput.x, cameraMoveInput.y) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+        }
+    }
+    
 
     private void OnEnemyHit()
     {
