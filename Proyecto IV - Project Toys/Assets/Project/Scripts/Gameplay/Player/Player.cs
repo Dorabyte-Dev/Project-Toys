@@ -138,7 +138,7 @@ public class Player : Entity
     protected override void Update()
     {
         base.Update();
-        Debug.Log("Current State: " + stateMachine.currentState);
+        
         cameraMoveInput = MovementDirectionToCamera(moveInput);
 
         if (_isComboBarFull)

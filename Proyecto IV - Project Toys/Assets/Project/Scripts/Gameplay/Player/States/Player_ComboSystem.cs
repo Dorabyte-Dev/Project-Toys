@@ -75,7 +75,8 @@ public class Player_ComboSystem : PlayerState
     }
     
     private void ApplyAttackVelocity()
-    {Debug.Log("Applying attack velocity");
+    {
+        
         float normalizedTime = player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
         if (normalizedTime > player.currentAttack.attackVelocityDurationStart
             && normalizedTime < player.currentAttack.attackVelocityDurationEnd)

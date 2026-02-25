@@ -38,7 +38,7 @@ public class Entity_Health : MonoBehaviour
     {
         if(invincibleMode) return; //No damage taken in invincible mode
         currentHp -= damage;
-        if (currentHp < 0)
+        if (currentHp <= 0)
         {
             IsDead();
         }
