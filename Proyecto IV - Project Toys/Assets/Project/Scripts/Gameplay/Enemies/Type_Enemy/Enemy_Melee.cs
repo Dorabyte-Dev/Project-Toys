@@ -424,6 +424,7 @@ public class Enemy_Melee : Enemy
     public override void Execution_Exit()
     {
         base.Execution_Exit();
+        _health.Executed();
     }
 
     #endregion

@@ -47,4 +47,16 @@ public class Enemy_Health : Entity_Health
             FlintState();
         }*/
     }
+
+    public void Executed()
+    {
+        currentHp = 0;
+        IsDead();
+    }
+
+    public override void IsDead()
+    {
+        isDead = true;
+        vfx.DeathVFX_Feedback();
+    }
 }

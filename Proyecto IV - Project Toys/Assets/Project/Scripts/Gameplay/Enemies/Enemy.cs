@@ -80,6 +80,15 @@ public class Enemy : Entity, IEnemyStates
             Debug.LogWarning("Spawner not assigned. Check GameObject to component of EnemySpawner.cs");
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            stateMachine.ChangeState(executionState);
+        }
+    }
+
     public void Flip()
     {
         facingDirection *= -1;
