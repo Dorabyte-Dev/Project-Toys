@@ -234,9 +234,9 @@ public class Player : Entity
         if(cameraMoveInput.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(cameraMoveInput.x, cameraMoveInput.y) * Mathf.Rad2Deg;
-            Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
-            Quaternion finalRotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSmoothVelocity * Time.deltaTime);
-            transform.rotation = finalRotation;
+            //float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+        
+            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
         }
     }
     
