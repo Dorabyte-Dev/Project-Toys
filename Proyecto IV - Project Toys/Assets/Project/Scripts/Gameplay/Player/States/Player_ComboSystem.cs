@@ -3,17 +3,9 @@ using UnityEngine;
 
 public class Player_ComboSystem : PlayerState
 {
-
-    /*private float AttackVelocityTimer;
-    private float lastTimeAttacked;
-
-    private bool ComboAttackQueued;*/
-    //private int ComboIndex = 1;
-    //private int ComboLimit = 3;
-    //private const int firstComboIndex = 1;
-
-    //bools
+    
     public bool isLightAttack;
+    public float attackInitialPlayerAngle;
     private float attackTimer;
     private enum AttackType
     {
@@ -70,8 +62,12 @@ public class Player_ComboSystem : PlayerState
             if(input.Player.HeavyAttack.WasPressedThisFrame())
                 QueueNextAttack(AttackType.Heavy);
         }
-        
-        
+
+        if (input.Player.Dash.WasPressedThisFrame())
+        {
+            stateMachine.ChangeState(player.dashState);
+            player.OnComboInterrupted();
+        }
     }
     
     private void ApplyAttackVelocity()

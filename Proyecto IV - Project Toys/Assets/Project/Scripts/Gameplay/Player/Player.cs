@@ -315,6 +315,11 @@ public class Player : Entity
         }
             
     }
+
+    public void OnComboInterrupted()
+    {
+        _vfx.InterruptSlash();
+    }
     public void OnComboEnded()
     {
         stateMachine.ChangeState(idleState);
@@ -324,6 +329,7 @@ public class Player : Entity
     public void OnComboAttackStarted(AttackData attack)
     {
         currentAttack = attack;
+        comboSystemState.attackInitialPlayerAngle = transform.eulerAngles.y;
     }
     public void OnComboAttackEnded()
     {

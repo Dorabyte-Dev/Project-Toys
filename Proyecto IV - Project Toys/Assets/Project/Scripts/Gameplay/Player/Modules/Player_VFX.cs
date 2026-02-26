@@ -9,4 +9,9 @@ public class Player_VFX : Entity_VFX
 	{
 		slashEffect.Play();
 	}
+
+	public void InterruptSlash()
+	{
+		slashEffect.Stop();
+	}
 }
