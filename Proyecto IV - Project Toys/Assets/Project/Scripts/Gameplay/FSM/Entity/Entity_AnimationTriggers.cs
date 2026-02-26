@@ -22,6 +22,6 @@ public class Entity_AnimationTriggers : MonoBehaviour
 
     public virtual void HeavyTrigger()
     {
-        entityCombat.PerformHeavyAttack();
+        entityCombat.PerformAttack();
     }
 }

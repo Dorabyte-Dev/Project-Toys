@@ -12,6 +12,6 @@ public class Player_AnimationTriggers : Entity_AnimationTriggers
 
     public void TriggerAttackVFX()
     {
-         player._vfx.Slash();
+        player._vfx.Slash();
     }
 }

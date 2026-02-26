@@ -5,44 +5,35 @@ using UnityEngine.Serialization;
 
 public class Entity_Combat : MonoBehaviour
 {
-    //POR FAVOR NECESITAMOS QUE HAYA UN PLAYER_COMBAT Y UN ENEMY_COMBAT
-    
     [Header("Target Detection")]
     [SerializeField] public LayerMask whatIsTarget;
 
-    [SerializeField] private Entity_Stats stats;
     [SerializeField] private Entity entity;
-    [FormerlySerializedAs("damage")] [SerializeField] private float baseDamage;
-    [SerializeField] private float heavyDamage;
-    public UnityEvent targetHit; //Used by Player in ComboBar and by Enemy in PerfectDodge
-    private void Awake()
+    [SerializeField] protected float baseDamage;
+    public UnityEvent targetHit;
+    public float finalDamage;
+
+    public virtual void Awake()
     {
         entity = GetComponent<Entity>();
-        stats = GetComponent<Entity_Stats>();
-        baseDamage = stats.GetMaxAttack();
-        heavyDamage = stats.GetMaxHeavyAttack();
     }
-    public void PerformAttack()
+
+    public virtual void PerformAttack()
     {
-        //Debug.Log("Start Attack");
         foreach (var target in GetDetectedColliders())
         {
-            Debug.Log(target.name);  
+            Debug.Log(target.name);
             Entity_Health targetHealth = target.GetComponent<Entity_Health>();
-            //Debug.Log(target);
             if (targetHealth != null)
             {
-                targetHealth?.TakeDamage(baseDamage, this.transform);
-                if(targetHealth.invincibleMode) return; //If target is invincible, do not trigger hit events
+                targetHealth.TakeDamage(baseDamage, this.transform);
+                if (targetHealth.invincibleMode) return;
                 targetHit?.Invoke();
             }
-            else if(target.CompareTag("pDodge"))
+            else if (target.CompareTag("pDodge"))
             {
-                //Debug.Log("Perfect Dodge Triggered");
-                if(GetComponent<Enemy>() != null)
-                {
+                if (GetComponent<Enemy>() != null)
                     PerfectDodgeManager.SetPerfectDodgeFlag(entity.gameObject);
-                }
             }
             else if (target.CompareTag("dObject"))
             {
@@ -52,26 +43,25 @@ public class Entity_Combat : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Entity_Health not found on +"  + target.name);
+                Debug.LogWarning("Entity_Health not found on " + target.name);
             }
-                
-        }
-        
-    }
-    public void PerformHeavyAttack()
-    {
-        foreach (var target in GetDetectedColliders())
-        {
-            Entity_Health targetHealth = target.GetComponent<Entity_Health>();
-            Debug.Log(target);
-            if (targetHealth != null)
-                targetHealth?.TakeDamage(heavyDamage, this.transform);
-            else
-                Debug.LogWarning("Entity_Health not found on +"  + target.name);
         }
     }
 
-    private Collider[] GetDetectedColliders()
+    // public virtual void PerformHeavyAttack()
+    // {
+    //     foreach (var target in GetDetectedColliders())
+    //     {
+    //         Entity_Health targetHealth = target.GetComponent<Entity_Health>();
+    //         Debug.Log(target);
+    //         if (targetHealth != null)
+    //             targetHealth.TakeDamage(heavyDamage, this.transform);
+    //         else
+    //             Debug.LogWarning("Entity_Health not found on " + target.name);
+    //     }
+    // }
+
+    protected Collider[] GetDetectedColliders()
     {
         return Physics.OverlapSphere(entity.targetCheck.position, entity.targetCheckRadius, whatIsTarget);
     }
