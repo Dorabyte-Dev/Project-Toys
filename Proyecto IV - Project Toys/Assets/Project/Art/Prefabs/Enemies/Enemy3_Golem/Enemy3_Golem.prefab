@@ -920,6 +920,7 @@ MonoBehaviour:
   _health: {fileID: 0}
   _animationTriggers: {fileID: 0}
   _vfx: {fileID: 0}
+  enemyUI: {fileID: 0}
   canAttackByManager: 0
   flinchDamageThreshold: 300
   miniClonPrefab: {fileID: 0}
@@ -1033,13 +1034,12 @@ MonoBehaviour:
   whatIsTarget:
     serializedVersion: 2
     m_Bits: 520
-  stats: {fileID: 0}
   entity: {fileID: 0}
   baseDamage: 150
-  heavyDamage: 0
   targetHit:
     m_PersistentCalls:
       m_Calls: []
+  finalDamage: 0
 --- !u!114 &491567617009748997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1113,16 +1113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e004dd4be34adc149aab0808c6b62a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyUI
-  currentDamageIndex: 0
-  canvas: {fileID: 5126245848054324828}
-  fill: {fileID: 1890203765354138438}
-  lifeBar: {fileID: 5875449924609016587}
-  damageNumbers:
-  - {fileID: 1065872789208443316}
-  - {fileID: 8737584425100579088}
-  - {fileID: 8338562240516235604}
-  - {fileID: 1550302693548009691}
-  - {fileID: 6009379254191377550}
+  canvasObj: {fileID: 5126245848054324828}
   damageNumberVelocity: 1
 --- !u!114 &5625541057272846209
 MonoBehaviour:
@@ -1863,27 +1854,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
---- !u!1 &1065872789208443316 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1079460157676045397, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
-  m_PrefabInstance: {fileID: 14002198437555681}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1550302693548009691 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1563442833018537274, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
-  m_PrefabInstance: {fileID: 14002198437555681}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1890203765354138438 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1876563585849353895, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
-  m_PrefabInstance: {fileID: 14002198437555681}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!4 &4377191129560241483 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4363801984304429226, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
@@ -1892,26 +1862,6 @@ Transform:
 --- !u!1 &5126245848054324828 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5122188840045949885, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
-  m_PrefabInstance: {fileID: 14002198437555681}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5875449924609016587 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5888584603410329322, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
-  m_PrefabInstance: {fileID: 14002198437555681}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6009379254191377550 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6004464315658936687, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
-  m_PrefabInstance: {fileID: 14002198437555681}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8338562240516235604 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8325247788900502709, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
-  m_PrefabInstance: {fileID: 14002198437555681}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8737584425100579088 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8751510374545292529, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
   m_PrefabInstance: {fileID: 14002198437555681}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9123078168566997031

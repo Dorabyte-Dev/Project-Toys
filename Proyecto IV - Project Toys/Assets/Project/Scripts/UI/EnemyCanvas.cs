@@ -11,6 +11,8 @@ public class EnemyCanvas : MonoBehaviour
     
     [Header("Enemy Execution Affordance")]
     public GameObject executionAffordance;
+    public GameObject keyboardAffordance;
+    public GameObject controllerAffordance;
     [Space(10)]
 
     [Header("Enemy Damage Number")]
@@ -18,19 +20,4 @@ public class EnemyCanvas : MonoBehaviour
     private RectTransform[] rectTransforms;
     private Vector2 initialPosition;
     private TMP_Text[] damagesText;
-    [Space(10)]
-
-    [Header("Config")]
-    [SerializeField]private float damageNumberVelocity;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
