@@ -27,7 +27,7 @@ public class Entity_VFX : MonoBehaviour
     public event Action OnDissolveComplete;
     private Material[] meshMaterials;
     public float dissolveRate = 0.0125f;
-    public float refreshRate = 0.025f;
+    [Range(0.1f,0.01f)] public float refreshRate = 0.025f;
     [Header("ShakeFeedback")]
     [SerializeField] private float shakeDuration = 1;
     [SerializeField] private float shakeStrength = 1;

@@ -65,6 +65,17 @@ public class Enemy : Entity, IEnemyStates
         base.DeadEntity();
 
         stateMachine.ChangeState(deadState);
+        
+        SetEnemyDead();
+    }
+    
+    public virtual void SetEnemyDead()
+    {
+        agent.isStopped = true;
+        PerfectDodgeManager.EndPerfectDodgeFlag(this.gameObject);
+        if (spawner != null)
+            spawner.EnemyDead(this.gameObject);
+        stateMachine.SwitchOffStateMachine();
     }
     protected override void Start()
     {

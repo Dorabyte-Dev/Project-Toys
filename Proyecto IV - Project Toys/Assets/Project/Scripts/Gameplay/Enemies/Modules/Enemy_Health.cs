@@ -50,13 +50,24 @@ public class Enemy_Health : Entity_Health
 
     public void Executed()
     {
-        currentHp = 0;
-        IsDead();
+        if (isDead) return;
+        /*currentHp = 0;
+        IsDead();*/
+        DeadByExecution();
     }
 
-    public override void IsDead()
+    /*public override void IsDead()
     {
         isDead = true;
+        vfx.DeathVFX_Feedback();
+    }*/
+    
+    private void DeadByExecution()
+    {
+        if (isDead) return;
+        currentHp = 0;
+        isDead = true;
+        enemy.SetEnemyDead();
         vfx.DeathVFX_Feedback();
     }
 }

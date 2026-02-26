@@ -384,16 +384,15 @@ public class Enemy_Ranged : Enemy
     public override void Dead_Enter()
     {
         base.Dead_Enter();
-        agent.enabled = false;
-        PerfectDodgeManager.EndPerfectDodgeFlag(this.gameObject);
-        if (spawner != null)
-            spawner.EnemyDead(this.gameObject);
-        if(_projectiles.Count <= 0) return;
-        DestroyProjectiles();
-        stateMachine.SwitchOffStateMachine();
+        //SetEnemyDead();
     }
 
-    
+    public override void SetEnemyDead()
+    {
+        base.SetEnemyDead();
+        if(_projectiles.Count <= 0) return;
+        DestroyProjectiles();
+    }
 
     public override void Dead_Update()
     {
@@ -446,14 +445,11 @@ public class Enemy_Ranged : Enemy
     {
         base.Execution_Enter();
         agent.isStopped = true;
+        SetEnemyDead();
     }
     public override void Execution_Update()
     {
         base.Execution_Update();
-        this.gameObject.transform.DOShakeScale(1f, 0.1f, 5).OnComplete(() =>
-        {
-            stateMachine.ChangeState(deadState);
-        });
     }
 
     public override void Execution_Exit()
