@@ -46,12 +46,12 @@ public class EnemyUI : MonoBehaviour
 
     private void OnEnable()
     {
-        InputDeviceManager.AlCambiarDispositivo += ShowExecutionAffordance;
+        InputDeviceManager.AlCambiarDispositivo += CheckDevice;
     }
 
     private void OnDisable()
     {
-        InputDeviceManager.AlCambiarDispositivo -= ShowExecutionAffordance;
+        InputDeviceManager.AlCambiarDispositivo -= CheckDevice;
     }
 
     private void InitializeDamageNumber()
@@ -103,8 +103,20 @@ public class EnemyUI : MonoBehaviour
             currentDamageIndex = 0;
         }
     }
+    
+    public void ShowExecutionUI()
+    {
+        if(enemyCanvas.executionAffordance == null) return;
+        enemyCanvas.executionAffordance.SetActive(true);
+    }
+    
+    public void HideExecutionUI()
+    {
+        if(enemyCanvas.executionAffordance == null) return;
+        enemyCanvas.executionAffordance.SetActive(false);
+    }
 
-    public void ShowExecutionAffordance(InputDeviceManager.Devices dispositivo)
+    private void CheckDevice(InputDeviceManager.Devices dispositivo)
     {
         if(enemyCanvas.executionAffordance == null) return;
         switch (dispositivo)

@@ -39,11 +39,11 @@ public class Enemy : Entity, IEnemyStates
     
     public Transform player { get; private set; }
     
-    public Enemy_Combat combat;
-    public Enemy_Health _health;
-    public Enemy_AnimationTriggers _animationTriggers;
-    public Enemy_VFX _vfx;
-    public EnemyUI enemyUI;
+    [HideInInspector]public Enemy_Combat combat;
+    [HideInInspector]public Enemy_Health _health;
+    [HideInInspector]public Enemy_AnimationTriggers _animationTriggers;
+    [HideInInspector]public Enemy_VFX _vfx;
+    [HideInInspector]public EnemyUI enemyUI;
     
     [Header("WaveManager Specs")]
     public bool canAttackByManager; // permiso del manager para atacar
@@ -81,6 +81,7 @@ public class Enemy : Entity, IEnemyStates
     protected override void Start()
     {
         base.Start();
+        enemyUI = GetComponent<EnemyUI>();
         combat = GetComponent<Enemy_Combat>();
         _animationTriggers = GetComponent<Enemy_AnimationTriggers>();
         _health = GetComponent<Enemy_Health>();
