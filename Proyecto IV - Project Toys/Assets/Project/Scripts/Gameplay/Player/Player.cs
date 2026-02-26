@@ -25,9 +25,17 @@ public class Player : Entity
 
     #region ComboSystem
     [Header("Attack and Combo Details")] 
+    [Tooltip("Reference for the current attack played by the ComboSystemState. It is remembered by the player for a bit after exiting combo statem.")]
     public AttackData currentAttack;
+    
+    [Tooltip("Time that player remembers last combo attack.")]
     public float comboResetTime = 1;
+    
+    [Tooltip("Normalized time to unlock player input in combos. Input is ignored before this threshold.")]
     [Range(0, 1)]public float comboBufferUnlockThreshold;
+    
+    [Tooltip("Max angle player can rotate during each attack of the combo.")]
+    public float comboRedirectionLimit;
     private IEnumerator _activeForgetCoroutine; //Change to Tween when possible
     #endregion
 
@@ -101,6 +109,7 @@ public class Player : Entity
     #endregion
 
     public Vector3 debug_Velocity;
+
     #endregion
 
     #region Unity Lifecycle
@@ -225,8 +234,9 @@ public class Player : Entity
         if(cameraMoveInput.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(cameraMoveInput.x, cameraMoveInput.y) * Mathf.Rad2Deg;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+            Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
+            Quaternion finalRotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSmoothVelocity * Time.deltaTime);
+            transform.rotation = finalRotation;
         }
     }
     

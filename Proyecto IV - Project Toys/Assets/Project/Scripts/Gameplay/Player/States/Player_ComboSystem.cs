@@ -53,6 +53,7 @@ public class Player_ComboSystem : PlayerState
         base.Update();
         //player.SetVelocity(0,0);
         ApplyAttackVelocity();
+        RotateWithinCombo();
 
         if (player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= player.comboBufferUnlockThreshold)
         {
@@ -69,7 +70,25 @@ public class Player_ComboSystem : PlayerState
             player.OnComboInterrupted();
         }
     }
-    
+
+    private void RotateWithinCombo()
+    {
+        if(player.cameraMoveInput.magnitude >= 0.1f)
+        {
+            float inputAngle = Mathf.Atan2(player.cameraMoveInput.x, player.cameraMoveInput.y) * Mathf.Rad2Deg;
+            
+            float angleDiff = Mathf.DeltaAngle(attackInitialPlayerAngle, inputAngle);
+            float clampedDiff = Mathf.Clamp(angleDiff, -player.comboRedirectionLimit, player.comboRedirectionLimit);
+            
+            float targetAngle = attackInitialPlayerAngle + clampedDiff;
+            Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
+            
+            Quaternion finalRotation = Quaternion.Slerp(player.transform.rotation, targetRotation, player.turnSmoothVelocity * Time.deltaTime);
+
+            player.transform.rotation = finalRotation;
+        }
+    }
+
     private void ApplyAttackVelocity()
     {
         
