@@ -21,7 +21,7 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
         Debug.Log("[Enemy_AnimationTriggers] DisableAndDestroyEnemy called");
         enemy.agent.isStopped = true;
         enemy.mesh.enabled = false;     //De momento se queda así hasta que se aplique bien el efecto de dissolve, para que no se quede el modelo en medio sin hacer nada.
-        enemy._health.enemyUI.canvas.SetActive(false);
+        enemy._health.enemyUI.canvasObj.SetActive(false);
         Invoke(nameof(DestroyEnemy), 2);        //De momento se queda así hasta que se aplique la pool de los enemigos.
     }
     
