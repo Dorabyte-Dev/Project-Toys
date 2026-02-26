@@ -43,6 +43,7 @@ public class Enemy : Entity, IEnemyStates
     public Enemy_Health _health;
     public Enemy_AnimationTriggers _animationTriggers;
     public Enemy_VFX _vfx;
+    public EnemyUI enemyUI;
     
     [Header("WaveManager Specs")]
     public bool canAttackByManager; // permiso del manager para atacar
