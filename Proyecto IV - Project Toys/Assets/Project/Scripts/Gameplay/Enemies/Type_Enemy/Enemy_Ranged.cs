@@ -24,7 +24,7 @@ public class Enemy_Ranged : Enemy
     [Header("Projectile Settings")]
     public int maxProjectiles = 5;
     public float projectileRotationSpeed = 10f;
-    public int projectileDamage = 20;
+    private int projectileDamage;
     public float projectileRotationRadius = 3f;
     private List<GameObject> _projectiles;
     private Proyectil _projectile;
@@ -53,6 +53,7 @@ public class Enemy_Ranged : Enemy
     protected override void Start()
     {
         base.Start();
+        projectileDamage = (int)combat.GetBaseDamage();
         _projectiles ??= new List<GameObject>(maxProjectiles);
         anim.SetFloat("invokeSpeed", invokeProjectileSpeed);
         stateMachine.Initialize(idleState);

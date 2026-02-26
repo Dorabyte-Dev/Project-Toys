@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class EnemyUI : MonoBehaviour
 {
     [Header("Current UI Stats")] 
-    [SerializeField] private int currentDamageIndex;
+    private int currentDamageIndex;
     
     [Header("Enemy Canvas")]
     public GameObject canvasObj;
@@ -110,13 +110,16 @@ public class EnemyUI : MonoBehaviour
         switch (dispositivo)
         {
             case InputDeviceManager.Devices.Teclado:
-                Debug.Log(dispositivo);
+                enemyCanvas.keyboardAffordance.SetActive(true);
+                enemyCanvas.controllerAffordance.SetActive(false);
                 break;
             case InputDeviceManager.Devices.Mando:
-                Debug.Log(dispositivo);
+                enemyCanvas.keyboardAffordance.SetActive(false);
+                enemyCanvas.controllerAffordance.SetActive(true);
                 break;
             default:
-                enemyCanvas.executionAffordance.SetActive(false);
+                enemyCanvas.keyboardAffordance.SetActive(false);
+                enemyCanvas.controllerAffordance.SetActive(false);
                 break;
         }
         

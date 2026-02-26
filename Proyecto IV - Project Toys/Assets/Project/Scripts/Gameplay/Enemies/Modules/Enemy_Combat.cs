@@ -4,4 +4,9 @@ public class Enemy_Combat : Entity_Combat
     {
         base.PerformAttack();
     }
+    
+    public float GetBaseDamage()
+    {
+        return baseDamage;
+    }
 }
