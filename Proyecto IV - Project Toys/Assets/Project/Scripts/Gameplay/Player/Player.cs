@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -37,6 +38,9 @@ public class Player : Entity
     [Tooltip("Max angle player can rotate during each attack of the combo.")]
     public float comboRedirectionLimit;
     private IEnumerator _activeForgetCoroutine; //Change to Tween when possible
+
+    [Header("Attack Colliders")]
+    public Dictionary<AttackCollider, Collider> attackColliders;
     #endregion
 
     #region ComboBar
