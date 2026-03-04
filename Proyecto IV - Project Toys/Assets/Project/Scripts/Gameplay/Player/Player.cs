@@ -44,7 +44,9 @@ public class Player : Entity
     public float comboBarHitModifier;
     public float comboBarPerfectDodgeModifier; //TODO: implement perfect dodge combo charge
     public float maxComboBarAmount;
+
     private bool _isComboBarFull;
+
     private float _comboBarAmount;
     public float comboBarAmount
     {
@@ -62,9 +64,65 @@ public class Player : Entity
     
     [Header("Execution Properties")]
     public float executionRadius;
-    [HideInInspector] public Transform executionTarget;
+    private Transform _executionTarget;
+
+    [HideInInspector]
+    public Transform executionTarget
+    {
+        get
+        {
+            return _executionTarget;
+        }
+        set
+        {
+            if (_executionTarget == value) return;
+            
+            if (_executionTarget != null)
+            {
+                Enemy prevEnemy = _executionTarget.GetComponent<Enemy>();
+                if (prevEnemy != null && prevEnemy.enemyUI != null)
+                {
+                    prevEnemy.enemyUI.HideExecutionUI();
+                }
+            }
+            
+            _executionTarget = value;
+
+            if (_executionTarget != null)
+            {
+                executionEnemy = _executionTarget.GetComponent<Enemy>();
+                if (executionEnemy != null)
+                {
+                    SetExecutionEnemy(executionEnemy);
+                }
+            }
+            else
+            {
+                executionEnemy = null;
+            }
+
+            /*if (executionTarget != _lastExecutionTarget)
+            {
+                if(_lastExecutionEnemy) _lastExecutionEnemy.enemyUI.HideExecutionUI();
+                _lastExecutionTarget = executionTarget;
+                _lastExecutionEnemy = _lastExecutionTarget.GetComponent<Enemy>();
+                executionEnemy = executionTarget.GetComponent<Enemy>();
+                SetExecutionEnemy(executionEnemy);
+            }*/
+            
+            /*if(executionTarget == _lastExecutionTarget) return;
+            _lastExecutionEnemy = _lastExecutionTarget.GetComponent<Enemy>();
+            _lastExecutionTarget = executionTarget;
+            executionEnemy = executionTarget.GetComponent<Enemy>();
+            
+            SetExecutionEnemy(executionEnemy);*/
+        }
+    }
+
     [HideInInspector] public Enemy executionEnemy;
+    private Enemy _lastExecutionEnemy;
     [SerializeField] public LayerMask executionTargetLayer;
+    
     
     #endregion
 
@@ -153,8 +211,16 @@ public class Player : Entity
         if (_isComboBarFull)
         {
             executionTarget = GetExecutionEnemy();
-            if(!executionTarget) return;
-            executionEnemy = executionTarget.GetComponent<Enemy>();
+            /*if(!executionTarget) return;
+            executionEnemy = executionTarget.GetComponent<Enemy>();*/
+            /*if(executionTarget == _lastExecutionTarget) return;
+            
+            _lastExecutionTarget = executionTarget;*/
+            
+        }
+        else if (executionTarget != null)
+        {
+            executionTarget = null;
         }
     }
     
@@ -196,6 +262,11 @@ public class Player : Entity
         }
 
         return nearestEnemy;
+    }
+
+    private void SetExecutionEnemy(Enemy enemy)
+    {
+        executionEnemy.enemyUI.ShowExecutionUI();
     }
 
     void SetComboBar()
