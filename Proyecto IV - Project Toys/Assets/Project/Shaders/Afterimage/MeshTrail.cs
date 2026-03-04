@@ -6,7 +6,6 @@ using UnityEngine.Windows;
 
 public class MeshTrail : MonoBehaviour
 {
-    public Player player;
 
     public float meshDestroyDelay = 2f;
     [Header("Mesh Related")]
@@ -22,7 +21,6 @@ public class MeshTrail : MonoBehaviour
 
     private void Start()
     {
-        player = GetComponent<Player>();
     }
     void Update()
     {
