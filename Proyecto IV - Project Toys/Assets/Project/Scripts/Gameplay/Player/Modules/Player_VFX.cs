@@ -4,14 +4,17 @@ using UnityEngine.VFX;
 public class Player_VFX : Entity_VFX
 {
 	[SerializeField]private VisualEffect slashEffect;
+	[SerializeField] private MeshTrail swordTrail;
 
 	public void Slash()
 	{
-		slashEffect.Play();
+		//slashEffect.Play();
+		swordTrail.ToggleTrail();
 	}
 
 	public void InterruptSlash()
 	{
-		slashEffect.Stop();
+		//slashEffect.Stop();
+		swordTrail.UnToggleTrail();
 	}
 }

@@ -52,7 +52,7 @@ public class Player_ComboSystem : PlayerState
         
         base.Update();
         //player.SetVelocity(0,0);
-        ApplyAttackVelocity();
+        //ApplyAttackVelocity();
         RotateWithinCombo();
 
         if (player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= player.comboBufferUnlockThreshold)
@@ -83,9 +83,9 @@ public class Player_ComboSystem : PlayerState
             float targetAngle = attackInitialPlayerAngle + clampedDiff;
             Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
             
-            Quaternion finalRotation = Quaternion.Slerp(player.transform.rotation, targetRotation, player.turnSmoothVelocity * Time.deltaTime);
+            //Quaternion finalRotation = Quaternion.Slerp(player.transform.rotation, targetRotation, player.turnSmoothVelocity * Time.deltaTime);
 
-            player.transform.rotation = finalRotation;
+            player.transform.rotation = targetRotation;
         }
     }
 
