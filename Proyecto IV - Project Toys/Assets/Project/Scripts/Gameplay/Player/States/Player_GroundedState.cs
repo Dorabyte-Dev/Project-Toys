@@ -15,7 +15,8 @@ public class Player_GroundedState : PlayerState
     public override void Update()
     {
         base.Update();
-
+        
+        
         /*if(rb.linearVelocity.y < 0 && !player.groundDetected)
             stateMachine.ChangeState(player.fallState);*/
 
@@ -27,14 +28,14 @@ public class Player_GroundedState : PlayerState
 
         if (input.Player.LightAttack.WasPerformedThisFrame())
         {
+            player.CheckAttackBuffer(true);
             stateMachine.ChangeState(player.comboSystemState);
-            player.anim.SetTrigger("LightTrigger"); //Change Later
         }
 
         if (input.Player.HeavyAttack.WasPerformedThisFrame())
         {
+            player.CheckAttackBuffer(false);
             stateMachine.ChangeState(player.comboSystemState);
-            player.anim.SetTrigger("HeavyTrigger");  //Change Later
         }
         
 

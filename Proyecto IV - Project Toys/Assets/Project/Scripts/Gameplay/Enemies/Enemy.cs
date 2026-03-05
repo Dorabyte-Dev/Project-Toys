@@ -39,10 +39,11 @@ public class Enemy : Entity, IEnemyStates
     
     public Transform player { get; private set; }
     
-    public Enemy_Combat combat;
-    public Enemy_Health _health;
-    public Enemy_AnimationTriggers _animationTriggers;
-    public Enemy_VFX _vfx;
+    [HideInInspector]public Enemy_Combat combat;
+    [HideInInspector]public Enemy_Health _health;
+    [HideInInspector]public Enemy_AnimationTriggers _animationTriggers;
+    [HideInInspector]public Enemy_VFX _vfx;
+    [HideInInspector]public EnemyUI enemyUI;
     
     [Header("WaveManager Specs")]
     public bool canAttackByManager; // permiso del manager para atacar
@@ -65,10 +66,22 @@ public class Enemy : Entity, IEnemyStates
         base.DeadEntity();
 
         stateMachine.ChangeState(deadState);
+        
+        SetEnemyDead();
+    }
+    
+    public virtual void SetEnemyDead()
+    {
+        agent.isStopped = true;
+        PerfectDodgeManager.EndPerfectDodgeFlag(this.gameObject);
+        if (spawner != null)
+            spawner.EnemyDead(this.gameObject);
+        stateMachine.SwitchOffStateMachine();
     }
     protected override void Start()
     {
         base.Start();
+        enemyUI = GetComponent<EnemyUI>();
         combat = GetComponent<Enemy_Combat>();
         _animationTriggers = GetComponent<Enemy_AnimationTriggers>();
         _health = GetComponent<Enemy_Health>();
@@ -80,15 +93,19 @@ public class Enemy : Entity, IEnemyStates
             Debug.LogWarning("Spawner not assigned. Check GameObject to component of EnemySpawner.cs");
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            stateMachine.ChangeState(executionState);
+        }
+    }
+
     public void Flip()
     {
         facingDirection *= -1;
         transform.Rotate(0f, 180f, 0f);
-    }
-
-    public void ChangeFlintState()
-    {
-        stateMachine.ChangeState(flinchState);
     }
 
     public void ResetStats()
@@ -141,28 +158,11 @@ public class Enemy : Entity, IEnemyStates
     {
         transform.LookAt(new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z), Vector3.up);
     }
+    public virtual void ChangeFlinchState()
+    {
+        
+    }
     #endregion
-
-    //public Transform GetPlayerReference()
-    //{
-    //    if (player == null)
-    //        player == PlayerDetected().transform;
-    //    return player;
-    //}
-
-    //private RaycastHit PlayerDetected()
-    //{
-    //    RaycastHit hit =
-    //        Physics.Raycast(transform.position, transform.forward, out hit, range)
-    //    if (Physics.Raycast(transform.position, directionToPlayer, out hit, range))
-    //    {
-    //        if (hit.transform.CompareTag("Player"))
-    //        {
-    //            return hit;
-    //        }
-    //    }
-    //    return hit;
-    //}
 
     #region Player Detection
 
@@ -182,27 +182,6 @@ public class Enemy : Entity, IEnemyStates
     {
         distanceToPlayer = CheckPlayerDistance();
     }
-    #endregion
-
-    #region Wave Manager
-    
-    /*public void AllowAttackFromManager()
-    {
-        canAttackByManager = true;
-        Debug.Log($"[Enemy] {name} recibió permiso para atacar.");
-    }
-
-    public void NotifyAttackFinished()
-    {
-        isAttacking = false;
-        canAttackByManager = false;
-    
-        if (EnemyWaveManager.Instance != null)
-            EnemyWaveManager.Instance.NotifyEnemyFinishedAttack(this);
-    
-        Debug.Log($"[Enemy] {name} notificó fin de ataque.");
-    }*/
-
     #endregion
 
     #region Perfect Dodge

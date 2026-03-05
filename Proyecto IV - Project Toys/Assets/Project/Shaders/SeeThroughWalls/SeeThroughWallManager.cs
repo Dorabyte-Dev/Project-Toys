@@ -1,99 +1,93 @@
 using UnityEngine;
+using Unity.Cinemachine;
 
 public class SeeThroughWallManager : MonoBehaviour
 {
     [SerializeField] private Transform player;
+    [SerializeField] private Transform shaderTarget;
     [SerializeField] private LayerMask wallMask;
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private CinemachineBrain cinemachineBrain;
 
     [Header("Cutout Settings")]
-    [SerializeField] private float maxCutoutSize = 0.15f;
-    [SerializeField] private float falloffSize = 0.05f;
+    [Range(0f, 1f)] [SerializeField] private float maxCutoutSize = 0.2f;
+    [Range(0f, 0.5f)] [SerializeField] private float falloffSize = 0.05f;
+
+    [Header("Raycast Settings")]
+    [SerializeField] private float raycastEndOffset = 0.3f;
+    [SerializeField] private float playerHeight = 1.0f;
+    [SerializeField] private float playerWidth = 0.3f;
 
     [Header("Animation")]
     [SerializeField] private float smoothSpeedIn = 8f;
     [SerializeField] private float smoothSpeedOut = 6f;
 
-    [Header("DEBUG: Ajuste Manual de Coordenadas")]
-    [SerializeField] private bool invertX = false;
-    [SerializeField] private bool invertY = false;
-    [SerializeField] private bool useAlternativeAspect = false;
-    [SerializeField] private Vector2 manualOffset = Vector2.zero;
+    [Header("Debug")]
+    [SerializeField] private bool isObstructed;
 
     private float currentCutoutSize = 0f;
-    private bool wasObstructedLastFrame = false;
 
     private void Awake()
     {
-        if (mainCamera == null) mainCamera = Camera.main;
-        
+        if (cinemachineBrain == null)
+            cinemachineBrain = FindObjectOfType<CinemachineBrain>();
+        if (mainCamera == null)
+            mainCamera = cinemachineBrain?.GetComponent<Camera>() ?? Camera.main;
+
         Shader.SetGlobalFloat("_CutoutSize", 0f);
         Shader.SetGlobalFloat("_FalloutSize", falloffSize);
     }
 
     private void Update()
     {
-        if (player == null) return;
+        if (player == null || shaderTarget == null) return;
 
-        // 1. Detectar obstrucción
-        Vector3 direction = player.position - mainCamera.transform.position;
-        bool isObstructed = Physics.Raycast(mainCamera.transform.position, direction, direction.magnitude, wallMask);
+        Vector3 camPos = mainCamera.transform.position;
 
-        // 2. Calcular posición en pantalla
-        Vector3 screenPoint = mainCamera.WorldToScreenPoint(player.position);
+        // 1. Detección con múltiples rayos
+        isObstructed = CheckObstruction(camPos, player.position);
 
-        // 3. Normalizar a -0.5 a 0.5
-        float screenX = (screenPoint.x / Screen.width) - 0.5f;
-        float screenY = (screenPoint.y / Screen.height) - 0.5f;
-
-        // 4. Aplicar inversiones si es necesario (DEBUG)
-        if (invertX) screenX *= -1f;
-        if (invertY) screenY *= -1f;
-
-        // 5. Aplicar aspect ratio
+        // 2. Posición en pantalla del shaderTarget
+        Vector3 screenPoint = mainCamera.WorldToScreenPoint(shaderTarget.position);
         float aspect = (float)Screen.width / Screen.height;
-        Vector2 cutoutPos;
+        Vector2 cutoutPos = new Vector2(
+            ((screenPoint.x / Screen.width) - 0.5f) * aspect,  // Corregir aspect ratio aquí
+            (screenPoint.y / Screen.height) - 0.5f
+        );
 
-        if (useAlternativeAspect)
-        {
-            // Método alternativo: dividir Y en lugar de multiplicar X
-            cutoutPos = new Vector2(screenX, screenY / aspect);
-        }
-        else
-        {
-            // Método estándar: multiplicar X
-            cutoutPos = new Vector2(screenX * aspect, screenY);
-        }
-
-        // 6. Aplicar offset manual (DEBUG)
-        cutoutPos += manualOffset;
-
-        // 7. Animar tamaño
+        // 3. Animación del tamaño
         float targetSize = isObstructed ? maxCutoutSize : 0f;
         float speed = isObstructed ? smoothSpeedIn : smoothSpeedOut;
         currentCutoutSize = Mathf.Lerp(currentCutoutSize, targetSize, Time.deltaTime * speed);
 
-        // 8. Enviar al shader
+        if (!isObstructed && currentCutoutSize < 0.001f)
+            currentCutoutSize = 0f;
+
+        // 4. Enviar al Shader
         Shader.SetGlobalVector("_CutoutPosition", cutoutPos);
         Shader.SetGlobalFloat("_CutoutSize", currentCutoutSize);
         Shader.SetGlobalFloat("_FalloutSize", falloffSize);
-
-        // Debug visual
-        Debug.DrawRay(mainCamera.transform.position, direction, isObstructed ? Color.red : Color.green);
-        
-        if (isObstructed != wasObstructedLastFrame)
-        {
-            Debug.Log($"Obstrucción: {(isObstructed ? "BLOQUEADO" : "LIBRE")} | Size: {currentCutoutSize:F3} | Pos: {cutoutPos}");
-        }
-        
-        wasObstructedLastFrame = isObstructed;
     }
 
-    private void OnValidate()
+    private bool CheckObstruction(Vector3 camPos, Vector3 playerPos)
     {
-        if (Application.isPlaying)
+        Vector3[] checkPoints = new Vector3[]
         {
-            Shader.SetGlobalFloat("_FalloutSize", falloffSize);
+            playerPos,
+            playerPos + Vector3.up * playerHeight,
+            playerPos + Vector3.up * (playerHeight * 0.5f),
+            playerPos + Vector3.right * playerWidth,
+            playerPos + Vector3.left * playerWidth,
+        };
+
+        foreach (Vector3 point in checkPoints)
+        {
+            Vector3 dir = point - camPos;
+            bool hit = Physics.Raycast(camPos, dir, out RaycastHit hitInfo, dir.magnitude - raycastEndOffset, wallMask, QueryTriggerInteraction.Ignore);
+            Debug.DrawRay(camPos, dir.normalized * (dir.magnitude - raycastEndOffset),
+                                hit ? Color.red : Color.green);
+            if (hit) return true;
         }
+        return false;
     }
 }

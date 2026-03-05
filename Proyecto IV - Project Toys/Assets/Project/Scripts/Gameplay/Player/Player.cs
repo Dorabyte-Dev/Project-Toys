@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class Player : Entity
 {
+    #region Variables
     public static event Action OnPlayerDeath;
     #region States
     public PlayerInputSystem input { get; private set; }
@@ -22,23 +24,33 @@ public class Player : Entity
 
     #endregion
 
-    [Header("Attack Details")] 
-    
+    #region ComboSystem
+    [Header("Attack and Combo Details")] 
+    [Tooltip("Reference for the current attack played by the ComboSystemState. It is remembered by the player for a bit after exiting combo statem.")]
     public AttackData currentAttack;
     
-    
-    //Old
-    public Vector2[] attackVelocity;
-    public float attackVelocityDuration = .1f;
+    [Tooltip("Time that player remembers last combo attack.")]
     public float comboResetTime = 1;
-    private Coroutine queuedAttackCo;
-
-
-    [Header("Combo Bar Properties")] 
     
+    [Tooltip("Normalized time to unlock player input in combos. Input is ignored before this threshold.")]
+    [Range(0, 1)]public float comboBufferUnlockThreshold;
+    
+    [Tooltip("Max angle player can rotate during each attack of the combo.")]
+    public float comboRedirectionLimit;
+    private IEnumerator _activeForgetCoroutine; //Change to Tween when possible
+
+    [Header("Attack Colliders")]
+    public Dictionary<AttackCollider, Collider> attackColliders;
+    #endregion
+
+    #region ComboBar
+    [Header("Combo Bar Properties")] 
     public float comboBarHitModifier;
-    public float comboBarPerfectDodgeModifier;
+    public float comboBarPerfectDodgeModifier; //TODO: implement perfect dodge combo charge
     public float maxComboBarAmount;
+
+    private bool _isComboBarFull;
+
     private float _comboBarAmount;
     public float comboBarAmount
     {
@@ -49,20 +61,86 @@ public class Player : Entity
             SetComboBar();
         }
     }
-    private bool _isComboBarFull;
+    
+    #endregion
+
+    #region Execution
     
     [Header("Execution Properties")]
     public float executionRadius;
-    [HideInInspector] public Transform executionTarget;
+    private Transform _executionTarget;
+
+    [HideInInspector]
+    public Transform executionTarget
+    {
+        get
+        {
+            return _executionTarget;
+        }
+        set
+        {
+            if (_executionTarget == value) return;
+            
+            if (_executionTarget != null)
+            {
+                Enemy prevEnemy = _executionTarget.GetComponent<Enemy>();
+                if (prevEnemy != null && prevEnemy.enemyUI != null)
+                {
+                    prevEnemy.enemyUI.HideExecutionUI();
+                }
+            }
+            
+            _executionTarget = value;
+
+            if (_executionTarget != null)
+            {
+                executionEnemy = _executionTarget.GetComponent<Enemy>();
+                if (executionEnemy != null)
+                {
+                    SetExecutionEnemy(executionEnemy);
+                }
+            }
+            else
+            {
+                executionEnemy = null;
+            }
+
+            /*if (executionTarget != _lastExecutionTarget)
+            {
+                if(_lastExecutionEnemy) _lastExecutionEnemy.enemyUI.HideExecutionUI();
+                _lastExecutionTarget = executionTarget;
+                _lastExecutionEnemy = _lastExecutionTarget.GetComponent<Enemy>();
+                executionEnemy = executionTarget.GetComponent<Enemy>();
+                SetExecutionEnemy(executionEnemy);
+            }*/
+            
+            /*if(executionTarget == _lastExecutionTarget) return;
+            _lastExecutionEnemy = _lastExecutionTarget.GetComponent<Enemy>();
+            _lastExecutionTarget = executionTarget;
+            executionEnemy = executionTarget.GetComponent<Enemy>();
+            
+            SetExecutionEnemy(executionEnemy);*/
+        }
+    }
+
     [HideInInspector] public Enemy executionEnemy;
+    private Enemy _lastExecutionEnemy;
     [SerializeField] public LayerMask executionTargetLayer;
     
     
+    #endregion
+
+    #region Movement
+
     [Header("Movement Specs")]
     public Vector2 moveInput { get; private set; }
     public Vector2 cameraMoveInput { get; private set; }
     public Camera cam;
     public float jumpForce = 5;
+
+    #endregion
+
+    #region Dash & Perfect Dodge
 
     [Header("Dash Specs")]
     public float dashDuration = .25f;
@@ -74,15 +152,29 @@ public class Player : Entity
     public float perfectDodgeEnemyDistance = 1f;
     public MeshTrail afterimageTrail;
 
-    [Header("Death Specs")] [SerializeField]private Transform activeCheckpoint;
+    #endregion
 
+    #region Respawn
+
+    [Header("Death Specs")] 
+    [SerializeField]private Transform activeCheckpoint;
+
+    #endregion
+
+    #region Module References
 
     public Player_Combat _combat;
     public Player_Health _health;
     public Player_AnimationTriggers _animationTriggers;
     public Player_VFX _vfx;
-    
 
+    #endregion
+
+    public Vector3 debug_Velocity;
+
+    #endregion
+
+    #region Unity Lifecycle
     protected override void Awake()
     {
         base.Awake();
@@ -94,7 +186,6 @@ public class Player : Entity
         dashState = new Player_DashState(this, stateMachine, "Dash");
         deathState = new Player_DeathState(this, stateMachine, "death");
         comboSystemState = new Player_ComboSystem(this, stateMachine, "AttackPressed");
-        //heavyState = new Player_HeavyAttackState(this, stateMachine, "HeavyPressed");
         executionState = new Player_ExecutionState(this,  stateMachine, "kill");
         
         _combat = GetComponent<Player_Combat>();
@@ -102,9 +193,6 @@ public class Player : Entity
         _vfx = GetComponent<Player_VFX>();
         _animationTriggers = GetComponent<Player_AnimationTriggers>();
         _combat.targetHit.AddListener(OnEnemyHit);
-        
-        
-        
 
     }
     protected override void Start()
@@ -118,35 +206,43 @@ public class Player : Entity
         }
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        
+        cameraMoveInput = MovementDirectionToCamera(moveInput);
+
+        if (_isComboBarFull)
+        {
+            executionTarget = GetExecutionEnemy();
+            /*if(!executionTarget) return;
+            executionEnemy = executionTarget.GetComponent<Enemy>();*/
+            /*if(executionTarget == _lastExecutionTarget) return;
+            
+            _lastExecutionTarget = executionTarget;*/
+            
+        }
+        else if (executionTarget != null)
+        {
+            executionTarget = null;
+        }
+    }
+    
     private void OnEnable()
     {
         input.Enable();
         input.Player.Movement.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;
-
     }
-
-    protected override void Update()
+    
+    private void OnDisable()
     {
-        base.Update();
-        cameraMoveInput = MovementDirectionToCamera(moveInput);
-
-        if(cameraMoveInput.magnitude >= 0.1f)
-        {
-            float targetAngle = Mathf.Atan2(cameraMoveInput.x, cameraMoveInput.y) * Mathf.Rad2Deg;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
-        }
-
-        if (_isComboBarFull)
-        {
-            executionTarget = GetExecutionEnemy();
-            if(!executionTarget) return;
-            executionEnemy = executionTarget.GetComponent<Enemy>();
-        }
-
+        input.Disable();
     }
-
+    
+    #endregion
+    
+    #region Enemy Execution
     private Collider[] GetNearEnemiesCollider()
     {
         return Physics.OverlapSphere(transform.position, executionRadius, executionTargetLayer);
@@ -172,7 +268,10 @@ public class Player : Entity
         return nearestEnemy;
     }
 
-    public bool CanExecute() => executionTarget;
+    private void SetExecutionEnemy(Enemy enemy)
+    {
+        executionEnemy.enemyUI.ShowExecutionUI();
+    }
 
     void SetComboBar()
     {
@@ -182,18 +281,7 @@ public class Player : Entity
             _isComboBarFull = UIManager.Instance.IsComboBarFull;
         }
     }
-    
-
-    //public void CallAnimationTrigger()
-    //{
-    //    Debug.Log("Entro en trigger animation");
-    //    stateMachine.currentState.CallAnimationTrigger();
-    //}
-
-    private void OnDisable()
-    {
-        input.Disable();
-    }
+    #endregion
 
     public override void DeadEntity()
     {
@@ -201,20 +289,6 @@ public class Player : Entity
         OnPlayerDeath?.Invoke();
         stateMachine.ChangeState(deathState);
     }
-
-    /*public void EnterAttackStateWithDelay()
-    {
-        if(queuedAttackCo != null)
-            StopCoroutine(queuedAttackCo);
-
-        queuedAttackCo = StartCoroutine(EnterAttackStateWithDelayCo());
-    }
-
-    private IEnumerator EnterAttackStateWithDelayCo()
-    {
-        yield return new WaitForEndOfFrame();
-        stateMachine.ChangeState(comboSystemState);
-    }*/
     
     public Vector2 MovementDirectionToCamera(Vector2 _moveInput)
     {
@@ -230,11 +304,33 @@ public class Player : Entity
         return moveVector2;
     }
 
+    public void RotatePlayerToMatchInput()
+    {
+        if(cameraMoveInput.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(cameraMoveInput.x, cameraMoveInput.y) * Mathf.Rad2Deg;
+            //float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+        
+            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+        }
+    }
+    
+
     private void OnEnemyHit()
     {
         comboBarAmount += comboBarHitModifier;
     }
 
+    #region Death&Respawn
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Checkpoint"))
+        {
+            activeCheckpoint = other.transform;
+        }
+    }
+    
     public void Respawn()
     {
         rb.position = activeCheckpoint.position;
@@ -253,33 +349,81 @@ public class Player : Entity
         }
     }
 
+    #endregion
+   
+    #region ComboSystem
+    private IEnumerator ForgetPreviousAttack(float time)
+    {
+        float elapsedTime = 0;
+        Debug.Log("Current Attack Start Forget");
+        while (elapsedTime < time)
+        {
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        Debug.Log("Current Attack Forgotten");
+        _activeForgetCoroutine = null;
+        currentAttack = null;
+    }
+    
+    public void CheckAttackBuffer(bool isLightAttack)
+    {
+        if (currentAttack != null) 
+        {
+            AttackData nextAttack = isLightAttack ? currentAttack.nextLightAttack : currentAttack.nextHeavyAttack;
+            if (nextAttack != null)
+            {
+                comboSystemState.isLightAttack = isLightAttack;
+                Debug.Log("Checking Attack Buffer: AttackBuffer active");
+            }
+            else
+            {
+                anim.SetTrigger(isLightAttack ? "LightTrigger" : "HeavyTrigger"); //Change Later
+                Debug.Log("Checking Attack Buffer: Starting Over");
+            }
+        }
+        else
+        {
+            anim.SetTrigger(isLightAttack ? "LightTrigger" : "HeavyTrigger"); //Change Later
+            Debug.Log("Checking Attack Buffer: Starting From Zero");
+        }
+    }
+    
+    #region Event Callbacks from StateMachineBehaviours
+    public void OnComboStarted()
+    {
+        if (_activeForgetCoroutine != null)
+        {
+            Debug.LogWarning("Coroutine Stopped");
+            StopCoroutine(_activeForgetCoroutine);
+            _activeForgetCoroutine = null;
+        }
+            
+    }
+
+    public void OnComboInterrupted()
+    {
+        _vfx.InterruptSlash();
+    }
+    public void OnComboEnded()
+    {
+        stateMachine.ChangeState(idleState);
+        _activeForgetCoroutine = ForgetPreviousAttack(comboResetTime);
+        StartCoroutine(_activeForgetCoroutine);
+    }
     public void OnComboAttackStarted(AttackData attack)
     {
         currentAttack = attack;
+        comboSystemState.attackInitialPlayerAngle = transform.eulerAngles.y;
     }
     public void OnComboAttackEnded()
     {
         
     }
-    public void OnComboEnded()
-    {
-        stateMachine.ChangeState(idleState);
-        Invoke(nameof(ForgetPreviousAttack), 1);
-    }
-
-    private void ForgetPreviousAttack()
-    {
-        currentAttack = null;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Checkpoint"))
-        {
-            activeCheckpoint = other.transform;
-        }
-    }
-
+    #endregion
+    #endregion
+    
+    #region Dash
     public void SetDashCooldown()
     {
         _dashCooldownTimer = dashCooldown;
@@ -290,7 +434,15 @@ public class Player : Entity
     {
         return _dashCooldownTimer <= 0f;
     }
-
+    #endregion
+    
+    #region GetSet
+    #region Execution
+    public bool CanExecute() => executionTarget;
+    #endregion
+    #region HealthUI
     public float GetCurrentHealth() => _health.currentHp;
     public float GetMaxHealth() => _health.maxHp;
+    #endregion
+    #endregion
 }

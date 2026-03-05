@@ -24,7 +24,7 @@ public class Enemy_Ranged : Enemy
     [Header("Projectile Settings")]
     public int maxProjectiles = 5;
     public float projectileRotationSpeed = 10f;
-    public int projectileDamage = 20;
+    private int projectileDamage;
     public float projectileRotationRadius = 3f;
     private List<GameObject> _projectiles;
     private Proyectil _projectile;
@@ -53,6 +53,7 @@ public class Enemy_Ranged : Enemy
     protected override void Start()
     {
         base.Start();
+        projectileDamage = (int)combat.GetBaseDamage();
         _projectiles ??= new List<GameObject>(maxProjectiles);
         anim.SetFloat("invokeSpeed", invokeProjectileSpeed);
         stateMachine.Initialize(idleState);
@@ -384,15 +385,15 @@ public class Enemy_Ranged : Enemy
     public override void Dead_Enter()
     {
         base.Dead_Enter();
-        agent.enabled = false;
-        PerfectDodgeManager.EndPerfectDodgeFlag(this.gameObject);
-        if (spawner != null)
-            spawner.EnemyDead(this.gameObject);
+        //SetEnemyDead();
+    }
+
+    public override void SetEnemyDead()
+    {
+        base.SetEnemyDead();
         if(_projectiles.Count <= 0) return;
         DestroyProjectiles();
     }
-
-    
 
     public override void Dead_Update()
     {
@@ -428,6 +429,14 @@ public class Enemy_Ranged : Enemy
         base.Flinch_Exit();
         agent.isStopped = false;
     }
+    
+    public override void ChangeFlinchState()
+    {
+        if (_health.currentHp >= 0)
+        {
+            stateMachine.ChangeState(flinchState);
+        }
+    }
     #endregion
     #region ExecutionFunctions
     /* =======================================================================================
@@ -437,14 +446,11 @@ public class Enemy_Ranged : Enemy
     {
         base.Execution_Enter();
         agent.isStopped = true;
+        SetEnemyDead();
     }
     public override void Execution_Update()
     {
         base.Execution_Update();
-        this.gameObject.transform.DOShakeScale(1f, 0.1f, 5).OnComplete(() =>
-        {
-            stateMachine.ChangeState(deadState);
-        });
     }
 
     public override void Execution_Exit()

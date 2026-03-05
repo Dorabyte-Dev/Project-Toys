@@ -344,15 +344,9 @@ public class Enemy_Melee : Enemy
     public override void Dead_Enter()
     {
         base.Dead_Enter();
-        Debug.Log("Entro en deadState");
-        //anim.enabled = false;
-        agent.isStopped = true;
-        PerfectDodgeManager.EndPerfectDodgeFlag(this.gameObject);
-        if (spawner != null)
-            spawner.EnemyDead(this.gameObject);
-        stateMachine.SwitchOffStateMachine();
-        //Destroy(this.gameObject);
+        //SetEnemyDead();
     }
+
     public override void Dead_Update()
     {
         base.Dead_Update();
@@ -394,24 +388,36 @@ public class Enemy_Melee : Enemy
         agent.isStopped = false;
     }
 
+    public override void ChangeFlinchState()
+    {
+        if (_health.currentHp >= 0)
+        {
+            stateMachine.ChangeState(flinchState);
+        }
+    }
+
     #endregion
     #region ExecutionFunctions
     /* =======================================================================================
      * STATE: EXECUTION
      * ======================================================================================= */
+    // IMPORTANTE: EL PASO A DEAD STATE SE HACE CON UN ANIMATION TRIGGER.
+    // DE ESTE MODO SE ASEGURA DE QUE SE EJECUTE TODA LA ANIMACION DE EJECUCION ANTES DE QUE EL ENEMIGO MUERA.
     public override void Execution_Enter()
     {
         base.Execution_Enter();
-        Debug.Log("Entered Enemy_ExecutionState");
+        
         agent.isStopped = true;
+        //SetEnemyDead();
     }
     public override void Execution_Update()
     {
         base.Execution_Update();
-        this.gameObject.transform.DOShakeScale(1f, 0.1f, 5).OnComplete(() =>
+        /*this.gameObject.transform.DOShakeScale(1f, 0.1f, 5).OnComplete(() =>
         {
-            stateMachine.ChangeState(deadState);
-        });
+            //stateMachine.ChangeState(deadState);
+            _health.Executed();
+        });*/
     }
     public override void Execution_Exit()
     {

@@ -3,17 +3,10 @@ using UnityEngine;
 
 public class Player_ComboSystem : PlayerState
 {
-
-    /*private float AttackVelocityTimer;
-    private float lastTimeAttacked;
-
-    private bool ComboAttackQueued;*/
-    //private int ComboIndex = 1;
-    //private int ComboLimit = 3;
-    //private const int firstComboIndex = 1;
-
-    //bools
-    public bool isHeavy;
+    
+    public bool isLightAttack;
+    public float attackInitialPlayerAngle;
+    private float attackTimer;
     private enum AttackType
     {
         Light,
@@ -32,12 +25,19 @@ public class Player_ComboSystem : PlayerState
     public override void Enter()
     {
         base.Enter();
-
+        player.SetVelocity(0, 0);
+        Debug.Log("Player has entered Combo System State.");
+        //player.OnComboStarted();
         if (player.currentAttack != null)
         {
-            //anim.CrossFade(player.currentAttack.name, .25f /*player.attackTransitionDuration*/);
-            anim.Play(player.currentAttack.name);
-
+            AttackData nextAttack = isLightAttack ? player.currentAttack.nextLightAttack : player.currentAttack.nextHeavyAttack;
+            if (nextAttack != null)
+            {
+                anim.CrossFade(nextAttack.name, .25f /*player.attackTransitionDuration*/);
+            }
+        }
+        else
+        {
         }
     }
 
@@ -49,18 +49,63 @@ public class Player_ComboSystem : PlayerState
 
     public override void Update()
     {
+        
         base.Update();
-        HandleAttackVelocity();
+        //player.SetVelocity(0,0);
+        //ApplyAttackVelocity();
+        RotateWithinCombo();
 
-        if (input.Player.LightAttack.WasPressedThisFrame())
-            QueueNextAttack(AttackType.Light);
+        if (player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= player.comboBufferUnlockThreshold)
+        {
+            if (input.Player.LightAttack.WasPressedThisFrame())
+                QueueNextAttack(AttackType.Light);
         
-        if(input.Player.HeavyAttack.WasPressedThisFrame())
-            QueueNextAttack(AttackType.Heavy);
-        
-        
+            if(input.Player.HeavyAttack.WasPressedThisFrame())
+                QueueNextAttack(AttackType.Heavy);
+        }
+
+        if (input.Player.Dash.WasPressedThisFrame())
+        {
+            stateMachine.ChangeState(player.dashState);
+            player.OnComboInterrupted();
+        }
     }
 
+    private void RotateWithinCombo()
+    {
+        if(player.cameraMoveInput.magnitude >= 0.1f)
+        {
+            float inputAngle = Mathf.Atan2(player.cameraMoveInput.x, player.cameraMoveInput.y) * Mathf.Rad2Deg;
+            
+            float angleDiff = Mathf.DeltaAngle(attackInitialPlayerAngle, inputAngle);
+            float clampedDiff = Mathf.Clamp(angleDiff, -player.comboRedirectionLimit, player.comboRedirectionLimit);
+            
+            float targetAngle = attackInitialPlayerAngle + clampedDiff;
+            Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
+            
+            //Quaternion finalRotation = Quaternion.Slerp(player.transform.rotation, targetRotation, player.turnSmoothVelocity * Time.deltaTime);
+
+            player.transform.rotation = targetRotation;
+        }
+    }
+
+    private void ApplyAttackVelocity()
+    {
+        
+        float normalizedTime = player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        if (normalizedTime > player.currentAttack.attackVelocityDurationStart
+            && normalizedTime < player.currentAttack.attackVelocityDurationEnd)
+        {
+            Vector2 attackVelocity = player.currentAttack.attackVelocity * player.transform.forward;
+            player.SetVelocity(attackVelocity.x, attackVelocity.y);
+        }
+        else
+        {
+            player.SetVelocity(0, 0);
+        }
+        
+    }
+    
     public void Test()
     {
         Debug.Log("My motionValue is " +  player.currentAttack.motionValue);
@@ -80,7 +125,6 @@ public class Player_ComboSystem : PlayerState
                 throw new ArgumentOutOfRangeException();
         }
     }
-
     #region Crap
 
     /*private void LoadNextAttack(AttackData data)
@@ -97,14 +141,6 @@ public class Player_ComboSystem : PlayerState
             player.SetVelocity(0, rb.linearVelocity.y);*/
     }
 
-    private void ApplyAttackVelocity()
-    {
-        /*Vector2 attackVelocity = player.attackVelocity[ComboIndex - 1];
-
-        AttackVelocityTimer = player.attackVelocityDuration;
-        player.SetVelocity(attackVelocity.x, attackVelocity.y);*/
-    }
-
     private void ResetComboIndexIfNeeded()
     {
         /*if (Time.time > lastTimeAttacked + player.comboResetTime)
@@ -115,5 +151,4 @@ public class Player_ComboSystem : PlayerState
     }
 
     #endregion
-    
 }
