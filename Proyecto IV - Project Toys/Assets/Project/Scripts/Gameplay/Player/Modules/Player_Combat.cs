@@ -58,4 +58,33 @@ public class Player_Combat : Entity_Combat
 
         return Physics.OverlapBox(centerPoint, halfExtents, rotation, whatIsTarget);
     }*/
+    
+    private void OnDrawGizmos()
+    {
+        if (player.currentAttack)
+        {
+            // En modo edición, 'miCollider' puede ser null porque Awake() no se ha ejecutado.
+            // Lo buscamos "al vuelo" si hace falta para que el Gizmo se vea sin darle al Play.
+            BoxCollider col = player.GetColliderUsed(player.currentAttack.colliderUsed) != null ? player.GetColliderUsed(player.currentAttack.colliderUsed) : GetComponent<BoxCollider>();
+        
+            if (col == null) return;
+
+            // 1. Guardamos la matriz original para no estropear otros Gizmos que Unity deba dibujar luego
+            Matrix4x4 matrizOriginal = Gizmos.matrix;
+
+            // 2. Le decimos al sistema de Gizmos que trabaje usando el espacio (posición, rotación y escala) de este objeto
+            Gizmos.matrix = transform.localToWorldMatrix;
+
+            // 3. Dibujamos un cubo sólido semitransparente
+            Gizmos.color = new Color(1f, 0f, 0f, 0.3f); // Rojo al 30% de opacidad
+            Gizmos.DrawCube(col.center, col.size); // Como ya aplicamos la matriz, usamos las coordenadas locales!
+
+            // 4. Dibujamos las líneas de los bordes para que quede bien definido
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(col.center, col.size);
+
+            // 5. Restauramos la matriz original (¡Muy importante!)
+            Gizmos.matrix = matrizOriginal;
+        }
+    }
 }
