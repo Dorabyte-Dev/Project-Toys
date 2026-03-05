@@ -46,7 +46,7 @@ public class Player_Combat : Entity_Combat
         }
     }
 
-    protected override Collider[] GetDetectedColliders()
+    /*protected override Collider[] GetDetectedColliders()
     {
         BoxCollider colliderUsed = player.GetColliderUsed(player.currentAttack.colliderUsed);
         Debug.Log("Box used: " + colliderUsed.name);
@@ -57,5 +57,5 @@ public class Player_Combat : Entity_Combat
         Quaternion rotation = transform.rotation;
 
         return Physics.OverlapBox(centerPoint, halfExtents, rotation, whatIsTarget);
-    }
+    }*/
 }
