@@ -20,4 +20,10 @@ public class Player_VFX : Entity_VFX
 		//swordTrail.UnToggleTrail();
 		swordTrailEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
 	}
+
+	public override void DamageVFX_Feedback(Transform damageDealer)
+	{
+		base.DamageVFX_Feedback(damageDealer);
+		CameraManager.instance.CameraShake();
+	}
 }

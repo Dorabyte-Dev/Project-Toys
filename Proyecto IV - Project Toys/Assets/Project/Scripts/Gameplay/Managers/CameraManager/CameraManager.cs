@@ -44,7 +44,9 @@ public class CameraManager : MonoBehaviour
     private Queue<CinemachineCamera> _zoomedCameras = new Queue<CinemachineCamera>();
     private CinemachineCamera _currentZoomedCamera;
     private Tween _currentShakeTween;
-    private float cameraShakeDuration = 0.5f;
+    [SerializeField]private float shakeDuration = 0.5f;
+    [SerializeField] private float shakeStrength = 1f;
+    [SerializeField] private int shakeVibrato = 10;
 
     public static CameraManager instance;
     private void Awake()
@@ -69,10 +71,7 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            CameraShake();
-        }
+        
     }
     
     #region Old Camera System
@@ -220,7 +219,7 @@ public class CameraManager : MonoBehaviour
         }
 
         //Make it bulletproof 
-        _currentShakeTween = activeCamera.transform.DOShakePosition(cameraShakeDuration, new Vector3(1.5f, 1.5f, 0f), 15, 90f, false, true);
+        _currentShakeTween = activeCamera.transform.DOShakePosition(shakeDuration, new Vector3(shakeStrength, shakeStrength, 0f), shakeVibrato, 90f, false, true);
     }
     public void ResetColliders()
     {
