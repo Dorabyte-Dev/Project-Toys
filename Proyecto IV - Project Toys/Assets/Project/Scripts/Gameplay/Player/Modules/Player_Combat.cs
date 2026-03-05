@@ -62,7 +62,8 @@ public class Player_Combat : Entity_Combat
     
     private void OnDrawGizmos()
     {
-        if (player.currentAttack != null)
+        //Debug player attack hitbox in editor
+        /*if (player.currentAttack != null)
         {
             // En modo edición, 'miCollider' puede ser null porque Awake() no se ha ejecutado.
             // Lo buscamos "al vuelo" si hace falta para que el Gizmo se vea sin darle al Play.
@@ -86,6 +87,6 @@ public class Player_Combat : Entity_Combat
 
             // 5. Restauramos la matriz original (¡Muy importante!)
             Gizmos.matrix = matrizOriginal;
-        }
+        }*/
     }
 }

@@ -19,6 +19,11 @@ public class EventTrigger : MonoBehaviour
             _hasBeenTriggered = true;
         }
     }
+    
+    public void Reset()
+    {
+        _hasBeenTriggered = false;
+    }
 }
 
 

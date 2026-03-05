@@ -341,19 +341,27 @@ public class Player : Entity
     public void Respawn()
     {
         rb.position = activeCheckpoint.position;
-
-        CameraManager.instance.UnToggleOnCombatCamera();
-        //CameraManager.instance.SwitchOffCombatCamera(activeCheckpoint.GetComponent<Checkpoint>().checkpointCamera);
-        CameraManager.instance.SwitchCameraGroup(activeCheckpoint.GetComponent<Checkpoint>().checkpointCameraGroup);
-        _health.ResetStats();
-        comboBarAmount = 0;
-        //stateMachine.ChangeState(idleState);
-        //Optimize later: reset all spawners in the scene
+        CameraManager.instance.UnToggleOnCombatCamera(); //Resettable
+        _health.ResetStats(); //Resettable
+        
+        
+        //Should be in Checkpoint reset resettables
         foreach (EnemySpawner spawner in FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None))
         {
             spawner.ResetCombat();
             spawner.GetComponent<ZoneCloser>().ResetZoneCloser();
         }
+        
+        foreach(EventTrigger trigger in FindObjectsByType<EventTrigger>(FindObjectsSortMode.None))
+        {
+            trigger.Reset();
+        }
+        
+        CameraManager.instance.SwitchCameraGroup(activeCheckpoint.GetComponent<Checkpoint>().checkpointCameraGroup);
+        
+        comboBarAmount = 0;
+        
+        
     }
 
     #endregion

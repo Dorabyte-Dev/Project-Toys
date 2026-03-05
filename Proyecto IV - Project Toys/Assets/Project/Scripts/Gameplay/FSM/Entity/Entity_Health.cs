@@ -3,7 +3,6 @@ using UnityEngine;
 public class Entity_Health : MonoBehaviour
 {
     public Entity entity;
-    private Entity_Stats stats;
     [SerializeField] protected Entity_VFX vfx;
 
     public float currentHp;
@@ -14,7 +13,6 @@ public class Entity_Health : MonoBehaviour
     public virtual void Awake()
     {
         entity = GetComponent<Entity>();
-        stats = GetComponent<Entity_Stats>();
         vfx = GetComponent<Entity_VFX>();
         ResetStats();
         
@@ -22,8 +20,7 @@ public class Entity_Health : MonoBehaviour
 
     public virtual void ResetStats()
     {
-        currentHp = stats.GetMaxetHealth();
-        maxHp = stats.GetMaxetHealth();
+        currentHp = maxHp;
         isDead = false;
     }
     public virtual void TakeDamage(float takeDamage, Transform damageDealer)
