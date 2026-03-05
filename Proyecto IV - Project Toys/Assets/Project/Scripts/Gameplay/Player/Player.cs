@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -50,7 +51,7 @@ public class Player : Entity
     [Header("Combo Bar Properties")] 
     public float comboBarHitModifier;
     public float comboBarPerfectDodgeModifier; //TODO: implement perfect dodge combo charge
-    public float maxComboBarAmount;
+    public float maxComboBarAmount; 
 
     private bool _isComboBarFull;
 
@@ -114,6 +115,7 @@ public class Player : Entity
     private Enemy _lastExecutionEnemy;
     [SerializeField] public LayerMask executionTargetLayer;
     public ExecutionCameraManager executionCameraManager; 
+    [HideInInspector] public Transform executionTransform;
     
     #endregion
 
@@ -258,6 +260,7 @@ public class Player : Entity
     private void SetExecutionEnemy(Enemy enemy)
     {
         executionEnemy.enemyUI.ShowExecutionUI();
+        executionTransform = executionEnemy.playerExecutionTransform;
     }
 
     void SetComboBar()
@@ -429,7 +432,16 @@ public class Player : Entity
         return _dashCooldownTimer <= 0f;
     }
     #endregion
-    
+
+    #region Debug
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.orangeRed;
+        Gizmos.DrawWireSphere(transform.position, executionRadius);
+    }
+
+    #endregion
     #region GetSet
     #region Execution
     public bool CanExecute() => executionTarget;

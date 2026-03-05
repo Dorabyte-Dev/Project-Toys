@@ -27,6 +27,7 @@ public class Enemy : Entity, IEnemyStates
     [HideInInspector] public int nearness;
     [HideInInspector] public Transform playerTransform;
     [HideInInspector] public float distanceToPlayer;
+    public Transform playerExecutionTransform;
 
     [Space] 
     [HideInInspector] public Renderer mesh;

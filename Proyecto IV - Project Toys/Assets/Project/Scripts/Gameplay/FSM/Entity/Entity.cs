@@ -94,7 +94,7 @@ public class Entity : MonoBehaviour
     
     }
 
-    private void OnDrawGizmos() // Visualizacion de rayos y deteccion de pendientes
+    /*private void OnDrawGizmos() // Visualizacion de rayos y deteccion de pendientes
     {
         float rayDistance = 1f * 0.5f + 0.3f;
 
@@ -128,7 +128,7 @@ public class Entity : MonoBehaviour
             Gizmos.DrawSphere(hit.point, 0.1f);
         }
         Gizmos.DrawWireSphere(targetCheck.position, targetCheckRadius);
-    }
+    }*/
 
     internal void CurrentStateAnimationTrigger()
     {
