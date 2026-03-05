@@ -4,6 +4,7 @@ using UnityEngine;
 public class Player_Combat : Entity_Combat
 {
     [SerializeField] private Player player;
+    private float _finalDamage;
 
     public override void Awake()
     {
@@ -21,15 +22,15 @@ public class Player_Combat : Entity_Combat
             return;
         }
 
-        finalDamage = baseDamage * player.currentAttack.motionValue;
-        Debug.Log("Final Damage: " + finalDamage);
+        _finalDamage = baseDamage * player.currentAttack.motionValue;
+        Debug.Log("Final Damage: " + _finalDamage);
 
         foreach (var target in GetDetectedColliders())
         {
             Entity_Health targetHealth = target.GetComponent<Entity_Health>();
             if (targetHealth != null)
             {
-                targetHealth.TakeDamage(finalDamage, this.transform);
+                targetHealth.TakeDamage(_finalDamage, this.transform);
                 if (targetHealth.invincibleMode) return;
                 targetHit?.Invoke();
             }
@@ -46,22 +47,22 @@ public class Player_Combat : Entity_Combat
         }
     }
 
-    /*protected override Collider[] GetDetectedColliders()
+    protected override Collider[] GetDetectedColliders()
     {
         BoxCollider colliderUsed = player.GetColliderUsed(player.currentAttack.colliderUsed);
         Debug.Log("Box used: " + colliderUsed.name);
-        Vector3 centerPoint = transform.TransformPoint(colliderUsed.center);
-
+        Vector3 centerPoint = colliderUsed.transform.TransformPoint(colliderUsed.center);
+        
         Vector3 halfExtents = Vector3.Scale(colliderUsed.size, transform.lossyScale) * 0.5f;
 
         Quaternion rotation = transform.rotation;
 
         return Physics.OverlapBox(centerPoint, halfExtents, rotation, whatIsTarget);
-    }*/
+    }
     
     private void OnDrawGizmos()
     {
-        if (player.currentAttack)
+        if (player.currentAttack != null)
         {
             // En modo edición, 'miCollider' puede ser null porque Awake() no se ha ejecutado.
             // Lo buscamos "al vuelo" si hace falta para que el Gizmo se vea sin darle al Play.
@@ -73,7 +74,7 @@ public class Player_Combat : Entity_Combat
             Matrix4x4 matrizOriginal = Gizmos.matrix;
 
             // 2. Le decimos al sistema de Gizmos que trabaje usando el espacio (posición, rotación y escala) de este objeto
-            Gizmos.matrix = transform.localToWorldMatrix;
+            Gizmos.matrix = col.transform.localToWorldMatrix;
 
             // 3. Dibujamos un cubo sólido semitransparente
             Gizmos.color = new Color(1f, 0f, 0f, 0.3f); // Rojo al 30% de opacidad

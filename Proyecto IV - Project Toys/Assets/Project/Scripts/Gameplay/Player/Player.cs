@@ -371,18 +371,18 @@ public class Player : Entity
             if (nextAttack != null)
             {
                 comboSystemState.isLightAttack = isLightAttack;
-                Debug.Log("Checking Attack Buffer: AttackBuffer active");
+                //Debug.Log("Checking Attack Buffer: AttackBuffer active");
             }
             else
             {
                 anim.SetTrigger(isLightAttack ? "LightTrigger" : "HeavyTrigger"); //Change Later
-                Debug.Log("Checking Attack Buffer: Starting Over");
+                //Debug.Log("Checking Attack Buffer: Starting Over");
             }
         }
         else
         {
             anim.SetTrigger(isLightAttack ? "LightTrigger" : "HeavyTrigger"); //Change Later
-            Debug.Log("Checking Attack Buffer: Starting From Zero");
+            //Debug.Log("Checking Attack Buffer: Starting From Zero");
         }
     }
     

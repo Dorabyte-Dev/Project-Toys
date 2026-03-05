@@ -11,7 +11,6 @@ public class Entity_Combat : MonoBehaviour
     [SerializeField] private Entity entity;
     [SerializeField] protected float baseDamage;
     public UnityEvent targetHit;
-    public float finalDamage;
 
     public virtual void Awake()
     {

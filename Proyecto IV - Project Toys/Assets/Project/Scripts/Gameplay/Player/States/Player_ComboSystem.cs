@@ -27,7 +27,7 @@ public class Player_ComboSystem : PlayerState
         base.Enter();
         player.SetVelocity(0, 0);
         Debug.Log("Player has entered Combo System State.");
-        //player.OnComboStarted();
+        player.OnComboStarted();
         if (player.currentAttack != null)
         {
             AttackData nextAttack = isLightAttack ? player.currentAttack.nextLightAttack : player.currentAttack.nextHeavyAttack;
