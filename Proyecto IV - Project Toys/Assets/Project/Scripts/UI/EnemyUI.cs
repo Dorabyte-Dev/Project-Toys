@@ -42,7 +42,7 @@ public class EnemyUI : MonoBehaviour
     void Start()
     {
         InitializeDamageNumber();
-        InitializeExecutionAffordance();
+        CheckDevice(InputDeviceManager.CurrentDevice);
     }
 
     private void OnEnable()
@@ -123,39 +123,35 @@ public class EnemyUI : MonoBehaviour
         switch (dispositivo)
         {
             case InputDeviceManager.Devices.Teclado:
-                enemyCanvas.keyboardAffordance.SetActive(true);
-                enemyCanvas.controllerAffordance.SetActive(false);
+                enemyCanvas.keyboardAffordance.SetActive(true); //
+                enemyCanvas.genericControllerAffordance.SetActive(false);
+                enemyCanvas.PlayStationAffordance.SetActive(false);
+                enemyCanvas.XboxAffordance.SetActive(false);
                 break;
-            case InputDeviceManager.Devices.Mando:
+            case InputDeviceManager.Devices.MandoGenerico:
                 enemyCanvas.keyboardAffordance.SetActive(false);
-                enemyCanvas.controllerAffordance.SetActive(true);
+                enemyCanvas.genericControllerAffordance.SetActive(true); //
+                enemyCanvas.PlayStationAffordance.SetActive(false);
+                enemyCanvas.XboxAffordance.SetActive(false);
+                break;
+            case InputDeviceManager.Devices.MandoPlayStation:
+                enemyCanvas.keyboardAffordance.SetActive(false);
+                enemyCanvas.genericControllerAffordance.SetActive(false);
+                enemyCanvas.PlayStationAffordance.SetActive(true); //
+                enemyCanvas.XboxAffordance.SetActive(false);
+                break;
+            case InputDeviceManager.Devices.MandoXbox:
+                enemyCanvas.keyboardAffordance.SetActive(false);
+                enemyCanvas.genericControllerAffordance.SetActive(false);
+                enemyCanvas.PlayStationAffordance.SetActive(false);
+                enemyCanvas.XboxAffordance.SetActive(true); //
                 break;
             default:
                 enemyCanvas.keyboardAffordance.SetActive(false);
-                enemyCanvas.controllerAffordance.SetActive(false);
+                enemyCanvas.genericControllerAffordance.SetActive(false);
                 break;
         }
         
-    }
-    
-    private void InitializeExecutionAffordance()
-    {
-        if(enemyCanvas.executionAffordance == null) return;
-        switch (InputDeviceManager.currentDevice)
-        {
-            case InputDeviceManager.Devices.Teclado:
-                enemyCanvas.keyboardAffordance.SetActive(true);
-                enemyCanvas.controllerAffordance.SetActive(false);
-                break;
-            case InputDeviceManager.Devices.Mando:
-                enemyCanvas.keyboardAffordance.SetActive(false);
-                enemyCanvas.controllerAffordance.SetActive(true);
-                break;
-            default:
-                enemyCanvas.keyboardAffordance.SetActive(false);
-                enemyCanvas.controllerAffordance.SetActive(false);
-                break;
-        }
     }
     
     

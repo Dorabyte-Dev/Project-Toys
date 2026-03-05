@@ -12,7 +12,9 @@ public class EnemyCanvas : MonoBehaviour
     [Header("Enemy Execution Affordance")]
     public GameObject executionAffordance;
     public GameObject keyboardAffordance;
-    public GameObject controllerAffordance;
+    public GameObject genericControllerAffordance;
+    public GameObject XboxAffordance;
+    public GameObject PlayStationAffordance;
     [Space(10)]
 
     [Header("Enemy Damage Number")]
