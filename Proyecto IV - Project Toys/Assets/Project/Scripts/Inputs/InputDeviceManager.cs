@@ -1,16 +1,20 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
+using UnityEngine.InputSystem.XInput;
 
 public static class InputDeviceManager
 {
    
    public enum Devices
    {
-      Mando,
-      Teclado
+      MandoGenerico,
+      Teclado,
+      MandoXbox,
+      MandoPlayStation
    }
    
-   public static Devices currentDevice { get; private set; }
+   public static Devices CurrentDevice { get; private set; }
    
    public static string DispositivoActual { get; private set; } = "Ninguno";
    
@@ -30,7 +34,35 @@ public static class InputDeviceManager
          InputAction accion = (InputAction)obj;
          InputDevice dispositivo = accion.activeControl.device;
 
-         if (dispositivo is Gamepad && DispositivoActual != "Mando")
+         switch (dispositivo)
+         {
+            case Keyboard:
+               if (DispositivoActual != "Teclado")
+               {
+                  UpdateDevice("Teclado", Devices.Teclado);
+               }
+               break;
+            case Mouse:
+               if (DispositivoActual != "Teclado")
+               {
+                  UpdateDevice("Teclado", Devices.Teclado);
+               }
+               break;
+            case Gamepad:
+               if (dispositivo is DualShockGamepad && DispositivoActual != "MandoPlayStation")
+               {
+                  UpdateDevice("MandoPlayStation", Devices.MandoPlayStation);
+               }
+               else if (dispositivo is XInputController && DispositivoActual != "MandoXbox")
+               {
+                  UpdateDevice("MandoXbox", Devices.MandoXbox);
+               }
+               break;
+               
+               
+         }
+
+         /*if (dispositivo is Gamepad && DispositivoActual != "Mando")
          {
             DispositivoActual = "Mando";
             currentDevice = Devices.Mando;
@@ -39,11 +71,16 @@ public static class InputDeviceManager
          
          else if ((dispositivo is Keyboard || dispositivo is Mouse) && DispositivoActual != "Teclado")
          {
-            DispositivoActual = "Teclado";
-            currentDevice = Devices.Teclado;
-            AlCambiarDispositivo?.Invoke(currentDevice);
-         }
+            UpdateDevice("Teclado", Devices.Teclado);
+         }*/
       }
+   }
+
+   private static void UpdateDevice(string name, Devices device)
+   {
+      DispositivoActual = name;
+      CurrentDevice = device;
+      AlCambiarDispositivo?.Invoke(CurrentDevice);
    }
    
    
