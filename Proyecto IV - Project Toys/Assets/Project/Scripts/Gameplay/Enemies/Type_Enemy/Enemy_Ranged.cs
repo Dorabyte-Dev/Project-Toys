@@ -152,11 +152,11 @@ public class Enemy_Ranged : Enemy
         GetDistanceToPlayer();
         if (distanceToPlayer <= _fleeRadius)
         {
-            stateMachine.ChangeState(moveState);
+            ChangeEnemyState(moveState);
         }
         if (distanceToPlayer <= _detectionRadius)
         {
-            stateMachine.ChangeState(waitAttackState);
+            ChangeEnemyState(waitAttackState);
         }
         
     }
@@ -180,7 +180,7 @@ public class Enemy_Ranged : Enemy
         GetDistanceToPlayer();
         if(distanceToPlayer >= _stopFleeRadius)
         {
-            stateMachine.ChangeState(idleState);
+            ChangeEnemyState(idleState);
         }
         else
         {
@@ -255,7 +255,7 @@ public class Enemy_Ranged : Enemy
         GetDistanceToPlayer();
         if (distanceToPlayer <= _fleeRadius)
         {
-            stateMachine.ChangeState(moveState);
+            ChangeEnemyState(moveState);
         }
     }
 
@@ -282,7 +282,7 @@ public class Enemy_Ranged : Enemy
         GetDistanceToPlayer();
         if (distanceToPlayer <= _fleeRadius)
         {
-            stateMachine.ChangeState(moveState);
+            ChangeEnemyState(moveState);
         }
     }
     public override void Attack_Exit()
@@ -313,7 +313,7 @@ public class Enemy_Ranged : Enemy
 
         if (_projectiles.Count <= 0)
         {
-            stateMachine.ChangeState(extraState);
+            ChangeEnemyState(extraState);
         }
     }
 
@@ -333,7 +333,7 @@ public class Enemy_Ranged : Enemy
         if (_projectiles.Count < maxProjectiles)
         {
             //InvokeProjectiles();
-            stateMachine.ChangeState(extraState);
+            ChangeEnemyState(extraState);
         }
     }
     public override void WaitAttack_Enter()
@@ -358,7 +358,7 @@ public class Enemy_Ranged : Enemy
         {
             if (canAttackByManager)
             {
-                stateMachine.ChangeState(attackState);
+                ChangeEnemyState(attackState);
             }
             else
             {
@@ -370,7 +370,7 @@ public class Enemy_Ranged : Enemy
         
         if(distanceToPlayer <= _fleeRadius)
         {
-            stateMachine.ChangeState(moveState);
+            ChangeEnemyState(moveState);
         }
     }
     public override void WaitAttack_Exit()
@@ -421,7 +421,7 @@ public class Enemy_Ranged : Enemy
         base.Flinch_Update();
         if (_stateTimer <= 0f)
         {
-            stateMachine.ChangeState(idleState);
+            ChangeEnemyState(idleState);
         }
     }
     public override void Flinch_Exit()
@@ -434,7 +434,7 @@ public class Enemy_Ranged : Enemy
     {
         if (_health.currentHp >= 0)
         {
-            stateMachine.ChangeState(flinchState);
+            ChangeEnemyState(flinchState);
         }
     }
     #endregion

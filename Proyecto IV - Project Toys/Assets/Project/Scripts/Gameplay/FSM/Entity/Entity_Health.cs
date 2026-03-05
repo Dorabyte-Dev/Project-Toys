@@ -8,7 +8,7 @@ public class Entity_Health : MonoBehaviour
 
     public float currentHp;
     public float maxHp;
-    protected bool isDead;
+    public bool isDead;
     public bool invincibleMode; //If true, entity takes no damage
 
     public virtual void Awake()

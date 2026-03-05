@@ -14,4 +14,9 @@ public class Player_AnimationTriggers : Entity_AnimationTriggers
     {
         player._vfx.Slash();
     }
+
+    public void EndExecution()
+    {
+        player.ChangePlayerState(player.idleState);
+    }
 }

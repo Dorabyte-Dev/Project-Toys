@@ -47,6 +47,9 @@ public class Enemy : Entity, IEnemyStates
     
     [Header("WaveManager Specs")]
     public bool canAttackByManager; // permiso del manager para atacar
+    
+    [Header("Common States Specs")]
+    public bool isBeingExecuted; 
 
     protected override void Awake()
     {
@@ -65,7 +68,7 @@ public class Enemy : Entity, IEnemyStates
     {
         base.DeadEntity();
 
-        stateMachine.ChangeState(deadState);
+        ChangeEnemyState(deadState);
         
         SetEnemyDead();
     }
@@ -98,7 +101,8 @@ public class Enemy : Entity, IEnemyStates
         base.Update();
         if (Input.GetKeyDown(KeyCode.P))
         {
-            stateMachine.ChangeState(executionState);
+            //_health.TakeDamage(0, this.transform);
+            ChangeEnemyState(executionState);
         }
     }
 
@@ -118,17 +122,24 @@ public class Enemy : Entity, IEnemyStates
         agent.isStopped = false;
         health.ResetStats();
     }
+    
+    public void EnterExecution()
+    {
+        ChangeEnemyState(executionState);
+    }
+    
     public void StopAttacking()
     {
-        stateMachine.ChangeState(pursuitState);
+        ChangeEnemyState(pursuitState);
     }
     public void PlayerDeath()
     {
-        stateMachine.ChangeState(idleState);
+        ChangeEnemyState(idleState);
     }
 
     public void ChangeEnemyState(EnemyState newState)
     {
+        if(isBeingExecuted || health.isDead) return;
         stateMachine.ChangeState(newState);
     }
     private void OnEnable()

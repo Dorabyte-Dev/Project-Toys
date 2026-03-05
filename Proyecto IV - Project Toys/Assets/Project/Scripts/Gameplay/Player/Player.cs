@@ -104,29 +104,13 @@ public class Player : Entity
             {
                 executionEnemy = null;
             }
-
-            /*if (executionTarget != _lastExecutionTarget)
-            {
-                if(_lastExecutionEnemy) _lastExecutionEnemy.enemyUI.HideExecutionUI();
-                _lastExecutionTarget = executionTarget;
-                _lastExecutionEnemy = _lastExecutionTarget.GetComponent<Enemy>();
-                executionEnemy = executionTarget.GetComponent<Enemy>();
-                SetExecutionEnemy(executionEnemy);
-            }*/
-            
-            /*if(executionTarget == _lastExecutionTarget) return;
-            _lastExecutionEnemy = _lastExecutionTarget.GetComponent<Enemy>();
-            _lastExecutionTarget = executionTarget;
-            executionEnemy = executionTarget.GetComponent<Enemy>();
-            
-            SetExecutionEnemy(executionEnemy);*/
         }
     }
 
     [HideInInspector] public Enemy executionEnemy;
     private Enemy _lastExecutionEnemy;
     [SerializeField] public LayerMask executionTargetLayer;
-    
+    public ExecutionCameraManager executionCameraManager; 
     
     #endregion
 
@@ -193,6 +177,10 @@ public class Player : Entity
         _vfx = GetComponent<Player_VFX>();
         _animationTriggers = GetComponent<Player_AnimationTriggers>();
         _combat.targetHit.AddListener(OnEnemyHit);
+        if (executionCameraManager == null)
+        {
+            executionCameraManager = GetComponentInChildren<ExecutionCameraManager>();
+        }
 
     }
     protected override void Start()
@@ -281,6 +269,7 @@ public class Player : Entity
             _isComboBarFull = UIManager.Instance.IsComboBarFull;
         }
     }
+    
     #endregion
 
     public override void DeadEntity()
@@ -288,6 +277,11 @@ public class Player : Entity
         base.DeadEntity();
         OnPlayerDeath?.Invoke();
         stateMachine.ChangeState(deathState);
+    }
+    
+    public void ChangePlayerState(PlayerState newState)
+    {
+        stateMachine.ChangeState(newState);
     }
     
     public Vector2 MovementDirectionToCamera(Vector2 _moveInput)

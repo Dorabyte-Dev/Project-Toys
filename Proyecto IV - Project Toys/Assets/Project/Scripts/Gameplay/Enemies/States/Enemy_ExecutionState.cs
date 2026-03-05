@@ -13,6 +13,7 @@ public class Enemy_ExecutionState : EnemyState
         /*Debug.Log("Entered Enemy_ExecutionState");
         enemy.agent.isStopped = true;*/
         enemy.Execution_Enter();
+        enemy.isBeingExecuted = true;
     }
 
     public override void Update()
@@ -29,5 +30,6 @@ public class Enemy_ExecutionState : EnemyState
     {
         base.Exit();
         enemy.Execution_Exit();
+        enemy.isBeingExecuted = false;
     }
 }
