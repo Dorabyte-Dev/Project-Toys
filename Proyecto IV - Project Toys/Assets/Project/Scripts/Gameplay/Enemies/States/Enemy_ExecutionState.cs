@@ -14,7 +14,7 @@ public class Enemy_ExecutionState : EnemyState
         enemy.agent.isStopped = true;*/
         enemy.Execution_Enter();
         enemy.isBeingExecuted = true;
-        enemy.transform.DODynamicLookAt(enemy.player.transform.position, 0.5f, AxisConstraint.Y);
+        enemy.transform.DODynamicLookAt(enemy.playerTransform.position, 0.5f, AxisConstraint.Y);
     }
 
     public override void Update()
