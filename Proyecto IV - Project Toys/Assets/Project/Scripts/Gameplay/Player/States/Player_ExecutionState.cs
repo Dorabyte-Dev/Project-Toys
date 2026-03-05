@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -15,7 +16,12 @@ public class Player_ExecutionState : PlayerState
         //stateTimer = executionDuration;  //La idea es que se cambie luego cuando esté la animación de ejecución por un evento de animación
         //CameraManager.instance.ToggleZoom();
         GoToExecutionPoint();
-        player.transform.LookAt(new Vector3(player.executionEnemy.transform.position.x, player.executionEnemy.transform.position.y, player.transform.position.z));
+        //player.transform.LookAt(new Vector3(player.executionEnemy.transform.position.x, player.executionEnemy.transform.position.y, player.transform.position.z));
+        player.transform.DODynamicLookAt(player.executionEnemy.transform.position, 0.5f, AxisConstraint.Y).OnComplete((
+            () =>
+            {
+                player.transform.DOMove(player.executionTransform.position, 0.5f);
+            }));
         executionCamera = player.executionCameraManager.TestExecutionCamera();
         executionCamera.Priority = 100;
     }

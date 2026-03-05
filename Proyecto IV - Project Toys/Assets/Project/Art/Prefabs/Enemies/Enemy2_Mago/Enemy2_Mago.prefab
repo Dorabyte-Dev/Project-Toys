@@ -351,6 +351,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7200493155652033037}
   m_LocalEulerAnglesHint: {x: -0.265526, y: 1.696198, z: 1.813477}
+--- !u!1 &1901090522820235009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3454301788303298732}
+  m_Layer: 6
+  m_Name: PlayerExecutionPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3454301788303298732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901090522820235009}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4601781224597481242}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1955201731186878869
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +429,7 @@ Transform:
   - {fileID: 1777695831401778634}
   - {fileID: 4808993907460859130}
   - {fileID: 7823607273016258290}
+  - {fileID: 3454301788303298732}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8301905890392758110
@@ -431,6 +463,7 @@ MonoBehaviour:
   nearness: 0
   playerTransform: {fileID: 0}
   distanceToPlayer: 0
+  playerExecutionTransform: {fileID: 3454301788303298732}
   mesh: {fileID: 0}
   agent: {fileID: 6515892168992828423}
   spawner: {fileID: 0}
@@ -443,6 +476,7 @@ MonoBehaviour:
   _vfx: {fileID: 0}
   enemyUI: {fileID: 0}
   canAttackByManager: 0
+  isBeingExecuted: 0
   projectilePrefab: {fileID: 2737077844218251050, guid: a99e0e69feab86f40bce4cf1fcdfec8f, type: 3}
   projectileSpawnPointCenter: {fileID: 1777695831401778634}
   detectionRadius: 11
@@ -516,6 +550,7 @@ MonoBehaviour:
   vfx: {fileID: 0}
   currentHp: 0
   maxHp: 100
+  isDead: 0
   invincibleMode: 0
   enemy: {fileID: 0}
   enemyUI: {fileID: 0}
