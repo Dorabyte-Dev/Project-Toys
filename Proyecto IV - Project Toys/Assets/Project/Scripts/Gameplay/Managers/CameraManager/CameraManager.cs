@@ -43,7 +43,9 @@ public class CameraManager : MonoBehaviour
 
     private Queue<CinemachineCamera> _zoomedCameras = new Queue<CinemachineCamera>();
     private CinemachineCamera _currentZoomedCamera;
-    
+    private Tween _currentShakeTween;
+    private float cameraShakeDuration = 0.5f;
+
     public static CameraManager instance;
     private void Awake()
     {
@@ -67,7 +69,10 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            CameraShake();
+        }
     }
     
     #region Old Camera System
@@ -203,8 +208,20 @@ public class CameraManager : MonoBehaviour
     }
 
     #endregion
-    
 
+    public void CameraShake()
+    {
+        if (activeCamera == null) return;
+
+        // Evitar drift asegurando que el shake anterior termine y vuelva a la posición original
+        if (_currentShakeTween != null && _currentShakeTween.IsActive())
+        {
+            _currentShakeTween.Complete();
+        }
+
+        //Make it bulletproof 
+        _currentShakeTween = activeCamera.transform.DOShakePosition(cameraShakeDuration, new Vector3(1.5f, 1.5f, 0f), 15, 90f, false, true);
+    }
     public void ResetColliders()
     {
         //Reset all camera collider scripts in the scene
