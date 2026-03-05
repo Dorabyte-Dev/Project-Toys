@@ -2453,6 +2453,46 @@ PrefabInstance:
       propertyPath: activeCheckpoint
       value: 
       objectReference: {fileID: 1179728591}
+    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: comboRedirectionLimit
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: attackColliders.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: comboBufferUnlockThreshold
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: attackColliders.Array.data[0].collider
+      value: 
+      objectReference: {fileID: 1360350168}
+    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: attackColliders.Array.data[1].collider
+      value: 
+      objectReference: {fileID: 2102886027}
+    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: attackColliders.Array.data[2].collider
+      value: 
+      objectReference: {fileID: 1358538025}
+    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: attackColliders.Array.data[3].collider
+      value: 
+      objectReference: {fileID: 1925304462}
+    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: attackColliders.Array.data[1].colliderType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: attackColliders.Array.data[2].colliderType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: attackColliders.Array.data[3].colliderType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5790785676915866001, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 6.142033
@@ -14699,8 +14739,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1266747214}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06267084, y: -0.83065176, z: 0.09552837, w: 0.5449444}
-  m_LocalPosition: {x: 27.813639, y: 2.2, z: -85.66149}
+  m_LocalRotation: {x: -0.0026957516, y: 0.96437496, z: 0.009834641, w: 0.26434267}
+  m_LocalPosition: {x: -15.886072, y: 2.9900103, z: -24.111488}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15740,6 +15780,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f90ec0de03e444ba6ed3f4e0bc353d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1358538025 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 7212881933990608057, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+  m_PrefabInstance: {fileID: 121491919}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1360350168 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 3298785727648627442, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+  m_PrefabInstance: {fileID: 121491919}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1409088347
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19710,6 +19760,11 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
+--- !u!65 &1925304462 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 8350726944775715731, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+  m_PrefabInstance: {fileID: 121491919}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1925828901 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5790785676915866001, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
@@ -21330,6 +21385,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1690413803896629090, guid: f3d7108231bd74b42889f2c1505c20db, type: 3}
   m_PrefabInstance: {fileID: 2102850982}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2102886027 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 6340866289002877421, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+  m_PrefabInstance: {fileID: 121491919}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2113853883
 PrefabInstance:

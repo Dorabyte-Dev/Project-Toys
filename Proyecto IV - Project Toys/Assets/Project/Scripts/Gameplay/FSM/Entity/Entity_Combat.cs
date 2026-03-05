@@ -48,20 +48,7 @@ public class Entity_Combat : MonoBehaviour
         }
     }
 
-    // public virtual void PerformHeavyAttack()
-    // {
-    //     foreach (var target in GetDetectedColliders())
-    //     {
-    //         Entity_Health targetHealth = target.GetComponent<Entity_Health>();
-    //         Debug.Log(target);
-    //         if (targetHealth != null)
-    //             targetHealth.TakeDamage(heavyDamage, this.transform);
-    //         else
-    //             Debug.LogWarning("Entity_Health not found on " + target.name);
-    //     }
-    // }
-
-    protected Collider[] GetDetectedColliders()
+    protected virtual Collider[] GetDetectedColliders()
     {
         return Physics.OverlapSphere(entity.targetCheck.position, entity.targetCheckRadius, whatIsTarget);
     }

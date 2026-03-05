@@ -3,6 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ComboAttack", menuName = "Scriptable Objects/ComboAttack")]
 public class AttackData : ScriptableObject
 {
+    [Tooltip("Collider to use during this attack")]
+    public AttackColliderType colliderUsed;
     [Tooltip("Value used to determine strength of the attack. It's multiplied by the player's base attack damage to calculate the final damage of the attack.")]
     public float motionValue;
     [Tooltip("Value used to determine player's movement during the attack. It's applied every frame during the attackVelocity duration.")]

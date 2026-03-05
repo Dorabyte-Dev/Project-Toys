@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -40,7 +41,9 @@ public class Player : Entity
     private IEnumerator _activeForgetCoroutine; //Change to Tween when possible
 
     [Header("Attack Colliders")]
-    public Dictionary<AttackCollider, Collider> attackColliders;
+    //public Dictionary<AttackCollider, Collider> attackColliders;
+    public List<AttackCollider> attackColliders;
+    
     #endregion
 
     #region ComboBar
@@ -151,10 +154,6 @@ public class Player : Entity
     public Player_Health _health;
     public Player_AnimationTriggers _animationTriggers;
     public Player_VFX _vfx;
-
-    #endregion
-
-    public Vector3 debug_Velocity;
 
     #endregion
 
@@ -272,6 +271,7 @@ public class Player : Entity
     
     #endregion
 
+    #endregion
     public override void DeadEntity()
     {
         base.DeadEntity();
@@ -439,4 +439,9 @@ public class Player : Entity
     public float GetMaxHealth() => _health.maxHp;
     #endregion
     #endregion
+
+    public BoxCollider GetColliderUsed(AttackColliderType currentAttackColliderUsed)
+    {
+        return attackColliders.FirstOrDefault(x => x.colliderType == currentAttackColliderUsed).collider;
+    }
 }

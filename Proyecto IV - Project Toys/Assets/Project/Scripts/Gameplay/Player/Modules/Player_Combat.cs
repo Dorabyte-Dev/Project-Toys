@@ -45,4 +45,17 @@ public class Player_Combat : Entity_Combat
             }
         }
     }
+
+    protected override Collider[] GetDetectedColliders()
+    {
+        BoxCollider colliderUsed = player.GetColliderUsed(player.currentAttack.colliderUsed);
+        Debug.Log("Box used: " + colliderUsed.name);
+        Vector3 centerPoint = transform.TransformPoint(colliderUsed.center);
+
+        Vector3 halfExtents = Vector3.Scale(colliderUsed.size, transform.lossyScale) * 0.5f;
+
+        Quaternion rotation = transform.rotation;
+
+        return Physics.OverlapBox(centerPoint, halfExtents, rotation, whatIsTarget);
+    }
 }
