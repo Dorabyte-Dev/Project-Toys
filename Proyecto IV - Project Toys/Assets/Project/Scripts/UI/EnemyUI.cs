@@ -42,6 +42,7 @@ public class EnemyUI : MonoBehaviour
     void Start()
     {
         InitializeDamageNumber();
+        InitializeExecutionAffordance();
     }
 
     private void OnEnable()
@@ -135,6 +136,26 @@ public class EnemyUI : MonoBehaviour
                 break;
         }
         
+    }
+    
+    private void InitializeExecutionAffordance()
+    {
+        if(enemyCanvas.executionAffordance == null) return;
+        switch (InputDeviceManager.currentDevice)
+        {
+            case InputDeviceManager.Devices.Teclado:
+                enemyCanvas.keyboardAffordance.SetActive(true);
+                enemyCanvas.controllerAffordance.SetActive(false);
+                break;
+            case InputDeviceManager.Devices.Mando:
+                enemyCanvas.keyboardAffordance.SetActive(false);
+                enemyCanvas.controllerAffordance.SetActive(true);
+                break;
+            default:
+                enemyCanvas.keyboardAffordance.SetActive(false);
+                enemyCanvas.controllerAffordance.SetActive(false);
+                break;
+        }
     }
     
     
