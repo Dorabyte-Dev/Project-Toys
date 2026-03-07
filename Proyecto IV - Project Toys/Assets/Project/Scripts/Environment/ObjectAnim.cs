@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,7 +18,16 @@ public class ObjectAnim : MonoBehaviour
     }
 
     public TweenAnimation[] tweens;
-    
+
+    //IResettable implementation
+    Vector3 initialPosition;
+    Quaternion initialRotation;
+    private void Awake()
+    {
+        initialPosition = transform.position;
+        initialRotation = transform.rotation;
+    }
+
     private Tween currentTween;
     public void PlayAnimation()
     {
@@ -59,5 +69,13 @@ public class ObjectAnim : MonoBehaviour
         seq.OnComplete(() => tween.onComplete?.Invoke());
         seq.Play();
         currentTween = seq;
+    }
+    
+    public void Reset()
+    {
+        currentTween.Kill(true);
+        currentTween = null;
+        transform.position = initialPosition;
+        transform.rotation = initialRotation;
     }
 }

@@ -65,7 +65,7 @@ public class Enemy_Golem : Enemy
         GetDistanceToPlayer();
         if (distanceToPlayer <= _detectPlayerRange)
         {
-            stateMachine.ChangeState(pursuitState);
+            ChangeEnemyState(pursuitState);
         }
     }
 
@@ -108,7 +108,7 @@ public class Enemy_Golem : Enemy
             agent.destination = playerTransform.position;
             if (distanceToPlayer < _attackPlayerRange)
             {
-                stateMachine.ChangeState(waitAttackState);
+                ChangeEnemyState(waitAttackState);
             }
         }
     }
@@ -151,13 +151,13 @@ public class Enemy_Golem : Enemy
         GetDistanceToPlayer();
         if(distanceToPlayer > _attackPlayerRange)
         {
-            stateMachine.ChangeState(pursuitState);
+            ChangeEnemyState(pursuitState);
         }
         
         canAttackByManager = EnemyWaveManager.Instance.RequestAttackPermission(this);
         if (canAttackByManager)
         {
-            stateMachine.ChangeState(attackState);
+            ChangeEnemyState(attackState);
         }
     }
 
@@ -206,7 +206,7 @@ public class Enemy_Golem : Enemy
         Debug.Log(_stateTimer);
         if (_stateTimer <= 0f)
         {
-            stateMachine.ChangeState(pursuitState);
+            ChangeEnemyState(pursuitState);
         }
     }
 
@@ -222,7 +222,7 @@ public class Enemy_Golem : Enemy
         if (_health.damageReceived >= flinchDamageThreshold)
         {
             _health.damageReceived = 0f;
-            stateMachine.ChangeState(flinchState);
+            ChangeEnemyState(flinchState);
         }
     }
     #endregion

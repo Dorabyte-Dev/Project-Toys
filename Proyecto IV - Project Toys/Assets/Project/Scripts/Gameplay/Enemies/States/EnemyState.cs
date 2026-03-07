@@ -21,6 +21,7 @@ public class EnemyState : EntityState
         enemy.distanceToPlayer = enemy.CheckPlayerDistance();
     }
     
+    
     // protected IEnumerator GetDistanceToPlayer(float waitTime)
     // {
     //     enemy.distanceToPlayer = enemy.CheckPlayerDistance();

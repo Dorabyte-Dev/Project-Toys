@@ -28,6 +28,7 @@ public class Enemy : Entity, IEnemyStates
     [HideInInspector] public int nearness;
     [HideInInspector] public Transform playerTransform;
     [HideInInspector] public float distanceToPlayer;
+    public Transform playerExecutionTransform;
 
     [Space] 
     [HideInInspector] public Renderer mesh;
@@ -40,13 +41,17 @@ public class Enemy : Entity, IEnemyStates
     
     public Transform player { get; private set; }
     
-    public Enemy_Combat combat;
-    public Enemy_Health _health;
-    public Enemy_AnimationTriggers _animationTriggers;
-    public Enemy_VFX _vfx;
+    [HideInInspector]public Enemy_Combat combat;
+    [HideInInspector]public Enemy_Health _health;
+    [HideInInspector]public Enemy_AnimationTriggers _animationTriggers;
+    [HideInInspector]public Enemy_VFX _vfx;
+    [HideInInspector]public EnemyUI enemyUI;
     
     [Header("WaveManager Specs")]
     public bool canAttackByManager; // permiso del manager para atacar
+    
+    [Header("Common States Specs")]
+    public bool isBeingExecuted; 
 
     protected override void Awake()
     {
@@ -66,7 +71,7 @@ public class Enemy : Entity, IEnemyStates
     {
         base.DeadEntity();
 
-        stateMachine.ChangeState(deadState);
+        ChangeEnemyState(deadState);
         
         SetEnemyDead();
     }
@@ -82,6 +87,7 @@ public class Enemy : Entity, IEnemyStates
     protected override void Start()
     {
         base.Start();
+        enemyUI = GetComponent<EnemyUI>();
         combat = GetComponent<Enemy_Combat>();
         _animationTriggers = GetComponent<Enemy_AnimationTriggers>();
         _health = GetComponent<Enemy_Health>();
@@ -98,7 +104,8 @@ public class Enemy : Entity, IEnemyStates
         base.Update();
         if (Input.GetKeyDown(KeyCode.P))
         {
-            stateMachine.ChangeState(executionState);
+            //_health.TakeDamage(0, this.transform);
+            ChangeEnemyState(executionState);
         }
     }
 
@@ -118,17 +125,24 @@ public class Enemy : Entity, IEnemyStates
         agent.isStopped = false;
         health.ResetStats();
     }
+    
+    public void EnterExecution()
+    {
+        ChangeEnemyState(executionState);
+    }
+    
     public void StopAttacking()
     {
-        stateMachine.ChangeState(pursuitState);
+        ChangeEnemyState(pursuitState);
     }
     public void PlayerDeath()
     {
-        stateMachine.ChangeState(idleState);
+        ChangeEnemyState(idleState);
     }
 
     public void ChangeEnemyState(EnemyState newState)
     {
+        if(isBeingExecuted || health.isDead) return;
         stateMachine.ChangeState(newState);
     }
     private void OnEnable()

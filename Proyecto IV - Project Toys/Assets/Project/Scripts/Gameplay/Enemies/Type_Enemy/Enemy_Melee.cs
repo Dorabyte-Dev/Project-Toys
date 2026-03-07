@@ -77,7 +77,7 @@ public class Enemy_Melee : Enemy
         base.Idle_Update();
         if (_stateTimer <= 0f)
         {
-            stateMachine.ChangeState(moveState);
+            ChangeEnemyState(moveState);
         }
     }
     public override void Idle_Exit()
@@ -136,19 +136,19 @@ public class Enemy_Melee : Enemy
         GetDistanceToPlayer();
         if (!groundDetected)
         {
-            stateMachine.ChangeState(idleState);
+            ChangeEnemyState(idleState);
             Flip();
             return;
         }
 
         if (distanceToPlayer < pursuitPlayerRange)
         {
-            stateMachine.ChangeState(pursuitState);
+            ChangeEnemyState(pursuitState);
         }
         // Verificar si ha llegado al destino
         if (HasReachedDestination())
         {
-            stateMachine.ChangeState(idleState);
+            ChangeEnemyState(idleState);
             //GoToRandomPoint();
         }
     }
@@ -178,11 +178,11 @@ public class Enemy_Melee : Enemy
             agent.destination = playerTransform.position;
             if (distanceToPlayer < attackPlayerRange)
             {
-                stateMachine.ChangeState(waitAttackState);
+               ChangeEnemyState(waitAttackState);
             }
             else if (distanceToPlayer > pursuitPlayerRange)
             {
-                stateMachine.ChangeState(moveState);
+                ChangeEnemyState(moveState);
             }
         }
     }
@@ -214,10 +214,10 @@ public class Enemy_Melee : Enemy
         base.Attack_Update();
 
         // Verificar si llegó al punto de ataque
-        if (HasReachedDestination())
+        /*if (HasReachedDestination())
         {
             StopAttacking();
-        }
+        }*/
     }
 
     public override void Attack_Exit()
@@ -320,7 +320,7 @@ public class Enemy_Melee : Enemy
                 _attackPoint = AttackPointToPlayer();
                 SetParametersAttack(_currentPosition, _attackPoint);
             
-                stateMachine.ChangeState(attackState);
+                ChangeEnemyState(attackState);
             }
             else
             {
@@ -379,7 +379,7 @@ public class Enemy_Melee : Enemy
                 DeadEntity();
                 return;
             }
-            stateMachine.ChangeState(moveState);
+            ChangeEnemyState(moveState);
         }
     }
     public override void Flinch_Exit()
@@ -392,7 +392,7 @@ public class Enemy_Melee : Enemy
     {
         if (_health.currentHp >= 0)
         {
-            stateMachine.ChangeState(flinchState);
+            ChangeEnemyState(flinchState);
         }
     }
 

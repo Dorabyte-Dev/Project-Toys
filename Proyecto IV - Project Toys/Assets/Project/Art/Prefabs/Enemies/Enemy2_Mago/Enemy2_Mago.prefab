@@ -351,6 +351,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7200493155652033037}
   m_LocalEulerAnglesHint: {x: -0.265526, y: 1.696198, z: 1.813477}
+--- !u!1 &1901090522820235009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3454301788303298732}
+  m_Layer: 6
+  m_Name: PlayerExecutionPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3454301788303298732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901090522820235009}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4601781224597481242}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1955201731186878869
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +429,7 @@ Transform:
   - {fileID: 1777695831401778634}
   - {fileID: 4808993907460859130}
   - {fileID: 7823607273016258290}
+  - {fileID: 3454301788303298732}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8301905890392758110
@@ -431,6 +463,7 @@ MonoBehaviour:
   nearness: 0
   playerTransform: {fileID: 0}
   distanceToPlayer: 0
+  playerExecutionTransform: {fileID: 3454301788303298732}
   mesh: {fileID: 0}
   agent: {fileID: 6515892168992828423}
   spawner: {fileID: 0}
@@ -441,7 +474,9 @@ MonoBehaviour:
   _health: {fileID: 0}
   _animationTriggers: {fileID: 0}
   _vfx: {fileID: 0}
+  enemyUI: {fileID: 0}
   canAttackByManager: 0
+  isBeingExecuted: 0
   projectilePrefab: {fileID: 2737077844218251050, guid: a99e0e69feab86f40bce4cf1fcdfec8f, type: 3}
   projectileSpawnPointCenter: {fileID: 1777695831401778634}
   detectionRadius: 11
@@ -450,7 +485,6 @@ MonoBehaviour:
   timeWaitToSendWaveManagerRequest: 2
   maxProjectiles: 5
   projectileRotationSpeed: 50
-  projectileDamage: 90
   projectileRotationRadius: 1
   projectileSpeed: 10
   invokeProjectileSpeed: 1
@@ -494,13 +528,12 @@ MonoBehaviour:
   whatIsTarget:
     serializedVersion: 2
     m_Bits: 520
-  stats: {fileID: 0}
   entity: {fileID: 0}
-  baseDamage: 0
-  heavyDamage: 0
+  baseDamage: 50
   targetHit:
     m_PersistentCalls:
       m_Calls: []
+  finalDamage: 0
 --- !u!114 &8444079142566665867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,6 +550,7 @@ MonoBehaviour:
   vfx: {fileID: 0}
   currentHp: 0
   maxHp: 100
+  isDead: 0
   invincibleMode: 0
   enemy: {fileID: 0}
   enemyUI: {fileID: 0}
@@ -574,16 +608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e004dd4be34adc149aab0808c6b62a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyUI
-  currentDamageIndex: 0
-  canvas: {fileID: 2990922051133784867}
-  fill: {fileID: 8403344158674458169}
-  lifeBar: {fileID: 4552079438745280116}
-  damageNumbers:
-  - {fileID: 6948855305982260427}
-  - {fileID: 1722578546355080303}
-  - {fileID: 2097956831897566251}
-  - {fileID: 8873849006576219556}
-  - {fileID: 4449675340872339953}
+  canvasObj: {fileID: 2990922051133784867}
   damageNumberVelocity: 1
 --- !u!95 &2761638720027690082
 Animator:
@@ -2829,54 +2854,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
---- !u!1 &1722578546355080303 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8751510374545292529, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
-  m_PrefabInstance: {fileID: 7968073212575543454}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2097956831897566251 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8325247788900502709, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
-  m_PrefabInstance: {fileID: 7968073212575543454}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2990922051133784867 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5122188840045949885, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
   m_PrefabInstance: {fileID: 7968073212575543454}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4449675340872339953 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6004464315658936687, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
-  m_PrefabInstance: {fileID: 7968073212575543454}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4552079438745280116 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5888584603410329322, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
-  m_PrefabInstance: {fileID: 7968073212575543454}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5916356165264132148 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4363801984304429226, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
-  m_PrefabInstance: {fileID: 7968073212575543454}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6948855305982260427 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1079460157676045397, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
-  m_PrefabInstance: {fileID: 7968073212575543454}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8403344158674458169 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1876563585849353895, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
-  m_PrefabInstance: {fileID: 7968073212575543454}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
---- !u!1 &8873849006576219556 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1563442833018537274, guid: ffdd4c31f8242bf4881163f028f31015, type: 3}
   m_PrefabInstance: {fileID: 7968073212575543454}
   m_PrefabAsset: {fileID: 0}

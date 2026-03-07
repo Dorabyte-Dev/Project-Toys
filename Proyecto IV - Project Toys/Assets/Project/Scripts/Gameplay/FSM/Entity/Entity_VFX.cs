@@ -82,7 +82,7 @@ public class Entity_VFX : MonoBehaviour
     //     }
     // }
 
-    public void DamageVFX_Feedback(Transform damageDealer)
+    public virtual void DamageVFX_Feedback(Transform damageDealer)
     {
         TriggerMaterialChange();
         Vector3 pushDirection = (transform.position - damageDealer.position).normalized;

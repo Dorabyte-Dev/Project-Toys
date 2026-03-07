@@ -32,7 +32,7 @@ public abstract class PlayerState : EntityState
     public override void Update()
     {
         base.Update();
-        stateTimer -= Time.deltaTime;
+        //stateTimer -= Time.deltaTime; Por qué se resta dos veces el timer? Porque el base.Update() ya lo hace, no es necesario restarlo aquí también.
         // Aqui va la logica del estado
         anim.SetFloat("yVelocity", ch.velocity.y);
     }
