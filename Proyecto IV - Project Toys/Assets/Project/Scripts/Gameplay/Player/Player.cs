@@ -63,6 +63,9 @@ public class Player : Entity
     #region Movement
 
     [Header("Movement Specs")]
+    public CharacterController ch {get; private set;}
+    private float _verticalVelocity;
+    private const float Gravity = -9.81f;
     public Vector2 moveInput { get; private set; }
     public Vector2 cameraMoveInput { get; private set; }
     public Camera cam;
@@ -107,6 +110,7 @@ public class Player : Entity
     protected override void Awake()
     {
         base.Awake();
+        ch = GetComponent<CharacterController>();
         input = new PlayerInputSystem();
         idleState = new Player_IdleState(this, stateMachine, "Idle");
         moveState = new Player_MoveState(this, stateMachine, "Move");
@@ -130,8 +134,8 @@ public class Player : Entity
         stateMachine.Initialize(idleState);
         SetComboBar();
         if (cam == null)
-        {
-           cam = Camera.main;
+        { 
+            cam = Camera.main;
         }
     }
 
@@ -140,6 +144,11 @@ public class Player : Entity
         base.Update();
         
         cameraMoveInput = MovementDirectionToCamera(moveInput);
+        
+        if (ch.isGrounded && _verticalVelocity < 0f)
+            _verticalVelocity = -2f; // Pequeño valor negativo para mantenerlo pegado al suelo
+        else
+            _verticalVelocity += Gravity * Time.deltaTime;
 
         if (_isComboBarFull)
         {
@@ -235,6 +244,34 @@ public class Player : Entity
     {
         comboBarAmount += comboBarHitModifier;
     }
+    
+    public void SetVelocity(float xVelocity, float yVelocity)
+    {
+        Vector3 inputDirection = new Vector3(xVelocity, 0f, yVelocity);
+
+        if (OnSlope())
+        {
+            Vector3 slopeMoveDirection = ProjectVectorOnSlope(inputDirection);
+            Vector3 slopeVelocity = slopeMoveDirection * moveSpeed;
+
+            // Forzamos hacia abajo para no "flotar" en pendiente
+            if (slopeVelocity.y > 0)
+                slopeVelocity += Vector3.down * 5f * Time.deltaTime;
+
+            slopeVelocity.y = _verticalVelocity; // Gravedad también en pendiente
+            ch.Move(slopeVelocity * Time.deltaTime);
+        }
+        else
+        {
+            if (inputDirection.magnitude > 1f)
+                inputDirection = inputDirection.normalized;
+
+            Vector3 moveVelocity = inputDirection * moveSpeed;
+            moveVelocity.y = _verticalVelocity;
+
+            ch.Move(moveVelocity * Time.deltaTime);
+        }
+    }
 
     #region Death&Respawn
 
@@ -248,7 +285,9 @@ public class Player : Entity
     
     public void Respawn()
     {
-        rb.position = activeCheckpoint.position;
+        ch.enabled = false; // Desactivar para poder teletransportar
+        transform.position = activeCheckpoint.position;
+        ch.enabled = true;
         
         CameraManager.instance.UnToggleOnCombatCamera();
         //CameraManager.instance.SwitchOffCombatCamera(activeCheckpoint.GetComponent<Checkpoint>().checkpointCamera);

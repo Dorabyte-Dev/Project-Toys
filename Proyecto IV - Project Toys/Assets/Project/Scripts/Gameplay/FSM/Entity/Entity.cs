@@ -5,7 +5,6 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class Entity : MonoBehaviour
 {
     public Animator anim;
-    public Rigidbody rb { get; private set; }
     protected StateMachine stateMachine;
 
     [Header("Collision detection")]
@@ -35,7 +34,6 @@ public class Entity : MonoBehaviour
                 Debug.LogWarning("Animator component not found on " + gameObject.name);
             }
         }
-        rb = GetComponent<Rigidbody>();
         stateMachine = new StateMachine();
     }
 
@@ -48,42 +46,7 @@ public class Entity : MonoBehaviour
         HandleCollisionDetected();
         stateMachine.UpdateActiveState();
     }
-
-    public void SetVelocity(float xVelocity, float yVelocity)
-    {
-        Vector3 inputDirection = new Vector3(xVelocity, 0f, yVelocity);
-
-        //If this entity is on a slope, we project the movement direction to the slope normal
-        if (OnSlope())
-        {
-            Vector3 slopeMoveDirection = ProjectVectorOnSlope(inputDirection);
-
-            rb.linearVelocity = slopeMoveDirection * moveSpeed;
-
-            if (rb.linearVelocity.y > 0)
-            {
-                rb.linearVelocity += Vector3.down * 5f * Time.deltaTime;
-            }
-        }
-        else 
-        {
-            // The Entity is on flat ground
-            Vector3 velocity = rb.linearVelocity;
-            velocity.x = xVelocity;
-            velocity.z = yVelocity;
-
-            // Normalizar solo si hay movimiento
-            if (velocity.magnitude > 1f)
-            {
-                velocity = velocity.normalized * moveSpeed;
-            }
-            rb.linearVelocity = new Vector3(xVelocity, 0f, yVelocity);
-        }
-
-        //rb.linearVelocity = velocity;
-
-        //rb.MovePosition(transform.position + velocity * moveSpeed * Time.deltaTime);
-    }
+    
 
     private void HandleCollisionDetected()
     {

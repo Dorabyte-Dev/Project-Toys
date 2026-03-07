@@ -25,71 +25,56 @@ public class Player_DashState : Player_GroundedState
     public override void Enter()
     {
         base.Enter();
-        
+    
         stateTimer = player.dashDuration;
         player.SetDashCooldown();
-        
+    
         _isPerfectDodge = PerfectDodgeManager.IsPerfectDodge();
-        
+    
         if (_isPerfectDodge)
         {
-            // Execute perfect dodge towards the last detected enemy
             PerfectDodge(PerfectDodgeManager.GetPerfectDodgeEnemy());
         }
         else
         {
-            // Calculate normal dash direction based on input
             Vector3 playerDirection = GetDashDirection();
-
             _dashSpeed = player.dashDistance / player.dashDuration;
             _forToApply = playerDirection * _dashSpeed;
-            
-            rb.AddForce(_forToApply, ForceMode.VelocityChange);
-
-            // Store initial slope state for transition handling
+        
+            // Guardamos la dirección, el Move lo aplica SetVelocity en Update
             _enteredSlope = player.OnSlope();
         }
-         PerfectDodgeManager.WipePerfectDodgeFlags();
+        PerfectDodgeManager.WipePerfectDodgeFlags();
     }
     
     public override void Update()
     {
         base.Update();
 
-        // Handle slope transition mid-dash to maintain smooth movement
-        if(_enteredSlope != player.OnSlope() && !_switchSlope)
+        if (!_isPerfectDodge)
         {
-            if (_enteredSlope)
+            // Aplicamos el dash manualmente cada frame con CharacterController
+            player.ch.Move(_forToApply * Time.deltaTime);
+
+            // Manejo de transición de pendiente
+            if (_enteredSlope != player.OnSlope() && !_switchSlope)
             {
-                // Transitioning from slope to flat ground
-                // Project velocity out of slope to prevent sudden height changes
-                float remainingDashSpeed = rb.linearVelocity.magnitude;
-                Vector3 newDashDirection = player.ProjectVectorOutOfSlope(rb.linearVelocity).normalized;
-                rb.linearVelocity = newDashDirection * remainingDashSpeed;
-            }
-            else 
-            {
-                // Transitioning from flat ground to slope
-                // Project velocity onto slope to follow terrain
-                float remainingDashSpeed = rb.linearVelocity.magnitude;
-                Vector3 newDashDirection = player.ProjectVectorOnSlope(rb.linearVelocity).normalized;
-                rb.linearVelocity = newDashDirection * remainingDashSpeed;
+                if (_enteredSlope)
+                {
+                    float remainingSpeed = _forToApply.magnitude;
+                    _forToApply = player.ProjectVectorOutOfSlope(_forToApply).normalized * remainingSpeed;
+                }
+                else
+                {
+                    float remainingSpeed = _forToApply.magnitude;
+                    _forToApply = player.ProjectVectorOnSlope(_forToApply).normalized * remainingSpeed;
+                }
             }
         }
-        
-        // Check if dash duration has completed
+
         if (stateTimer < 0f)
         {
-            if (player.groundDetected)
-            {
-                // Return to idle if grounded
-                stateMachine.ChangeState(player.idleState);
-            }
-            else
-            {
-                // Start falling if airborne /* HAY QUE BORRAR AIR STATE */
-                stateMachine.ChangeState(player.fallState);
-            }
+            stateMachine.ChangeState(player.groundDetected ? player.idleState : player.fallState);
         }
     }
     
@@ -129,45 +114,48 @@ public class Player_DashState : Player_GroundedState
     /// <param name="enemy">The enemy GameObject to dodge around</param>
     void PerfectDodge(GameObject enemy)
     {
-        Debug.LogWarning("Perfect Dodge Duration =  " + player.perfectDodgeDuration);
-
-        // Calculate direction vector from player to enemy (horizontal only)
-        Vector3 direction =  new Vector3(
-            enemy.transform.position.x - player.transform.position.x, 
-            0f, 
+        Vector3 direction = new Vector3(
+            enemy.transform.position.x - player.transform.position.x,
+            0f,
             enemy.transform.position.z - player.transform.position.z
         );
-        
-        // Calculate final position: behind enemy at set distance
+
         Vector3 pDodgePosition = new Vector3(
-            enemy.transform.position.x, 
-            player.transform.position.y, 
+            enemy.transform.position.x,
+            player.transform.position.y,
             enemy.transform.position.z
         ) + direction.normalized * player.perfectDodgeEnemyDistance;
-        
-        // Calculate curve control point: perpendicular to enemy direction for arc movement
-        Vector3 pDodgeCurvePoint = player.transform.position 
-            + direction / 2 
-            + Vector3.Cross(direction, Vector3.up).normalized * direction.magnitude / 1.25f;
 
-        // Create curved path using Bezier curve (start, control, end)
-        Vector3[] curvePoints = new Vector3[] { player.transform.position, pDodgeCurvePoint, pDodgePosition };
-        
-        // Apply cinematic effects
+        Vector3 pDodgeCurvePoint = player.transform.position 
+                                    + direction / 2 
+                                    + Vector3.Cross(direction, Vector3.up).normalized * direction.magnitude / 1.25f;
+
         CameraManager.instance.ToggleZoom();
-        Time.timeScale = 0.25f; // Slow-motion effect
-        
-        // Enable afterimage trail effect if available
-        if(player.afterimageTrail != null)
-        {
+        Time.timeScale = 0.25f;
+
+        if (player.afterimageTrail != null)
             player.afterimageTrail.ToggleTrail();
-        }
-        
-        // Execute curved movement with DOTween, restore normal time on completion
-        rb.DOPath(curvePoints, player.perfectDodgeDuration).OnComplete(() => 
-        { 
+
+        // Sustituimos rb.DOPath por mover el CharacterController desde la posición actual
+        Vector3 startPos = player.transform.position;
+        DOTween.To(
+            () => 0f,
+            t =>
+            {
+                // Interpolación cuadrática Bezier manual
+                Vector3 targetPos = Mathf.Pow(1 - t, 2) * startPos
+                                    + 2 * (1 - t) * t * pDodgeCurvePoint
+                                    + Mathf.Pow(t, 2) * pDodgePosition;
+
+                Vector3 delta = targetPos - player.transform.position;
+                player.ch.Move(delta);
+            },
+            1f,
+            player.perfectDodgeDuration
+        ).OnComplete(() =>
+        {
             Time.timeScale = 1f;
-            CameraManager.instance.UntoggleZoom(); 
+            CameraManager.instance.UntoggleZoom();
             player.afterimageTrail.UnToggleTrail();
         });
     }

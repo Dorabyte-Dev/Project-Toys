@@ -4,6 +4,7 @@ public abstract class PlayerState : EntityState
 {
     protected Player player;
     protected PlayerInputSystem input;
+    protected CharacterController ch;
 
     
 
@@ -14,7 +15,7 @@ public abstract class PlayerState : EntityState
 
         // Asociamos los componentes comunes
         anim = player.anim;
-        rb = player.rb;
+        ch = player.ch;
 
         // Asociamos el sistema de input del jugador
         this.input = player.input;
@@ -33,7 +34,7 @@ public abstract class PlayerState : EntityState
         base.Update();
         stateTimer -= Time.deltaTime;
         // Aqui va la logica del estado
-        anim.SetFloat("yVelocity", rb.linearVelocity.y);
+        anim.SetFloat("yVelocity", ch.velocity.y);
     }
 
     public override void Exit()

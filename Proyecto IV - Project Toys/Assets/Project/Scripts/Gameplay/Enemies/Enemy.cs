@@ -5,6 +5,7 @@ using UnityEngine.Serialization;
 
 public class Enemy : Entity, IEnemyStates
 {
+    public Rigidbody rb { get; private set; }
     public Enemy_IdleState idleState;   // ESTADO DE IDLE
     public Enemy_MoveState moveState;    // ESTADO DE MOVIMIENTO\ WANDER
     public Enemy_PursuitState pursuitState;  // ESTADO DE PERSECUCION
@@ -50,6 +51,7 @@ public class Enemy : Entity, IEnemyStates
     protected override void Awake()
     {
         base.Awake();
+        rb = GetComponent<Rigidbody>();
         mesh = GetComponentInChildren<Renderer>();
         agent = GetComponent<NavMeshAgent>();
         health = GetComponent<Enemy_Health>();
