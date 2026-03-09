@@ -11,7 +11,7 @@ public class Entity_VFX : MonoBehaviour
     private static readonly int Color1 = Shader.PropertyToID("_Color");
     
     [Header("--- Core Components ---")]
-    [SerializeField] protected Rigidbody rb;
+    
     [SerializeField] protected Renderer renderMesh;
     [SerializeField] protected VisualEffect vfxGraph;
 
@@ -27,7 +27,7 @@ public class Entity_VFX : MonoBehaviour
 
     [Header("--- Knockback (Push Feedback) ---")]
     [FormerlySerializedAs("pushStrengh")] 
-    public float pushStrength = 5f;
+    public float pushStrength = .4f;
     [Range(0, 1)] public float pushDuration = 0.2f;
 
     [Header("--- Dissolve Effect ---")]
@@ -44,7 +44,6 @@ public class Entity_VFX : MonoBehaviour
     protected virtual void Awake()
     {
         SaveOriginalMaterials();
-        rb = GetComponent<Rigidbody>();
         if (renderMesh)
         {
             meshMaterials = renderMesh.materials;
@@ -196,14 +195,12 @@ public class Entity_VFX : MonoBehaviour
     }
     #endregion
 
-    private IEnumerator PushFeedback(Vector3 direction)
+    protected virtual IEnumerator PushFeedback(Vector3 direction)
     {
         //Add player movement disable
         
         // Rigidbody
-        rb.AddForce(direction * pushStrength, ForceMode.VelocityChange);
-        yield return new WaitForSeconds(pushDuration);
-        rb.linearVelocity = Vector3.zero;
+        
 
         //Add player movement enable
         
@@ -218,37 +215,39 @@ public class Entity_VFX : MonoBehaviour
                 yield return null;
             }
         */
+        
+        return null;
     }
 
     
-    private void Shake(float duration, float magnitude)
-    {
-        StartCoroutine(ShakeCoroutine(duration, magnitude));
-    }
-    
-    IEnumerator ShakeCoroutine(float duration, float magnitude)
-    {
-        Debug.Log("Ejecutando VFX Shake");
-        
-        // Cogemos posicion del Rigibody ya que al aplicar este componente, normalmente que este efecto no
-        // intervenga en el efecto de PushFeedback se realiza con rb.position y su funcion MovePosition
-        Vector3 originalPosition = rb.position;
-        float elapsed = 0f;
-    
-        while (elapsed < duration)
-        {
-            float x = Random.Range(-randomShake, randomShake) * magnitude;
-            float y = Random.Range(-randomShake, randomShake) * magnitude;
-            float z = Random.Range(-randomShake, randomShake) * magnitude;
-            
-            // transform.position = originalPosition + new Vector3(x, y, z);
-            rb.MovePosition(originalPosition + new Vector3(x, y, z));
-            
-            elapsed += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
-        }
-        
-        // transform.position = originalPosition;
-        rb.MovePosition(originalPosition);
-    }
+    // private void Shake(float duration, float magnitude)
+    // {
+    //     StartCoroutine(ShakeCoroutine(duration, magnitude));
+    // }
+    //
+    // IEnumerator ShakeCoroutine(float duration, float magnitude)
+    // {
+    //     Debug.Log("Ejecutando VFX Shake");
+    //     
+    //     // Cogemos posicion del Rigibody ya que al aplicar este componente, normalmente que este efecto no
+    //     // intervenga en el efecto de PushFeedback se realiza con rb.position y su funcion MovePosition
+    //     Vector3 originalPosition = rb.position;
+    //     float elapsed = 0f;
+    //
+    //     while (elapsed < duration)
+    //     {
+    //         float x = Random.Range(-randomShake, randomShake) * magnitude;
+    //         float y = Random.Range(-randomShake, randomShake) * magnitude;
+    //         float z = Random.Range(-randomShake, randomShake) * magnitude;
+    //         
+    //         // transform.position = originalPosition + new Vector3(x, y, z);
+    //         rb.MovePosition(originalPosition + new Vector3(x, y, z));
+    //         
+    //         elapsed += Time.fixedDeltaTime;
+    //         yield return new WaitForFixedUpdate();
+    //     }
+    //     
+    //     // transform.position = originalPosition;
+    //     rb.MovePosition(originalPosition);
+    // }
 }

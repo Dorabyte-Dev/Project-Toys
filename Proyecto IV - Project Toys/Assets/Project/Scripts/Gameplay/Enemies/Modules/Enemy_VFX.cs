@@ -5,9 +5,15 @@ using UnityEngine.VFX;
 
 public class Enemy_VFX : Entity_VFX
 {
+    [SerializeField] protected Rigidbody rb;
     [SerializeField] private VisualEffect pDodgeShine;
     [SerializeField] private ParticleSystem pHitEffect;
     
+    protected override void Awake()
+    {
+        base.Awake();
+        rb = GetComponent<Rigidbody>();
+    }
     public event Action OnDissolveComplete;
     
     public void ShineEffect()
@@ -20,13 +26,27 @@ public class Enemy_VFX : Entity_VFX
         pHitEffect.transform.rotation = particleRotation;
         pHitEffect.Play();
     }
-    
+
     public override void DeathVFX_Feedback()
     {
         base.DeathVFX_Feedback();
         StartCoroutine(Dissolve());
     }
-    
+
+    protected override IEnumerator PushFeedback(Vector3 direction)
+    {
+        if (rb != null)
+        {
+            rb.AddForce(direction * pushStrength, ForceMode.VelocityChange);
+            yield return new WaitForSeconds(pushDuration);
+            rb.linearVelocity = Vector3.zero;
+        }
+        else
+        {
+            Debug.LogError("Rigidbody is null in PushFeedback");
+        }
+    }
+
     #region DissolveFeedback
     public IEnumerator Dissolve()
     {
@@ -56,4 +76,6 @@ public class Enemy_VFX : Entity_VFX
 
     #endregion
 
+    
+   
 }
