@@ -20,9 +20,9 @@ public class Player_ExecutionState : PlayerState
         player.transform.DODynamicLookAt(player.executionEnemy.transform.position, 0.5f, AxisConstraint.Y).OnComplete((
             () =>
             {
-                player.transform.DOMove(player.executionTransform.position, 0.5f);
+                player.transform.DOMove(player.executionTarget.position, 0.5f);
             }));
-        executionCamera = player.executionCameraManager.TestExecutionCamera();
+        // executionCamera = player.executionCameraManager.TestExecutionCamera();
         executionCamera.Priority = 100;
     }
 

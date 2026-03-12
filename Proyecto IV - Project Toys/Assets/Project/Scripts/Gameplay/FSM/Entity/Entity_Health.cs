@@ -27,7 +27,6 @@ public class Entity_Health : MonoBehaviour
     {
         if (isDead)
             return;
-        Debug.Log($"Entity_Health TakeDamage called with takeDamage: {takeDamage} and damageDealer: {damageDealer.name}");
         vfx.DamageVFX_Feedback(damageDealer);
         ReduceHp(takeDamage);
     }
