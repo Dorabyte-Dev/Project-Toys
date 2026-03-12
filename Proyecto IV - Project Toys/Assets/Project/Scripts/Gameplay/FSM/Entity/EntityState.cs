@@ -6,7 +6,6 @@ public abstract class EntityState
     protected string animBoolName;
 
     protected Animator anim;
-    protected Rigidbody rb;
 
     protected float stateTimer;
 

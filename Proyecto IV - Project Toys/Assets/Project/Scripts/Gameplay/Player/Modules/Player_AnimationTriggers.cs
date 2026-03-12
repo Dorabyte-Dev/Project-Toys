@@ -17,6 +17,6 @@ public class Player_AnimationTriggers : Entity_AnimationTriggers
 
     public void EndExecution()
     {
-        player.ChangePlayerState(player.idleState);
+        // player.ChangePlayerState(player.idleState);
     }
 }
