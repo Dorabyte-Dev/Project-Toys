@@ -256,28 +256,16 @@ public class Player : Entity
     {
         Vector3 inputDirection = new Vector3(xVelocity, 0f, yVelocity);
 
-        if (OnSlope())
-        {
-            Vector3 slopeMoveDirection = ProjectVectorOnSlope(inputDirection);
-            Vector3 slopeVelocity = slopeMoveDirection * moveSpeed;
+        if (inputDirection.magnitude > 1f)
+            inputDirection = inputDirection.normalized;
 
-            // Forzamos hacia abajo para no "flotar" en pendiente
-            if (slopeVelocity.y > 0)
-                slopeVelocity += Vector3.down * 5f * Time.deltaTime;
+        // Movimiento alineado al suelo
+        Vector3 flatDirection = Vector3.ProjectOnPlane(inputDirection, groundNormal).normalized;
 
-            slopeVelocity.y = _verticalVelocity; // Gravedad también en pendiente
-            ch.Move(slopeVelocity * Time.deltaTime);
-        }
-        else
-        {
-            if (inputDirection.magnitude > 1f)
-                inputDirection = inputDirection.normalized;
+        Vector3 moveVelocity = flatDirection * moveSpeed;
+        moveVelocity.y = _verticalVelocity; // gravedad sigue funcionando
 
-            Vector3 moveVelocity = inputDirection * moveSpeed;
-            moveVelocity.y = _verticalVelocity;
-
-            ch.Move(moveVelocity * Time.deltaTime);
-        }
+        ch.Move(moveVelocity * Time.deltaTime);
     }
 
     #region Death&Respawn
@@ -312,7 +300,7 @@ public class Player : Entity
 
     #endregion
  
-    #region ComboSystem
+    #region ComboSystem 
     private IEnumerator ForgetPreviousAttack(float time)
     {
         float elapsedTime = 0;
@@ -349,7 +337,6 @@ public class Player : Entity
             Debug.Log("Checking Attack Buffer: Starting From Zero");
         }
     }
-  
     #region Event Callbacks from StateMachineBehaviours
     public void OnComboStarted()
     {
@@ -359,7 +346,6 @@ public class Player : Entity
             StopCoroutine(_activeForgetCoroutine);
             _activeForgetCoroutine = null;
         }
-          
     }
 
     public void OnComboInterrupted()

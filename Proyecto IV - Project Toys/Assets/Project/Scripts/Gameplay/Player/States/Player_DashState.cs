@@ -28,6 +28,8 @@ public class Player_DashState : Player_GroundedState
     
         stateTimer = player.dashDuration;
         player.SetDashCooldown();
+        
+        Debug.Log("Entering Dash State: " + stateTimer);
     
         _isPerfectDodge = PerfectDodgeManager.IsPerfectDodge();
     
@@ -42,7 +44,7 @@ public class Player_DashState : Player_GroundedState
             _forToApply = playerDirection * _dashSpeed;
         
             // Guardamos la dirección, el Move lo aplica SetVelocity en Update
-            _enteredSlope = player.OnSlope();
+            _enteredSlope = player.OnGround();
         }
         PerfectDodgeManager.WipePerfectDodgeFlags();
     }
@@ -51,30 +53,18 @@ public class Player_DashState : Player_GroundedState
     {
         base.Update();
 
+        stateTimer -= Time.deltaTime;
+        Debug.Log("Dash State Timer: " + stateTimer);
         if (!_isPerfectDodge)
         {
             // Aplicamos el dash manualmente cada frame con CharacterController
             player.ch.Move(_forToApply * Time.deltaTime);
-
-            // Manejo de transición de pendiente
-            if (_enteredSlope != player.OnSlope() && !_switchSlope)
-            {
-                if (_enteredSlope)
-                {
-                    float remainingSpeed = _forToApply.magnitude;
-                    _forToApply = player.ProjectVectorOutOfSlope(_forToApply).normalized * remainingSpeed;
-                }
-                else
-                {
-                    float remainingSpeed = _forToApply.magnitude;
-                    _forToApply = player.ProjectVectorOnSlope(_forToApply).normalized * remainingSpeed;
-                }
-            }
         }
 
         if (stateTimer < 0f)
         {
-            stateMachine.ChangeState(player.groundDetected ? player.idleState : player.fallState);
+            if (player.groundDetected)
+                stateMachine.ChangeState(player.idleState);
         }
     }
     
@@ -99,10 +89,6 @@ public class Player_DashState : Player_GroundedState
 
         // Convert 2D input to 3D world direction
         Vector3 direction = new Vector3(inputVector.x, 0f, inputVector.y).normalized;
-        
-        // Project onto slope if on sloped terrain
-        if(player.OnSlope()) 
-            direction = player.ProjectVectorOnSlope(direction);
             
         return direction;
     }
