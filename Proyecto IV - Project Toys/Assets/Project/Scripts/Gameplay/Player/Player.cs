@@ -255,16 +255,13 @@ public class Player : Entity
     {
         Vector3 inputDirection = new Vector3(xVelocity, 0f, yVelocity);
 
-        if (inputDirection.magnitude > 1f)
-            inputDirection = inputDirection.normalized;
+        /*if (inputDirection.magnitude > 1f)
+            inputDirection = inputDirection.normalized;*/
 
-        // Movimiento alineado al suelo
-        Vector3 flatDirection = Vector3.ProjectOnPlane(inputDirection, groundNormal).normalized;
+        //Vector3 moveVelocity = inputDirection * moveSpeed;
+        inputDirection.y = _verticalVelocity; // gravedad sigue funcionando
 
-        Vector3 moveVelocity = inputDirection * moveSpeed;
-        moveVelocity.y = _verticalVelocity; // gravedad sigue funcionando
-
-        ch.Move(moveVelocity * Time.deltaTime);
+        ch.Move(inputDirection * Time.deltaTime);
     }
 
     #region Death&Respawn
