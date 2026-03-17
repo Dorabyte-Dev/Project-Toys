@@ -91,6 +91,8 @@ public class Player_ComboSystem : PlayerState
 
     private void ApplyAttackVelocity()
     {
+        if(player.currentAttack == null) //A veces es null cuando no debería, pendiente de investigar
+            return;
         Vector3 finalMoveDirection = player.transform.forward * player.currentAttack.attackMoveDistance;
         float animTime = player.anim.GetCurrentAnimatorClipInfo(0).Length;
         float attackMoveDuration = (player.currentAttack.attackMoveDurationEnd - player.currentAttack.attackMoveDurationStart) * animTime;
