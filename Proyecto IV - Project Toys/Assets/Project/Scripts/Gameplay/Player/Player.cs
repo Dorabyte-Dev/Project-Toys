@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -29,14 +31,11 @@ public class Player : Entity
     public float comboResetTime = 1;
     [Range(0, 1)]public float comboBufferUnlockThreshold;
     [Range(0f, 180f)] public float comboRedirectionLimit = 45f;
-    private IEnumerator _activeForgetCoroutine; //Change to Tween when possible
+    private IEnumerator _activeForgetCoroutine;
     #endregion
     
-    [Header("--- Attack Colliders ---")]
-    [SerializeField] private BoxCollider normalCollider;
-    [SerializeField] private BoxCollider wideCollider;
-    [SerializeField] private BoxCollider longCollider;
-    [SerializeField] private BoxCollider longWideCollider;
+    [Header("Attack Colliders")]
+        public List<AttackCollider> attackColliders;
 
     #region ComboBar
     [Header("Combo Bar Properties")] 
@@ -262,7 +261,7 @@ public class Player : Entity
         // Movimiento alineado al suelo
         Vector3 flatDirection = Vector3.ProjectOnPlane(inputDirection, groundNormal).normalized;
 
-        Vector3 moveVelocity = flatDirection * moveSpeed;
+        Vector3 moveVelocity = inputDirection * moveSpeed;
         moveVelocity.y = _verticalVelocity; // gravedad sigue funcionando
 
         ch.Move(moveVelocity * Time.deltaTime);
@@ -354,7 +353,7 @@ public class Player : Entity
     }
     public void OnComboEnded()
     {
-        stateMachine.ChangeState(idleState);
+        if (stateMachine.currentState == comboSystemState) stateMachine.ChangeState(idleState); //No me gusta mucho esto, refactor prone
         _activeForgetCoroutine = ForgetPreviousAttack(comboResetTime);
         StartCoroutine(_activeForgetCoroutine);
     }
@@ -370,20 +369,8 @@ public class Player : Entity
     #endregion
     #endregion
     #region Attack Colliders
-    [Header("Attack Colliders")]
-    [SerializeField] private BoxCollider[] attackColliders;
-
-    public BoxCollider GetColliderUsed(AttackColliderType type)
-    {
-        return type switch
-        {
-            AttackColliderType.Normal   => normalCollider,
-            AttackColliderType.Wide     => wideCollider,
-            AttackColliderType.Long     => longCollider,
-            AttackColliderType.LongWide => longWideCollider,
-            _                           => null
-        };
-    }
+    public BoxCollider GetColliderUsed(AttackColliderType currentAttackColliderUsed) =>
+            attackColliders.FirstOrDefault(x => x.colliderType == currentAttackColliderUsed).collider;
     #endregion
     #region Dash
     public void SetDashCooldown()

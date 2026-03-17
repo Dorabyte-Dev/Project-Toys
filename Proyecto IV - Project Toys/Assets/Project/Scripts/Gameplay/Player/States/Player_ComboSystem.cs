@@ -52,7 +52,7 @@ public class Player_ComboSystem : PlayerState
         
         base.Update();
         //player.SetVelocity(0,0);
-        //ApplyAttackVelocity();
+        ApplyAttackVelocity();
         RotateWithinCombo();
 
         if (player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= player.comboBufferUnlockThreshold)
@@ -91,13 +91,18 @@ public class Player_ComboSystem : PlayerState
 
     private void ApplyAttackVelocity()
     {
+        Vector3 finalMoveDirection = player.transform.forward * player.currentAttack.attackMoveDistance;
+        float animTime = player.anim.GetCurrentAnimatorClipInfo(0).Length;
+        float attackMoveDuration = (player.currentAttack.attackMoveDurationEnd - player.currentAttack.attackMoveDurationStart) * animTime;
+        
+        Vector3 attackVelocity = finalMoveDirection / attackMoveDuration;
         
         float normalizedTime = player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
-        if (normalizedTime > player.currentAttack.attackVelocityDurationStart
-            && normalizedTime < player.currentAttack.attackVelocityDurationEnd)
+        if (normalizedTime > player.currentAttack.attackMoveDurationStart
+            && normalizedTime < player.currentAttack.attackMoveDurationEnd)
         {
-            Vector2 attackVelocity = player.currentAttack.attackVelocity * player.transform.forward;
-            player.SetVelocity(attackVelocity.x, attackVelocity.y);
+            player.SetVelocity(attackVelocity.x, attackVelocity.z);
+            Debug.DrawLine(player.transform.position, player.transform.position + player.transform.forward * player.currentAttack.attackMoveDistance, Color.red);
         }
         else
         {

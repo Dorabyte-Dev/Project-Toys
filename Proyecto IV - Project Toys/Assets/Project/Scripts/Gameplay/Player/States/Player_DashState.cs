@@ -54,17 +54,15 @@ public class Player_DashState : Player_GroundedState
         base.Update();
 
         stateTimer -= Time.deltaTime;
-        Debug.Log("Dash State Timer: " + stateTimer);
+        //Debug.Log("Dash State Timer: " + stateTimer);
         if (!_isPerfectDodge)
         {
-            // Aplicamos el dash manualmente cada frame con CharacterController
             player.ch.Move(_forToApply * Time.deltaTime);
         }
 
         if (stateTimer < 0f)
         {
-            if (player.groundDetected)
-                stateMachine.ChangeState(player.idleState);
+            stateMachine.ChangeState(player.idleState);
         }
     }
     
