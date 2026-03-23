@@ -102,11 +102,13 @@ public class Enemy : Entity, IEnemyStates
     protected override void Update()
     {
         base.Update();
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.P))
         {
             //_health.TakeDamage(0, this.transform);
             ChangeEnemyState(executionState);
         }
+#endif
     }
 
     public void Flip()
