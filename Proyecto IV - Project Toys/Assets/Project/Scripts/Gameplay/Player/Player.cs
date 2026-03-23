@@ -146,6 +146,7 @@ public class Player : Entity
     #endregion
 
     public Vector3 debug_Velocity;
+
     #endregion
 
     #region Unity Lifecycle
@@ -321,6 +322,11 @@ public class Player : Entity
         if (other.CompareTag("Checkpoint"))
         {
             activeCheckpoint = other.transform;
+        }
+        if (other.CompareTag("Heal"))
+        {
+            _health.Heal(); // Heal amount hardcoded for testing, can be changed to a variable in the future
+            Destroy(other.gameObject);
         }
     }
   
