@@ -12945,11 +12945,11 @@ GameObject:
   - component: {fileID: 5763861305979521097}
   - component: {fileID: 5868768335894663017}
   - component: {fileID: 2371286157433658125}
-  - component: {fileID: 1312872809201593260}
   - component: {fileID: 6284514865084978977}
   - component: {fileID: 5148689385665901950}
   - component: {fileID: 3712837281786118760}
   - component: {fileID: 5092992522464097699}
+  - component: {fileID: 4154271546559694580}
   - component: {fileID: 2730310664641327203}
   m_Layer: 3
   m_Name: Prefab_Player
@@ -13043,6 +13043,7 @@ MonoBehaviour:
   _health: {fileID: 0}
   _animationTriggers: {fileID: 0}
   _vfx: {fileID: 0}
+  debug_Velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &5868768335894663017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13083,33 +13084,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!54 &1312872809201593260
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8468839315768395927}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 2
 --- !u!136 &6284514865084978977
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13163,7 +13137,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 268436544
   entity: {fileID: 0}
-  baseDamage: 20
+  baseDamage: 40
   targetHit:
     m_PersistentCalls:
       m_Calls: []
@@ -13180,19 +13154,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eeaf5629df44249abd8197a01283e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_VFX
-  rb: {fileID: 0}
-  feedbackColor: {r: 0, g: 0, b: 0, a: 0}
-  feedbackDuration: 0
-  pushStrength: 7
-  pushDuration: 1
   renderMesh: {fileID: 0}
   vfxGraph: {fileID: 0}
+  feedbackColor: {r: 0, g: 0, b: 0, a: 0}
+  feedbackDuration: 0
+  pushStrength: 0.4
+  pushDuration: 0.2
   dissolveRate: 0.0125
   refreshRate: 0.025
   shakeDuration: 1
   shakeStrength: 1
   randomShake: 0.2
   swordTrailEffect: {fileID: 1058282547619454077}
+  player: {fileID: 0}
+--- !u!143 &4154271546559694580
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8468839315768395927}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.83, z: -0.1}
 --- !u!114 &2730310664641327203
 MonoBehaviour:
   m_ObjectHideFlags: 0
