@@ -60,21 +60,57 @@ public class Player : Entity
   
     [Header("Execution Properties")]
     public float executionRadius;
-    [HideInInspector] public Transform executionTarget;
+    private Transform _executionTarget;
+    [HideInInspector] public Transform executionTarget
+    {
+        get
+        {
+            return _executionTarget;
+        }
+        set
+        {
+            if (_executionTarget == value) return;
+            
+            if (_executionTarget != null)
+            {
+                Enemy prevEnemy = _executionTarget.GetComponent<Enemy>();
+                if (prevEnemy != null && prevEnemy.enemyUI != null)
+                {
+                    prevEnemy.enemyUI.HideExecutionUI();
+                }
+            }
+            
+            _executionTarget = value;
+
+            if (_executionTarget != null)
+            {
+                executionEnemy = _executionTarget.GetComponent<Enemy>();
+                if (executionEnemy != null)
+                {
+                    SetExecutionEnemy(executionEnemy);
+                }
+            }
+            else
+            {
+                executionEnemy = null;
+            }
+        }
+    }
     [HideInInspector] public Enemy executionEnemy;
     [SerializeField] public LayerMask executionTargetLayer;
-  
+    public ExecutionCameraManager executionCameraManager;
+    [HideInInspector] public Transform executionTransform;
     #endregion
 
     #region Movement
 
     [Header("Movement Specs")]
+    public Camera cam;
     public CharacterController ch {get; private set;}
     private float _verticalVelocity;
     private const float Gravity = -9.81f;
     public Vector2 moveInput { get; private set; }
     public Vector2 cameraMoveInput { get; private set; }
-    public Camera cam;
     public float jumpForce = 5;
 
     #endregion
@@ -132,7 +168,10 @@ public class Player : Entity
         _vfx = GetComponent<Player_VFX>();
         _animationTriggers = GetComponent<Player_AnimationTriggers>();
         _combat.targetHit.AddListener(OnEnemyHit);
-
+        if (executionCameraManager == null)
+        {
+            executionCameraManager = GetComponentInChildren<ExecutionCameraManager>();
+        }
     }
     protected override void Start()
     {
@@ -203,6 +242,12 @@ public class Player : Entity
 
         return nearestEnemy;
     }
+    
+    private void SetExecutionEnemy(Enemy enemy)
+    {
+        executionEnemy.enemyUI.ShowExecutionUI();
+        executionTransform = executionEnemy.playerExecutionTransform;
+    }
 
     void SetComboBar()
     {
@@ -219,6 +264,11 @@ public class Player : Entity
         base.DeadEntity();
         OnPlayerDeath?.Invoke();
         stateMachine.ChangeState(deathState);
+    }
+    
+    public void ChangePlayerState(PlayerState newState)
+    {
+        stateMachine.ChangeState(newState);
     }
   
     public Vector2 MovementDirectionToCamera(Vector2 _moveInput)

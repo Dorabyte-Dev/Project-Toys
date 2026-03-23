@@ -22,7 +22,7 @@ public class Player_ExecutionState : PlayerState
             {
                 player.transform.DOMove(player.executionTarget.position, 0.5f);
             }));
-        // executionCamera = player.executionCameraManager.TestExecutionCamera();
+        executionCamera = player.executionCameraManager.TestExecutionCamera();
         executionCamera.Priority = 100;
     }
 
