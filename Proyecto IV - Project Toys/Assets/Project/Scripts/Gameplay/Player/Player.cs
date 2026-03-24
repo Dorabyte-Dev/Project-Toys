@@ -76,7 +76,7 @@ public class Player : Entity
                 Enemy prevEnemy = _executionTarget.GetComponent<Enemy>();
                 if (prevEnemy != null && prevEnemy.enemyUI != null)
                 {
-                    prevEnemy.enemyUI.HideExecutionUI();
+                    prevEnemy.SetExecutionFeedback(false);
                 }
             }
             
@@ -248,7 +248,7 @@ public class Player : Entity
     
     private void SetExecutionEnemy(Enemy enemy)
     {
-        executionEnemy.enemyUI.ShowExecutionUI();
+        executionEnemy.SetExecutionFeedback(true);
         executionTransform = executionEnemy.playerExecutionTransform;
     }
 

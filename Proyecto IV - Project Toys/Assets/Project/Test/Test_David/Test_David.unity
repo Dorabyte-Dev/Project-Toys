@@ -431,7 +431,7 @@ MonoBehaviour:
   enemy: {fileID: 1955201731186878869, guid: ebc3a5c63da66644bb70139db388e845, type: 3}
   spawnArea: {fileID: 968612280}
   spawnDelay: 1
-  wavesSpawnCount: 03000000
+  waves: []
   enemiesSpawned: []
   endCombat:
     m_PersistentCalls:
@@ -6897,6 +6897,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5977752689232595186, guid: baea996769c743d42bccd6d6245a1419, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5977752689232595186, guid: baea996769c743d42bccd6d6245a1419, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 17a8164599d3549419d21a0d51a28b6c, type: 2}
+    - target: {fileID: 5977752689232595186, guid: baea996769c743d42bccd6d6245a1419, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d45b7e83b62d5b748a3f011bf4fdbdec, type: 2}
     - target: {fileID: 6018835740015775993, guid: baea996769c743d42bccd6d6245a1419, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 3.8580728

@@ -239,4 +239,18 @@ public class Enemy : Entity, IEnemyStates
     public virtual void Extra_Update(){}
     public virtual void Extra_Exit(){}
     #endregion
+
+    public void SetExecutionFeedback(bool isActiveVictim)
+    {
+        if (isActiveVictim)
+        {
+            enemyUI.ShowExecutionUI();
+            _vfx.GlowEffect();
+        }
+        else
+        {
+            enemyUI.HideExecutionUI();
+            _vfx.RemoveGlowEffect();
+        }
+    }
 }

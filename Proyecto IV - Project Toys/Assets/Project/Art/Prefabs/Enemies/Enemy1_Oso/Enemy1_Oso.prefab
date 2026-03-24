@@ -2938,7 +2938,6 @@ MonoBehaviour:
   targetHit:
     m_PersistentCalls:
       m_Calls: []
-  finalDamage: 0
 --- !u!114 &1702223629267889394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2992,18 +2991,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ded6eb4f453b49b0b6981f5230d039fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_VFX
-  rb: {fileID: 0}
+  renderMesh: {fileID: 5977752689232595186}
+  vfxGraph: {fileID: 3433083734566245030}
   feedbackColor: {r: 1, g: 1, b: 1, a: 0}
   feedbackDuration: 0.5
   pushStrength: 15
   pushDuration: 0.1
-  renderMesh: {fileID: 5977752689232595186}
-  vfxGraph: {fileID: 3433083734566245030}
   dissolveRate: 0.025
   refreshRate: 0.025
   shakeDuration: 1
   shakeStrength: 1
   randomShake: 0.2
+  glowMaterial: {fileID: 2100000, guid: d45b7e83b62d5b748a3f011bf4fdbdec, type: 2}
+  rb: {fileID: 0}
   pDodgeShine: {fileID: 7470000213853289494}
   pHitEffect: {fileID: 7012650123397271767}
 --- !u!114 &2760030290117616166
