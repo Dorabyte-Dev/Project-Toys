@@ -23,6 +23,11 @@ public class Player_VFX : Entity_VFX
 		swordTrailEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
 	}
 
+	public void HitStop()
+	{
+		StartCoroutine(base.HitStop(player));
+	}
+
 	public override void DamageVFX_Feedback(Transform damageDealer)
 	{
 		TriggerMaterialChange();

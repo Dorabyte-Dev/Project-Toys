@@ -36,10 +36,14 @@ public class Entity_VFX : MonoBehaviour
 
     protected Material[] meshMaterials;
 
-    [Header("--- Screen/Entity Shake ---")]
+    [Header("--- Entity Shake ---")]
     [SerializeField] private float shakeDuration = 0.2f;
     [SerializeField] private float shakeStrength = 0.5f;
     [SerializeField] private float randomShake = 0.1f;
+    
+    [Header("--- Hit Stop ---")]
+    [SerializeField]private float hitStopModifier = 0.1f;
+    [SerializeField]private float hitStopDuration = 0.1f;
 
     protected virtual void Awake()
     {
@@ -81,6 +85,12 @@ public class Entity_VFX : MonoBehaviour
     //     }
     // }
 
+    public virtual IEnumerator HitStop(Entity entity)
+    {
+        entity.anim.SetFloat(nameof(hitStopModifier), hitStopModifier);
+        yield return new WaitForSecondsRealtime(hitStopDuration);
+        entity.anim.SetFloat(nameof(hitStopModifier), 1);
+    }
     public virtual void DamageVFX_Feedback(Transform damageDealer)
     {
         TriggerMaterialChange();

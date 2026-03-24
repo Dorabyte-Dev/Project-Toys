@@ -8,6 +8,7 @@ public class Enemy_VFX : Entity_VFX
     [SerializeField] protected Rigidbody rb;
     [SerializeField] private VisualEffect pDodgeShine;
     [SerializeField] private ParticleSystem pHitEffect;
+    [SerializeField] private Enemy _enemy;
     
     protected override void Awake()
     {
@@ -26,7 +27,11 @@ public class Enemy_VFX : Entity_VFX
         pHitEffect.transform.rotation = particleRotation;
         pHitEffect.Play();
     }
-
+    
+    public void HitStop()
+    {
+        StartCoroutine(base.HitStop(_enemy));
+    }
     public override void DeathVFX_Feedback()
     {
         base.DeathVFX_Feedback();

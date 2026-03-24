@@ -169,6 +169,8 @@ public class Player : Entity
         _vfx = GetComponent<Player_VFX>();
         _animationTriggers = GetComponent<Player_AnimationTriggers>();
         _combat.targetHit.AddListener(OnEnemyHit);
+        _combat.targetHit.AddListener(_vfx.HitStop);
+        
         if (executionCameraManager == null)
         {
             executionCameraManager = GetComponentInChildren<ExecutionCameraManager>();
@@ -341,6 +343,8 @@ public class Player : Entity
         CameraManager.instance.SwitchCameraGroup(activeCheckpoint.GetComponent<Checkpoint>().checkpointCameraGroup);
         _health.ResetStats();
         comboBarAmount = 0;
+        UIManager.CloseCurtain();
+        Invoke(nameof(OpenUICurtain), 1.5f);
         //stateMachine.ChangeState(idleState);
         //Optimize later: reset all spawners in the scene
         foreach(EnemySpawner spawner in FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None))
@@ -349,7 +353,11 @@ public class Player : Entity
             spawner.GetComponent<ZoneCloser>().ResetZoneCloser();
         }
     }
-
+    
+    private void OpenUICurtain()
+    {
+        UIManager.OpenCurtain();
+    }
     #endregion
  
     #region ComboSystem 

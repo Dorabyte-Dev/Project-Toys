@@ -93,6 +93,7 @@ public class Enemy : Entity, IEnemyStates
         _health = GetComponent<Enemy_Health>();
         _vfx = GetComponent<Enemy_VFX>();
         combat.targetHit.AddListener(OnPlayerDamaged);
+        combat.targetHit.AddListener(_vfx.HitStop);
         _vfx.OnDissolveComplete += _animationTriggers.DisableAndDestroyEnemy;
         //stateMachine.Initialize(idleState);
         if (spawner == null)

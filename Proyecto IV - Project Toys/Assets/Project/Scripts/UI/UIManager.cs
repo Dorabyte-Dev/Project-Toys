@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -20,6 +21,9 @@ public class UIManager : MonoBehaviour
     
     [SerializeField] private Image comboBarLeft;
     [SerializeField] private Image comboBarRight;
+
+    [SerializeField] private RawImage curtain;
+    private static RawImage curtainInstance;
     [HideInInspector]public bool IsComboBarFull => ComboBarFillAmount >= 1f;
     private float _comboBarFillAmount;
     public float ComboBarFillAmount
@@ -60,10 +64,21 @@ public class UIManager : MonoBehaviour
         {
             player = FindAnyObjectByType<Player>();
         }
+        curtainInstance = curtain;
     }
 
     private void Update()
     {
         HealthBarFillAmount = player.GetCurrentHealth() / player.GetMaxHealth();
+    }
+    
+    public static void CloseCurtain()
+    {
+        curtainInstance.material.DOFloat(0,"_MaskScale", 1f).SetEase(Ease.InOutQuad);
+    }
+    
+    public static void OpenCurtain()
+    {
+        curtainInstance.material.DOFloat(1,"_MaskScale", 1f).SetEase(Ease.InOutQuad);
     }
 }
