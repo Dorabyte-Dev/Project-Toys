@@ -3002,10 +3002,13 @@ MonoBehaviour:
   shakeDuration: 1
   shakeStrength: 1
   randomShake: 0.2
+  hitStopModifier: 0.1
+  hitStopDuration: 0.1
   glowMaterial: {fileID: 2100000, guid: d45b7e83b62d5b748a3f011bf4fdbdec, type: 2}
   rb: {fileID: 0}
   pDodgeShine: {fileID: 7470000213853289494}
   pHitEffect: {fileID: 7012650123397271767}
+  _enemy: {fileID: 0}
 --- !u!114 &2760030290117616166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5496,7 +5499,10 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 2
+        m_Name: BorderGirth
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
