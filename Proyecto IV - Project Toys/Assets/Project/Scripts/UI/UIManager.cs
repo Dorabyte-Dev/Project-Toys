@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -72,13 +73,20 @@ public class UIManager : MonoBehaviour
         HealthBarFillAmount = player.GetCurrentHealth() / player.GetMaxHealth();
     }
     
-    public static void CloseCurtain()
+    public static void CloseCurtain(Action onComplete = null)
     {
-        curtainInstance.material.DOFloat(0,"_MaskScale", 1f).SetEase(Ease.InOutQuad);
+        curtainInstance.material.DOFloat(0,"_MaskScale", 1f).SetEase(Ease.InOutQuad).OnComplete(() =>
+        {
+            onComplete?.Invoke();
+        });
     }
     
-    public static void OpenCurtain()
+    public static void OpenCurtain(float delay = 0, Action onComplete = null)
     {
-        curtainInstance.material.DOFloat(1,"_MaskScale", 1f).SetEase(Ease.InOutQuad);
+        
+        curtainInstance.material.DOFloat(1,"_MaskScale", 1f).SetEase(Ease.InOutQuad).SetDelay(delay).OnComplete(() =>
+        {
+            onComplete?.Invoke();
+        });
     }
 }

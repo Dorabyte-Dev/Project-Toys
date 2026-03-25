@@ -331,7 +331,10 @@ public class Player : Entity
             Destroy(other.gameObject);
         }
     }
-  
+    public void StartRespawn()
+    {
+        UIManager.CloseCurtain(Respawn);
+    }
     public void Respawn()
     {
         ch.enabled = false; // Desactivar para poder teletransportar
@@ -343,20 +346,14 @@ public class Player : Entity
         CameraManager.instance.SwitchCameraGroup(activeCheckpoint.GetComponent<Checkpoint>().checkpointCameraGroup);
         _health.ResetStats();
         comboBarAmount = 0;
-        UIManager.CloseCurtain();
-        Invoke(nameof(OpenUICurtain), 1.5f);
-        //stateMachine.ChangeState(idleState);
+        UIManager.OpenCurtain(1f);
+        stateMachine.ChangeState(idleState);
         //Optimize later: reset all spawners in the scene
         foreach(EnemySpawner spawner in FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None))
         {
             spawner.ResetCombat();
             spawner.GetComponent<ZoneCloser>().ResetZoneCloser();
         }
-    }
-    
-    private void OpenUICurtain()
-    {
-        UIManager.OpenCurtain();
     }
     #endregion
  

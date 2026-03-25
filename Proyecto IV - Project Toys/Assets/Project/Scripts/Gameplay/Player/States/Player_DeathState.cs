@@ -11,9 +11,9 @@ public class Player_DeathState : PlayerState
         base.Enter();
         Debug.Log("Entered Player_DeathState");
         //input.Disable();
-        player.Respawn();
+        //player.Respawn();
         player.SetVelocity(0,0);
-        stateMachine.ChangeState(player.idleState);
+        //stateMachine.ChangeState(player.idleState);
     }
 
     public override void Update()
