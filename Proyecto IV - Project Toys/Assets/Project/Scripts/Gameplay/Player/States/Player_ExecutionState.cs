@@ -16,11 +16,10 @@ public class Player_ExecutionState : PlayerState
         //stateTimer = executionDuration;  //La idea es que se cambie luego cuando esté la animación de ejecución por un evento de animación
         //CameraManager.instance.ToggleZoom();
         GoToExecutionPoint();
-        //player.transform.LookAt(new Vector3(player.executionEnemy.transform.position.x, player.executionEnemy.transform.position.y, player.transform.position.z));
-        player.transform.DODynamicLookAt(player.executionEnemy.transform.position, 0.5f, AxisConstraint.Y).OnComplete((
+        player.transform.DODynamicLookAt(player.executionEnemy.transform.position, 0.25f, AxisConstraint.Y).OnComplete((
             () =>
             {
-                player.transform.DOMove(player.executionEnemy.playerExecutionTransform.position, 0.25f);
+                player.transform.DOMove(player.executionTransform.position, 0.25f);
             }));
         executionCamera = player.executionCameraManager.TestExecutionCamera();
         executionCamera.Priority = 100;

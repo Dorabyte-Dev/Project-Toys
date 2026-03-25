@@ -200,9 +200,7 @@ public class Player : Entity
 
         if (_isComboBarFull)
         {
-            executionTarget = GetExecutionEnemy();
-            if(!executionTarget) return;
-            executionEnemy = executionTarget.GetComponent<Enemy>();
+            SearchForExecutionTarget();
         }
     }
   
@@ -221,6 +219,24 @@ public class Player : Entity
     #endregion
   
     #region Enemy Execution
+
+    private void SearchForExecutionTarget()
+    {
+        if (executionTarget == null)
+        {
+            executionTarget = GetExecutionEnemy();
+        }
+            
+        if(!executionTarget ) return;
+        //executionEnemy = executionTarget.GetComponent<Enemy>();
+        if(executionEnemy != null)
+        {
+            if (!executionEnemy.isBeingExecuted)
+            {
+                executionTarget = GetExecutionEnemy();
+            }
+        }
+    }
     private Collider[] GetNearEnemiesCollider()
     {
         return Physics.OverlapSphere(transform.position, executionRadius, executionTargetLayer);
