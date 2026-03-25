@@ -93,6 +93,7 @@ public class Enemy : Entity, IEnemyStates
         _health = GetComponent<Enemy_Health>();
         _vfx = GetComponent<Enemy_VFX>();
         combat.targetHit.AddListener(OnPlayerDamaged);
+        combat.targetHit.AddListener(_vfx.HitStop);
         _vfx.OnDissolveComplete += _animationTriggers.DisableAndDestroyEnemy;
         //stateMachine.Initialize(idleState);
         if (spawner == null)
@@ -102,11 +103,13 @@ public class Enemy : Entity, IEnemyStates
     protected override void Update()
     {
         base.Update();
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.P))
         {
             //_health.TakeDamage(0, this.transform);
             ChangeEnemyState(executionState);
         }
+#endif
     }
 
     public void Flip()
@@ -236,4 +239,18 @@ public class Enemy : Entity, IEnemyStates
     public virtual void Extra_Update(){}
     public virtual void Extra_Exit(){}
     #endregion
+
+    public void SetExecutionFeedback(bool isActiveVictim)
+    {
+        if (isActiveVictim)
+        {
+            enemyUI.ShowExecutionUI();
+            _vfx.GlowEffect();
+        }
+        else
+        {
+            enemyUI.HideExecutionUI();
+            _vfx.RemoveGlowEffect();
+        }
+    }
 }

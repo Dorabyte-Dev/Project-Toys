@@ -20,10 +20,15 @@ public class Player_ExecutionState : PlayerState
         player.transform.DODynamicLookAt(player.executionEnemy.transform.position, 0.5f, AxisConstraint.Y).OnComplete((
             () =>
             {
-                player.transform.DOMove(player.executionTarget.position, 0.5f);
+                player.transform.DOMove(player.executionEnemy.playerExecutionTransform.position, 0.25f);
             }));
-        // executionCamera = player.executionCameraManager.TestExecutionCamera();
+        executionCamera = player.executionCameraManager.TestExecutionCamera();
         executionCamera.Priority = 100;
+        
+        
+        
+        player.executionTarget = null;
+        player.comboBarAmount = 0f;
     }
 
     public override void Update()
@@ -38,8 +43,7 @@ public class Player_ExecutionState : PlayerState
     public override void Exit()
     {
         base.Exit();
-        player.executionTarget = null;
-        player.comboBarAmount = 0f;
+        
         //CameraManager.instance.UntoggleZoom();
         if (executionCamera != null)
             executionCamera.Priority = 0;

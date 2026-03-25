@@ -5,14 +5,23 @@ using UnityEngine.VFX;
 
 public class Enemy_VFX : Entity_VFX
 {
+    [Header("--- Glow Effect ---")]
+    public Material glowMaterial;
+    private Material[] originalMaterials;
+    private Renderer meshRenderer;
+    [Space(20)]
     [SerializeField] protected Rigidbody rb;
     [SerializeField] private VisualEffect pDodgeShine;
     [SerializeField] private ParticleSystem pHitEffect;
+    [SerializeField] private Enemy _enemy;
     
     protected override void Awake()
     {
         base.Awake();
         rb = GetComponent<Rigidbody>();
+        
+        meshRenderer = GetComponentInChildren<Renderer>();
+        originalMaterials = meshRenderer.materials;
     }
     public event Action OnDissolveComplete;
     
@@ -26,7 +35,11 @@ public class Enemy_VFX : Entity_VFX
         pHitEffect.transform.rotation = particleRotation;
         pHitEffect.Play();
     }
-
+    
+    public void HitStop()
+    {
+        StartCoroutine(base.HitStop(_enemy));
+    }
     public override void DeathVFX_Feedback()
     {
         base.DeathVFX_Feedback();
@@ -76,6 +89,35 @@ public class Enemy_VFX : Entity_VFX
 
     #endregion
 
+    public void GlowEffect()
+    {
+        if (meshRenderer != null && glowMaterial != null)
+        {
+            Material[] newMaterials = new Material[meshRenderer.materials.Length + 1];
+            for (int i = 0; i < meshRenderer.materials.Length; i++)
+            {
+                newMaterials[i] = meshRenderer.materials[i];
+            }
+            newMaterials[meshRenderer.materials.Length] = glowMaterial;
+            
+            meshRenderer.materials = newMaterials;
+        }
+        else
+        {
+            Debug.LogError("Mesh Renderer or Glow Material is not assigned in: " + this.gameObject.name);
+        }
+    }
     
+    public void RemoveGlowEffect()
+    {
+        if (meshRenderer != null && originalMaterials != null)
+        {
+            meshRenderer.materials = originalMaterials;
+        }
+        else
+        {
+            Debug.LogError("Mesh Renderer or Original Materials is not assigned in: " + this.gameObject.name);
+        }
+    }
    
 }

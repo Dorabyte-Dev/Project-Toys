@@ -60,21 +60,57 @@ public class Player : Entity
   
     [Header("Execution Properties")]
     public float executionRadius;
-    [HideInInspector] public Transform executionTarget;
+    private Transform _executionTarget;
+    [HideInInspector] public Transform executionTarget
+    {
+        get
+        {
+            return _executionTarget;
+        }
+        set
+        {
+            if (_executionTarget == value) return;
+            
+            if (_executionTarget != null)
+            {
+                Enemy prevEnemy = _executionTarget.GetComponent<Enemy>();
+                if (prevEnemy != null && prevEnemy.enemyUI != null)
+                {
+                    prevEnemy.SetExecutionFeedback(false);
+                }
+            }
+            
+            _executionTarget = value;
+
+            if (_executionTarget != null)
+            {
+                executionEnemy = _executionTarget.GetComponent<Enemy>();
+                if (executionEnemy != null)
+                {
+                    SetExecutionEnemy(executionEnemy);
+                }
+            }
+            else
+            {
+                executionEnemy = null;
+            }
+        }
+    }
     [HideInInspector] public Enemy executionEnemy;
     [SerializeField] public LayerMask executionTargetLayer;
-  
+    public ExecutionCameraManager executionCameraManager;
+    [HideInInspector] public Transform executionTransform;
     #endregion
 
     #region Movement
 
     [Header("Movement Specs")]
+    public Camera cam;
     public CharacterController ch {get; private set;}
     private float _verticalVelocity;
     private const float Gravity = -9.81f;
     public Vector2 moveInput { get; private set; }
     public Vector2 cameraMoveInput { get; private set; }
-    public Camera cam;
     public float jumpForce = 5;
 
     #endregion
@@ -110,6 +146,7 @@ public class Player : Entity
     #endregion
 
     public Vector3 debug_Velocity;
+
     #endregion
 
     #region Unity Lifecycle
@@ -132,7 +169,12 @@ public class Player : Entity
         _vfx = GetComponent<Player_VFX>();
         _animationTriggers = GetComponent<Player_AnimationTriggers>();
         _combat.targetHit.AddListener(OnEnemyHit);
-
+        _combat.targetHit.AddListener(_vfx.HitStop);
+        
+        if (executionCameraManager == null)
+        {
+            executionCameraManager = GetComponentInChildren<ExecutionCameraManager>();
+        }
     }
     protected override void Start()
     {
@@ -203,6 +245,12 @@ public class Player : Entity
 
         return nearestEnemy;
     }
+    
+    private void SetExecutionEnemy(Enemy enemy)
+    {
+        executionEnemy.SetExecutionFeedback(true);
+        executionTransform = executionEnemy.playerExecutionTransform;
+    }
 
     void SetComboBar()
     {
@@ -219,6 +267,11 @@ public class Player : Entity
         base.DeadEntity();
         OnPlayerDeath?.Invoke();
         stateMachine.ChangeState(deathState);
+    }
+    
+    public void ChangePlayerState(PlayerState newState)
+    {
+        stateMachine.ChangeState(newState);
     }
   
     public Vector2 MovementDirectionToCamera(Vector2 _moveInput)
@@ -272,8 +325,16 @@ public class Player : Entity
         {
             activeCheckpoint = other.transform;
         }
+        if (other.CompareTag("Heal"))
+        {
+            _health.Heal(); // Heal amount hardcoded for testing, can be changed to a variable in the future
+            Destroy(other.gameObject);
+        }
     }
-  
+    public void StartRespawn()
+    {
+        UIManager.CloseCurtain(Respawn);
+    }
     public void Respawn()
     {
         ch.enabled = false; // Desactivar para poder teletransportar
@@ -285,7 +346,8 @@ public class Player : Entity
         CameraManager.instance.SwitchCameraGroup(activeCheckpoint.GetComponent<Checkpoint>().checkpointCameraGroup);
         _health.ResetStats();
         comboBarAmount = 0;
-        //stateMachine.ChangeState(idleState);
+        UIManager.OpenCurtain(1f);
+        stateMachine.ChangeState(idleState);
         //Optimize later: reset all spawners in the scene
         foreach(EnemySpawner spawner in FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None))
         {
@@ -293,7 +355,6 @@ public class Player : Entity
             spawner.GetComponent<ZoneCloser>().ResetZoneCloser();
         }
     }
-
     #endregion
  
     #region ComboSystem 
