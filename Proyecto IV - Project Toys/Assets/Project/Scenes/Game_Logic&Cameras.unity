@@ -1418,6 +1418,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExecutionCamera1
       objectReference: {fileID: 0}
+    - target: {fileID: 5092992522464097699, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: hitStopDuration
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5333245858175353405, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
       propertyPath: m_Name
       value: ExecutionCamera2
@@ -1426,6 +1430,10 @@ PrefabInstance:
       propertyPath: activeCheckpoint
       value: 
       objectReference: {fileID: 1179728591}
+    - target: {fileID: 5868768335894663017, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: maxHp
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 6572142031974049065, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
       propertyPath: m_Name
       value: ExecutionCamera3
@@ -8335,6 +8343,7 @@ MonoBehaviour:
   smoothSpeedIn: 8
   smoothSpeedOut: 6
   isObstructed: 0
+  enableShader: 1
 --- !u!1001 &1275650385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12718,6 +12727,10 @@ PrefabInstance:
     - target: {fileID: 5031613833179778572, guid: 8f4ad2ea3d4039c4f9ab3391400cc7be, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116479773746786982, guid: 8f4ad2ea3d4039c4f9ab3391400cc7be, type: 3}
+      propertyPath: combatCamera.cam
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

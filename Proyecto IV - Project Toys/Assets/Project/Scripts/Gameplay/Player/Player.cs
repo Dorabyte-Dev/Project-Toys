@@ -324,13 +324,12 @@ public class Player : Entity
   
     public void SetVelocity(float xVelocity, float yVelocity)
     {
-        Vector3 inputDirection = new Vector3(xVelocity, 0f, yVelocity);
+        Vector3 inputDirection = new Vector3(xVelocity, _verticalVelocity, yVelocity);
 
         /*if (inputDirection.magnitude > 1f)
             inputDirection = inputDirection.normalized;*/
 
         //Vector3 moveVelocity = inputDirection * moveSpeed;
-        inputDirection.y = _verticalVelocity; // gravedad sigue funcionando
 
         ch.Move(inputDirection * Time.deltaTime);
     }
@@ -372,6 +371,15 @@ public class Player : Entity
             spawner.ResetCombat();
             spawner.GetComponent<ZoneCloser>().ResetZoneCloser();
         }
+        
+        foreach(EventTrigger trigger in FindObjectsByType<EventTrigger>(FindObjectsSortMode.None))
+        {
+            trigger.Reset();
+        }
+        
+        CameraManager.instance.SwitchCameraGroup(activeCheckpoint.GetComponent<Checkpoint>().checkpointCameraGroup);
+        
+        comboBarAmount = 0;
     }
     #endregion
  
