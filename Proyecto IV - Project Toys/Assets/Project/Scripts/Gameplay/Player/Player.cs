@@ -76,6 +76,7 @@ public class Player : Entity
                 Enemy prevEnemy = _executionTarget.GetComponent<Enemy>();
                 if (prevEnemy != null && prevEnemy.enemyUI != null)
                 {
+                    prevEnemy.OnEnemyDeath -= () => executionTarget = null;
                     prevEnemy.SetExecutionFeedback(false);
                 }
             }
@@ -231,7 +232,7 @@ public class Player : Entity
         //executionEnemy = executionTarget.GetComponent<Enemy>();
         if(executionEnemy != null)
         {
-            if (!executionEnemy.isBeingExecuted)
+            if (!executionEnemy.isBeingExecuted && !executionEnemy._health.isDead)
             {
                 executionTarget = GetExecutionEnemy();
             }
@@ -254,6 +255,7 @@ public class Player : Entity
             float distance = Vector3.Distance(transform.position, collider.transform.position);
             if (distance < minDistance)
             {
+                if(collider.GetComponent<Enemy>()._health.isDead || collider.GetComponent<Enemy>().isBeingExecuted) continue;
                 minDistance = distance;
                 nearestEnemy = collider.transform;
             }
@@ -263,6 +265,7 @@ public class Player : Entity
     
     private void SetExecutionEnemy(Enemy enemy)
     {
+        executionEnemy.OnEnemyDeath += () => executionTarget = null;
         executionEnemy.SetExecutionFeedback(true);
         executionTransform = executionEnemy.playerExecutionTransform;
     }
@@ -460,7 +463,14 @@ public class Player : Entity
   
     #region GetSet
     #region Execution
-    public bool CanExecute() => executionTarget;
+    public bool CanExecute()
+    {
+        if (executionEnemy)
+        {
+            if(!executionEnemy._health.isDead) return true;
+        }
+        return false;
+    }
     #endregion
     #region HealthUI
     public float GetCurrentHealth() => _health.currentHp;

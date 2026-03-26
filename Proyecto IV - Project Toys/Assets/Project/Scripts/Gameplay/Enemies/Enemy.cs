@@ -52,6 +52,8 @@ public class Enemy : Entity, IEnemyStates
     
     [Header("Common States Specs")]
     public bool isBeingExecuted; 
+    
+    [HideInInspector] public Action OnEnemyDeath; // Acción para notificar la muerte del enemigo
 
     protected override void Awake()
     {
@@ -78,6 +80,7 @@ public class Enemy : Entity, IEnemyStates
     
     public virtual void SetEnemyDead()
     {
+        OnEnemyDeath?.Invoke();
         agent.isStopped = true;
         PerfectDodgeManager.EndPerfectDodgeFlag(this.gameObject);
         if (spawner != null)
