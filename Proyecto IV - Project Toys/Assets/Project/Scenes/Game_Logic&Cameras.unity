@@ -1414,10 +1414,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4057920421710138288, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_Name
+      value: ExecutionCamera1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333245858175353405, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_Name
+      value: ExecutionCamera2
+      objectReference: {fileID: 0}
     - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
       propertyPath: activeCheckpoint
       value: 
       objectReference: {fileID: 1179728591}
+    - target: {fileID: 6572142031974049065, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_Name
+      value: ExecutionCamera3
+      objectReference: {fileID: 0}
     - target: {fileID: 8468839315768395927, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
       propertyPath: m_Name
       value: Prefab_Player
@@ -8156,7 +8168,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  CustomBlends: {fileID: 0}
+  CustomBlends: {fileID: 11400000, guid: bb50da9c265ed7740b6059b4320c952c, type: 2}
 --- !u!114 &1266747219
 MonoBehaviour:
   m_ObjectHideFlags: 0
