@@ -24,6 +24,8 @@ public class SeeThroughWallManager : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private bool isObstructed;
+    [SerializeField] private bool enableShader = true; // Añade esto
+    
 
     private float currentCutoutSize = 0f;
 
@@ -36,6 +38,8 @@ public class SeeThroughWallManager : MonoBehaviour
 
         Shader.SetGlobalFloat("_CutoutSize", 0f);
         Shader.SetGlobalFloat("_FalloutSize", falloffSize);
+        Shader.SetGlobalFloat("_EnableShader", enableShader ? 1f : 0f);
+        
     }
 
     private void Update()
@@ -67,6 +71,12 @@ public class SeeThroughWallManager : MonoBehaviour
         Shader.SetGlobalVector("_CutoutPosition", cutoutPos);
         Shader.SetGlobalFloat("_CutoutSize", currentCutoutSize);
         Shader.SetGlobalFloat("_FalloutSize", falloffSize);
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            enableShader = !enableShader; // Toggle con M
+            Debug.Log("_EnableShader: " + enableShader);
+        }
+        Shader.SetGlobalFloat("_EnableShader", enableShader ? 1f : 0f);
     }
 
     private bool CheckObstruction(Vector3 camPos, Vector3 playerPos)
@@ -89,5 +99,20 @@ public class SeeThroughWallManager : MonoBehaviour
             if (hit) return true;
         }
         return false;
+    }
+    private void OnValidate()
+    {
+        Shader.SetGlobalFloat("_CutoutSize", 0f);
+    }
+    private void OnDisable()
+    {
+        Shader.SetGlobalFloat("_CutoutSize", 0f);
+        Shader.SetGlobalFloat("_EnableShader", 0f);
+    }
+    
+    private void OnDestroy()
+    {
+        Shader.SetGlobalFloat("_CutoutSize", 0f);
+        Shader.SetGlobalFloat("_EnableShader", 0f);
     }
 }
