@@ -17,6 +17,7 @@ public class ExecutionCameraManager : MonoBehaviour
 
     private void Start()
     {
+        transform.parent = null;
         foreach (CinemachineCamera c in executionCameras)
         {
             c.Priority = -100;
@@ -27,6 +28,12 @@ public class ExecutionCameraManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void MoveCameraParent(Transform target)
+    {
+        transform.position = target.position;
+        transform.eulerAngles = target.eulerAngles;
     }
 
     public CinemachineCamera GetAvailableCameraOnlyRaycast(GameObject target)

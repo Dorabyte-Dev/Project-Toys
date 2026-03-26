@@ -7,20 +7,19 @@ public class Player_ExecutionState : PlayerState
     public Player_ExecutionState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
-    //private float executionDuration = 5f; //La idea es que se cambie luego cuando esté la animación de ejecución por un evento de animación
     private CinemachineCamera executionCamera;
     public override void Enter()
     {
         base.Enter();
         Debug.Log("Entered Player_ExecutionState");
         //stateTimer = executionDuration;  //La idea es que se cambie luego cuando esté la animación de ejecución por un evento de animación
-        //CameraManager.instance.ToggleZoom();
         GoToExecutionPoint();
         player.transform.DODynamicLookAt(player.executionEnemy.transform.position, 0.25f, AxisConstraint.Y).OnComplete((
             () =>
             {
                 player.transform.DOMove(player.executionTransform.position, 0.25f);
             }));
+        player.executionCameraManager.MoveCameraParent(player.transform);
         executionCamera = player.executionCameraManager.GetAvailableCameraRaycastAndCameraProximity(player.gameObject);
         executionCamera.Priority = 100;
         
@@ -43,7 +42,6 @@ public class Player_ExecutionState : PlayerState
     {
         base.Exit();
         
-        //CameraManager.instance.UntoggleZoom();
         if (executionCamera != null)
             executionCamera.Priority = 0;
     }
