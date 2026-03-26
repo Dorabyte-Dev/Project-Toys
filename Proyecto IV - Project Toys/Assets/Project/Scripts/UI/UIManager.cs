@@ -66,6 +66,7 @@ public class UIManager : MonoBehaviour
             player = FindAnyObjectByType<Player>();
         }
         curtainInstance = curtain;
+        curtainInstance.material.SetFloat("_MaskScale", 1f);
     }
 
     private void Update()
@@ -88,5 +89,10 @@ public class UIManager : MonoBehaviour
         {
             onComplete?.Invoke();
         });
+    }
+
+    public void OnDisable()
+    {
+        curtainInstance.material.SetFloat("_MaskScale", 1f);
     }
 }
