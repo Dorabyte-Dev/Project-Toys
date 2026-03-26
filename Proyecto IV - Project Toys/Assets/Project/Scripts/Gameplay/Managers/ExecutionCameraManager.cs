@@ -29,18 +29,68 @@ public class ExecutionCameraManager : MonoBehaviour
         
     }
 
-    public CinemachineCamera GetAvailableCamera(GameObject target)
+    public CinemachineCamera GetAvailableCameraOnlyRaycast(GameObject target)
     {
         CinemachineCamera availableCamera = null;
         foreach (CinemachineCamera camera in executionCameras)
         {
             Ray ray = new Ray(camera.transform.position, target.transform.position - camera.transform.position);
-            if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, obstacleMask))
+            float distanceToTarget = Vector3.Distance(camera.transform.position, target.transform.position);
+            if (!Physics.Raycast(ray, out RaycastHit hit, distanceToTarget, obstacleMask))
             {
                 Debug.Log("Camera " + camera.name + " has a clear line of sight to the target.");
                 availableCamera = camera;
                 break;
             }
+            else
+            {
+                Debug.Log("Camera " + camera.name + " is obstructed by " + hit.collider.name);
+            }
+        }
+
+        if (availableCamera == null)
+        {
+            availableCamera = executionCameras[0];
+        }
+        return availableCamera;
+    }
+
+    public CinemachineCamera GetAvailableCameraRaycastAndCameraProximity(GameObject target)
+    {
+        CinemachineCamera availableCamera = null;
+        float[] cameraDistances = new float[executionCameras.Length];
+        for (int i = 0; i < executionCameras.Length; i++)
+        {
+            cameraDistances[i] = Vector3.Distance(Camera.main.transform.position, executionCameras[i].transform.position);
+        }
+        for(int i = 0; i < executionCameras.Length - 1; i++)
+        {
+            for (int j = 0; j < executionCameras.Length - i - 1; j++)
+            {
+                if (cameraDistances[j] > cameraDistances[j + 1])
+                {
+                    // Swap distances
+                    (cameraDistances[j], cameraDistances[j + 1]) = (cameraDistances[j + 1], cameraDistances[j]);
+
+                    // Swap cameras
+                    (executionCameras[j], executionCameras[j + 1]) = (executionCameras[j + 1], executionCameras[j]);
+                }
+            }
+        }
+        foreach (CinemachineCamera camera in executionCameras)
+        {
+            Ray ray = new Ray(camera.transform.position, target.transform.position - camera.transform.position);
+            float distanceToTarget = Vector3.Distance(camera.transform.position, target.transform.position);
+            if (!Physics.Raycast(ray, out RaycastHit hit, distanceToTarget, obstacleMask))
+            {
+                Debug.Log("Camera " + camera.name + " has a clear line of sight to the target.");
+                availableCamera = camera;
+                break;
+            }
+        }
+        if (availableCamera == null)
+        {
+            availableCamera = executionCameras[0];
         }
         return availableCamera;
     }

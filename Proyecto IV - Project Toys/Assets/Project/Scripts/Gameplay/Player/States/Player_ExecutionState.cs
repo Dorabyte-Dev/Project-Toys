@@ -21,7 +21,7 @@ public class Player_ExecutionState : PlayerState
             {
                 player.transform.DOMove(player.executionTransform.position, 0.25f);
             }));
-        executionCamera = player.executionCameraManager.TestExecutionCamera();
+        executionCamera = player.executionCameraManager.GetAvailableCameraRaycastAndCameraProximity(player.gameObject);
         executionCamera.Priority = 100;
         
         
