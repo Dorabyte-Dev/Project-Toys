@@ -55,7 +55,7 @@ public class Entity : MonoBehaviour
     }
     public virtual void DeadEntity() 
     {
-    
+        
     }
 
     /*private void OnDrawGizmos() // Visualizacion de rayos y deteccion de pendientes

@@ -43,7 +43,7 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
     
     public void DeathAnimationTrigger()
     {
-        enemy.ChangeEnemyState(enemy.deadState);
+        enemy.ChangeToDeadState();
     }
     
     public void FinishInvokeProjectile()

@@ -70,8 +70,8 @@ public class Enemy : Entity, IEnemyStates
     public override void DeadEntity()
     {
         base.DeadEntity();
-
-        ChangeEnemyState(deadState);
+        
+        ChangeToDeadState();
         
         SetEnemyDead();
     }
@@ -147,6 +147,10 @@ public class Enemy : Entity, IEnemyStates
     {
         if(isBeingExecuted || health.isDead) return;
         stateMachine.ChangeState(newState);
+    }
+    public void ChangeToDeadState()
+    {
+        stateMachine.ChangeState(deadState);
     }
     private void OnEnable()
     {

@@ -258,7 +258,6 @@ public class Player : Entity
                 nearestEnemy = collider.transform;
             }
         }
-
         return nearestEnemy;
     }
     

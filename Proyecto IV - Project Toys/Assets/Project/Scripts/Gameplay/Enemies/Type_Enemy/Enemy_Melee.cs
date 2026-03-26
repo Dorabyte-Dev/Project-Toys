@@ -390,7 +390,7 @@ public class Enemy_Melee : Enemy
 
     public override void ChangeFlinchState()
     {
-        if (_health.currentHp >= 0)
+        if (_health.currentHp > 0)
         {
             ChangeEnemyState(flinchState);
         }
