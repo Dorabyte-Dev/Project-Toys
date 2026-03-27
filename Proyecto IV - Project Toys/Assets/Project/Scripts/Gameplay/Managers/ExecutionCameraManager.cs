@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ public class ExecutionCameraManager : MonoBehaviour
 {
     public CinemachineCamera[] executionCameras;
     public LayerMask obstacleMask;
+    public CinemachineBrain brain;
+    private Transform originalParent;
 
     private void Awake()
     {
@@ -13,10 +16,15 @@ public class ExecutionCameraManager : MonoBehaviour
         {
             executionCameras = GetComponentsInChildren<CinemachineCamera>();
         }
+        if (brain == null)
+        {
+            brain = Camera.main != null ? Camera.main.GetComponent<CinemachineBrain>() : FindAnyObjectByType<CinemachineBrain>();
+        }
     }
 
     private void Start()
     {
+        originalParent = transform.parent;
         transform.parent = null;
         foreach (CinemachineCamera c in executionCameras)
         {
@@ -30,10 +38,34 @@ public class ExecutionCameraManager : MonoBehaviour
         
     }
 
-    public void MoveCameraParent(Transform target)
+    public void BackToDefaultCamera()
     {
-        transform.position = target.position;
-        transform.eulerAngles = target.eulerAngles;
+        StartCoroutine(BackToDefaultCameraCoroutine());
+    }
+    
+    private IEnumerator BackToDefaultCameraCoroutine()
+    {
+        transform.parent = null;
+        foreach (CinemachineCamera c in executionCameras)
+        {
+            c.Priority = -100;
+        }
+        yield return null;
+
+        while (brain.IsBlending)
+        {
+            yield return null;
+        }
+
+        transform.parent = originalParent;
+        
+    }
+    
+
+    public void MoveCamera(Vector3 position, Vector3 forward)
+    {
+        transform.position = position;
+        transform.forward = forward;
     }
 
     public CinemachineCamera GetAvailableCameraOnlyRaycast(GameObject target)

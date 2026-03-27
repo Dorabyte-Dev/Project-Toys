@@ -19,7 +19,8 @@ public class Player_ExecutionState : PlayerState
             {
                 player.transform.DOMove(player.executionTransform.position, 0.25f);
             }));
-        player.executionCameraManager.MoveCameraParent(player.transform);
+        player.executionCameraManager.MoveCamera(player.executionTransform.position, -player.executionTransform.forward);
+        //player.executionCameraManager.transform.parent = null;
         executionCamera = player.executionCameraManager.GetAvailableCameraRaycastAndCameraProximity(player.gameObject);
         executionCamera.Priority = 100;
         
@@ -41,9 +42,12 @@ public class Player_ExecutionState : PlayerState
     public override void Exit()
     {
         base.Exit();
-        
+
         if (executionCamera != null)
-            executionCamera.Priority = 0;
+        {
+            //player.executionCameraManager.BackToDefaultCamera();
+            executionCamera.Priority = -100;
+        }
     }
     
     private void GoToExecutionPoint()
