@@ -529,11 +529,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 520
   entity: {fileID: 0}
-  baseDamage: 50
+  baseDamage: 30
   targetHit:
     m_PersistentCalls:
       m_Calls: []
-  finalDamage: 0
 --- !u!114 &8444079142566665867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,7 +548,7 @@ MonoBehaviour:
   entity: {fileID: 0}
   vfx: {fileID: 0}
   currentHp: 0
-  maxHp: 100
+  maxHp: 120
   isDead: 0
   invincibleMode: 0
   enemy: {fileID: 0}
@@ -567,20 +566,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ded6eb4f453b49b0b6981f5230d039fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_VFX
-  rb: {fileID: 0}
+  renderMesh: {fileID: 8485814040404263883}
+  vfxGraph: {fileID: 2269003188219875084}
   feedbackColor: {r: 0, g: 0, b: 0, a: 0}
   feedbackDuration: 0
   pushStrength: 0
   pushDuration: 0
-  renderMesh: {fileID: 8485814040404263883}
-  vfxGraph: {fileID: 2269003188219875084}
   dissolveRate: 0.0125
   refreshRate: 0.025
   shakeDuration: 1
   shakeStrength: 1
   randomShake: 0.2
+  hitStopModifier: 0.1
+  hitStopDuration: 0.1
+  glowMaterial: {fileID: 0}
+  rb: {fileID: 0}
   pDodgeShine: {fileID: 0}
   pHitEffect: {fileID: 5874995426370555261}
+  _enemy: {fileID: 0}
 --- !u!114 &4630498670286537796
 MonoBehaviour:
   m_ObjectHideFlags: 0
