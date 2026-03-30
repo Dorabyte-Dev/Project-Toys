@@ -63,10 +63,7 @@ public class Player : Entity
     private Transform _executionTarget;
     [HideInInspector] public Transform executionTarget
     {
-        get
-        {
-            return _executionTarget;
-        }
+        get => _executionTarget;
         set
         {
             if (_executionTarget == value) return;
@@ -106,6 +103,7 @@ public class Player : Entity
     #region Movement
 
     [Header("Movement Specs")]
+    public bool canMove;
     public Camera cam;
     public CharacterController ch {get; private set;}
     private float _verticalVelocity;
@@ -113,6 +111,7 @@ public class Player : Entity
     public Vector2 moveInput { get; private set; }
     public Vector2 cameraMoveInput { get; private set; }
     public float jumpForce = 5;
+    
 
     #endregion
 

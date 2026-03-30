@@ -38,8 +38,8 @@ public class UIManager : MonoBehaviour
 
             if(Mathf.Approximately(_comboBarFillAmount, 1))
             {
-                comboBarLeft.color = Color.green;
-                comboBarRight.color = Color.green;
+                comboBarLeft.color = Color.blue;
+                comboBarRight.color = Color.blue;
             }
             else
             {
