@@ -26,7 +26,7 @@ public class Player_MoveState : Player_GroundedState
         
         base.Update();
 
-        if (player.cameraMoveInput == Vector2.zero)
+        if (player.cameraMoveInput == Vector2.zero || !player.canMove)
         {
             stateMachine.ChangeState(player.idleState);
         }

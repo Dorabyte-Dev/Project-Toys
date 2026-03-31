@@ -175,6 +175,7 @@ public class Player : Entity
         {
             executionCameraManager = GetComponentInChildren<ExecutionCameraManager>();
         }
+
     }
     protected override void Start()
     {
@@ -185,6 +186,7 @@ public class Player : Entity
         {
            cam = Camera.main;
         }
+        canMove = true;
     }
 
     protected override void Update()

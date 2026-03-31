@@ -60,7 +60,7 @@ public class Player_DashState : Player_GroundedState
             player.ch.Move(_forToApply * Time.deltaTime);
         }
 
-        if (stateTimer < 0f)
+        if (stateTimer < 0f || !player.canMove)
         {
             stateMachine.ChangeState(player.idleState);
         }
