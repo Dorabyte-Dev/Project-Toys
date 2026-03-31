@@ -19,6 +19,7 @@ public class Enemy_VFX : Entity_VFX
     {
         base.Awake();
         rb = GetComponent<Rigidbody>();
+        _enemy = GetComponent<Enemy>();
         
         meshRenderer = GetComponentInChildren<Renderer>();
         originalMaterials = meshRenderer.materials;
@@ -50,14 +51,29 @@ public class Enemy_VFX : Entity_VFX
     {
         if (rb != null)
         {
+            Debug.Log("PushFeedback started for " + this.gameObject.name);
+            
+            _enemy.agent.enabled = false;
+            rb.isKinematic = false;
             rb.AddForce(direction * pushStrength, ForceMode.VelocityChange);
+            
             yield return new WaitForSeconds(pushDuration);
+            
+            rb.isKinematic = true;
             rb.linearVelocity = Vector3.zero;
+            _enemy.agent.enabled = true;
+            
+            Debug.Log("PushFeedback finished for " + this.gameObject.name);
         }
         else
         {
             Debug.LogError("Rigidbody is null in PushFeedback");
         }
+    }
+    
+    public void StartPushFeedback(Vector3 direction)
+    {
+        StartCoroutine(PushFeedback(direction));
     }
 
     #region DissolveFeedback

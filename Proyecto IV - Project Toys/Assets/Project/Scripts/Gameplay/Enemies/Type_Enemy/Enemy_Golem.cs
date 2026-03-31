@@ -210,7 +210,6 @@ public class Enemy_Golem : Enemy
     public override void Flinch_Update()
     {
         base.Flinch_Update();
-        Debug.Log(_stateTimer);
         
         if (_stateTimer <= 0f)
         {
@@ -222,7 +221,6 @@ public class Enemy_Golem : Enemy
     {
         base.Flinch_Exit();
         agent.isStopped = false;
-        Debug.Log("Salio del flinch");
     }
     
     public override void ChangeFlinchState()
@@ -237,7 +235,11 @@ public class Enemy_Golem : Enemy
     public void SpawnMiniGolem(Vector3 spawnPosition)
     {
         GameObject miniGolem = Instantiate(miniClonPrefab, transform.position, Quaternion.identity);
-        miniGolem.transform.DOJump(spawnPosition, miniGolemJumpPower, 1, miniGolemJumpDuration).SetEase(Ease.OutQuad);
+        miniGolem.transform.DOJump(spawnPosition, miniGolemJumpPower, 1, miniGolemJumpDuration).SetEase(Ease.OutQuad).OnComplete((
+            () =>
+            {
+                miniGolem.GetComponent<Enemy_MiniGolem>().hasBorn = true;
+            }));
     }
 
     private Vector3 GetRandomSpawnPosition(Vector3 origin, float dist)

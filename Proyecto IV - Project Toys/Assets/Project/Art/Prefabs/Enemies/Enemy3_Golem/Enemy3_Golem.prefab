@@ -926,10 +926,13 @@ MonoBehaviour:
   canAttackByManager: 0
   isBeingExecuted: 0
   flinchDamageThreshold: 300
-  miniClonPrefab: {fileID: 0}
+  miniGolemSpawnRadius: 5
+  miniGolemJumpPower: 4
+  miniGolemJumpDuration: 1.5
   detectPlayerRange: 10
   attackPlayerRange: 4.5
   flinchTime: 1
+  miniClonPrefab: {fileID: 6958502410579698016, guid: 36ae3871a3045c049b4021d10a29e2b6, type: 3}
 --- !u!195 &643599839720395183
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1042,7 +1045,6 @@ MonoBehaviour:
   targetHit:
     m_PersistentCalls:
       m_Calls: []
-  finalDamage: 0
 --- !u!114 &491567617009748997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1076,20 +1078,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ded6eb4f453b49b0b6981f5230d039fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_VFX
-  rb: {fileID: 0}
+  renderMesh: {fileID: 5386489261702149841}
+  vfxGraph: {fileID: 5294670614711854803}
   feedbackColor: {r: 1, g: 1, b: 1, a: 0}
   feedbackDuration: 0.5
   pushStrength: 0
   pushDuration: 0
-  renderMesh: {fileID: 5386489261702149841}
-  vfxGraph: {fileID: 5294670614711854803}
   dissolveRate: 0.0125
   refreshRate: 0.025
   shakeDuration: 1
   shakeStrength: 1
   randomShake: 0.2
+  hitStopModifier: 0.1
+  hitStopDuration: 0.1
+  glowMaterial: {fileID: 0}
+  rb: {fileID: 0}
   pDodgeShine: {fileID: 0}
   pHitEffect: {fileID: 544726138637182114}
+  _enemy: {fileID: 0}
 --- !u!114 &8067176831012849006
 MonoBehaviour:
   m_ObjectHideFlags: 0

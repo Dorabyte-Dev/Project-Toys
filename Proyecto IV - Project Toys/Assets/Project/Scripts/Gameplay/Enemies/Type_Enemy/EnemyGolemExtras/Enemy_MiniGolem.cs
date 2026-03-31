@@ -1,40 +1,116 @@
+using System;
 using UnityEngine;
 
 public class Enemy_MiniGolem : Enemy
 {
+    [Header("Mini Golem Stats")]
+    public float detectPlayerRange;
+    private float _detectPlayerRange => detectPlayerRange * detectPlayerRange;
+    public float attackPushBackStrength;
+    private float _originalPushDuration;
+    public float attackPushBackDuration;
+    private float _originalPushStrength;
+
+    [HideInInspector] public bool hasBorn;
     
     protected override void Awake() 
     {
         base.Awake();
         idleState = new Enemy_IdleState(this, stateMachine, "idle");
         pursuitState = new Enemy_PursuitState(this, stateMachine, "pursuit");
-        //Attackstate??
         deadState = new Enemy_DeadState(this, stateMachine, "dead");
         flinchState = new Enemy_FlinchState(this, stateMachine, "flinch");
         executionState = new Enemy_ExecutionState(this, stateMachine, "execution");
+        extraState = new Enemy_ExtraState(this, stateMachine, "extra");
     }
     
     protected override void Start()
     {
         base.Start();
-        stateMachine.Initialize(idleState);
+        agent.speed = moveSpeed;
+        agent.acceleration = acceleration;
+        _originalPushDuration = _vfx.pushDuration;
+        _originalPushStrength = _vfx.pushStrength;
+        stateMachine.Initialize(extraState);
     }
     
     protected override void Update()
     {
         base.Update();
+        
         //_stateTimer -= Time.deltaTime;
     }
     
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, detectPlayerRange);
+    }
+    
+    #region Damage Dealing
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && isAttacking)
+        {
+            Debug.Log("Enemy_MiniGolem hit the player");
+            playerTransform.gameObject.GetComponent<Player_Health>().TakeDamage(combat.GetBaseDamage() ,this.transform);
+            PushBack();
+        }
+    }
+
+    private void PushBack()
+    {
+        Vector3 pushDirection = (transform.position - playerTransform.position).normalized;
+        _vfx.pushDuration = attackPushBackDuration;
+        _vfx.pushStrength = attackPushBackStrength;
+        _vfx.StartPushFeedback(pushDirection);
+    }
+    
+    
+
+    #endregion
+
+    #region Extra
+
+    public override void Extra_Enter()
+    {
+        base.Extra_Enter();
+    }
+
+    public override void Extra_Update()
+    {
+        base.Extra_Update();
+        if (hasBorn)
+        {
+            ChangeEnemyState(idleState);
+        }
+    }
+    
+    public override void Extra_Exit()
+    {
+        base.Extra_Exit();
+    }
+
+    #endregion
     #region Idle
     public override void Idle_Enter()
     {
         base.Idle_Enter();
+        if (agent.hasPath)
+        {
+            agent.ResetPath();
+        }
     }
 
     public override void Idle_Update()
     {
         base.Idle_Update();
+        GetDistanceToPlayer();
+        if (distanceToPlayer <= _detectPlayerRange)
+        {
+            ChangeEnemyState(pursuitState);
+        }
     }
 
     public override void Idle_Exit()
@@ -46,27 +122,28 @@ public class Enemy_MiniGolem : Enemy
     public override void Pursuit_Enter()
     {
         base.Pursuit_Enter();
-        agent.speed = moveSpeed;
-        agent.acceleration = acceleration;
+        isAttacking = true;
     }
 
     public override void Pursuit_Update()
     {
         base.Pursuit_Update();
         GetDistanceToPlayer();
-        /*if (playerTransform != null)
+        if (playerTransform != null && agent.isActiveAndEnabled)
         {
             agent.destination = playerTransform.position;
-            if (distanceToPlayer < _attackPlayerRange)
-            {
-                ChangeEnemyState(waitAttackState);
-            }
-        }*/
+        }
+
+        if (distanceToPlayer > _detectPlayerRange)
+        {
+            ChangeEnemyState(idleState);
+        }
     }
 
     public override void Pursuit_Exit()
     {
         base.Pursuit_Exit();
+        isAttacking = false;
     }
     #endregion
     #region Dead
@@ -126,4 +203,5 @@ public class Enemy_MiniGolem : Enemy
         base.Execution_Exit();
     }
     #endregion
+    
 }
