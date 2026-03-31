@@ -1,22 +1,28 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy_Golem : Enemy
 {
     [Header("Golem Settings")]
     public float flinchDamageThreshold;
+    [Header("Mini Golem Spawn Settings")]
+    public float miniGolemSpawnRadius;
+    public float miniGolemJumpPower;
+    public float miniGolemJumpDuration;
     
-    [Header("Prefabs References")]
-    public GameObject miniClonPrefab;
     [Header("Detect Player Range Settings")]
     public float detectPlayerRange;
     private float _detectPlayerRange => detectPlayerRange * detectPlayerRange;
     public float attackPlayerRange;
     private float _attackPlayerRange => attackPlayerRange * attackPlayerRange;
-    
     [Header("States Timer Settings")]
     public float flinchTime;
     private float _stateTimer;
+    
+    [Header("Prefabs References")]
+    public GameObject miniClonPrefab;
+    
     
     protected override void Awake() 
     {
@@ -198,12 +204,14 @@ public class Enemy_Golem : Enemy
         base.Flinch_Enter();
         agent.isStopped = true;
         _stateTimer = flinchTime;
+        SpawnMiniGolem(GetRandomSpawnPosition(transform.position, miniGolemSpawnRadius));
     }
 
     public override void Flinch_Update()
     {
         base.Flinch_Update();
         Debug.Log(_stateTimer);
+        
         if (_stateTimer <= 0f)
         {
             ChangeEnemyState(pursuitState);
@@ -224,6 +232,27 @@ public class Enemy_Golem : Enemy
             _health.damageReceived = 0f;
             ChangeEnemyState(flinchState);
         }
+    }
+
+    public void SpawnMiniGolem(Vector3 spawnPosition)
+    {
+        GameObject miniGolem = Instantiate(miniClonPrefab, transform.position, Quaternion.identity);
+        miniGolem.transform.DOJump(spawnPosition, miniGolemJumpPower, 1, miniGolemJumpDuration).SetEase(Ease.OutQuad);
+    }
+
+    private Vector3 GetRandomSpawnPosition(Vector3 origin, float dist)
+    {
+        Vector3 randomSpawnPosition = Vector3.zero;
+        
+        Vector3 randDirection = Random.insideUnitSphere * dist;
+
+        randDirection += origin;
+
+        NavMeshHit navHit;
+
+        NavMesh.SamplePosition(randDirection, out navHit, dist, -1);
+        randomSpawnPosition = navHit.position;
+        return randomSpawnPosition;
     }
     #endregion
     #region Execution
