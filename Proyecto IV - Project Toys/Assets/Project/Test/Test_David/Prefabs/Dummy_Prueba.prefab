@@ -5551,6 +5551,7 @@ MonoBehaviour:
   invincibleMode: 1
   enemy: {fileID: 0}
   enemyUI: {fileID: 0}
+  damageReceived: 0
 --- !u!114 &7357880561790824017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5566,7 +5567,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   feedbackColor: {r: 1, g: 1, b: 1, a: 0}
   feedbackDuration: 0.5
-  pushStrengh: 0
+  pushStrength: 0
   pushDuration: 0
   renderMesh: {fileID: 0}
   vfxGraph: {fileID: 0}
@@ -5602,14 +5603,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e004dd4be34adc149aab0808c6b62a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyUI
-  currentDamageIndex: 0
-  canvas: {fileID: 7505584444096490268}
-  fill: {fileID: 1027599901571732469}
-  lifeBar: {fileID: 7053127674558963276}
-  damageNumbers:
-  - {fileID: 238216671945123994}
-  - {fileID: 5217634790951201838}
-  - {fileID: 4452436445725106350}
-  - {fileID: 3987869876531267598}
-  - {fileID: 6631726542742955550}
+  canvasObj: {fileID: 7505584444096490268}
   damageNumberVelocity: 1

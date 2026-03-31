@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum AttackCollider
+public enum AttackColliderType
 {
     Normal,
     Wide,

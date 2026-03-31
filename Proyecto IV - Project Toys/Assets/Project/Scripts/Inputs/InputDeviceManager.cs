@@ -48,7 +48,7 @@ public static class InputDeviceManager
                   UpdateDevice("Teclado", Devices.Teclado);
                }
                break;
-            case Gamepad:
+            /*case Gamepad:
                if (dispositivo is DualShockGamepad && DispositivoActual != "MandoPlayStation")
                {
                   UpdateDevice("MandoPlayStation", Devices.MandoPlayStation);
@@ -57,6 +57,19 @@ public static class InputDeviceManager
                {
                   UpdateDevice("MandoXbox", Devices.MandoXbox);
                }
+               break;*/
+            case DualShockGamepad:
+               if (DispositivoActual != "MandoPlayStation")
+                  UpdateDevice("MandoPlayStation", Devices.MandoPlayStation);
+               break;
+
+            case XInputController:
+               if (DispositivoActual != "MandoXbox")
+                  UpdateDevice("MandoXbox", Devices.MandoXbox);
+               break;
+            case Gamepad:
+               if (DispositivoActual != "MandoGenerico")
+                  UpdateDevice("MandoGenerico", Devices.MandoGenerico);
                break;
                
                

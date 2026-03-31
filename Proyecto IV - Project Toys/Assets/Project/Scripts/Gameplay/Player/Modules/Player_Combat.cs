@@ -4,6 +4,7 @@ using UnityEngine;
 public class Player_Combat : Entity_Combat
 {
     [SerializeField] private Player player;
+    private float _finalDamage;
 
     public override void Awake()
     {
@@ -21,17 +22,17 @@ public class Player_Combat : Entity_Combat
             return;
         }
 
-        finalDamage = baseDamage * player.currentAttack.motionValue;
-        Debug.Log("Final Damage: " + finalDamage);
+        _finalDamage = baseDamage * player.currentAttack.motionValue;
+        Debug.Log("Final Damage: " + _finalDamage);
 
         foreach (var target in GetDetectedColliders())
         {
             Entity_Health targetHealth = target.GetComponent<Entity_Health>();
             if (targetHealth != null)
             {
-                targetHealth.TakeDamage(finalDamage, this.transform);
-                if (targetHealth.invincibleMode) return;
                 targetHit?.Invoke();
+                if (targetHealth.invincibleMode) return;
+                targetHealth.TakeDamage(_finalDamage, this.transform);
             }
             else if (target.CompareTag("dObject"))
             {
@@ -44,5 +45,18 @@ public class Player_Combat : Entity_Combat
                 Debug.LogWarning("Entity_Health not found on " + target.name);
             }
         }
+    }
+
+    protected override Collider[] GetDetectedColliders()
+    {
+        BoxCollider colliderUsed = player.GetColliderUsed(player.currentAttack.colliderUsed);
+        Debug.Log("Box used: " + colliderUsed.name);
+        Vector3 centerPoint = colliderUsed.transform.TransformPoint(colliderUsed.center);
+        
+        Vector3 halfExtents = Vector3.Scale(colliderUsed.size, transform.lossyScale) * 0.5f;
+
+        Quaternion rotation = transform.rotation;
+
+        return Physics.OverlapBox(centerPoint, halfExtents, rotation, whatIsTarget);
     }
 }

@@ -13,6 +13,8 @@ public class Enemy_ExecutionState : EnemyState
         /*Debug.Log("Entered Enemy_ExecutionState");
         enemy.agent.isStopped = true;*/
         enemy.Execution_Enter();
+        enemy.isBeingExecuted = true;
+        enemy.transform.DODynamicLookAt(enemy.playerTransform.position, 0.5f, AxisConstraint.Y);
     }
 
     public override void Update()
@@ -29,5 +31,6 @@ public class Enemy_ExecutionState : EnemyState
     {
         base.Exit();
         enemy.Execution_Exit();
+        enemy.isBeingExecuted = false;
     }
 }

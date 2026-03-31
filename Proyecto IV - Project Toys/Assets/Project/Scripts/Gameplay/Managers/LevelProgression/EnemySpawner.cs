@@ -7,11 +7,49 @@ using UnityEngine.Serialization;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [System.Serializable]
+    public struct EnemySpawnData
+    {
+        public GameObject enemyPrefab;
+        public int enemyCount;
+    }
+    [System.Serializable]
+    public struct Wave
+    {
+        public EnemySpawnData[] enemiesToSpawn;
+        public int EnemyCount
+        {
+            get
+            {
+                int count = 0;
+                foreach (EnemySpawnData data in enemiesToSpawn)
+                {
+                    count += data.enemyCount;
+                }
+                return count;
+            }
+        }
+        public List<GameObject> TotalEnemies
+        {
+            get
+            {
+                List<GameObject> totalEnemies = new List<GameObject>();
+                foreach (EnemySpawnData data in enemiesToSpawn)
+                {
+                    for (int i = 0; i < data.enemyCount; i++)
+                    {
+                        totalEnemies.Add(data.enemyPrefab);
+                    }
+                }
+                return totalEnemies;
+            }
+        }
+    }
     public GameObject enemy;
     [SerializeField] private Collider spawnArea;
     public float spawnDelay;
     private int currentWave;
-    [FormerlySerializedAs("spawnCount")] public int[] wavesSpawnCount;
+    public Wave[] waves;
     private int enemiesDead;
     [SerializeField]private List<GameObject> enemiesSpawned = new List<GameObject>();
     public UnityEvent endCombat;
@@ -60,14 +98,15 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
-        for (int i = 0; i < wavesSpawnCount[currentWave]; i++)
+        List<GameObject> enemiesToSpawn = waves[currentWave].TotalEnemies;
+        //for (int i = 0; i < enemiesToSpawn.Count; i++)
+        while(enemiesToSpawn.Count > 0)
         {
             //Codigo de la generacion aleatoria dentro de bounds
             Vector3 newPosition = GetRandomNavMeshPoint(spawnArea);
-
-
-            GameObject newEnemy = Instantiate(enemy, newPosition, Quaternion.identity);
-            //GameObject newEnemy = enemyFactory.Get(enemy, newPosition);
+            int randomIndex = Random.Range(0, enemiesToSpawn.Count);
+            GameObject newEnemy = Instantiate(enemiesToSpawn[randomIndex], newPosition, Quaternion.identity);
+            enemiesToSpawn.RemoveAt(randomIndex);
             Enemy newEnemyScript = newEnemy.GetComponentInChildren<Enemy>();
             
             //Instanciamos el WaveManager para registrarlo en la lista de enemigos
@@ -86,9 +125,9 @@ public class EnemySpawner : MonoBehaviour
         //enemyFactory.Dispose(enemy);
         //enemy.transform.parent.gameObject.SetActive(false);
         enemiesDead++;
-        if(wavesSpawnCount[currentWave] == enemiesDead)
+        if(waves[currentWave].EnemyCount == enemiesDead)
         {
-            if(currentWave + 1 < wavesSpawnCount.Length)
+            if(currentWave + 1 < waves.Length)
             {
                 currentWave++;
                 enemiesDead = 0;

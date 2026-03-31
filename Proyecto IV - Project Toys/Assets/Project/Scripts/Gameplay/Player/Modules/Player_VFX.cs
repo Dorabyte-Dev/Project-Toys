@@ -1,23 +1,49 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
 
 public class Player_VFX : Entity_VFX
 {
-	[SerializeField]private VisualEffect slashEffect;
-	[SerializeField] private MeshTrail swordTrail;
 	[SerializeField] private ParticleSystem swordTrailEffect;
+	[SerializeField] private Player player;
+	
+	protected override void Awake()
+	{
+		base.Awake();
+		player = GetComponent<Player>();
+	}
 
 	public void Slash()
 	{
-		//slashEffect.Play();
-		//swordTrail.ToggleTrail();
 		swordTrailEffect.Play();
 	}
 
 	public void InterruptSlash()
 	{
-		//slashEffect.Stop();
-		//swordTrail.UnToggleTrail();
 		swordTrailEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+	}
+
+	public void HitStop()
+	{
+		StartCoroutine(base.HitStop(player));
+	}
+
+	public override void DamageVFX_Feedback(Transform damageDealer)
+	{
+		TriggerMaterialChange();
+		Vector3 pushDirection = (transform.position - damageDealer.position).normalized;
+		CameraManager.instance.CameraShake();
+		StartCoroutine(PushFeedback(pushDirection));
+	}
+
+	protected override IEnumerator PushFeedback(Vector3 direction)
+	{
+		float elapsed = 0f;
+		while (elapsed < pushDuration)
+		{
+			player.ch.Move(direction * pushStrength * Time.unscaledDeltaTime);
+			elapsed += Time.unscaledDeltaTime;
+			yield return null;
+		}
 	}
 }

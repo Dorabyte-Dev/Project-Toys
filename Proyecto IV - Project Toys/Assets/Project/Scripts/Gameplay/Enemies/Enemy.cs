@@ -5,6 +5,7 @@ using UnityEngine.Serialization;
 
 public class Enemy : Entity, IEnemyStates
 {
+    public Rigidbody rb { get; private set; }
     public Enemy_IdleState idleState;   // ESTADO DE IDLE
     public Enemy_MoveState moveState;    // ESTADO DE MOVIMIENTO\ WANDER
     public Enemy_PursuitState pursuitState;  // ESTADO DE PERSECUCION
@@ -27,6 +28,7 @@ public class Enemy : Entity, IEnemyStates
     [HideInInspector] public int nearness;
     [HideInInspector] public Transform playerTransform;
     [HideInInspector] public float distanceToPlayer;
+    public Transform playerExecutionTransform;
 
     [Space] 
     [HideInInspector] public Renderer mesh;
@@ -47,10 +49,16 @@ public class Enemy : Entity, IEnemyStates
     
     [Header("WaveManager Specs")]
     public bool canAttackByManager; // permiso del manager para atacar
+    
+    [Header("Common States Specs")]
+    public bool isBeingExecuted; 
+    
+    [HideInInspector] public Action OnEnemyDeath; // Acción para notificar la muerte del enemigo
 
     protected override void Awake()
     {
         base.Awake();
+        rb = GetComponent<Rigidbody>();
         mesh = GetComponentInChildren<Renderer>();
         agent = GetComponent<NavMeshAgent>();
         health = GetComponent<Enemy_Health>();
@@ -64,14 +72,15 @@ public class Enemy : Entity, IEnemyStates
     public override void DeadEntity()
     {
         base.DeadEntity();
-
-        stateMachine.ChangeState(deadState);
+        
+        ChangeToDeadState();
         
         SetEnemyDead();
     }
     
     public virtual void SetEnemyDead()
     {
+        OnEnemyDeath?.Invoke();
         agent.isStopped = true;
         PerfectDodgeManager.EndPerfectDodgeFlag(this.gameObject);
         if (spawner != null)
@@ -87,6 +96,7 @@ public class Enemy : Entity, IEnemyStates
         _health = GetComponent<Enemy_Health>();
         _vfx = GetComponent<Enemy_VFX>();
         combat.targetHit.AddListener(OnPlayerDamaged);
+        combat.targetHit.AddListener(_vfx.HitStop);
         _vfx.OnDissolveComplete += _animationTriggers.DisableAndDestroyEnemy;
         //stateMachine.Initialize(idleState);
         if (spawner == null)
@@ -96,10 +106,13 @@ public class Enemy : Entity, IEnemyStates
     protected override void Update()
     {
         base.Update();
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.P))
         {
-            stateMachine.ChangeState(executionState);
+            //_health.TakeDamage(0, this.transform);
+            ChangeEnemyState(executionState);
         }
+#endif
     }
 
     public void Flip()
@@ -118,18 +131,29 @@ public class Enemy : Entity, IEnemyStates
         agent.isStopped = false;
         health.ResetStats();
     }
+    
+    public void EnterExecution()
+    {
+        ChangeEnemyState(executionState);
+    }
+    
     public void StopAttacking()
     {
-        stateMachine.ChangeState(pursuitState);
+        ChangeEnemyState(pursuitState);
     }
     public void PlayerDeath()
     {
-        stateMachine.ChangeState(idleState);
+        ChangeEnemyState(idleState);
     }
 
     public void ChangeEnemyState(EnemyState newState)
     {
+        if(isBeingExecuted || health.isDead) return;
         stateMachine.ChangeState(newState);
+    }
+    public void ChangeToDeadState()
+    {
+        stateMachine.ChangeState(deadState);
     }
     private void OnEnable()
     {
@@ -222,4 +246,18 @@ public class Enemy : Entity, IEnemyStates
     public virtual void Extra_Update(){}
     public virtual void Extra_Exit(){}
     #endregion
+
+    public void SetExecutionFeedback(bool isActiveVictim)
+    {
+        if (isActiveVictim)
+        {
+            enemyUI.ShowExecutionUI();
+            _vfx.GlowEffect();
+        }
+        else
+        {
+            enemyUI.HideExecutionUI();
+            _vfx.RemoveGlowEffect();
+        }
+    }
 }

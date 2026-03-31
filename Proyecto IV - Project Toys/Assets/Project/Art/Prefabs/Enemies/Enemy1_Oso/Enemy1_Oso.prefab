@@ -988,6 +988,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1367550695408237385}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1793991557806485912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9087115701870152604}
+  m_Layer: 6
+  m_Name: PlayerExecutionPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9087115701870152604
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793991557806485912}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1311956479014145465}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1816197252245241033
 GameObject:
   m_ObjectHideFlags: 0
@@ -2757,6 +2788,7 @@ Transform:
   - {fileID: 877429579121402403}
   - {fileID: 6650361216015725400}
   - {fileID: 371754480557034952}
+  - {fileID: 9087115701870152604}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -89.98021, y: 0, z: 0}
 --- !u!65 &3525582376881609852
@@ -2860,6 +2892,7 @@ MonoBehaviour:
   nearness: 0
   playerTransform: {fileID: 0}
   distanceToPlayer: 0
+  playerExecutionTransform: {fileID: 9087115701870152604}
   mesh: {fileID: 0}
   agent: {fileID: 5620197293846446678}
   spawner: {fileID: 0}
@@ -2872,6 +2905,7 @@ MonoBehaviour:
   _vfx: {fileID: 0}
   enemyUI: {fileID: 0}
   canAttackByManager: 0
+  isBeingExecuted: 0
   range: 5
   attackRange: 7.5
   waitTime: 2
@@ -2904,7 +2938,6 @@ MonoBehaviour:
   targetHit:
     m_PersistentCalls:
       m_Calls: []
-  finalDamage: 0
 --- !u!114 &1702223629267889394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2941,6 +2974,7 @@ MonoBehaviour:
   vfx: {fileID: 0}
   currentHp: 0
   maxHp: 200
+  isDead: 0
   invincibleMode: 0
   enemy: {fileID: 0}
   enemyUI: {fileID: 0}
@@ -2957,20 +2991,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ded6eb4f453b49b0b6981f5230d039fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_VFX
-  rb: {fileID: 0}
+  renderMesh: {fileID: 5977752689232595186}
+  vfxGraph: {fileID: 3433083734566245030}
   feedbackColor: {r: 1, g: 1, b: 1, a: 0}
   feedbackDuration: 0.5
   pushStrength: 15
   pushDuration: 0.1
-  renderMesh: {fileID: 5977752689232595186}
-  vfxGraph: {fileID: 3433083734566245030}
   dissolveRate: 0.025
   refreshRate: 0.025
   shakeDuration: 1
   shakeStrength: 1
   randomShake: 0.2
+  hitStopModifier: 0.1
+  hitStopDuration: 0.1
+  glowMaterial: {fileID: 2100000, guid: d45b7e83b62d5b748a3f011bf4fdbdec, type: 2}
+  rb: {fileID: 0}
   pDodgeShine: {fileID: 7470000213853289494}
   pHitEffect: {fileID: 7012650123397271767}
+  _enemy: {fileID: 0}
 --- !u!114 &2760030290117616166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5461,7 +5499,10 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 2
+        m_Name: BorderGirth
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:

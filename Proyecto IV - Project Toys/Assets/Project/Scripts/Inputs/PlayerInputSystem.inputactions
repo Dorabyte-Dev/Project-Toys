@@ -16,7 +16,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "8a154689-86c5-4c51-b066-90b41d31a7ce",
                     "expectedControlType": "",
@@ -130,12 +130,23 @@
                 },
                 {
                     "name": "",
-                    "id": "be9cc25e-5f75-4e84-b181-b79be1b722c3",
-                    "path": "<Keyboard>/t",
+                    "id": "474205ab-4bb1-4494-96c6-80a351a9f185",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be9cc25e-5f75-4e84-b181-b79be1b722c3",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -393,6 +404,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Debug",
+            "id": "d606015b-71e4-45c2-90fe-01a2cc66ac50",
+            "actions": [
+                {
+                    "name": "ActivateXRay",
+                    "type": "Button",
+                    "id": "103ac3c9-4b3e-4953-9c66-ac0e9b7899f6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ab0ff5ec-eb48-435a-ba75-60e45e7b91cc",
+                    "path": "<Keyboard>/backslash",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivateXRay",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

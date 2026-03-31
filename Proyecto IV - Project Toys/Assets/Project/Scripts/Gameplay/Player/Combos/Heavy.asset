@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bf141c930edf0f4f808a34781afa6ce, type: 3}
   m_Name: Heavy
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
+  colliderUsed: 2
   motionValue: 2
-  attackVelocity: 0
-  attackVelocityDurationStart: 0
-  attackVelocityDurationEnd: 0
+  attackMoveDistance: 1
+  attackMoveDurationStart: 0.5
+  attackMoveDurationEnd: 0.9
   nextLightAttack: {fileID: 11400000, guid: 17947af7f40c2d84badba82265d1fb7b, type: 2}
   nextHeavyAttack: {fileID: 11400000, guid: 96f5ffcbb4dbb164480e795113c71fcf, type: 2}

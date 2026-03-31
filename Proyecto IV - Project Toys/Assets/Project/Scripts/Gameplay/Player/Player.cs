@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -26,31 +27,22 @@ public class Player : Entity
 
     #region ComboSystem
     [Header("Attack and Combo Details")] 
-    [Tooltip("Reference for the current attack played by the ComboSystemState. It is remembered by the player for a bit after exiting combo statem.")]
     public AttackData currentAttack;
-    
-    [Tooltip("Time that player remembers last combo attack.")]
     public float comboResetTime = 1;
-    
-    [Tooltip("Normalized time to unlock player input in combos. Input is ignored before this threshold.")]
     [Range(0, 1)]public float comboBufferUnlockThreshold;
-    
-    [Tooltip("Max angle player can rotate during each attack of the combo.")]
-    public float comboRedirectionLimit;
-    private IEnumerator _activeForgetCoroutine; //Change to Tween when possible
-
-    [Header("Attack Colliders")]
-    public Dictionary<AttackCollider, Collider> attackColliders;
+    [Range(0f, 180f)] public float comboRedirectionLimit = 45f;
+    private IEnumerator _activeForgetCoroutine;
     #endregion
+    
+    [Header("Attack Colliders")]
+        public List<AttackCollider> attackColliders;
 
     #region ComboBar
     [Header("Combo Bar Properties")] 
     public float comboBarHitModifier;
     public float comboBarPerfectDodgeModifier; //TODO: implement perfect dodge combo charge
     public float maxComboBarAmount;
-
     private bool _isComboBarFull;
-
     private float _comboBarAmount;
     public float comboBarAmount
     {
@@ -61,22 +53,17 @@ public class Player : Entity
             SetComboBar();
         }
     }
-    
+  
     #endregion
 
     #region Execution
-    
+  
     [Header("Execution Properties")]
     public float executionRadius;
     private Transform _executionTarget;
-
-    [HideInInspector]
-    public Transform executionTarget
+    [HideInInspector] public Transform executionTarget
     {
-        get
-        {
-            return _executionTarget;
-        }
+        get => _executionTarget;
         set
         {
             if (_executionTarget == value) return;
@@ -86,7 +73,8 @@ public class Player : Entity
                 Enemy prevEnemy = _executionTarget.GetComponent<Enemy>();
                 if (prevEnemy != null && prevEnemy.enemyUI != null)
                 {
-                    prevEnemy.enemyUI.HideExecutionUI();
+                    prevEnemy.OnEnemyDeath -= () => executionTarget = null;
+                    prevEnemy.SetExecutionFeedback(false);
                 }
             }
             
@@ -104,39 +92,26 @@ public class Player : Entity
             {
                 executionEnemy = null;
             }
-
-            /*if (executionTarget != _lastExecutionTarget)
-            {
-                if(_lastExecutionEnemy) _lastExecutionEnemy.enemyUI.HideExecutionUI();
-                _lastExecutionTarget = executionTarget;
-                _lastExecutionEnemy = _lastExecutionTarget.GetComponent<Enemy>();
-                executionEnemy = executionTarget.GetComponent<Enemy>();
-                SetExecutionEnemy(executionEnemy);
-            }*/
-            
-            /*if(executionTarget == _lastExecutionTarget) return;
-            _lastExecutionEnemy = _lastExecutionTarget.GetComponent<Enemy>();
-            _lastExecutionTarget = executionTarget;
-            executionEnemy = executionTarget.GetComponent<Enemy>();
-            
-            SetExecutionEnemy(executionEnemy);*/
         }
     }
-
     [HideInInspector] public Enemy executionEnemy;
-    private Enemy _lastExecutionEnemy;
     [SerializeField] public LayerMask executionTargetLayer;
-    
-    
+    public ExecutionCameraManager executionCameraManager;
+    [HideInInspector] public Transform executionTransform;
     #endregion
 
     #region Movement
 
     [Header("Movement Specs")]
+    public bool canMove;
+    public Camera cam;
+    public CharacterController ch {get; private set;}
+    private float _verticalVelocity;
+    private const float Gravity = -9.81f;
     public Vector2 moveInput { get; private set; }
     public Vector2 cameraMoveInput { get; private set; }
-    public Camera cam;
     public float jumpForce = 5;
+    
 
     #endregion
 
@@ -147,7 +122,7 @@ public class Player : Entity
     public float dashDistance = 20f;
     public float dashCooldown = .5f;
     private float _dashCooldownTimer;
-    
+  
     public float perfectDodgeDuration = .25f;
     public float perfectDodgeEnemyDistance = 1f;
     public MeshTrail afterimageTrail;
@@ -178,6 +153,7 @@ public class Player : Entity
     protected override void Awake()
     {
         base.Awake();
+        ch = GetComponent<CharacterController>();
         input = new PlayerInputSystem();
         idleState = new Player_IdleState(this, stateMachine, "Idle");
         moveState = new Player_MoveState(this, stateMachine, "Move");
@@ -187,13 +163,18 @@ public class Player : Entity
         deathState = new Player_DeathState(this, stateMachine, "death");
         comboSystemState = new Player_ComboSystem(this, stateMachine, "AttackPressed");
         executionState = new Player_ExecutionState(this,  stateMachine, "kill");
-        
+      
         _combat = GetComponent<Player_Combat>();
         _health = GetComponent<Player_Health>();
         _vfx = GetComponent<Player_VFX>();
         _animationTriggers = GetComponent<Player_AnimationTriggers>();
         _combat.targetHit.AddListener(OnEnemyHit);
-
+        _combat.targetHit.AddListener(_vfx.HitStop);
+        
+        if (executionCameraManager == null)
+        {
+            executionCameraManager = GetComponentInChildren<ExecutionCameraManager>();
+        }
     }
     protected override void Start()
     {
@@ -209,45 +190,58 @@ public class Player : Entity
     protected override void Update()
     {
         base.Update();
-        
+      
         cameraMoveInput = MovementDirectionToCamera(moveInput);
+      
+        if (ch.isGrounded && _verticalVelocity < 0f)
+            _verticalVelocity = -2f; // Pequeño valor negativo para mantenerlo pegado al suelo
+        else
+            _verticalVelocity += Gravity * Time.deltaTime;
 
         if (_isComboBarFull)
         {
-            executionTarget = GetExecutionEnemy();
-            /*if(!executionTarget) return;
-            executionEnemy = executionTarget.GetComponent<Enemy>();*/
-            /*if(executionTarget == _lastExecutionTarget) return;
-            
-            _lastExecutionTarget = executionTarget;*/
-            
-        }
-        else if (executionTarget != null)
-        {
-            executionTarget = null;
+            SearchForExecutionTarget();
         }
     }
-    
+  
     private void OnEnable()
     {
         input.Enable();
         input.Player.Movement.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;
     }
-    
+  
     private void OnDisable()
     {
         input.Disable();
     }
-    
+  
     #endregion
-    
+  
     #region Enemy Execution
+
+    private void SearchForExecutionTarget()
+    {
+        if (executionTarget == null)
+        {
+            executionTarget = GetExecutionEnemy();
+        }
+            
+        if(!executionTarget ) return;
+        //executionEnemy = executionTarget.GetComponent<Enemy>();
+        if(executionEnemy != null)
+        {
+            if (!executionEnemy.isBeingExecuted && !executionEnemy._health.isDead)
+            {
+                executionTarget = GetExecutionEnemy();
+            }
+        }
+    }
     private Collider[] GetNearEnemiesCollider()
     {
         return Physics.OverlapSphere(transform.position, executionRadius, executionTargetLayer);
     }
-    
+  
     private Transform GetExecutionEnemy() 
     {
         Collider[] colliders = GetNearEnemiesCollider();
@@ -260,17 +254,19 @@ public class Player : Entity
             float distance = Vector3.Distance(transform.position, collider.transform.position);
             if (distance < minDistance)
             {
+                if(collider.GetComponent<Enemy>()._health.isDead || collider.GetComponent<Enemy>().isBeingExecuted) continue;
                 minDistance = distance;
                 nearestEnemy = collider.transform;
             }
         }
-
         return nearestEnemy;
     }
-
+    
     private void SetExecutionEnemy(Enemy enemy)
     {
-        executionEnemy.enemyUI.ShowExecutionUI();
+        executionEnemy.OnEnemyDeath += () => executionTarget = null;
+        executionEnemy.SetExecutionFeedback(true);
+        executionTransform = executionEnemy.playerExecutionTransform;
     }
 
     void SetComboBar()
@@ -290,6 +286,11 @@ public class Player : Entity
         stateMachine.ChangeState(deathState);
     }
     
+    public void ChangePlayerState(PlayerState newState)
+    {
+        stateMachine.ChangeState(newState);
+    }
+  
     public Vector2 MovementDirectionToCamera(Vector2 _moveInput)
     {
         if (cam == null)
@@ -309,16 +310,27 @@ public class Player : Entity
         if(cameraMoveInput.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(cameraMoveInput.x, cameraMoveInput.y) * Mathf.Rad2Deg;
-            //float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-        
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
         }
     }
-    
+  
 
     private void OnEnemyHit()
     {
         comboBarAmount += comboBarHitModifier;
+    }
+  
+    public void SetVelocity(float xVelocity, float yVelocity)
+    {
+        Vector3 inputDirection = new Vector3(xVelocity, _verticalVelocity, yVelocity);
+
+        /*if (inputDirection.magnitude > 1f)
+            inputDirection = inputDirection.normalized;*/
+
+        //Vector3 moveVelocity = inputDirection * moveSpeed;
+
+        ch.Move(inputDirection * Time.deltaTime);
     }
 
     #region Death&Respawn
@@ -329,29 +341,48 @@ public class Player : Entity
         {
             activeCheckpoint = other.transform;
         }
+        if (other.CompareTag("Heal"))
+        {
+            _health.Heal(); // Heal amount hardcoded for testing, can be changed to a variable in the future
+            Destroy(other.gameObject);
+        }
     }
-    
+    public void StartRespawn()
+    {
+        UIManager.CloseCurtain(Respawn);
+    }
     public void Respawn()
     {
-        rb.position = activeCheckpoint.position;
-        
+        ch.enabled = false; // Desactivar para poder teletransportar
+        transform.position = activeCheckpoint.position;
+        ch.enabled = true;
+      
         CameraManager.instance.UnToggleOnCombatCamera();
         //CameraManager.instance.SwitchOffCombatCamera(activeCheckpoint.GetComponent<Checkpoint>().checkpointCamera);
         CameraManager.instance.SwitchCameraGroup(activeCheckpoint.GetComponent<Checkpoint>().checkpointCameraGroup);
         _health.ResetStats();
         comboBarAmount = 0;
-        //stateMachine.ChangeState(idleState);
+        UIManager.OpenCurtain(1f);
+        stateMachine.ChangeState(idleState);
         //Optimize later: reset all spawners in the scene
         foreach(EnemySpawner spawner in FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None))
         {
             spawner.ResetCombat();
             spawner.GetComponent<ZoneCloser>().ResetZoneCloser();
         }
+        
+        foreach(EventTrigger trigger in FindObjectsByType<EventTrigger>(FindObjectsSortMode.None))
+        {
+            trigger.Reset();
+        }
+        
+        CameraManager.instance.SwitchCameraGroup(activeCheckpoint.GetComponent<Checkpoint>().checkpointCameraGroup);
+        
+        comboBarAmount = 0;
     }
-
     #endregion
-   
-    #region ComboSystem
+ 
+    #region ComboSystem 
     private IEnumerator ForgetPreviousAttack(float time)
     {
         float elapsedTime = 0;
@@ -365,7 +396,7 @@ public class Player : Entity
         _activeForgetCoroutine = null;
         currentAttack = null;
     }
-    
+  
     public void CheckAttackBuffer(bool isLightAttack)
     {
         if (currentAttack != null) 
@@ -388,7 +419,6 @@ public class Player : Entity
             Debug.Log("Checking Attack Buffer: Starting From Zero");
         }
     }
-    
     #region Event Callbacks from StateMachineBehaviours
     public void OnComboStarted()
     {
@@ -398,7 +428,6 @@ public class Player : Entity
             StopCoroutine(_activeForgetCoroutine);
             _activeForgetCoroutine = null;
         }
-            
     }
 
     public void OnComboInterrupted()
@@ -407,7 +436,7 @@ public class Player : Entity
     }
     public void OnComboEnded()
     {
-        stateMachine.ChangeState(idleState);
+        if (stateMachine.currentState == comboSystemState) stateMachine.ChangeState(idleState); //No me gusta mucho esto, refactor prone
         _activeForgetCoroutine = ForgetPreviousAttack(comboResetTime);
         StartCoroutine(_activeForgetCoroutine);
     }
@@ -418,11 +447,14 @@ public class Player : Entity
     }
     public void OnComboAttackEnded()
     {
-        
+      
     }
     #endregion
     #endregion
-    
+    #region Attack Colliders
+    public BoxCollider GetColliderUsed(AttackColliderType currentAttackColliderUsed) =>
+            attackColliders.FirstOrDefault(x => x.colliderType == currentAttackColliderUsed).collider;
+    #endregion
     #region Dash
     public void SetDashCooldown()
     {
@@ -435,10 +467,17 @@ public class Player : Entity
         return _dashCooldownTimer <= 0f;
     }
     #endregion
-    
+  
     #region GetSet
     #region Execution
-    public bool CanExecute() => executionTarget;
+    public bool CanExecute()
+    {
+        if (executionEnemy)
+        {
+            if(!executionEnemy._health.isDead) return true;
+        }
+        return false;
+    }
     #endregion
     #region HealthUI
     public float GetCurrentHealth() => _health.currentHp;

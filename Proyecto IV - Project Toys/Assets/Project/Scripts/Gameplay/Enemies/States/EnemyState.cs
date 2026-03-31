@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyState : EntityState
 {
     protected Enemy enemy;
+    protected Rigidbody rb;
 
     public EnemyState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(stateMachine, animBoolName)
     {
@@ -19,6 +20,7 @@ public class EnemyState : EntityState
     {
         enemy.distanceToPlayer = enemy.CheckPlayerDistance();
     }
+    
     
     // protected IEnumerator GetDistanceToPlayer(float waitTime)
     // {

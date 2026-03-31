@@ -5,7 +5,6 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class Entity : MonoBehaviour
 {
     public Animator anim;
-    public Rigidbody rb { get; private set; }
     protected StateMachine stateMachine;
 
     [Header("Collision detection")]
@@ -15,6 +14,7 @@ public class Entity : MonoBehaviour
     [SerializeField] public Transform targetCheck;
     [SerializeField] public float targetCheckRadius = 1;
     public bool groundDetected { get; private set; }
+    public Vector3 groundNormal => groundDetected ? _groundHit.normal : Vector3.up;
 
     public float moveSpeed;
     public float turnSmoothTime = 0.1f;
@@ -22,7 +22,7 @@ public class Entity : MonoBehaviour
 
     [Header("Slope Detection")]
     [SerializeField] private float maxSlopeAngle = 30f;
-    [SerializeField] private RaycastHit slopeHit;
+    [SerializeField] private RaycastHit _groundHit;
     
 
     protected virtual void Awake()
@@ -35,7 +35,6 @@ public class Entity : MonoBehaviour
                 Debug.LogWarning("Animator component not found on " + gameObject.name);
             }
         }
-        rb = GetComponent<Rigidbody>();
         stateMachine = new StateMachine();
     }
 
@@ -48,53 +47,18 @@ public class Entity : MonoBehaviour
         HandleCollisionDetected();
         stateMachine.UpdateActiveState();
     }
-
-    public void SetVelocity(float xVelocity, float yVelocity)
-    {
-        Vector3 inputDirection = new Vector3(xVelocity, 0f, yVelocity);
-
-        //If this entity is on a slope, we project the movement direction to the slope normal
-        if (OnSlope())
-        {
-            Vector3 slopeMoveDirection = ProjectVectorOnSlope(inputDirection);
-
-            rb.linearVelocity = slopeMoveDirection * moveSpeed;
-
-            if (rb.linearVelocity.y > 0)
-            {
-                rb.linearVelocity += Vector3.down * 5f * Time.deltaTime;
-            }
-        }
-        else 
-        {
-            // The Entity is on flat ground
-            Vector3 velocity = rb.linearVelocity;
-            velocity.x = xVelocity;
-            velocity.z = yVelocity;
-
-            // Normalizar solo si hay movimiento
-            if (velocity.magnitude > 1f)
-            {
-                velocity = velocity.normalized * moveSpeed;
-            }
-            rb.linearVelocity = new Vector3(xVelocity, 0f, yVelocity);
-        }
-
-        //rb.linearVelocity = velocity;
-
-        //rb.MovePosition(transform.position + velocity * moveSpeed * Time.deltaTime);
-    }
+    
 
     private void HandleCollisionDetected()
     {
-        groundDetected = Physics.Raycast(groundCheck.position, Vector3.down, groundCheckDistance, whatIsGround);
+        groundDetected = Physics.Raycast(groundCheck.position, Vector3.down, out _groundHit, groundCheckDistance, whatIsGround);
     }
     public virtual void DeadEntity() 
     {
-    
+        
     }
 
-    private void OnDrawGizmos() // Visualizacion de rayos y deteccion de pendientes
+    /*private void OnDrawGizmos() // Visualizacion de rayos y deteccion de pendientes
     {
         float rayDistance = 1f * 0.5f + 0.3f;
 
@@ -128,18 +92,18 @@ public class Entity : MonoBehaviour
             Gizmos.DrawSphere(hit.point, 0.1f);
         }
         Gizmos.DrawWireSphere(targetCheck.position, targetCheckRadius);
-    }
+    }*/
 
     internal void CurrentStateAnimationTrigger()
     {
         stateMachine.currentState.CallAnimationTrigger();
     }
 
-    public bool OnSlope()
+    public bool OnGround()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, 1f * 0.5f + 0.3f))
+        if (Physics.Raycast(transform.position, Vector3.down, out _groundHit, 1f * 0.5f + 0.3f))
         {
-            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            float angle = Vector3.Angle(Vector3.up, _groundHit.normal);
             return angle < maxSlopeAngle && angle != 0;
         }
         return false;
@@ -147,7 +111,7 @@ public class Entity : MonoBehaviour
 
     public Vector3 ProjectVectorOnSlope(Vector3 vector)
     {
-        Vector3 slopeMoveDirection = Vector3.ProjectOnPlane(vector, slopeHit.normal).normalized;
+        Vector3 slopeMoveDirection = Vector3.ProjectOnPlane(vector, _groundHit.normal).normalized;
 
         return slopeMoveDirection;
     }
