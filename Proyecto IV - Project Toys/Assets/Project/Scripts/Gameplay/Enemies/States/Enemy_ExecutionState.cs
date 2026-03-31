@@ -10,9 +10,10 @@ public class Enemy_ExecutionState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        /*Debug.Log("Entered Enemy_ExecutionState");
-        enemy.agent.isStopped = true;*/
         enemy.Execution_Enter();
+        enemy.agent.ResetPath();
+        enemy.agent.isStopped = true;
+        enemy.agent.velocity = Vector3.zero;
         enemy.isBeingExecuted = true;
         enemy.transform.DODynamicLookAt(enemy.playerTransform.position, 0.5f, AxisConstraint.Y);
     }
