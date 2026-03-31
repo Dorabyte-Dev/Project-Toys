@@ -446,7 +446,6 @@ public class Enemy_Ranged : Enemy
     {
         base.Execution_Enter();
         agent.isStopped = true;
-        SetEnemyDead();
     }
     public override void Execution_Update()
     {
