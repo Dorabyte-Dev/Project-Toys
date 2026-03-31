@@ -292,7 +292,7 @@ public class Player : Entity
     {
         stateMachine.ChangeState(newState);
     }
-  
+    #region Movement
     public Vector2 MovementDirectionToCamera(Vector2 _moveInput)
     {
         if (cam == null)
@@ -306,7 +306,6 @@ public class Player : Entity
         Vector3 moveVector2 = new Vector2(moveVector.x, moveVector.z);
         return moveVector2;
     }
-
     public void RotatePlayerToMatchInput()
     {
         if(cameraMoveInput.magnitude >= 0.1f)
@@ -316,13 +315,6 @@ public class Player : Entity
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
         }
     }
-  
-
-    private void OnEnemyHit()
-    {
-        comboBarAmount += comboBarHitModifier;
-    }
-  
     public void SetVelocity(float xVelocity, float yVelocity)
     {
         Vector3 inputDirection = new Vector3(xVelocity, _verticalVelocity, yVelocity);
@@ -333,6 +325,21 @@ public class Player : Entity
         //Vector3 moveVelocity = inputDirection * moveSpeed;
 
         ch.Move(inputDirection * Time.deltaTime);
+    }
+
+    public void GrantControl()
+    {
+        canMove = true;
+    }
+    
+    public void RevokeControl()
+    {
+        canMove = false;
+    }
+    #endregion
+    private void OnEnemyHit()
+    {
+        comboBarAmount += comboBarHitModifier;
     }
 
     #region Death&Respawn
