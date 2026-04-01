@@ -205,6 +205,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8581962557178675611, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
   m_PrefabInstance: {fileID: 121491919}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &121491921 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4395184669273791191, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+  m_PrefabInstance: {fileID: 121491919}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &127879116
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,14 +1284,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeeThroughWallManager
   player: {fileID: 121491920}
-  shaderTarget: {fileID: 0}
+  shaderTarget: {fileID: 121491921}
   wallMask:
     serializedVersion: 2
     m_Bits: 1610612736
   mainCamera: {fileID: 0}
   cinemachineBrain: {fileID: 0}
-  maxCutoutSize: 0.35
+  maxCutoutSize: 0.252
   falloffSize: 0.2
+  aspectRatio: 0
+  screenAspect: 0.5
   raycastEndOffset: 0.3
   playerHeight: 1
   playerWidth: 0.3

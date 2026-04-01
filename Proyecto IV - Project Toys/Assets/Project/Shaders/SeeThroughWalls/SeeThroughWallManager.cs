@@ -12,6 +12,9 @@ public class SeeThroughWallManager : MonoBehaviour
     [Header("Cutout Settings")]
     [Range(0f, 1f)] [SerializeField] private float maxCutoutSize = 0.2f;
     [Range(0f, 0.5f)] [SerializeField] private float falloffSize = 0.05f;
+    [SerializeField] private float aspectRatio;
+    
+    [SerializeField] private float screenAspect = 0.5f;
 
     [Header("Raycast Settings")]
     [SerializeField] private float raycastEndOffset = 0.3f;
@@ -42,61 +45,55 @@ public class SeeThroughWallManager : MonoBehaviour
         
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        if (player == null || shaderTarget == null) return;
+        if (player == null || shaderTarget == null || mainCamera == null) return;
 
+        // 1. Detección
         Vector3 camPos = mainCamera.transform.position;
-
-        // 1. Detección con múltiples rayos
         isObstructed = CheckObstruction(camPos, player.position);
 
-        // 2. Posición en pantalla del shaderTarget
+        // 2. Cálculo de posición (Sincronizado con tu Shader Graph)
         Vector3 screenPoint = mainCamera.WorldToScreenPoint(shaderTarget.position);
-        float aspect = (float)Screen.width / Screen.height;
-        Vector2 cutoutPos = new Vector2(
-            ((screenPoint.x / Screen.width) - 0.5f) * aspect,  // Corregir aspect ratio aquí
-            (screenPoint.y / Screen.height) - 0.5f
-        );
+        
+        float resX = screenPoint.x / Screen.width;
+        float resY = screenPoint.y / Screen.height;
 
-        // 3. Animación del tamaño
+        float aspect = (float)Screen.width / (float)Screen.height;
+        Vector2 cutoutPos = new Vector2(resX * aspect, resY);
+
+        // 3. Animación
         float targetSize = isObstructed ? maxCutoutSize : 0f;
         float speed = isObstructed ? smoothSpeedIn : smoothSpeedOut;
         currentCutoutSize = Mathf.Lerp(currentCutoutSize, targetSize, Time.deltaTime * speed);
 
+        // 4. Envío de datos
         if (!isObstructed && currentCutoutSize < 0.001f)
+        {
             currentCutoutSize = 0f;
-
-        // 4. Enviar al Shader
+            Shader.SetGlobalFloat("_CutoutSize", 0f);
+            return;
+        }
         Shader.SetGlobalVector("_CutoutPosition", cutoutPos);
+        
         Shader.SetGlobalFloat("_CutoutSize", currentCutoutSize);
         Shader.SetGlobalFloat("_FalloutSize", falloffSize);
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            enableShader = !enableShader; // Toggle con M
-            Debug.Log("_EnableShader: " + enableShader);
-        }
-        Shader.SetGlobalFloat("_EnableShader", enableShader ? 1f : 0f);
+        Shader.SetGlobalFloat("_EnableShader", 1f); 
     }
 
     private bool CheckObstruction(Vector3 camPos, Vector3 playerPos)
     {
-        Vector3[] checkPoints = new Vector3[]
-        {
-            playerPos,
-            playerPos + Vector3.up * playerHeight,
+        Vector3[] checkPoints = {
             playerPos + Vector3.up * (playerHeight * 0.5f),
+            playerPos + Vector3.up * playerHeight,
             playerPos + Vector3.right * playerWidth,
-            playerPos + Vector3.left * playerWidth,
+            playerPos + Vector3.left * playerWidth
         };
 
-        foreach (Vector3 point in checkPoints)
+        foreach (Vector3 pt in checkPoints)
         {
-            Vector3 dir = point - camPos;
-            bool hit = Physics.Raycast(camPos, dir, out RaycastHit hitInfo, dir.magnitude - raycastEndOffset, wallMask, QueryTriggerInteraction.Ignore);
-            Debug.DrawRay(camPos, dir.normalized * (dir.magnitude - raycastEndOffset),
-                                hit ? Color.red : Color.green);
-            if (hit) return true;
+            Vector3 dir = pt - camPos;
+            if (Physics.Raycast(camPos, dir, dir.magnitude - raycastEndOffset, wallMask)) return true;
         }
         return false;
     }
@@ -114,5 +111,16 @@ public class SeeThroughWallManager : MonoBehaviour
     {
         Shader.SetGlobalFloat("_CutoutSize", 0f);
         Shader.SetGlobalFloat("_EnableShader", 0f);
+    }
+    
+    private void OnGUI()
+    {
+        if (shaderTarget == null || mainCamera == null) return;
+        Vector3 sp = mainCamera.WorldToScreenPoint(shaderTarget.position);
+        // Convertir Y (Unity usa Y desde abajo, OnGUI desde arriba)
+        float guiY = Screen.height - sp.y;
+        // Dibuja un punto rojo exactamente donde el script cree que está el jugador
+        GUI.color = Color.red;
+        GUI.DrawTexture(new Rect(sp.x - 5, guiY - 5, 10, 10), Texture2D.whiteTexture);
     }
 }
