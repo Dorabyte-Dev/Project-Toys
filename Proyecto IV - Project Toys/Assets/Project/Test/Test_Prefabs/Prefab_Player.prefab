@@ -13030,6 +13030,7 @@ MonoBehaviour:
     m_Bits: 64
   executionCameraManager: {fileID: 0}
   executionTransform: {fileID: 0}
+  canMove: 0
   cam: {fileID: 0}
   jumpForce: 5
   dashDuration: 0.25
@@ -13059,7 +13060,7 @@ MonoBehaviour:
   entity: {fileID: 0}
   vfx: {fileID: 0}
   currentHp: 0
-  maxHp: 60
+  maxHp: 400
   isDead: 0
   invincibleMode: 0
   healAmount: 0
@@ -13138,7 +13139,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 268436544
   entity: {fileID: 0}
-  baseDamage: 40
+  baseDamage: 45
   targetHit:
     m_PersistentCalls:
       m_Calls: []
@@ -13167,7 +13168,7 @@ MonoBehaviour:
   shakeStrength: 1
   randomShake: 0.2
   hitStopModifier: 0.05
-  hitStopDuration: 0.15
+  hitStopDuration: 0.3
   swordTrailEffect: {fileID: 1058282547619454077}
   player: {fileID: 0}
 --- !u!143 &4154271546559694580
@@ -13574,9 +13575,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8581962557178675611}
     m_Modifications:
+    - target: {fileID: 4159983736900985419, guid: 45202a80f07369e4290c32a21aafe9ed, type: 3}
+      propertyPath: m_Name
+      value: ExecutionCamera1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469873455340530630, guid: 45202a80f07369e4290c32a21aafe9ed, type: 3}
+      propertyPath: m_Name
+      value: ExecutionCamera2
+      objectReference: {fileID: 0}
     - target: {fileID: 5956609580350067492, guid: 45202a80f07369e4290c32a21aafe9ed, type: 3}
       propertyPath: m_Name
       value: ExecutionCameras
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548069411927788754, guid: 45202a80f07369e4290c32a21aafe9ed, type: 3}
+      propertyPath: m_Name
+      value: ExecutionCamera3
       objectReference: {fileID: 0}
     - target: {fileID: 7696487047859822659, guid: 45202a80f07369e4290c32a21aafe9ed, type: 3}
       propertyPath: m_LocalPosition.x
