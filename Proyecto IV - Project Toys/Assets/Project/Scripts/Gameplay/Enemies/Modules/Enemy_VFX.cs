@@ -53,21 +53,37 @@ public class Enemy_VFX : Entity_VFX
         {
             Debug.Log("PushFeedback started for " + this.gameObject.name);
             
+            _enemy.agent.ResetPath();
             _enemy.agent.enabled = false;
             rb.isKinematic = false;
             rb.AddForce(direction * pushStrength, ForceMode.VelocityChange);
             
-            yield return new WaitForSeconds(pushDuration);
-            
-            rb.isKinematic = true;
-            rb.linearVelocity = Vector3.zero;
-            _enemy.agent.enabled = true;
+            yield return new WaitUntil(() => rb.linearVelocity.magnitude <= pushStopThreeshold);
+            //Debug.Log("PushFeedback stopped for " + this.gameObject.name);
+            yield return new WaitForSeconds(pushWaitDuration);
             
             Debug.Log("PushFeedback finished for " + this.gameObject.name);
+            ResetPushFeedback();
+            
         }
         else
         {
             Debug.LogError("Rigidbody is null in PushFeedback");
+        }
+    }
+    
+    public void ResetPushFeedback()
+    {
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+            rb.linearVelocity = Vector3.zero;
+            _enemy.agent.Warp(transform.position);
+            _enemy.agent.enabled = true;
+        }
+        else
+        {
+            Debug.LogError("Rigidbody is null in ResetPushFeedback");
         }
     }
     

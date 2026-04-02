@@ -28,7 +28,11 @@ public class Entity_VFX : MonoBehaviour
     [Header("--- Knockback (Push Feedback) ---")]
     [FormerlySerializedAs("pushStrengh")] 
     public float pushStrength = .4f;
-    [Range(0, 1)] public float pushDuration = 0.2f;
+    [FormerlySerializedAs("pushDuration")] 
+    [Range(0, 1)] public float pushWaitDuration = 0.2f;
+
+    [Tooltip("Umbral de velocidad que detendrá al enemigo del empuje")]
+    [Range(0.001f, 0.1f)]public float pushStopThreeshold = 0.05f;
 
     [Header("--- Dissolve Effect ---")]
     public float dissolveRate = 0.0125f;

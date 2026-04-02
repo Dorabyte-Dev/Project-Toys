@@ -30,6 +30,7 @@ public class Player_Combat : Entity_Combat
             Entity_Health targetHealth = target.GetComponent<Entity_Health>();
             if (targetHealth != null)
             {
+                if(targetHealth.isDead) continue;
                 targetHit?.Invoke();
                 if (targetHealth.invincibleMode) return;
                 targetHealth.TakeDamage(_finalDamage, this.transform);

@@ -11,6 +11,7 @@ public class Enemy_ExecutionState : EnemyState
     {
         base.Enter();
         enemy.Execution_Enter();
+        enemy._vfx.ResetPushFeedback();
         enemy.agent.ResetPath();
         enemy.agent.isStopped = true;
         enemy.agent.velocity = Vector3.zero;

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Enemy_MiniGolem : Enemy
@@ -12,6 +13,11 @@ public class Enemy_MiniGolem : Enemy
     private float _originalPushStrength;
 
     [HideInInspector] public bool hasBorn;
+    
+    [Header("Test Config")]
+    public bool testingMiniGolem;
+
+    private bool isInRecoil;
     
     protected override void Awake() 
     {
@@ -29,9 +35,16 @@ public class Enemy_MiniGolem : Enemy
         base.Start();
         agent.speed = moveSpeed;
         agent.acceleration = acceleration;
-        _originalPushDuration = _vfx.pushDuration;
+        _originalPushDuration = _vfx.pushWaitDuration;
         _originalPushStrength = _vfx.pushStrength;
-        stateMachine.Initialize(extraState);
+        if (!testingMiniGolem)
+        {
+            stateMachine.Initialize(extraState);
+        }
+        else
+        {
+            stateMachine.Initialize(idleState);
+        }
     }
     
     protected override void Update()
@@ -51,7 +64,7 @@ public class Enemy_MiniGolem : Enemy
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && isAttacking)
+        if (other.CompareTag("Player") && isAttacking && !isInRecoil)
         {
             Debug.Log("Enemy_MiniGolem hit the player");
             playerTransform.gameObject.GetComponent<Player_Health>().TakeDamage(combat.GetBaseDamage() ,this.transform);
@@ -62,9 +75,44 @@ public class Enemy_MiniGolem : Enemy
     private void PushBack()
     {
         Vector3 pushDirection = (transform.position - playerTransform.position).normalized;
-        _vfx.pushDuration = attackPushBackDuration;
-        _vfx.pushStrength = attackPushBackStrength;
-        _vfx.StartPushFeedback(pushDirection);
+        
+        StartCoroutine(AttackPushBack(pushDirection));
+    }
+
+    private IEnumerator AttackPushBack(Vector3 pushDirection)
+    {
+        if (rb != null)
+        {
+            Debug.Log("PushFeedback started for " + this.gameObject.name);
+            
+            agent.ResetPath();
+            agent.enabled = false;
+            rb.isKinematic = false;
+            rb.AddForce(pushDirection * attackPushBackStrength, ForceMode.VelocityChange);
+            isInRecoil = true;
+            yield return new WaitUntil(() => rb.linearVelocity.magnitude <= 0.001f);
+            
+            yield return new WaitForSeconds(attackPushBackDuration);
+            
+            Debug.Log("PushFeedback finished for " + this.gameObject.name);
+            if (rb != null)
+            {
+                rb.isKinematic = true;
+                rb.linearVelocity = Vector3.zero;
+                agent.Warp(transform.position);
+                agent.enabled = true;
+                isInRecoil = false;
+            }
+            else
+            {
+                Debug.LogError("Rigidbody is null in ResetPushFeedback");
+            }
+            
+        }
+        else
+        {
+            Debug.LogError("Rigidbody is null in PushFeedback");
+        }
     }
     
     

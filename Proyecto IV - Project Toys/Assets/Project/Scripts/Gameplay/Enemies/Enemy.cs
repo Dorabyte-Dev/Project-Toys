@@ -51,7 +51,8 @@ public class Enemy : Entity, IEnemyStates
     public bool canAttackByManager; // permiso del manager para atacar
     
     [Header("Common States Specs")]
-    public bool isBeingExecuted; 
+    [HideInInspector]public bool isBeingExecuted; 
+    [HideInInspector]public bool isFlinching;
     
     [HideInInspector] public Action OnEnemyDeath; // Acción para notificar la muerte del enemigo
 
@@ -75,7 +76,7 @@ public class Enemy : Entity, IEnemyStates
         
         ChangeToDeadState();
         
-        SetEnemyDead();
+        //SetEnemyDead();
     }
     
     public virtual void SetEnemyDead()

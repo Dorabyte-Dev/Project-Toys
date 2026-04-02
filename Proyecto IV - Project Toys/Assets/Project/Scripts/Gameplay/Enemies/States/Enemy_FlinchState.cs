@@ -9,28 +9,21 @@ public class Enemy_FlinchState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        /*enemy.agent.isStopped = true;
-        stateTimer = enemy.flinchTime;*/
         enemy.Flinch_Enter();
+        enemy.isFlinching = true;
+        //enemy._vfx.ResetPushFeedback();
     }
 
     public override void Update()
     {
         base.Update();
-        /*GetDistanceToPlayer();
-        if (enemy.health.currentHp <= 0)
-        {
-            enemy.DeadEntity();
-            return;
-        }
-        stateMachine.ChangeState(enemy.moveState);*/
         enemy.Flinch_Update();
     }
     public override void Exit()
     {
         base.Exit();
-        //enemy.agent.isStopped = false;
         enemy.Flinch_Exit();
+        enemy.isFlinching = false;
     }
 
 }

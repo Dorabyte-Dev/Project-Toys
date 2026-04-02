@@ -628,10 +628,12 @@ MonoBehaviour:
   enemyUI: {fileID: 0}
   canAttackByManager: 0
   isBeingExecuted: 0
+  isFlinching: 0
   detectPlayerRange: 10
-  attackPushBackStrength: 5
+  attackPushBackStrength: 10
   attackPushBackDuration: 0.5
   hasBorn: 0
+  testingMiniGolem: 0
 --- !u!195 &5229897746149430729
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -734,7 +736,8 @@ MonoBehaviour:
   feedbackColor: {r: 1, g: 1, b: 1, a: 1}
   feedbackDuration: 0.1
   pushStrength: 0.4
-  pushDuration: 0.2
+  pushWaitDuration: 0.2
+  pushStopThreeshold: 0.05
   dissolveRate: 0.0125
   refreshRate: 0.025
   shakeDuration: 0.2
