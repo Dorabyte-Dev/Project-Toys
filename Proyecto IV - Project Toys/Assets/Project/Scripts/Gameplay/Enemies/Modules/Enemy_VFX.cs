@@ -100,19 +100,21 @@ public class Enemy_VFX : Entity_VFX
             vfxGraph.Play();
         }
 
-        if (meshMaterials != null)
+        if (meshRenderer != null && meshMaterials.Count > 0)
         {
-            if (meshMaterials.Length > 0)
+            float currentDissolve = meshMaterials[0][0].GetFloat("_DissolveAmount");
+            while (currentDissolve < 1f)
             {
-                while(meshMaterials[0].GetFloat("_DissolveAmount") < 1f)
+                currentDissolve += dissolveRate;
+                for (int i = 0; i < meshMaterials.Count; i++)
                 {
-                    for (int i = 0; i < meshMaterials.Length; i++)
+                    for(int j = 0; j < meshMaterials[i].Length; j++)
                     {
-                        float currentDissolve = meshMaterials[i].GetFloat("_DissolveAmount");
-                        meshMaterials[i].SetFloat("_DissolveAmount", currentDissolve + dissolveRate);
+                        //currentDissolve = meshMaterials[i][j].GetFloat("_DissolveAmount");
+                        meshMaterials[i][j].SetFloat("_DissolveAmount", currentDissolve);
                     }
-                    yield return new WaitForSeconds(refreshRate);
                 }
+                yield return new WaitForSeconds(refreshRate);
             }
         }
         OnDissolveComplete?.Invoke();

@@ -4957,7 +4957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6822774812163247139, guid: ac5cf0c8d06ee4144b94982684de0437, type: 3}
       propertyPath: flinchDamageThreshold
-      value: 10
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7031622699892672212, guid: ac5cf0c8d06ee4144b94982684de0437, type: 3}
       propertyPath: refreshRate
@@ -6098,7 +6098,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 178967116288270642, guid: baea996769c743d42bccd6d6245a1419, type: 3}
       propertyPath: maxHp
-      value: 10000
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 178967116288270642, guid: baea996769c743d42bccd6d6245a1419, type: 3}
+      propertyPath: isDead
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 193348889928827071, guid: baea996769c743d42bccd6d6245a1419, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -2906,6 +2906,7 @@ MonoBehaviour:
   enemyUI: {fileID: 0}
   canAttackByManager: 0
   isBeingExecuted: 0
+  isFlinching: 0
   range: 5
   attackRange: 7.5
   waitTime: 2
@@ -2991,7 +2992,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ded6eb4f453b49b0b6981f5230d039fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_VFX
-  renderMesh: {fileID: 5977752689232595186}
+  renderMesh:
+  - {fileID: 5977752689232595186}
   vfxGraph: {fileID: 3433083734566245030}
   feedbackColor: {r: 1, g: 1, b: 1, a: 0}
   feedbackDuration: 0.5

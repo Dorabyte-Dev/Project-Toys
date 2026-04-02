@@ -12,7 +12,7 @@ public class Entity_VFX : MonoBehaviour
     
     [Header("--- Core Components ---")]
     
-    [SerializeField] protected Renderer renderMesh;
+    [SerializeField] protected Renderer[] renderMesh;
     [SerializeField] protected VisualEffect vfxGraph;
 
     [Header("--- Damage Flash (Color Change) ---")]
@@ -38,7 +38,7 @@ public class Entity_VFX : MonoBehaviour
     public float dissolveRate = 0.0125f;
     [Range(0.01f, 0.1f)] public float refreshRate = 0.025f;
 
-    protected Material[] meshMaterials;
+    protected List<Material[]> meshMaterials = new List<Material[]>();
 
     [Header("--- Entity Shake ---")]
     [SerializeField] private float shakeDuration = 0.2f;
@@ -52,9 +52,27 @@ public class Entity_VFX : MonoBehaviour
     protected virtual void Awake()
     {
         SaveOriginalMaterials();
-        if (renderMesh)
+        /*if (renderMesh[0] != null)
         {
-            meshMaterials = renderMesh.materials;
+            for (int i = 0; i < renderMesh.Length; i++)
+            {
+                if (renderMesh[i] == null) continue;
+                
+            }
+            //meshMaterials = renderMesh.materials;
+        }*/
+        SetMeshMaterials();
+    }
+
+    private void SetMeshMaterials()
+    {
+        if(renderMesh[0] != null)
+        {
+            for (int i = 0; i < renderMesh.Length; i++)
+            {
+                if (renderMesh[i] == null) continue;
+                meshMaterials.Add(renderMesh[i].materials);
+            }
         }
     }
 
