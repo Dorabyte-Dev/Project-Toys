@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
-using EasyTextEffects;
+//using EasyTextEffects;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -125,10 +125,10 @@ public class DialogueManager : MonoBehaviour
         cancelTyping = false;
         dialogueText.text = "";
         
-        if (dialogueText.TryGetComponent(out TextEffect effect))
+        /*if (dialogueText.TryGetComponent(out TextEffect effect))
         {
             effect.enabled = false;
-        }
+        }*/
 
         bool isTag = false;
         
@@ -165,10 +165,10 @@ public class DialogueManager : MonoBehaviour
             StartCoroutine(DelayEvent(sentence.sentenceEvent.timeOffset, sentence.sentenceEvent.uEvent));
         }
         
-        if (dialogueText.TryGetComponent(out TextEffect finalEffect))
+        /*if (dialogueText.TryGetComponent(out TextEffect finalEffect))
         {
             finalEffect.enabled = true;
-        }
+        }*/
 
         isTyping = false;
     }
