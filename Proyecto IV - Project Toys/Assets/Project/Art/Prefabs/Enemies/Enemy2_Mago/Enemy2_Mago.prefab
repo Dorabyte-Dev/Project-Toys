@@ -477,6 +477,7 @@ MonoBehaviour:
   enemyUI: {fileID: 0}
   canAttackByManager: 0
   isBeingExecuted: 0
+  isFlinching: 0
   projectilePrefab: {fileID: 2737077844218251050, guid: a99e0e69feab86f40bce4cf1fcdfec8f, type: 3}
   projectileSpawnPointCenter: {fileID: 1777695831401778634}
   detectionRadius: 11
@@ -490,7 +491,7 @@ MonoBehaviour:
   invokeProjectileSpeed: 1
   timeBetweenThrows: 0.5
   projectileTargetHeightOffset: 1.5
-  flinchTime: 1
+  flinchTime: 0.5
 --- !u!195 &6515892168992828423
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -570,8 +571,9 @@ MonoBehaviour:
   vfxGraph: {fileID: 2269003188219875084}
   feedbackColor: {r: 0, g: 0, b: 0, a: 0}
   feedbackDuration: 0
-  pushStrength: 0
-  pushDuration: 0
+  pushStrength: 5
+  pushWaitDuration: 0.2
+  pushStopThreeshold: 0.05
   dissolveRate: 0.0125
   refreshRate: 0.025
   shakeDuration: 1
@@ -674,8 +676,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.3768497, y: 2.2221327, z: 1.1945012}
-  m_Center: {x: -0.006095648, y: 0.6110666, z: -0.09725058}
+  m_Size: {x: 1.3768497, y: 1.5337543, z: 1.1945012}
+  m_Center: {x: -0.006095648, y: 0.95525575, z: -0.09725058}
 --- !u!54 &5358938451419376865
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -698,10 +700,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!1 &2110698950449807416
 GameObject:

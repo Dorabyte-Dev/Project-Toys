@@ -925,6 +925,7 @@ MonoBehaviour:
   enemyUI: {fileID: 0}
   canAttackByManager: 0
   isBeingExecuted: 0
+  isFlinching: 0
   flinchDamageThreshold: 300
   miniGolemSpawnRadius: 5
   miniGolemJumpPower: 4
@@ -996,8 +997,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5, y: 3.652099, z: 2.5430155}
-  m_Center: {x: -0, y: 1.7071644, z: -0.027002573}
+  m_Size: {x: 5, y: 3.1216338, z: 2.5430155}
+  m_Center: {x: -0, y: 1.972397, z: -0.027002573}
 --- !u!54 &3100593944138586762
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1020,10 +1021,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &3333493791354709931
 MonoBehaviour:
@@ -1083,7 +1084,8 @@ MonoBehaviour:
   feedbackColor: {r: 1, g: 1, b: 1, a: 0}
   feedbackDuration: 0.5
   pushStrength: 0
-  pushDuration: 0
+  pushWaitDuration: 0
+  pushStopThreeshold: 0.05
   dissolveRate: 0.0125
   refreshRate: 0.025
   shakeDuration: 1
