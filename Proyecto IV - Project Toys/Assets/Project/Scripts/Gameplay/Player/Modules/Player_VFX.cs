@@ -39,7 +39,7 @@ public class Player_VFX : Entity_VFX
 	protected override IEnumerator PushFeedback(Vector3 direction)
 	{
 		float elapsed = 0f;
-		while (elapsed < pushDuration)
+		while (elapsed < pushWaitDuration)
 		{
 			player.ch.Move(direction * pushStrength * Time.unscaledDeltaTime);
 			elapsed += Time.unscaledDeltaTime;
