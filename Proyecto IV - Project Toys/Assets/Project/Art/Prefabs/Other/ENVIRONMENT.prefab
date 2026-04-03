@@ -169,6 +169,40 @@ Transform:
   - {fileID: 8423453412520576307}
   m_Father: {fileID: 8567239547451008473}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2811650742978777202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 79986466419350093}
+  m_Layer: 0
+  m_Name: HEALS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &79986466419350093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2811650742978777202}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2035149802289003222}
+  - {fileID: 2267119675868225784}
+  - {fileID: 7491893627349801350}
+  m_Father: {fileID: 1751351422918693921}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2923721743614473627
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,7 +558,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7360685152717302933}
   m_Layer: 0
-  m_Name: DestructibleObjects
+  m_Name: DESTRUCTIBLES
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -614,9 +648,8 @@ Transform:
   - {fileID: 8659958957310121598}
   - {fileID: 2143249349324236852}
   - {fileID: 7360685152717302933}
-  - {fileID: 2035149802289003222}
-  - {fileID: 2267119675868225784}
-  - {fileID: 7491893627349801350}
+  - {fileID: 79986466419350093}
+  - {fileID: 3446144188905331248}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6807167362956834080
@@ -694,6 +727,37 @@ Transform:
   - {fileID: 1159354936126590672}
   - {fileID: 4483913198402305151}
   m_Father: {fileID: 8893548471437490406}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8930500354990908205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3446144188905331248}
+  m_Layer: 0
+  m_Name: ANIMATED_OBJECTS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3446144188905331248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8930500354990908205}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1751351422918693921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &9585021933132066
 PrefabInstance:
@@ -4025,7 +4089,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1751351422918693921}
+    m_TransformParent: {fileID: 79986466419350093}
     m_Modifications:
     - target: {fileID: 4994286362649946211, guid: 6e2ef8d956e92fa4999e89f8b899a21b, type: 3}
       propertyPath: m_Name
@@ -8097,7 +8161,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1751351422918693921}
+    m_TransformParent: {fileID: 79986466419350093}
     m_Modifications:
     - target: {fileID: 4994286362649946211, guid: 6e2ef8d956e92fa4999e89f8b899a21b, type: 3}
       propertyPath: m_Name
@@ -8159,7 +8223,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1751351422918693921}
+    m_TransformParent: {fileID: 79986466419350093}
     m_Modifications:
     - target: {fileID: 4994286362649946211, guid: 6e2ef8d956e92fa4999e89f8b899a21b, type: 3}
       propertyPath: m_Name

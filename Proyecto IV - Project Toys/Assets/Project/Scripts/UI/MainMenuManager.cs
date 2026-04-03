@@ -142,7 +142,7 @@ public class MenuManager : MonoBehaviour
 
     public void PlayGame()
     {
-        Fader.Instance.FadeToScene("Game");
+        Fader.Instance.FadeToScene("Game2.0");
     }
 
     public void OpenOptions()

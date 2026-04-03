@@ -23,7 +23,7 @@ public class Fader : MonoBehaviour
         {
             SceneManager.LoadScene(sceneName);
             SceneManager.LoadScene("PostProcesado_Iluminacion", LoadSceneMode.Additive);
-            SceneManager.LoadScene("Game_Logic&Cameras", LoadSceneMode.Additive);
+            SceneManager.LoadScene("Logic2.0", LoadSceneMode.Additive);
         });
     }
 }
