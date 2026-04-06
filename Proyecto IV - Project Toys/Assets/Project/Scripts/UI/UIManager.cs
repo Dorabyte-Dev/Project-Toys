@@ -1,6 +1,7 @@
 using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -49,6 +50,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public GameObject pausePanel;
+    public static bool gameIsPaused;
+    [SerializeField] private string mainMenuString = "MainMenu";
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -67,13 +72,49 @@ public class UIManager : MonoBehaviour
         }
         curtainInstance = curtain;
         curtainInstance.material.SetFloat("_MaskScale", 1f);
+        pausePanel.SetActive(false);
     }
 
     private void Update()
     {
         HealthBarFillAmount = player.GetCurrentHealth() / player.GetMaxHealth();
+        if (player.input.Menu.ESC.WasPressedThisFrame())
+        {
+            if (gameIsPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+    }
+
+    private void PauseGame()
+    {
+        gameIsPaused = true;
+        Time.timeScale = 0f;
+        pausePanel.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        gameIsPaused = false;
+        Time.timeScale = 1f;
+        pausePanel.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
     
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(mainMenuString);
+    }
+
     public static void CloseCurtain(Action onComplete = null)
     {
         curtainInstance.material.DOFloat(0,"_MaskScale", 1f).SetEase(Ease.InOutQuad).OnComplete(() =>
