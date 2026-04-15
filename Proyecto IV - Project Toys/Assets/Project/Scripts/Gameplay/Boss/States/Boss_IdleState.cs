@@ -14,6 +14,10 @@ public class Boss_IdleState : BossState
     public override void Update()
     {
         base.Update();
+        if (boss.player)
+        {
+            boss.ChangeBossState(boss.attackState);
+        }
     }
 
     public override void Exit()

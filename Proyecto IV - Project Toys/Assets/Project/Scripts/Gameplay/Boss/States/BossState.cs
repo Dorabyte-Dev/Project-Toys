@@ -11,19 +11,4 @@ public class BossState : EntityState
         
         anim = boss.anim;
     }
-
-    public void RandomAttackState()
-    {
-        int randomAttack = Random.Range(0, 2);
-        if (randomAttack == 0)
-        {
-            //Cambiar al estado de ataque a distancia
-            boss.ChangeBossState(boss.rangedAttackState);
-        }
-        else
-        {
-            //Cambiar al estado de ataque cuerpo a cuerpo
-            boss.ChangeBossState(boss.meleeAttackState);
-        }
-    }
 }

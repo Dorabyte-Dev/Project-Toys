@@ -9,6 +9,13 @@ public class Boss_SpawnEnemiesState : BossState
     public override void Enter()
     {
         base.Enter();
+        if(boss.enemySpawner == null)
+        {
+            Debug.LogError("Boss_SpawnEnemiesState: Boss does not have an EnemySpawner component.");
+            boss.ChangeBossState(boss.idleState);
+            return;
+        }
+        
     }
 
     public override void Update()
