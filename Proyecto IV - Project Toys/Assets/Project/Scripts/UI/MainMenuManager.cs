@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using DG.Tweening;
+using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 
 public class MenuManager : MonoBehaviour
 {
@@ -21,6 +24,14 @@ public class MenuManager : MonoBehaviour
     private float lastNavigationTime;
     private bool canNavigate = true;
     private bool isSelecting = false;
+    
+    [Header("Options UI")]
+    [SerializeField] private Slider volumeSlider;
+    [SerializeField] private Slider brightnessSlider;
+    
+    [Header("Post Processing")]
+    [SerializeField] private Volume globalVolume;
+    private Exposure exposure;
 
     private void Awake()
     {
@@ -31,6 +42,23 @@ public class MenuManager : MonoBehaviour
         if (menuElements.Length > 0)
         {
             UpdateMenuVisuals();
+        }
+        
+        if (volumeSlider != null)
+        {
+            volumeSlider.value = AudioListener.volume;
+            volumeSlider.onValueChanged.AddListener(SetVolume);
+        }
+
+        if (brightnessSlider != null)
+        {
+            brightnessSlider.value = 1f;
+            brightnessSlider.onValueChanged.AddListener(SetBrightness);
+        }
+        
+        if (globalVolume != null && globalVolume.profile.TryGet(out exposure))
+        {
+            brightnessSlider.value = exposure.fixedExposure.value;
         }
     }
     
@@ -174,4 +202,20 @@ public class MenuManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    #region UI Options
+    private void SetVolume(float value)
+    {
+        AudioListener.volume = value;
+    }
+    public void SetBrightness(float value)
+    {
+        if (exposure != null)
+        {
+            exposure.mode.value = ExposureMode.Fixed;
+            exposure.fixedExposure.value = value;
+        }
+    }
+
+    #endregion
 }

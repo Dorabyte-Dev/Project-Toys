@@ -30,6 +30,7 @@ public class TVScreenManager : MonoBehaviour
     private Vector3 startPosition;
     private Quaternion startRotation;
     private bool isOpen = false;
+    private float brightnessMultiplier = 1f;
 
     private void Awake()
     {
@@ -133,7 +134,7 @@ public class TVScreenManager : MonoBehaviour
             flickerTime += Time.deltaTime * 5f;
             
             float flicker = Mathf.PerlinNoise(flickerTime, 0f);
-            float intensity = 1.5f + flicker * 1.5f;
+            float intensity = (1.5f + flicker * 1.5f) * brightnessMultiplier;
     
             tvScreenMaterial.EnableKeyword("_EMISSION");
             tvScreenMaterial.SetFloat("_EmissiveIntensity", intensity);
@@ -142,4 +143,6 @@ public class TVScreenManager : MonoBehaviour
             tvScreenMaterial.SetColor("_EmissiveColor", finalColor);
         }
     }
+    
+    
 }
