@@ -11,6 +11,7 @@ public class BlockButton : MonoBehaviour
     public float shakeIntensity = 0.05f;
     public int hitsToBreak = 3;
     public Renderer renderer;
+    private GameObject brokenInstance;
 
     private int currentHits = 0;
 
@@ -36,7 +37,7 @@ public class BlockButton : MonoBehaviour
         // Vibración
         Shake();
 
-        // Part�culas
+        // Partículas
         /*if (hitParticles != null)
             hitParticles.Play();*/
 
@@ -55,15 +56,29 @@ public class BlockButton : MonoBehaviour
 
     private void BreakBlock()
     {
+        // Instanciar bloque roto
         GameObject broken = Instantiate(brokenPrefab, transform.position, transform.rotation);
 
         // Copiar escala del bloque original
         broken.transform.localScale = transform.localScale;
 
-        DestroyBlock?.Invoke();
-        //Fader.Instance.FadeToScene("Game");
+        // Ocultar el bloque original
+        gameObject.SetActive(false);
 
-        Destroy(gameObject);
-        
+        DestroyBlock?.Invoke();
+
+        // Guardar referencia para poder resetear
+        brokenInstance = broken;
+    }
+
+    public void ResetBlock()
+    {
+        if (brokenInstance != null)
+        {
+            Destroy(brokenInstance);
+            brokenInstance = null;
+        }
+        currentHits = 0;
+        gameObject.SetActive(true);
     }
 }

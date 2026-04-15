@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class MenuManager : MonoBehaviour
 {
-    
+    [SerializeField] private TVScreenManager tvController;
     public PlayerInputSystem input { get; private set; }
     public Vector2 moveInput { get; private set; }
     
@@ -19,6 +20,7 @@ public class MenuManager : MonoBehaviour
     private int currentIndex = 0;
     private float lastNavigationTime;
     private bool canNavigate = true;
+    private bool isSelecting = false;
 
     private void Awake()
     {
@@ -68,16 +70,17 @@ public class MenuManager : MonoBehaviour
             return;
 
         Vector2 navInput = context.ReadValue<Vector2>();
-        
-        if (Mathf.Abs(navInput.x) > joystickThreshold)
+        Debug.Log($"Navigate input: {navInput}");
+
+        if (Mathf.Abs(navInput.y) > joystickThreshold)
         {
-            if (navInput.x > joystickThreshold) // Arriba
+            if (navInput.y > joystickThreshold) // Arriba
             {
                 currentIndex--;
                 if (currentIndex < 0)
                     currentIndex = menuElements.Length - 1;
             }
-            else if (navInput.x < -joystickThreshold) // Abajo
+            else if (navInput.y < -joystickThreshold) // Abajo
             {
                 currentIndex++;
                 if (currentIndex >= menuElements.Length)
@@ -125,6 +128,7 @@ public class MenuManager : MonoBehaviour
                         materials.RemoveAt(1);
                         menuElements[i].renderer.SetMaterials(materials);
                     }
+
                 }
                 // Por ahora solo activa/desactiva, puedes personalizar esto
                 //menuElements[i].SetActive(i == currentIndex);
@@ -134,10 +138,19 @@ public class MenuManager : MonoBehaviour
 
     private void SelectCurrentElement()
     {
-        if (menuElements[currentIndex] != null)
-        {
-            menuElements[currentIndex].BlockHit();
-        }
+        if (isSelecting) return;
+        if (menuElements[currentIndex] == null) return;
+
+        isSelecting = true;
+        //menuElements[currentIndex].BlockHit();
+        // Añadimos un log para debug
+        Debug.Log("Block hit: " + menuElements[currentIndex].name);
+        ResetSelectionLock();
+    }
+    
+    public void ResetSelectionLock()
+    {
+        isSelecting = false;
     }
 
     public void PlayGame()
@@ -147,7 +160,14 @@ public class MenuManager : MonoBehaviour
 
     public void OpenOptions()
     {
-        // Aquí abrirás tu menú de opciones
+        if (tvController != null)
+        {
+            tvController.OpenOptionsTV();
+
+            // Desactivamos el script de navegación de bloques para que el mando
+            // deje de mover el "foco" de los bloques físicos y pase a la UI
+            this.enabled = false;
+        }
     }
 
     public void ExitGame()
