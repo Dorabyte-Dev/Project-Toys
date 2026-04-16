@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class Boss : Entity
 {
     #region States
-    public Boss_IdleState idleState;
+    public Boss_BaseState baseState;
     public Boss_PursuitState pursuitState;
     public Boss_WeakState weakState;
     public Boss_SpawnEnemiesState spawnEnemiesState;
@@ -35,6 +35,7 @@ public class Boss : Entity
     
     #region Settings
     [Header("Boss Settings")]
+    public int numberOfPhases = 3;
     public float bossCanBeExecutedHpThreshold = 20f;
     
     public float timeInWeakState = 10f;
@@ -43,7 +44,7 @@ public class Boss : Entity
     protected override void Awake()
     {
         base.Awake();
-        idleState = new Boss_IdleState(this, stateMachine, "idle");
+        baseState = new Boss_BaseState(this, stateMachine, "base");
         pursuitState = new Boss_PursuitState(this, stateMachine, "pursuit");
         weakState = new Boss_WeakState(this, stateMachine, "weak");
         spawnEnemiesState = new Boss_SpawnEnemiesState(this, stateMachine, "spawnEnemies");
@@ -57,7 +58,7 @@ public class Boss : Entity
     protected override void Start()
     {
         base.Start();
-        stateMachine.Initialize(idleState);
+        stateMachine.Initialize(baseState);
     }
 
     protected override void Update()
