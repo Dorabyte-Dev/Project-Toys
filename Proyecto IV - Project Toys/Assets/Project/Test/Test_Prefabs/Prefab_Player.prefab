@@ -5971,7 +5971,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8967661466002370236, guid: de4f754d687204f4598bf6399d0792e4, type: 3}
+  - {fileID: 2100000, guid: e1c0e6ddf666f334dbe238b7b16d88f6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13060,7 +13060,7 @@ MonoBehaviour:
   entity: {fileID: 0}
   vfx: {fileID: 0}
   currentHp: 0
-  maxHp: 400
+  maxHp: 480
   isDead: 0
   invincibleMode: 0
   healAmount: 0
@@ -13156,12 +13156,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eeaf5629df44249abd8197a01283e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_VFX
-  renderMesh: {fileID: 0}
+  renderMesh:
+  - {fileID: 0}
   vfxGraph: {fileID: 0}
   feedbackColor: {r: 0, g: 0, b: 0, a: 0}
   feedbackDuration: 0
   pushStrength: 0.4
-  pushDuration: 0.2
+  pushWaitDuration: 0.2
+  pushStopThreeshold: 0.05
   dissolveRate: 0.0125
   refreshRate: 0.025
   shakeDuration: 1
