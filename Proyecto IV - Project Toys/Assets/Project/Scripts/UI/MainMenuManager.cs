@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using DG.Tweening;
+using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
@@ -28,6 +29,7 @@ public class MenuManager : MonoBehaviour
     [Header("Options UI")]
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private Slider brightnessSlider;
+    [SerializeField] private TMP_Dropdown screenModeDropdown;
     
     [Header("Post Processing")]
     [SerializeField] private Volume globalVolume;
@@ -62,6 +64,11 @@ public class MenuManager : MonoBehaviour
             brightnessSlider.value = exposure.fixedExposure.value;
         }
         
+        if (screenModeDropdown != null)
+        {
+            screenModeDropdown.value = Screen.fullScreenMode == FullScreenMode.ExclusiveFullScreen ? 0 : 1;
+            screenModeDropdown.onValueChanged.AddListener(SetScreenMode);
+        }
     }
     
     private void OnEnable()
@@ -216,6 +223,20 @@ public class MenuManager : MonoBehaviour
         if (globalLight != null)
         {
             globalLight.intensity = value;
+        }
+    }
+
+    public void SetScreenMode(int arg0)
+    {
+        if (arg0 == 0)
+        {
+            Screen.fullScreenMode = FullScreenMode.Windowed;
+            Debug.Log("Set to Windowed");
+        }
+        else
+        {
+            Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+            Debug.Log("Set to Exclusive Full Screen");
         }
     }
 
