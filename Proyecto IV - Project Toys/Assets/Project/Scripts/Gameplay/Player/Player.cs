@@ -175,11 +175,13 @@ public class Player : Entity
         {
             executionCameraManager = GetComponentInChildren<ExecutionCameraManager>();
         }
-
+        
+        PlayerReference.RegisterPlayer(this.transform);
     }
     protected override void Start()
     {
         base.Start();
+        
         stateMachine.Initialize(idleState);
         SetComboBar();
         if (cam == null)
