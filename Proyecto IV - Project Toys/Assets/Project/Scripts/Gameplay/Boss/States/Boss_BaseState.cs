@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Boss_IdleState : BossState
+public class Boss_BaseState : BossState
 {
-    public Boss_IdleState(Boss boss, StateMachine stateMachine, string animBoolName) : base(boss, stateMachine, animBoolName)
+    public Boss_BaseState(Boss boss, StateMachine stateMachine, string animBoolName) : base(boss, stateMachine, animBoolName)
     {
     }
 
