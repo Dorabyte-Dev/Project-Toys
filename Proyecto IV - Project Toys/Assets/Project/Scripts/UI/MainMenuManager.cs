@@ -179,9 +179,6 @@ public class MenuManager : MonoBehaviour
         if (menuElements[currentIndex] == null) return;
 
         isSelecting = true;
-        //menuElements[currentIndex].BlockHit();
-        // Añadimos un log para debug
-        Debug.Log("Block hit: " + menuElements[currentIndex].name);
         ResetSelectionLock();
     }
     
@@ -231,12 +228,10 @@ public class MenuManager : MonoBehaviour
         if (arg0 == 0)
         {
             Screen.fullScreenMode = FullScreenMode.Windowed;
-            Debug.Log("Set to Windowed");
         }
         else
         {
             Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
-            Debug.Log("Set to Exclusive Full Screen");
         }
     }
 
