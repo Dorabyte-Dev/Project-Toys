@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
-
+[RequireComponent(typeof(NavMeshAgent),typeof(Boss_AnimationTriggers), typeof(Boss_Health))]
+[RequireComponent(typeof(Boss_Combat))]
 public class Boss : Entity
 {
     #region States
