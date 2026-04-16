@@ -31,6 +31,7 @@ public class MenuManager : MonoBehaviour
     
     [Header("Post Processing")]
     [SerializeField] private Volume globalVolume;
+    [SerializeField] private HDAdditionalLightData globalLight;
     private Exposure exposure;
 
     private void Awake()
@@ -60,6 +61,7 @@ public class MenuManager : MonoBehaviour
         {
             brightnessSlider.value = exposure.fixedExposure.value;
         }
+        
     }
     
     private void OnEnable()
@@ -191,10 +193,6 @@ public class MenuManager : MonoBehaviour
         if (tvController != null)
         {
             tvController.OpenOptionsTV();
-
-            // Desactivamos el script de navegación de bloques para que el mando
-            // deje de mover el "foco" de los bloques físicos y pase a la UI
-            this.enabled = false;
         }
     }
 
@@ -214,6 +212,10 @@ public class MenuManager : MonoBehaviour
         {
             exposure.mode.value = ExposureMode.Fixed;
             exposure.fixedExposure.value = value;
+        }
+        if (globalLight != null)
+        {
+            globalLight.intensity = value;
         }
     }
 
