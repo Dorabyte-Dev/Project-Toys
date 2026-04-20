@@ -28,6 +28,8 @@ public class SeeThroughWallManager : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private bool isObstructed;
     [SerializeField] private bool enableShader = true; // Añade esto
+    public float debugCutoutSize = 0f; // Para mostrar el tamaño actual del cutout en el Inspector
+    public Vector2 debugCutoutPosition = Vector2.zero;
     
 
     private float currentCutoutSize = 0f;
@@ -60,12 +62,15 @@ public class SeeThroughWallManager : MonoBehaviour
         float resY = screenPoint.y / Screen.height;
 
         float aspect = (float)Screen.width / (float)Screen.height;
+        screenAspect = aspect; // Para mostrar el aspecto actual en el Inspector
         Vector2 cutoutPos = new Vector2(resX * aspect, resY);
+        debugCutoutPosition = cutoutPos; // Para mostrar la posición actual del cutout en el Inspector
 
         // 3. Animación
         float targetSize = isObstructed ? maxCutoutSize : 0f;
         float speed = isObstructed ? smoothSpeedIn : smoothSpeedOut;
         currentCutoutSize = Mathf.Lerp(currentCutoutSize, targetSize, Time.deltaTime * speed);
+        debugCutoutSize = currentCutoutSize;
 
         // 4. Envío de datos
         if (!isObstructed && currentCutoutSize < 0.001f)
@@ -93,7 +98,16 @@ public class SeeThroughWallManager : MonoBehaviour
         foreach (Vector3 pt in checkPoints)
         {
             Vector3 dir = pt - camPos;
-            if (Physics.Raycast(camPos, dir, dir.magnitude - raycastEndOffset, wallMask)) return true;
+            
+            if (Physics.Raycast(camPos, dir, dir.magnitude - raycastEndOffset, wallMask))
+            {
+                Debug.DrawRay(camPos, dir, Color.red);
+                return true;
+            }
+            else
+            {
+                Debug.DrawRay(camPos, dir, Color.green);
+            }
         }
         return false;
     }
