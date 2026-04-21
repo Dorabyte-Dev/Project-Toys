@@ -29,7 +29,10 @@ public class MenuManager : MonoBehaviour
     [Header("Options UI")]
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private Slider brightnessSlider;
-    [SerializeField] private TMP_Dropdown screenModeDropdown;
+    [SerializeField] private Toggle fullscreenModeToggle;
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
+    private Resolution[] resolutions;
+    [SerializeField] private TMP_Dropdown qualityDropdown;
     
     [Header("Post Processing")]
     [SerializeField] private Volume globalVolume;
@@ -64,11 +67,14 @@ public class MenuManager : MonoBehaviour
             brightnessSlider.value = exposure.fixedExposure.value;
         }
         
-        if (screenModeDropdown != null)
-        {
-            screenModeDropdown.value = Screen.fullScreenMode == FullScreenMode.ExclusiveFullScreen ? 0 : 1;
-            screenModeDropdown.onValueChanged.AddListener(SetScreenMode);
-        }
+        
+        //Inicializadores de opciones
+        if (resolutionDropdown != null)
+            InitResolution();
+        if (qualityDropdown != null)
+            InitQuality();
+        if (fullscreenModeToggle != null)
+            InitFullscreen();
     }
     
     private void OnEnable()
@@ -222,17 +228,64 @@ public class MenuManager : MonoBehaviour
             globalLight.intensity = value;
         }
     }
-
-    public void SetScreenMode(int arg0)
+    
+    private void InitFullscreen()
     {
-        if (arg0 == 0)
+        fullscreenModeToggle.isOn = Screen.fullScreen;
+        fullscreenModeToggle.onValueChanged.AddListener(SetFullscreen);
+    }
+    private void SetFullscreen(bool isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen;
+    }
+    
+    private void InitQuality()
+    {
+        qualityDropdown.ClearOptions();
+    
+        // Coge los nombres de calidad de Unity
+        List<string> options = new List<string>(QualitySettings.names);
+        qualityDropdown.AddOptions(options);
+    
+        // Selecciona el nivel actual
+        qualityDropdown.value = QualitySettings.GetQualityLevel();
+        qualityDropdown.onValueChanged.AddListener(SetQuality);
+    }
+    private void SetQuality(int index)
+    {
+        QualitySettings.SetQualityLevel(index);
+    }
+    
+    private void InitResolution()
+    {
+        resolutions = Screen.resolutions;
+        resolutionDropdown.ClearOptions();
+
+        List<string> options = new List<string>();
+        int currentIndex = 0;
+
+        for (int i = 0; i < resolutions.Length; i++)
         {
-            Screen.fullScreenMode = FullScreenMode.Windowed;
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            options.Add(option);
+
+            // Detecta la resolución actual
+            if (resolutions[i].width == Screen.currentResolution.width &&
+                resolutions[i].height == Screen.currentResolution.height)
+            {
+                currentIndex = i;
+            }
         }
-        else
-        {
-            Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
-        }
+
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = currentIndex;
+        resolutionDropdown.onValueChanged.AddListener(SetResolution);
+    }
+
+    private void SetResolution(int index)
+    {
+        Resolution res = resolutions[index];
+        Screen.SetResolution(res.width, res.height, Screen.fullScreen);
     }
 
     #endregion
