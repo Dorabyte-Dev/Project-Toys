@@ -5,7 +5,9 @@ public class Proyectil : MonoBehaviour
 {
     public enum ProjectileType
     {
-        V1
+        Enemy2Projectile,
+        BossSlam,
+        BossPencil
     }
     public ProjectileType projectileType;
     private Rigidbody _rb;
@@ -29,8 +31,13 @@ public class Proyectil : MonoBehaviour
         {
             switch (projectileType)
             {
-                case ProjectileType.V1:
+                case ProjectileType.Enemy2Projectile:
                     _rb.MovePosition(transform.position + direction * (speed * Time.deltaTime));
+                    break;
+                case ProjectileType.BossSlam:
+                    _rb.MovePosition(transform.position + direction * (speed * Time.deltaTime));
+                    break;
+                case ProjectileType.BossPencil:
                     break;
                 default:
                 Debug.LogWarning("La vida de un crítico es sencilla en muchos aspectos." +

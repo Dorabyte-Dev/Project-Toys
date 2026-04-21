@@ -25,6 +25,7 @@ public class Boss : Entity
     #region Conditions
     [HideInInspector]public bool canBeDamaged;
     [HideInInspector]public bool canBeExecuted;
+    [HideInInspector]public bool isAttacking;
     #endregion
 
     #region Player Reference
@@ -36,11 +37,19 @@ public class Boss : Entity
     [Tooltip("Es OBLIGATORIO tener un spawner de enemigos para que pueda invocar enemigos el boss")]public EnemySpawner enemySpawner;
     [Tooltip("El centro de la arena donde se va a mover el boss tras recuperarse")]public Transform arenaCenterTransform;
     #endregion
+
+    #region Prefabs
+    [Header("Prefabs")] 
+    public GameObject slamObjPrefab;
+    public GameObject pencilObjPrefab;
+    #endregion
     
     #region Settings
     [Header("Boss Settings")]
     public int maxAttacksBeforeChargeAttack = 3;
     public float bossCanBeExecutedHpThreshold = 20f;
+    
+    public float slamSpeed = 10f;
     
     public float timeInWeakState = 10f;
     public float timeInIdle = 4f;
@@ -100,5 +109,24 @@ public class Boss : Entity
     {
         stateMachine.ChangeState(newState);
     }
+    
+    #region Various Methods
+    public void InstantiateSlamAttack()
+    {
+        GameObject slamInstance = Instantiate(slamObjPrefab, transform.position, Quaternion.identity);
+        Proyectil slamProyectil = slamInstance.GetComponent<Proyectil>();
+        if (slamProyectil != null)
+        {
+            isAttacking = false;
+            slamProyectil.Release();
+            slamProyectil.direction = (playerTransform.position - transform.position).normalized;
+            slamProyectil.speed = slamSpeed;
+        }
+        else
+        {
+            Debug.LogError("The instantiated slam attack does not have a Proyectil component.");
+        }
+    }
+    #endregion
     
 }

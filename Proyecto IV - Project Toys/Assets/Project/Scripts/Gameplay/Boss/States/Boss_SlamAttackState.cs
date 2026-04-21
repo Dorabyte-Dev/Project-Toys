@@ -9,11 +9,17 @@ public class Boss_SlamAttackState : BossState
     public override void Enter()
     {
         base.Enter();
+        stateTimer = 3f;
+        boss.isAttacking = true;
     }
 
     public override void Update()
     {
         base.Update();
+        if (stateTimer <= 0 && !boss.isAttacking)
+        {
+            stateMachine.ChangeState(boss.baseState);
+        }
     }
 
     public override void Exit()

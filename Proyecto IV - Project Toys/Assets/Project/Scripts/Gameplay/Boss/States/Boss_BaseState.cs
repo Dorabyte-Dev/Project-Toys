@@ -15,7 +15,8 @@ public class Boss_BaseState : BossState
     public override void Enter()
     {
         base.Enter();
-        randomAttackIndex = GetRandomAttackIndex();
+        //randomAttackIndex = GetRandomAttackIndex();
+        randomAttackIndex = 3;
         stateTimer = boss.timeInIdle;
     }
 
@@ -27,12 +28,15 @@ public class Boss_BaseState : BossState
         {
             case 1:
                 boss.ChangeBossState(boss.chargeAttackState);
+                Debug.Log("Boss_BaseState: Changing to ChargeAttackState");
                 break;
             case 2:
                 boss.ChangeBossState(boss.pencilAttackState);
+                Debug.Log("Boss_BaseState: Changing to PencilAttackState");
                 break;
             case 3:
                 boss.ChangeBossState(boss.slamAttackState);
+                Debug.Log("Boss_BaseState: Changing to SlamAttackState");
                 break;
         }
     }

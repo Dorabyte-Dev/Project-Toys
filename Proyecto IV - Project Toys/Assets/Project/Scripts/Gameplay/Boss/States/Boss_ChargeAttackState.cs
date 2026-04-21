@@ -24,5 +24,6 @@ public class Boss_ChargeAttackState : BossState
     public override void Exit()
     {
         base.Exit();
+        Debug.Log("Boss finished charge attack.");
     }
 }

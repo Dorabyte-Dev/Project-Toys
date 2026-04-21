@@ -9,11 +9,16 @@ public class Boss_PencilAttackState : BossState
     public override void Enter()
     {
         base.Enter();
+        stateTimer = 3f;
     }
 
     public override void Update()
     {
         base.Update();
+        if (stateTimer <= 0)
+        {
+            stateMachine.ChangeState(boss.baseState);
+        }
     }
 
     public override void Exit()
