@@ -50,9 +50,16 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    [Header("Pause Menu")]
     public GameObject pausePanel;
+    public Button optionsbackButton;
     public static bool gameIsPaused;
     [SerializeField] private string mainMenuString = "MainMenu";
+    
+    [Header("Options Panel")]
+    [SerializeField] private GameObject optionsPanel;
+    [SerializeField] private CanvasGroup optionsPanelGroup;
+    [SerializeField] private RectTransform optionsPanelRect;
 
     private void Awake()
     {
@@ -73,6 +80,9 @@ public class UIManager : MonoBehaviour
         curtainInstance = curtain;
         curtainInstance.material.SetFloat("_MaskScale", 1f);
         pausePanel.SetActive(false);
+        optionsPanel.SetActive(false);
+        optionsbackButton.onClick.AddListener(CloseOptions);
+        
     }
 
     private void Update()
@@ -135,5 +145,42 @@ public class UIManager : MonoBehaviour
     public void OnDisable()
     {
         curtainInstance.material.SetFloat("_MaskScale", 1f);
+    }
+    
+    public void OpenOptions()
+    {
+        optionsPanel.SetActive(true);
+        pausePanel.SetActive(false);
+
+        optionsPanelGroup.alpha = 0f;
+        optionsPanelRect.anchoredPosition = new Vector2(0, -50f);
+
+        optionsPanelGroup
+            .DOFade(1f, 0.3f)
+            .SetUpdate(true);
+
+        optionsPanelRect
+            .DOAnchorPos(Vector2.zero, 0.3f)
+            .SetEase(Ease.OutBack)
+            .SetUpdate(true);
+
+        if (OptionsManager.Instance != null)
+            OptionsManager.Instance.Init();
+    }
+
+    private void CloseOptions()
+    {
+        optionsPanelGroup
+            .DOFade(0f, 0.2f)
+            .SetUpdate(true);
+
+        optionsPanelRect
+            .DOAnchorPos(new Vector2(0, -50f), 0.2f)
+            .SetUpdate(true)
+            .OnComplete(() =>
+            {
+                optionsPanel.SetActive(false);
+                pausePanel.SetActive(true);
+            });
     }
 }

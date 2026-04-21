@@ -26,18 +26,6 @@ public class MenuManager : MonoBehaviour
     private bool canNavigate = true;
     private bool isSelecting = false;
     
-    [Header("Options UI")]
-    [SerializeField] private Slider volumeSlider;
-    [SerializeField] private Slider brightnessSlider;
-    [SerializeField] private Toggle fullscreenModeToggle;
-    [SerializeField] private TMP_Dropdown resolutionDropdown;
-    private Resolution[] resolutions;
-    [SerializeField] private TMP_Dropdown qualityDropdown;
-    
-    [Header("Post Processing")]
-    [SerializeField] private Volume globalVolume;
-    [SerializeField] private HDAdditionalLightData globalLight;
-    private Exposure exposure;
 
     private void Awake()
     {
@@ -45,36 +33,14 @@ public class MenuManager : MonoBehaviour
     }
     private void Start()
     {
+        if (OptionsManager.Instance != null)
+            OptionsManager.Instance.Init();
+        
         if (menuElements.Length > 0)
         {
             UpdateMenuVisuals();
         }
         
-        if (volumeSlider != null)
-        {
-            volumeSlider.value = AudioListener.volume;
-            volumeSlider.onValueChanged.AddListener(SetVolume);
-        }
-
-        if (brightnessSlider != null)
-        {
-            brightnessSlider.value = 1f;
-            brightnessSlider.onValueChanged.AddListener(SetBrightness);
-        }
-        
-        if (globalVolume != null && globalVolume.profile.TryGet(out exposure))
-        {
-            brightnessSlider.value = exposure.fixedExposure.value;
-        }
-        
-        
-        //Inicializadores de opciones
-        if (resolutionDropdown != null)
-            InitResolution();
-        if (qualityDropdown != null)
-            InitQuality();
-        if (fullscreenModeToggle != null)
-            InitFullscreen();
     }
     
     private void OnEnable()
@@ -210,83 +176,4 @@ public class MenuManager : MonoBehaviour
     {
         Application.Quit();
     }
-
-    #region UI Options
-    private void SetVolume(float value)
-    {
-        AudioListener.volume = value;
-    }
-    public void SetBrightness(float value)
-    {
-        if (exposure != null)
-        {
-            exposure.mode.value = ExposureMode.Fixed;
-            exposure.fixedExposure.value = value;
-        }
-        if (globalLight != null)
-        {
-            globalLight.intensity = value;
-        }
-    }
-    
-    private void InitFullscreen()
-    {
-        fullscreenModeToggle.isOn = Screen.fullScreen;
-        fullscreenModeToggle.onValueChanged.AddListener(SetFullscreen);
-    }
-    private void SetFullscreen(bool isFullscreen)
-    {
-        Screen.fullScreen = isFullscreen;
-    }
-    
-    private void InitQuality()
-    {
-        qualityDropdown.ClearOptions();
-    
-        // Coge los nombres de calidad de Unity
-        List<string> options = new List<string>(QualitySettings.names);
-        qualityDropdown.AddOptions(options);
-    
-        // Selecciona el nivel actual
-        qualityDropdown.value = QualitySettings.GetQualityLevel();
-        qualityDropdown.onValueChanged.AddListener(SetQuality);
-    }
-    private void SetQuality(int index)
-    {
-        QualitySettings.SetQualityLevel(index);
-    }
-    
-    private void InitResolution()
-    {
-        resolutions = Screen.resolutions;
-        resolutionDropdown.ClearOptions();
-
-        List<string> options = new List<string>();
-        int currentIndex = 0;
-
-        for (int i = 0; i < resolutions.Length; i++)
-        {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            options.Add(option);
-
-            // Detecta la resolución actual
-            if (resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
-            {
-                currentIndex = i;
-            }
-        }
-
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentIndex;
-        resolutionDropdown.onValueChanged.AddListener(SetResolution);
-    }
-
-    private void SetResolution(int index)
-    {
-        Resolution res = resolutions[index];
-        Screen.SetResolution(res.width, res.height, Screen.fullScreen);
-    }
-
-    #endregion
 }
