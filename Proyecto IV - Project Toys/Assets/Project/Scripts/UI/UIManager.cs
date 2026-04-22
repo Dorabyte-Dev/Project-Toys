@@ -92,7 +92,10 @@ public class UIManager : MonoBehaviour
         {
             if (gameIsPaused)
             {
-                ResumeGame();
+                if (optionsPanel.gameObject.activeSelf)
+                    CloseOptions();
+                else
+                    ResumeGame();
             }
             else
             {

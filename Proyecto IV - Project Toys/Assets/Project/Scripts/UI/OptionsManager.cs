@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.HighDefinition;
 using TMPro;
 
 public class OptionsManager : MonoBehaviour
@@ -12,7 +10,7 @@ public class OptionsManager : MonoBehaviour
     [Header("Sliders")]
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private Slider brightnessSlider;
-    
+
     [Header("Slider Labels")]
     [SerializeField] private TMP_Text volumeValueText;
     [SerializeField] private TMP_Text brightnessValueText;
@@ -25,8 +23,8 @@ public class OptionsManager : MonoBehaviour
     [SerializeField] private Toggle fullscreenToggle;
 
     [Header("Post Processing")]
-    [SerializeField] private Volume globalVolume;
-    private Exposure exposure;
+    [SerializeField] private Light directionalLight;
+    private float baseIntensity = -1f;
     private Resolution[] resolutions;
 
     private void Awake()
@@ -37,9 +35,19 @@ public class OptionsManager : MonoBehaviour
 
     public void Init()
     {
-        // Exposure
-        if (globalVolume != null)
-            globalVolume.profile.TryGet(out exposure);
+        // Busca el Directional Light en todas las escenas cargadas
+        if (directionalLight == null)
+        {
+            Light[] lights = FindObjectsByType<Light>(FindObjectsSortMode.None);
+            foreach (var l in lights)
+            {
+                if (l.type == LightType.Directional)
+                {
+                    directionalLight = l;
+                    break;
+                }
+            }
+        }
 
         InitVolume();
         InitBrightness();
@@ -59,11 +67,15 @@ public class OptionsManager : MonoBehaviour
 
     private void InitBrightness()
     {
-        if (brightnessSlider == null || exposure == null) return;
-        brightnessSlider.minValue = -3f;
-        brightnessSlider.maxValue = 3f;
-        brightnessSlider.value = PlayerPrefs.GetFloat("Brightness", 0f);
-        exposure.fixedExposure.value = brightnessSlider.value;
+        if (brightnessSlider == null || directionalLight == null) return;
+        if (baseIntensity < 0f)
+            baseIntensity = directionalLight.intensity;
+
+        brightnessSlider.minValue = 0f;
+        brightnessSlider.maxValue = 1f;
+        brightnessSlider.value = PlayerPrefs.GetFloat("Brightness", 1f);
+
+        brightnessSlider.onValueChanged.RemoveAllListeners();
         brightnessSlider.onValueChanged.AddListener(SetBrightness);
         SetBrightness(brightnessSlider.value);
     }
@@ -108,7 +120,7 @@ public class OptionsManager : MonoBehaviour
         fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
     }
 
-    // ===== SETTERS =====
+    // ==== SETTERS ====
     public void SetVolume(float value)
     {
         AudioListener.volume = value;
@@ -119,14 +131,17 @@ public class OptionsManager : MonoBehaviour
 
     public void SetBrightness(float value)
     {
-        if (exposure != null)
+        if (directionalLight != null && baseIntensity >= 0f)
         {
-            exposure.mode.value = ExposureMode.Fixed;
-            exposure.fixedExposure.value = value;
+            float minFactor = 0.1f;
+            float actualIntensity = Mathf.Lerp(baseIntensity * minFactor, baseIntensity, value);
+            directionalLight.intensity = actualIntensity;
         }
+
         PlayerPrefs.SetFloat("Brightness", value);
+
         if (brightnessValueText != null)
-            brightnessValueText.text = Mathf.RoundToInt((value + 3f) / 6f * 100f) + "%";
+            brightnessValueText.text = Mathf.RoundToInt(value * 100f) + "%";
     }
 
     public void SetQuality(int index)
