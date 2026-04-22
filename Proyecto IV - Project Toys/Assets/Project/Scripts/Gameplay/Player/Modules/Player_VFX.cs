@@ -28,12 +28,13 @@ public class Player_VFX : Entity_VFX
 		StartCoroutine(base.HitStop(player));
 	}
 
-	public override void DamageVFX_Feedback(Transform damageDealer)
+	public override void DamageFeedback(Transform damageDealer)
 	{
 		TriggerMaterialChange();
 		Vector3 pushDirection = (transform.position - damageDealer.position).normalized;
 		CameraManager.instance.CameraShake();
 		StartCoroutine(PushFeedback(pushDirection));
+		//player.ChangePlayerState(player.hitState);
 	}
 
 	protected override IEnumerator PushFeedback(Vector3 direction)
