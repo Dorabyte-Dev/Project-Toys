@@ -16,7 +16,7 @@ public class Boss_BaseState : BossState
     {
         base.Enter();
         //randomAttackIndex = GetRandomAttackIndex();
-        randomAttackIndex = 3;
+        randomAttackIndex = 2;
         stateTimer = boss.timeInIdle;
     }
 
