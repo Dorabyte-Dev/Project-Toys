@@ -6,6 +6,12 @@ public class Entity : MonoBehaviour
 {
     public Animator anim;
     protected StateMachine stateMachine;
+    
+    [Header("Shadow")]
+    public GameObject shadowPrefab;
+    public float shadowOffsetY = 0.01f;
+    public float shadowScaleMultiplier = 1f;
+    [HideInInspector] public GameObject shadowInstance;
 
     [Header("Collision detection")]
     [SerializeField] private float groundCheckDistance;
@@ -40,11 +46,12 @@ public class Entity : MonoBehaviour
 
     protected virtual void Start()
     {
-        
+        CastShadow();
     }
     protected virtual void Update()
     {
         HandleCollisionDetected();
+        FollowShadow();
         stateMachine.UpdateActiveState();
     }
     
@@ -123,4 +130,28 @@ public class Entity : MonoBehaviour
         return slopeMoveDirection;
     }
 
+    private void CastShadow()
+    {
+        HandleCollisionDetected();
+        if (shadowPrefab != null && groundDetected)
+        {
+            shadowInstance = Instantiate(shadowPrefab, _groundHit.transform.position, Quaternion.identity);
+            shadowInstance.transform.SetParent(transform);
+            shadowInstance.transform.localScale *= shadowScaleMultiplier;
+        }
+        else
+        {
+            Debug.Log("Shadow prefab not assigned or ground not detected for " + gameObject.name);
+            Invoke(nameof(CastShadow), 1f);
+        }
+    }
+    
+    private void FollowShadow()
+    {
+        if (shadowInstance != null)
+        {
+            shadowInstance.transform.position = _groundHit.point + Vector3.up * shadowOffsetY; // Ajusta la altura del shadow si es necesario
+            shadowInstance.transform.rotation = Quaternion.FromToRotation(Vector3.up, _groundHit.normal);
+        }
+    }
 }

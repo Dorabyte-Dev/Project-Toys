@@ -445,6 +445,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Ranged
   anim: {fileID: 0}
+  shadowPrefab: {fileID: 4145692097774232219, guid: 1c6d75a5c068b9a4484cff2a809ce665, type: 3}
+  shadowOffsetY: 0.01
+  shadowScaleMultiplier: 1.5
+  shadowInstance: {fileID: 0}
   groundCheckDistance: 0.72
   whatIsGround:
     serializedVersion: 2
@@ -572,6 +576,7 @@ MonoBehaviour:
   vfxGraph: {fileID: 2269003188219875084}
   feedbackColor: {r: 0, g: 0, b: 0, a: 0}
   feedbackDuration: 0
+  glowIntensity: 5
   pushStrength: 5
   pushWaitDuration: 0.2
   pushStopThreeshold: 0.05
@@ -2488,7 +2493,7 @@ Transform:
   m_GameObject: {fileID: 8113923817681015360}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.1000004, y: 0.050000012, z: 21.89}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

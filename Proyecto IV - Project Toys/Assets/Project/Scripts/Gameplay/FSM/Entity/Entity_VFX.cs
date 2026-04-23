@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 public class Entity_VFX : MonoBehaviour
 {
-    private static readonly int Color1 = Shader.PropertyToID("_Color");
+    private static readonly int FlashColorProperty = Shader.PropertyToID("_EmissiveColor");
     
     [Header("--- Core Components ---")]
     
@@ -18,6 +18,7 @@ public class Entity_VFX : MonoBehaviour
     [Header("--- Damage Flash (Color Change) ---")]
     public Color feedbackColor = Color.white;
     public float feedbackDuration = 0.1f;
+    public float glowIntensity = 5f;
     
     // Datos internos para restaurar materiales
     protected List<Material[]> originalMaterials = new List<Material[]>();
@@ -62,6 +63,7 @@ public class Entity_VFX : MonoBehaviour
             //meshMaterials = renderMesh.materials;
         }*/
         SetMeshMaterials();
+        glowIntensity *= 100;
     }
 
     private void SetMeshMaterials()
@@ -85,7 +87,7 @@ public class Entity_VFX : MonoBehaviour
             originalMaterials.Add(render.materials);
             for (int i = 0; i < render.materials.Length; i++)
             {
-                if (render.materials[i].HasProperty(Color1))
+                if (render.materials[i].HasProperty(FlashColorProperty))
                 {
                     colors.Add(render.materials[i].color);
                 }
@@ -163,11 +165,13 @@ public class Entity_VFX : MonoBehaviour
             Material[] newMaterials = new Material[render.materials.Length];
             for (int i = 0; i < render.materials.Length; i++)
             {
-                // Create a new temporary material instance
                 newMaterials[i] = new Material(render.materials[i]);
-                if (newMaterials[i].HasProperty("_Color"))
+                if (newMaterials[i].HasProperty(FlashColorProperty))
                 {
-                    newMaterials[i].color = color;
+                    newMaterials[i].EnableKeyword("_EMISSION");
+                    
+                    newMaterials[i].SetColor(FlashColorProperty, color * glowIntensity);
+                    //newMaterials[i].color = color;
                 }
             }
             render.materials = newMaterials;
@@ -185,7 +189,7 @@ public class Entity_VFX : MonoBehaviour
             List<Color> colors = new List<Color>();
             for (int i = 0; i < renderer.materials.Length; i++)
             {
-                if (renderer.materials[i].HasProperty("_Color"))
+                if (renderer.materials[i].HasProperty(FlashColorProperty))
                 {
                     colors.Add(renderer.materials[i].color);
                 }
@@ -211,9 +215,10 @@ public class Entity_VFX : MonoBehaviour
             {
                 for (int j = 0; j < renderers[i].materials.Length; j++)
                 {
-                    if (renderers[i].materials[j].HasProperty("_Color"))
+                    if (renderers[i].materials[j].HasProperty(FlashColorProperty))
                     {
-                        renderers[i].materials[j].color = Color.Lerp(feedbackColor, originalColors[i][j], t);
+                        //renderers[i].materials[j].color = Color.Lerp(feedbackColor, originalColors[i][j], t);
+                        renderers[i].materials[j].SetColor(FlashColorProperty, Color.Lerp(feedbackColor, originalColors[i][j], t));
                     }
                 }
             }

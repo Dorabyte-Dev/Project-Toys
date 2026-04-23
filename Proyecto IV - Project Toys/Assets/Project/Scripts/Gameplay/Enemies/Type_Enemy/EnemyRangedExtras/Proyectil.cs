@@ -6,6 +6,14 @@ using Random = System.Random;
 
 public class Proyectil : MonoBehaviour
 {
+    [Header("Shadow")]
+    public GameObject shadowPrefab;
+    private GameObject _shadowInstance;
+    public float shadowOffsetY = 0.01f;
+    public float shadowScaleMultiplier = 1f;
+    public LayerMask shadowMask;
+    private RaycastHit _groundHit;
+    
     public enum ProjectileType
     {
         Enemy2Projectile,
@@ -28,6 +36,17 @@ public class Proyectil : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _rb.isKinematic = true;
+    }
+    
+    private void Start()
+    {
+        CastShadow();
+    }
+
+    private void Update()
+    {
+        SetGroundedShadow();
+        FollowShadow();
     }
 
 
@@ -117,5 +136,38 @@ public class Proyectil : MonoBehaviour
         return result;
     }
     
+    #region Shadow Functions
+
+    private void CastShadow()
+    {
+        SetGroundedShadow();
+        if (shadowPrefab != null)
+        {
+            _shadowInstance = Instantiate(shadowPrefab, _groundHit.transform.position, Quaternion.identity);
+            _shadowInstance.transform.SetParent(transform);
+            _shadowInstance.transform.localScale *= shadowScaleMultiplier;
+        }
+        else
+        {
+            Debug.Log("Shadow prefab not assigned for " + gameObject.name);
+            Invoke(nameof(CastShadow), 1f);
+        }
+    }
+    
+    private void FollowShadow()
+    {
+        if (_shadowInstance != null)
+        {
+            _shadowInstance.transform.position = _groundHit.point + Vector3.up * shadowOffsetY; // Ajusta la altura del shadow si es necesario
+            _shadowInstance.transform.rotation = Quaternion.FromToRotation(Vector3.up, _groundHit.normal);
+        }
+    }
+    
+    private void SetGroundedShadow()
+    {
+        Physics.Raycast(transform.position, Vector3.down, out _groundHit, Mathf.Infinity, shadowMask);
+    }
+
+    #endregion
     
 }

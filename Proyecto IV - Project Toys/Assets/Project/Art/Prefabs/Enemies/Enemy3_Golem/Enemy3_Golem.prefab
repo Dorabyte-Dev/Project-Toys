@@ -893,6 +893,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Golem
   anim: {fileID: 0}
+  shadowPrefab: {fileID: 4145692097774232219, guid: 1c6d75a5c068b9a4484cff2a809ce665, type: 3}
+  shadowOffsetY: 0.01
+  shadowScaleMultiplier: 7
+  shadowInstance: {fileID: 0}
   groundCheckDistance: 0.72
   whatIsGround:
     serializedVersion: 2
@@ -1084,6 +1088,7 @@ MonoBehaviour:
   vfxGraph: {fileID: 5294670614711854803}
   feedbackColor: {r: 1, g: 1, b: 1, a: 0}
   feedbackDuration: 0.5
+  glowIntensity: 5
   pushStrength: 0
   pushWaitDuration: 0
   pushStopThreeshold: 0.05

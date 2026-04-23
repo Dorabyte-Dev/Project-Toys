@@ -12996,6 +12996,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   anim: {fileID: 0}
+  shadowPrefab: {fileID: 4145692097774232219, guid: 1c6d75a5c068b9a4484cff2a809ce665, type: 3}
+  shadowOffsetY: 0.01
+  shadowScaleMultiplier: 2
+  shadowInstance: {fileID: 0}
   groundCheckDistance: 0.67
   whatIsGround:
     serializedVersion: 2
@@ -13161,6 +13165,7 @@ MonoBehaviour:
   vfxGraph: {fileID: 0}
   feedbackColor: {r: 0, g: 0, b: 0, a: 0}
   feedbackDuration: 0
+  glowIntensity: 5
   pushStrength: 0.4
   pushWaitDuration: 0.2
   pushStopThreeshold: 0.05
