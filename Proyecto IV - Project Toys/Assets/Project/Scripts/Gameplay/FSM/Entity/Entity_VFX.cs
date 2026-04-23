@@ -80,16 +80,22 @@ public class Entity_VFX : MonoBehaviour
 
     private void SaveOriginalMaterials()
     {
-        Renderer[] renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
-        foreach (Renderer render in renderers)
+        originalMaterials.Clear();
+        originalColors.Clear();
+        
+        //Renderer[] renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        for (int i = 0; i < renderMesh.Length; i++)
         {
+            if (renderMesh[i] == null) continue;
+
             List<Color> colors = new List<Color>();
-            originalMaterials.Add(render.materials);
-            for (int i = 0; i < render.materials.Length; i++)
+            originalMaterials.Add(renderMesh[i].materials);
+            
+            for (int j = 0; j < renderMesh[i].materials.Length; j++)
             {
-                if (render.materials[i].HasProperty(FlashColorProperty))
+                if (renderMesh[i].materials[j].HasProperty(FlashColorProperty))
                 {
-                    colors.Add(render.materials[i].color);
+                    colors.Add(renderMesh[i].materials[j].GetColor(FlashColorProperty));
                 }
                 else
                 {
@@ -159,29 +165,27 @@ public class Entity_VFX : MonoBehaviour
 
     private void ChangeMaterialsToColor(Color color)
     {
-        Renderer[] skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
-        foreach (Renderer render in skinnedMeshRenderers)
+        //Renderer[] skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        for (int r = 0; r < renderMesh.Length; r++)
         {
-            Material[] newMaterials = new Material[render.materials.Length];
-            for (int i = 0; i < render.materials.Length; i++)
+            if (renderMesh[r] == null) continue;
+
+            for (int i = 0; i < renderMesh[r].materials.Length; i++)
             {
-                newMaterials[i] = new Material(render.materials[i]);
-                if (newMaterials[i].HasProperty(FlashColorProperty))
+                if (renderMesh[r].materials[i].HasProperty(FlashColorProperty))
                 {
-                    newMaterials[i].EnableKeyword("_EMISSION");
-                    
-                    newMaterials[i].SetColor(FlashColorProperty, color * glowIntensity);
-                    //newMaterials[i].color = color;
+                    // Modificamos el material existente, no creamos uno nuevo
+                    renderMesh[r].materials[i].EnableKeyword("_EMISSION");
+                    renderMesh[r].materials[i].SetColor(FlashColorProperty, color * glowIntensity);
                 }
             }
-            render.materials = newMaterials;
         }
     }
 
 
     private IEnumerator RevertMaterialsSmoothly(float duration)
     {
-        Renderer[] renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        /*Renderer[] renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
 
         List<Color[]> currentColors = new List<Color[]>();
         foreach (Renderer renderer in renderers)
@@ -201,16 +205,13 @@ public class Entity_VFX : MonoBehaviour
             currentColors.Add(colors.ToArray());
         }
 
-
         float elapsedTime = 0f;
-
+        Color startColor = feedbackColor * glowIntensity;
 
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / duration;
-
-
             for (int i = 0; i < renderers.Length; i++)
             {
                 for (int j = 0; j < renderers[i].materials.Length; j++)
@@ -218,19 +219,61 @@ public class Entity_VFX : MonoBehaviour
                     if (renderers[i].materials[j].HasProperty(FlashColorProperty))
                     {
                         //renderers[i].materials[j].color = Color.Lerp(feedbackColor, originalColors[i][j], t);
-                        renderers[i].materials[j].SetColor(FlashColorProperty, Color.Lerp(feedbackColor, originalColors[i][j], t));
+                        renderers[i].materials[j].SetColor(FlashColorProperty, Color.Lerp(startColor, originalColors[i][j], t));
                     }
                 }
             }
-
-
             yield return null;
         }
 
 
         for (int i = 0; i < renderers.Length; i++)
         {
-            renderers[i].materials = originalMaterials[i];
+            for (int j = 0; j < renderers[i].materials.Length; j++)
+            {
+                if (renderers[i].materials[j].HasProperty(FlashColorProperty))
+                {
+                    renderers[i].materials[j].SetColor(FlashColorProperty, originalColors[i][j]);
+                }
+            }
+        }*/
+        float elapsedTime = 0f;
+        
+        // Calculamos el color de inicio desde el que partimos (súper brillante)
+        Color startColor = feedbackColor * glowIntensity;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / duration;
+
+            for (int i = 0; i < renderMesh.Length; i++)
+            {
+                if (renderMesh[i] == null) continue;
+
+                for (int j = 0; j < renderMesh[i].materials.Length; j++)
+                {
+                    if (renderMesh[i].materials[j].HasProperty(FlashColorProperty))
+                    {
+                        // Interpolamos el color hacia el original
+                        renderMesh[i].materials[j].SetColor(FlashColorProperty, Color.Lerp(startColor, originalColors[i][j], t));
+                    }
+                }
+            }
+            yield return null;
+        }
+
+        for (int i = 0; i < renderMesh.Length; i++)
+        {
+            if (renderMesh[i] == null) continue;
+
+            for (int j = 0; j < renderMesh[i].materials.Length; j++)
+            {
+                if (renderMesh[i].materials[j].HasProperty(FlashColorProperty))
+                {
+                    renderMesh[i].materials[j].SetColor(FlashColorProperty, originalColors[i][j]);
+                }
+            }
         }
     }
     #endregion
