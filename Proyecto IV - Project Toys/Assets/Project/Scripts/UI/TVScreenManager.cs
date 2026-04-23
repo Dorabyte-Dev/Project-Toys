@@ -52,8 +52,6 @@ public class TVScreenManager : MonoBehaviour
         if (isOpen) return;
         isOpen = true;
 
-        if (mainMenuManager != null) mainMenuManager.enabled = false;
-
         mainCamera.transform.DOMove(tvFocusPoint.position, travelDuration).SetEase(travelEase);
         mainCamera.transform.DORotateQuaternion(tvFocusPoint.rotation, travelDuration).SetEase(travelEase)
             .OnComplete(() =>
@@ -88,8 +86,6 @@ public class TVScreenManager : MonoBehaviour
                 if (button != null) button.ResetBlock();
             }
         }
-
-
         // Volver a la posición guardada al inicio
         mainCamera.transform.DOMove(startPosition, travelDuration).SetEase(travelEase);
         mainCamera.transform.DORotateQuaternion(startRotation, travelDuration).SetEase(travelEase)

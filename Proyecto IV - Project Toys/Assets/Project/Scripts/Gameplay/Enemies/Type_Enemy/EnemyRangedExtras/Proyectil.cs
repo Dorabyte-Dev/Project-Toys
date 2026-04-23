@@ -1,11 +1,16 @@
 using System;
 using UnityEngine;
+using System.Collections;
+using DG.Tweening;
+using Random = System.Random;
 
 public class Proyectil : MonoBehaviour
 {
     public enum ProjectileType
     {
-        V1
+        Enemy2Projectile,
+        BossSlam,
+        BossPencil
     }
     public ProjectileType projectileType;
     private Rigidbody _rb;
@@ -14,6 +19,9 @@ public class Proyectil : MonoBehaviour
     
     [HideInInspector] public Vector3 direction;
     [HideInInspector] public float speed;
+
+    [HideInInspector] public float initialDistanceToOrigin;
+    [HideInInspector] public Vector3 targetPosition; 
     public Action OnPlayerHit { get; set; }
 
     private void Awake()
@@ -29,8 +37,13 @@ public class Proyectil : MonoBehaviour
         {
             switch (projectileType)
             {
-                case ProjectileType.V1:
+                case ProjectileType.Enemy2Projectile:
                     _rb.MovePosition(transform.position + direction * (speed * Time.deltaTime));
+                    break;
+                case ProjectileType.BossSlam:
+                    _rb.MovePosition(transform.position + direction * (speed * Time.deltaTime));
+                    break;
+                case ProjectileType.BossPencil:
                     break;
                 default:
                 Debug.LogWarning("La vida de un crítico es sencilla en muchos aspectos." +
@@ -72,12 +85,36 @@ public class Proyectil : MonoBehaviour
     public void Release()
     {
         _isReleased = true;
+        switch (projectileType)
+        {
+            case ProjectileType.BossPencil:
+                _rb.DOMove(GetPointFromDirection(GetRandomDirectionAbove()), 0.5f).OnComplete(() =>
+                {
+                    transform.DOLookAt(targetPosition, 0.3f);
+                });
+                break;
+        }
         Invoke(nameof(DestroyProjectile), 7.5f);
     }
 
     public void DestroyProjectile()
     {
         Destroy(this.gameObject);
+    }
+
+    private Vector3 GetRandomDirectionAbove()
+    {
+        Vector3 result = Vector3.zero;
+        Vector3 randomPoint = new Vector3(UnityEngine.Random.Range(1, 10) ,3, UnityEngine.Random.Range(1, 10));
+        result = randomPoint - transform.position;
+        return result;
+    } 
+    
+    private Vector3 GetPointFromDirection(Vector3 direction)
+    {
+        Vector3 result = Vector3.zero;
+        result = transform.position + direction.normalized * initialDistanceToOrigin;
+        return result;
     }
     
     

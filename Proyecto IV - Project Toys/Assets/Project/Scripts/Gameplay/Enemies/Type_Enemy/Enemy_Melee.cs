@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -113,17 +114,31 @@ public class Enemy_Melee : Enemy
         return false;
     }
 
-    private static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
+    private Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
     {
-        Vector3 randDirection = Random.insideUnitSphere * dist;
+        bool isValidPoint = false;
+        Vector3 navHitPosition = Vector3.zero;
+        
+        while (!isValidPoint)
+        {
+            //Vector3 randDirection = Random.insideUnitSphere * dist;
+            Vector3 randDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
+                
+            Vector3 randomPoint = origin + randDirection.normalized * dist;
 
-        randDirection += origin;
+            NavMeshHit navHit;
 
-        NavMeshHit navHit;
-
-        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
-
-        return navHit.position;
+            NavMesh.SamplePosition(randomPoint, out navHit, dist, layermask);
+            
+            float distanceRandomPointToEnemy = Vector3.Distance(origin, navHit.position);
+            if(distanceRandomPointToEnemy > dist)
+            {
+                navHitPosition = navHit.position;
+                isValidPoint = true;
+            }
+        }
+        
+        return navHitPosition;
     }
     public override void Move_Enter()
     {

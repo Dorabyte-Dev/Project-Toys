@@ -12,7 +12,7 @@ public class Boss_SpawnEnemiesState : BossState
         if(boss.enemySpawner == null)
         {
             Debug.LogError("Boss_SpawnEnemiesState: Boss does not have an EnemySpawner component.");
-            boss.ChangeBossState(boss.idleState);
+            boss.ChangeBossState(boss.baseState);
             return;
         }
         

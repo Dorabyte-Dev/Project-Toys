@@ -1,0 +1,1165 @@
+fileFormatVersion: 2
+guid: 14172f4e12fd9f14e9db8acc42a997e7
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: BOSS_RIGGED_ANIMATION(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Armature
+      parentName: BOSS_RIGGED_ANIMATION(Clone)
+      position: {x: 0, y: 1.2927557, z: -0.66740257}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: DEF_DEF_Root
+      parentName: Armature
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: -0.00000013591367, z: -0.000000105005114, w: 0.7071067}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: DEF_DEF_Hip
+      parentName: DEF_DEF_Root
+      position: {x: -3.0494201e-18, y: 0.023023974, z: 0.0000000017881396}
+      rotation: {x: -0, y: -0, z: 7.1054274e-15, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Down_Valve.L
+      parentName: DEF_DEF_Hip
+      position: {x: -0.004728521, y: 0.0033043597, z: 0.00047411636}
+      rotation: {x: 0.118488945, y: 0.23981848, z: 0.19557787, w: 0.94350237}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000006}
+    - name: DEF_DEF_Down_Valve.L_end
+      parentName: DEF_DEF_Down_Valve.L
+      position: {x: -0, y: 0.012559142, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Down_Valve.R
+      parentName: DEF_DEF_Hip
+      position: {x: 0.004728521, y: 0.0033043597, z: 0.00047411412}
+      rotation: {x: 0.11848873, y: -0.23981823, z: -0.19557789, w: 0.94350255}
+      scale: {x: 1.0000001, y: 1, z: 0.9999997}
+    - name: DEF_DEF_Down_Valve.R_end
+      parentName: DEF_DEF_Down_Valve.R
+      position: {x: -0, y: 0.012559142, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Chest
+      parentName: DEF_DEF_Hip
+      position: {x: 1.5784613e-29, y: 0.016056504, z: 1.4210865e-16}
+      rotation: {x: -0.009231031, y: -0.011951544, z: 0.17517722, w: 0.98442113}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Shoulder
+      parentName: DEF_DEF_Chest
+      position: {x: -0.021773418, y: 0.022842605, z: 0.0025234015}
+      rotation: {x: 0.0000002682209, y: -0.00000031925504, z: 0.70482755, w: 0.7093787}
+      scale: {x: 1.0000002, y: 1.0000001, z: 0.99999994}
+    - name: DEF_DEF_Shoulder_end
+      parentName: DEF_DEF_Shoulder
+      position: {x: -0, y: 0.009917167, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Up_Valve.L
+      parentName: DEF_DEF_Chest
+      position: {x: -0.008649796, y: -0.0015064419, z: 0.00446033}
+      rotation: {x: 0.06012464, y: 0.1851758, z: 0.20238577, w: 0.95975775}
+      scale: {x: 0.9999999, y: 1.0000002, z: 0.9999999}
+    - name: DEF_DEF_Up_Valve.L_end
+      parentName: DEF_DEF_Up_Valve.L
+      position: {x: -0, y: 0.008925386, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Pipe.L
+      parentName: DEF_DEF_Chest
+      position: {x: -0.011074902, y: 0.0074299984, z: -0.022009606}
+      rotation: {x: -3.375595e-16, y: 0.000000019628496, z: 0.047507294, w: 0.9988709}
+      scale: {x: 1, y: 1.0000002, z: 1.0000002}
+    - name: DEF_DEF_Pipe.L_end
+      parentName: DEF_DEF_Pipe.L
+      position: {x: -0, y: 0.03840486, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Pipe.L.001
+      parentName: DEF_DEF_Chest
+      position: {x: 0.00025539668, y: 0.007429999, z: -0.023045288}
+      rotation: {x: -0.7144047, y: 0.0041866605, z: 0.0007261723, w: 0.6997199}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000006}
+    - name: DEF_DEF_Pipe.L.001_end
+      parentName: DEF_DEF_Pipe.L.001
+      position: {x: -0, y: 0.025676392, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Up_Valve.R
+      parentName: DEF_DEF_Chest
+      position: {x: 0.008649799, y: -0.0015064414, z: 0.004460325}
+      rotation: {x: 0.060124524, y: -0.18517555, z: -0.20238587, w: 0.9597578}
+      scale: {x: 0.99999976, y: 1.0000006, z: 1.0000004}
+    - name: DEF_DEF_Up_Valve.R_end
+      parentName: DEF_DEF_Up_Valve.R
+      position: {x: -0, y: 0.008925386, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Pipe.R
+      parentName: DEF_DEF_Chest
+      position: {x: 0.011074892, y: 0.007429997, z: -0.022009607}
+      rotation: {x: 3.3756116e-16, y: 0.00000021334361, z: -0.047507297, w: 0.9988709}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: DEF_DEF_Pipe.R_end
+      parentName: DEF_DEF_Pipe.R
+      position: {x: -0, y: 0.03840486, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Pipe.R.001
+      parentName: DEF_DEF_Chest
+      position: {x: 0.00025539668, y: 0.007429999, z: -0.023045288}
+      rotation: {x: -0.71440464, y: -0.0041864933, z: -0.0007260014, w: 0.69971997}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000005}
+    - name: DEF_DEF_Pipe.R.001_end
+      parentName: DEF_DEF_Pipe.R.001
+      position: {x: -0, y: 0.025676392, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Shoulder.002
+      parentName: DEF_DEF_Chest
+      position: {x: 0.018311856, y: 0.022842605, z: 0.0025233913}
+      rotation: {x: -0.000030040743, y: -0.000029883207, z: -0.7053377, w: 0.7088715}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1.0000002}
+    - name: DEF_DEF_Arm_Rueda_01.R
+      parentName: CTR_DEF_Shoulder.002
+      position: {x: 0.0010347771, y: 0.020045614, z: -0.000000086738886}
+      rotation: {x: -0.000000031133826, y: 0.000042821357, z: 0.0007194877, w: 0.99999976}
+      scale: {x: 1.0000001, y: 1.0000004, z: 0.9999998}
+    - name: DEF_DEF_Arm_Tornillo_01.R
+      parentName: DEF_DEF_Arm_Rueda_01.R
+      position: {x: 0.0005793603, y: 0.010990353, z: 0.0000000046845523}
+      rotation: {x: -0.00000006335703, y: 0.00000023159738, z: 0.0017716305, w: 0.99999845}
+      scale: {x: 1.0000013, y: 1.0000012, z: 1.0000005}
+    - name: DEF_DEF_Arm_Tornillo_01.R_end
+      parentName: DEF_DEF_Arm_Tornillo_01.R
+      position: {x: -0, y: 0.0063961204, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Arm_01.R
+      parentName: DEF_DEF_Arm_Rueda_01.R
+      position: {x: 0.006872749, y: 0.004024747, z: -0.0014601009}
+      rotation: {x: 0.039482433, y: -0.08607142, z: 0.057420187, w: -0.993849}
+      scale: {x: 1.0000015, y: 1.0000015, z: 1.0000005}
+    - name: DEF_DEF_Arm_Rueda_02.R
+      parentName: DEF_DEF_Arm_01.R
+      position: {x: 0.0063342475, y: 0.017570036, z: 0.000000011813826}
+      rotation: {x: 0.015909541, y: -0.0055262744, z: -0.523353, w: -0.8519496}
+      scale: {x: 1.000001, y: 1.0000013, z: 0.99999964}
+    - name: DEF_DEF_Arm_Tornillo_02.R
+      parentName: DEF_DEF_Arm_Rueda_02.R
+      position: {x: 0.0005872306, y: 0.012212952, z: 0.0000000024680047}
+      rotation: {x: -0.00000018962682, y: 0.0000004846813, z: 0.0029507282, w: 0.99999565}
+      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000004}
+    - name: DEF_DEF_Arm_Tornillo_02.R_end
+      parentName: DEF_DEF_Arm_Tornillo_02.R
+      position: {x: -0, y: 0.0051735714, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Arm_02.R
+      parentName: DEF_DEF_Arm_Rueda_02.R
+      position: {x: 0.0058183013, y: 0.006510487, z: 0.0000000058859584}
+      rotation: {x: -0.00000055927535, y: -0.00000023270594, z: 0.7148933, w: -0.6992336}
+      scale: {x: 1.0000018, y: 1.0000018, z: 1.0000002}
+    - name: DEF_DEF_Arm_02.R_end
+      parentName: DEF_DEF_Arm_02.R
+      position: {x: -0, y: 0.0087792855, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Munyeca.R
+      parentName: DEF_DEF_Arm_Rueda_02.R
+      position: {x: 0.015544974, y: 0.00735174, z: 0.000000013690442}
+      rotation: {x: 0.0011955778, y: -0.00091540103, z: 0.6480451, w: -0.76160043}
+      scale: {x: 0.99999934, y: 1.0000007, z: 1.0000017}
+    - name: DEF_DEF_Arm_Rueda_03.R
+      parentName: DEF_DEF_Munyeca.R
+      position: {x: -0.00018499792, y: 0.0074881846, z: 0.0044905166}
+      rotation: {x: -0.7041749, y: -0.010416728, z: -0.000011298914, w: 0.7099502}
+      scale: {x: 1.0000005, y: 1.0000005, z: 0.9999998}
+    - name: DEF_DEF_Palma.R
+      parentName: DEF_DEF_Arm_Rueda_03.R
+      position: {x: -0.0010721808, y: 0.004479607, z: 0.0005387393}
+      rotation: {x: 0.6275968, y: 0.373697, z: -0.38583624, w: 0.5635629}
+      scale: {x: 1.0000007, y: 1.0000005, z: 0.99999964}
+    - name: DEF_DEF_Arm_Rueda_04.R
+      parentName: DEF_DEF_Palma.R
+      position: {x: -0.00022490247, y: 0.0063771107, z: 0.0044926507}
+      rotation: {x: -0.6762272, y: 0.20276853, z: -0.20853972, w: 0.67684036}
+      scale: {x: 1.0000012, y: 1.000001, z: 1.0000005}
+    - name: DEF_DEF_Dedos.R
+      parentName: DEF_DEF_Arm_Rueda_04.R
+      position: {x: 0.0004513098, y: 0.0045059416, z: 0.0010066937}
+      rotation: {x: 0.7027801, y: 0.04001759, z: -0.03602972, w: 0.7093663}
+      scale: {x: 1.0000021, y: 1.0000015, z: 1.0000004}
+    - name: DEF_DEF_Almohadilla_02.R
+      parentName: DEF_DEF_Dedos.R
+      position: {x: -0.0039108275, y: -0.0013811075, z: 0.000034117642}
+      rotation: {x: 0.0071200123, y: -0.000000039115545, z: 0.81635946, w: 0.5775003}
+      scale: {x: 1, y: 1.0000001, z: 1.0000005}
+    - name: DEF_DEF_Almohadilla_02.R_end
+      parentName: DEF_DEF_Almohadilla_02.R
+      position: {x: -0, y: 0.009105956, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Almohadilla_01.R
+      parentName: DEF_DEF_Palma.R
+      position: {x: -0.004451237, y: 0.000981519, z: 0.000038838312}
+      rotation: {x: 0.0050937827, y: -0.00000044703478, z: 0.58382905, w: 0.8118606}
+      scale: {x: 0.9999999, y: 1.0000008, z: 1}
+    - name: DEF_DEF_Almohadilla_01.R_end
+      parentName: DEF_DEF_Almohadilla_01.R
+      position: {x: -0, y: 0.0051861927, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Pulgar.R
+      parentName: DEF_DEF_Arm_Rueda_03.R
+      position: {x: 0.0011620874, y: -0.0007147649, z: -0.000260384}
+      rotation: {x: -0.23638438, y: -0.36745048, z: -0.53570235, w: 0.72258264}
+      scale: {x: 1.0000002, y: 1.0000007, z: 0.99999976}
+    - name: DEF_DEF_Almohadilla_Pulgar.R
+      parentName: DEF_DEF_Pulgar.R
+      position: {x: 0.0021592581, y: -0.00061446114, z: 0.0014692891}
+      rotation: {x: 0.4333469, y: -0.0073011285, z: -0.6532358, w: 0.6208383}
+      scale: {x: 1.0000011, y: 1.0000015, z: 1.0000002}
+    - name: DEF_DEF_Almohadilla_Pulgar.R_end
+      parentName: DEF_DEF_Almohadilla_Pulgar.R
+      position: {x: -0, y: 0.0075911926, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Arm_Rueda_01.L
+      parentName: CTR_DEF_Shoulder.002
+      position: {x: 0.0006513667, y: -0.05667821, z: -0.000000068233184}
+      rotation: {x: 0.000042788088, y: -0.000000012156306, z: 0.99998367, w: 0.00571689}
+      scale: {x: 0.9999999, y: 1.0000002, z: 1}
+    - name: DEF_DEF_Arm_Tornillo_01.L
+      parentName: DEF_DEF_Arm_Rueda_01.L
+      position: {x: -0.0005793638, y: 0.010990355, z: 0.000000003799796}
+      rotation: {x: -0.00000008426703, y: -0.0000002108546, z: -0.0017716368, w: 0.99999845}
+      scale: {x: 1.0000004, y: 1.0000005, z: 1}
+    - name: DEF_DEF_Arm_Tornillo_01.L_end
+      parentName: DEF_DEF_Arm_Tornillo_01.L
+      position: {x: -0, y: 0.0063961204, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Arm_01.L
+      parentName: DEF_DEF_Arm_Rueda_01.L
+      position: {x: -0.006872755, y: 0.0040247464, z: -0.0014601005}
+      rotation: {x: 0.0000005232814, y: -0.00000018772103, z: 0.7136584, w: 0.70049393}
+      scale: {x: 1.0000008, y: 1.0000008, z: 1}
+    - name: DEF_DEF_Arm_Rueda_02.L
+      parentName: DEF_DEF_Arm_01.L
+      position: {x: -0.0063342485, y: 0.017570022, z: 0.000000009909272}
+      rotation: {x: -0.124223895, y: 0.27227443, z: -0.88662356, w: 0.35261}
+      scale: {x: 1.0000019, y: 1.0000015, z: 1.0000002}
+    - name: DEF_DEF_Arm_Tornillo_02.L
+      parentName: DEF_DEF_Arm_Rueda_02.L
+      position: {x: -0.00058723404, y: 0.012212952, z: 0.0000000017881393}
+      rotation: {x: -0.00000006253853, y: -0.00000056887444, z: -0.0029508471, w: 0.9999957}
+      scale: {x: 1.0000005, y: 1.0000002, z: 0.9999997}
+    - name: DEF_DEF_Arm_Tornillo_02.L_end
+      parentName: DEF_DEF_Arm_Tornillo_02.L
+      position: {x: -0, y: 0.0051735714, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Arm_02.L
+      parentName: DEF_DEF_Arm_Rueda_02.L
+      position: {x: -0.0058183013, y: 0.0065104836, z: 0.0000000055879354}
+      rotation: {x: 0.0000005617957, y: -0.00000028098114, z: 0.7148932, w: 0.69923365}
+      scale: {x: 1.0000011, y: 1.0000001, z: 1.0000006}
+    - name: DEF_DEF_Arm_02.L_end
+      parentName: DEF_DEF_Arm_02.L
+      position: {x: -0, y: 0.0087792855, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Munyeca.L
+      parentName: DEF_DEF_Arm_Rueda_02.L
+      position: {x: -0.008119949, y: 0.0074474406, z: 0.009441422}
+      rotation: {x: 0.00000060848055, y: -0.0000004964175, z: 0.71802884, w: 0.69601345}
+      scale: {x: 1.0000012, y: 1.0000001, z: 1.000001}
+    - name: DEF_DEF_Arm_Rueda_03.L
+      parentName: DEF_DEF_Munyeca.L
+      position: {x: 0.00018499202, y: 0.007488186, z: 0.0044905124}
+      rotation: {x: 0.07877087, y: -0.33835238, z: -0.46766883, w: 0.8127723}
+      scale: {x: 1.0000021, y: 1.0000011, z: 1.0000011}
+    - name: DEF_DEF_Palma.L
+      parentName: DEF_DEF_Arm_Rueda_03.L
+      position: {x: 0.0010721858, y: 0.0044796136, z: 0.00053873763}
+      rotation: {x: 0.6762273, y: 0.20276831, z: -0.2085395, w: 0.67684036}
+      scale: {x: 1.0000005, y: 1, z: 1.0000006}
+    - name: DEF_DEF_Arm_Rueda_04.L
+      parentName: DEF_DEF_Palma.L
+      position: {x: 0.00022490292, y: 0.006377108, z: 0.0044926447}
+      rotation: {x: -0.6762274, y: -0.20276833, z: 0.2085396, w: 0.67684036}
+      scale: {x: 0.999999, y: 1.0000004, z: 1.0000033}
+    - name: DEF_DEF_Dedos.L
+      parentName: DEF_DEF_Arm_Rueda_04.L
+      position: {x: -0.00045131028, y: 0.0045059384, z: 0.0010066915}
+      rotation: {x: 0.6670547, y: -0.22009033, z: 0.21776617, w: 0.6776254}
+      scale: {x: 1.0000007, y: 0.99999994, z: 0.9999997}
+    - name: DEF_DEF_Almohadilla_02.L
+      parentName: DEF_DEF_Dedos.L
+      position: {x: 0.0039108265, y: -0.0013810983, z: 0.000034123284}
+      rotation: {x: -0.0009946522, y: -0.00000020861619, z: 0.11401013, w: 0.9934791}
+      scale: {x: 0.99999917, y: 1.0000011, z: 1.0000006}
+    - name: DEF_DEF_Almohadilla_02.L_end
+      parentName: DEF_DEF_Almohadilla_02.L
+      position: {x: -0, y: 0.009105956, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Almohadilla_01.L
+      parentName: DEF_DEF_Palma.L
+      position: {x: 0.0044512376, y: 0.000981522, z: 0.00003883667}
+      rotation: {x: -0.000000089406946, y: -0.000000044703473, z: -0.00000025331968, w: 1}
+      scale: {x: 1.000001, y: 1.000001, z: 1}
+    - name: DEF_DEF_Almohadilla_01.L_end
+      parentName: DEF_DEF_Almohadilla_01.L
+      position: {x: -0, y: 0.0051861927, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Martillo_01
+      parentName: DEF_DEF_Palma.L
+      position: {x: -0.0025990396, y: 0.0033302046, z: -0.021301312}
+      rotation: {x: -0.6096297, y: -0.19347766, z: 0.21238902, w: 0.7387888}
+      scale: {x: 0.9999986, y: 1.0000002, z: 1.0000036}
+    - name: DEF_DEF_Martillo_02
+      parentName: DEF_DEF_Martillo_01
+      position: {x: -0.0000000044330952, y: 0.015095072, z: 0.0000000038649888}
+      rotation: {x: 0.00000008940694, y: -0.00000007450578, z: -0.00000010430809, w: 1}
+      scale: {x: 1.0000008, y: 0.99999964, z: 1.0000001}
+    - name: DEF_DEF_Martillo_03
+      parentName: DEF_DEF_Martillo_02
+      position: {x: 0.000000007674098, y: 0.01509507, z: -0.0000000022724271}
+      rotation: {x: 0.000000089406555, y: 0.0000036507831, z: -0.00000005960496, w: 1}
+      scale: {x: 1.0000013, y: 1.0000005, z: 1.0000011}
+    - name: DEF_DEF_Martillo_04
+      parentName: DEF_DEF_Martillo_03
+      position: {x: -0.000000005066395, y: 0.0150950765, z: 0.0000000030174852}
+      rotation: {x: 0.3463239, y: -0.000381118, z: -0.0056853597, w: 0.9380978}
+      scale: {x: 1.0000001, y: 1.0000005, z: 0.99999976}
+    - name: DEF_DEF_Martillo_05
+      parentName: DEF_DEF_Martillo_04
+      position: {x: -0.00035824708, y: 0.02222658, z: -0.0209892}
+      rotation: {x: -0.36937004, y: -0.0041755643, z: 0.00796436, w: 0.929239}
+      scale: {x: 1.1165329, y: 1.204531, z: 1.0891688}
+    - name: DEF_DEF_Martillo_05_end
+      parentName: DEF_DEF_Martillo_05
+      position: {x: -0, y: 0.039474662, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Pulgar.L
+      parentName: DEF_DEF_Arm_Rueda_03.L
+      position: {x: -0.0011620859, y: -0.00071476266, z: -0.00026038336}
+      rotation: {x: 0.4235308, y: 0.107381076, z: 0.5813651, w: 0.6863713}
+      scale: {x: 1.0000013, y: 0.99999976, z: 1.0000006}
+    - name: DEF_DEF_Almohadilla_Pulgar.L
+      parentName: DEF_DEF_Pulgar.L
+      position: {x: -0.0021592572, y: -0.00061446946, z: 0.0014692855}
+      rotation: {x: -0.019578217, y: 0.0013462825, z: -0.014596162, w: 0.99970096}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+    - name: DEF_DEF_Almohadilla_Pulgar.L_end
+      parentName: DEF_DEF_Almohadilla_Pulgar.L
+      position: {x: -0, y: 0.0075911926, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Leg_Rueda_01.L
+      parentName: DEF_DEF_Hip
+      position: {x: -0.014153921, y: -0.00040132532, z: 0.0010390793}
+      rotation: {x: 0.00000038743025, y: -0.00000032053563, z: 0.71798927, w: 0.69605416}
+      scale: {x: 1.0000002, y: 1.0000001, z: 0.9999999}
+    - name: DEF_DEF_Leg_Tornillo_01.L
+      parentName: DEF_DEF_Leg_Rueda_01.L
+      position: {x: -0.000010588113, y: 0.011221293, z: 5.9604643e-10}
+      rotation: {x: -0.0000000809987, y: -0.0000006100117, z: -0.01838592, w: 0.999831}
+      scale: {x: 1.0000002, y: 1.0000004, z: 0.9999999}
+    - name: DEF_DEF_Leg_Tornillo_01.L_end
+      parentName: DEF_DEF_Leg_Tornillo_01.L
+      position: {x: -0, y: 0.005184023, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Leg_Rueda_01.R
+      parentName: DEF_DEF_Hip
+      position: {x: 0.014153921, y: -0.00040132532, z: 0.0010390725}
+      rotation: {x: 0.00000023841858, y: 0.0000004841271, z: -0.71798927, w: 0.69605416}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+    - name: DEF_DEF_Leg_Tornillo_01.R
+      parentName: DEF_DEF_Leg_Rueda_01.R
+      position: {x: 0.000010588541, y: 0.0112212915, z: 0.0000000028684735}
+      rotation: {x: -0.00000010436576, y: 0.00000062844066, z: 0.01838592, w: 0.999831}
+      scale: {x: 1.0000008, y: 1.0000011, z: 0.9999999}
+    - name: DEF_DEF_Leg_Tornillo_01.R_end
+      parentName: DEF_DEF_Leg_Tornillo_01.R
+      position: {x: -0, y: 0.005184023, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Hip
+      parentName: DEF_DEF_Root
+      position: {x: -6.7762634e-23, y: 0.023023974, z: 0.0000000018009295}
+      rotation: {x: -0, y: -0, z: 7.1054274e-15, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Chest
+      parentName: CTR_DEF_Hip
+      position: {x: 6.48517e-30, y: 0.016056504, z: 1.4210865e-16}
+      rotation: {x: 5.04871e-29, y: 7.1054274e-15, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Shoulder
+      parentName: CTR_DEF_Chest
+      position: {x: -0.021773418, y: 0.022842605, z: 0.0025234015}
+      rotation: {x: 0.0000002682209, y: -0.00000031925504, z: 0.70482755, w: 0.7093787}
+      scale: {x: 1.0000002, y: 1.0000001, z: 0.99999994}
+    - name: CTR_DEF_Arm_Rueda_01.L
+      parentName: CTR_DEF_Shoulder
+      position: {x: -0.0010413426, y: 0.016582608, z: 0.000000010195491}
+      rotation: {x: -0, y: -0, z: 8.563087e-14, w: 1}
+      scale: {x: 1.0000004, y: 1.0000007, z: 0.9999998}
+    - name: CTR_DEF_Arm_Tornillo_01.L
+      parentName: CTR_DEF_Arm_Rueda_01.L
+      position: {x: -0.0005793638, y: 0.010990355, z: 0.000000003799796}
+      rotation: {x: -0.000000084266794, y: -0.00000021085852, z: -0.001771629, w: 0.99999845}
+      scale: {x: 1.0000005, y: 1.0000004, z: 0.9999999}
+    - name: CTR_DEF_Arm_Tornillo_01.L_end
+      parentName: CTR_DEF_Arm_Tornillo_01.L
+      position: {x: -0, y: 0.0063961204, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Arm_01.L
+      parentName: CTR_DEF_Arm_Rueda_01.L
+      position: {x: -0.006872755, y: 0.0040247464, z: -0.0014601005}
+      rotation: {x: 0.00000052377635, y: -0.00000018821692, z: 0.71365845, w: 0.7004938}
+      scale: {x: 1.000001, y: 1.0000008, z: 0.9999999}
+    - name: CTR_DEF_Arm_Rueda_02.L
+      parentName: CTR_DEF_Arm_01.L
+      position: {x: -0.0063342485, y: 0.017570022, z: 0.000000009909272}
+      rotation: {x: -0.00000055357816, y: 0.00000018839842, z: -0.7136585, w: 0.70049375}
+      scale: {x: 1.0000013, y: 1.0000012, z: 1.0000002}
+    - name: CTR_DEF_Arm_Tornillo_02.L
+      parentName: CTR_DEF_Arm_Rueda_02.L
+      position: {x: -0.00058723404, y: 0.012212952, z: 0.0000000017881393}
+      rotation: {x: -0.00000010509044, y: -0.0000004425746, z: -0.0029507878, w: 0.99999565}
+      scale: {x: 1.000001, y: 1.0000007, z: 1.0000002}
+    - name: CTR_DEF_Arm_Tornillo_02.L_end
+      parentName: CTR_DEF_Arm_Tornillo_02.L
+      position: {x: -0, y: 0.0051735714, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Arm_02.L
+      parentName: CTR_DEF_Arm_Rueda_02.L
+      position: {x: -0.0058183013, y: 0.0065104836, z: 0.0000000055879354}
+      rotation: {x: 0.00000056179647, y: -0.0000002809799, z: 0.7148933, w: 0.69923365}
+      scale: {x: 1.0000014, y: 1.0000001, z: 1.0000021}
+    - name: CTR_DEF_Munyeca.L
+      parentName: CTR_DEF_Arm_02.L
+      position: {x: 0.001056437, y: 0.009705656, z: -7.45058e-10}
+      rotation: {x: -0.000000118672304, y: -0.00000018176186, z: 0.004494727, w: 0.9999899}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000002}
+    - name: CTR_DEF_Arm_Rueda_03.L
+      parentName: CTR_DEF_Munyeca.L
+      position: {x: 0.00018499202, y: 0.007488186, z: 0.0044905124}
+      rotation: {x: -0.7041749, y: 0.01041674, z: 0.000011219106, w: 0.7099502}
+      scale: {x: 1.0000012, y: 1.000001, z: 1.0000006}
+    - name: CTR_DEF_Palma.L
+      parentName: CTR_DEF_Arm_Rueda_03.L
+      position: {x: 0.0010721858, y: 0.0044796136, z: 0.00053873763}
+      rotation: {x: 0.6762273, y: 0.20276849, z: -0.20853977, w: 0.67684036}
+      scale: {x: 1.0000006, y: 1.0000001, z: 0.99999994}
+    - name: CTR_DEF_Arm_Rueda_04.L
+      parentName: CTR_DEF_Palma.L
+      position: {x: 0.00022490292, y: 0.006377108, z: 0.0044926447}
+      rotation: {x: -0.6762273, y: -0.20276855, z: 0.20853977, w: 0.67684036}
+      scale: {x: 0.9999979, y: 1.0000005, z: 1.0000046}
+    - name: CTR_DEF_Dedos.L
+      parentName: CTR_DEF_Arm_Rueda_04.L
+      position: {x: -0.00045131028, y: 0.0045059384, z: 0.0010066915}
+      rotation: {x: 0.6670547, y: -0.22009034, z: 0.21776609, w: 0.67762536}
+      scale: {x: 1.0000019, y: 1.000001, z: 1.0000004}
+    - name: CTR_DEF_Almohadilla_02.L
+      parentName: CTR_DEF_Dedos.L
+      position: {x: 0.0039108265, y: -0.0013810983, z: 0.000034123284}
+      rotation: {x: -0.0009945927, y: -0.000000283122, z: 0.11400993, w: 0.99347913}
+      scale: {x: 0.9999985, y: 1.0000017, z: 1.0000005}
+    - name: CTR_DEF_Almohadilla_02.L_end
+      parentName: CTR_DEF_Almohadilla_02.L
+      position: {x: -0, y: 0.009105956, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Almohadilla_01.L
+      parentName: CTR_DEF_Palma.L
+      position: {x: 0.0044512376, y: 0.000981522, z: 0.00003883667}
+      rotation: {x: 0.000000059604638, y: -0.000000029802319, z: 0.000000104308114, w: 1}
+      scale: {x: 1.0000012, y: 1.0000012, z: 1.0000002}
+    - name: CTR_DEF_Almohadilla_01.L_end
+      parentName: CTR_DEF_Almohadilla_01.L
+      position: {x: -0, y: 0.0051861927, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Martillo_01
+      parentName: CTR_DEF_Palma.L
+      position: {x: -0.0025990396, y: 0.0033302046, z: -0.021301312}
+      rotation: {x: 0.6811471, y: 0.1892301, z: 0.20668338, w: 0.6763968}
+      scale: {x: 0.9999985, y: 1.0000007, z: 1.0000052}
+    - name: CTR_DEF_Martillo_02
+      parentName: CTR_DEF_Martillo_01
+      position: {x: -0.0000000044330952, y: 0.015095072, z: 0.0000000038649888}
+      rotation: {x: -0.00000008940694, y: -0.000000029802312, z: -0.00000004470347, w: 1}
+      scale: {x: 1.0000011, y: 1.0000001, z: 1.0000002}
+    - name: CTR_DEF_Martillo_03
+      parentName: CTR_DEF_Martillo_02
+      position: {x: -8.1956386e-10, y: 0.015095069, z: 0.0000000022724271}
+      rotation: {x: 0.000000059604456, y: 0.0000036209813, z: -0.00000011920894, w: 1}
+      scale: {x: 1.0000008, y: 1.0000001, z: 1.0000006}
+    - name: CTR_DEF_Martillo_04
+      parentName: CTR_DEF_Martillo_03
+      position: {x: -0.0000000051409006, y: 0.015095072, z: 0.0000000029616056}
+      rotation: {x: 0.00025450785, y: 1.1596055e-11, z: 0.0010969944, w: 0.99999934}
+      scale: {x: 1.0000014, y: 1.0000007, z: 1.0000004}
+    - name: CTR_DEF_Martillo_05
+      parentName: CTR_DEF_Martillo_04
+      position: {x: -0.0003582423, y: 0.022226583, z: -0.0209892}
+      rotation: {x: 0.6997025, y: -0.001354435, z: -0.010421966, w: 0.7143571}
+      scale: {x: 1.1165326, y: 1.2045304, z: 1.0891685}
+    - name: CTR_DEF_Martillo_05_end
+      parentName: CTR_DEF_Martillo_05
+      position: {x: -0, y: 0.039474662, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Pulgar.L
+      parentName: CTR_DEF_Arm_Rueda_03.L
+      position: {x: -0.0011620859, y: -0.00071476266, z: -0.00026038336}
+      rotation: {x: 0.42353082, y: 0.107381, z: 0.58136517, w: 0.6863714}
+      scale: {x: 1.0000007, y: 0.9999995, z: 1.0000011}
+    - name: CTR_DEF_Almohadilla_Pulgar.L
+      parentName: CTR_DEF_Pulgar.L
+      position: {x: -0.0021592572, y: -0.00061446946, z: 0.0014692855}
+      rotation: {x: -0.019578068, y: 0.0013463347, z: -0.014596218, w: 0.99970096}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: CTR_DEF_Almohadilla_Pulgar.L_end
+      parentName: CTR_DEF_Almohadilla_Pulgar.L
+      position: {x: -0, y: 0.0075911926, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Pipe.L
+      parentName: CTR_DEF_Chest
+      position: {x: -0.011074902, y: 0.0074299984, z: -0.022009606}
+      rotation: {x: -3.375595e-16, y: 0.000000019628496, z: 0.047507294, w: 0.9988709}
+      scale: {x: 1, y: 1.0000002, z: 1.0000002}
+    - name: CTR_DEF_Pipe.L_end
+      parentName: CTR_DEF_Pipe.L
+      position: {x: -0, y: 0.03840486, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Pipe.L..001
+      parentName: CTR_DEF_Chest
+      position: {x: 0.00025539668, y: 0.007429999, z: -0.023045288}
+      rotation: {x: -0.7144047, y: 0.0041866605, z: 0.0007261723, w: 0.6997199}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000006}
+    - name: CTR_DEF_Pipe.L..001_end
+      parentName: CTR_DEF_Pipe.L..001
+      position: {x: -0, y: 0.025676392, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Pipe.R
+      parentName: CTR_DEF_Chest
+      position: {x: 0.011074892, y: 0.007429997, z: -0.022009607}
+      rotation: {x: 3.3756116e-16, y: 0.00000021334361, z: -0.047507297, w: 0.9988709}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: CTR_DEF_Pipe.R_end
+      parentName: CTR_DEF_Pipe.R
+      position: {x: -0, y: 0.03840486, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Head
+      parentName: CTR_DEF_Chest
+      position: {x: -0.0006369468, y: -0.0067851446, z: 0.06363451}
+      rotation: {x: 9.5710916e-24, y: 6.1696426e-11, z: -0.000000001285315, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Corona
+      parentName: CTR_DEF_Head
+      position: {x: -0.000025836005, y: 0.0140363015, z: -0.00045061568}
+      rotation: {x: 1.6236103e-20, y: -5.4399152e-11, z: 8.7002405e-10, w: 1}
+      scale: {x: 1, y: 1.0000002, z: 1}
+    - name: CTR_DEF_Corona_end
+      parentName: CTR_DEF_Corona
+      position: {x: -0, y: 0.01293004, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Ceja_01.L
+      parentName: CTR_DEF_Head
+      position: {x: -0.010176611, y: 0.009340628, z: 0.007758895}
+      rotation: {x: 0.76543975, y: 0.64344805, z: 0.0072186887, w: 0.0049579837}
+      scale: {x: 1.0000008, y: 1.0000006, z: 1.0000018}
+    - name: CTR_DEF_Ceja_02.L
+      parentName: CTR_DEF_Ceja_01.L
+      position: {x: -1.11758706e-10, y: 0.003321216, z: 0.0000000049825757}
+      rotation: {x: -4.656613e-10, y: -2.3283064e-10, z: 0.000000059604645, w: 1}
+      scale: {x: 0.9999997, y: 0.99999994, z: 1.0000008}
+    - name: CTR_DEF_Ceja_03.L
+      parentName: CTR_DEF_Ceja_02.L
+      position: {x: -8.5681673e-10, y: 0.0033212178, z: 0.0000000024819746}
+      rotation: {x: -0.00000029196957, y: 0.0000007711351, z: -0.0000006854534, w: 1}
+      scale: {x: 1.0000011, y: 1.0000013, z: 1.0000023}
+    - name: CTR_DEF_Ceja_03.L_end
+      parentName: CTR_DEF_Ceja_03.L
+      position: {x: -0, y: 0.0033212157, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Ceja_01.R
+      parentName: CTR_DEF_Head
+      position: {x: 0.009114007, y: 0.009340628, z: 0.0077588847}
+      rotation: {x: 0.7654397, y: -0.6434481, z: -0.007218868, w: 0.0049581137}
+      scale: {x: 1.0000007, y: 1.0000011, z: 1.0000015}
+    - name: CTR_DEF_Ceja_02.R
+      parentName: CTR_DEF_Ceja_01.R
+      position: {x: 4.842877e-10, y: 0.003321216, z: -0.0000000010477379}
+      rotation: {x: 0.00000003818423, y: 0.00000004563481, z: -0, w: 1}
+      scale: {x: 0.9999999, y: 1.0000004, z: 1.0000005}
+    - name: CTR_DEF_Ceja_03.R
+      parentName: CTR_DEF_Ceja_02.R
+      position: {x: 4.842877e-10, y: 0.0033212171, z: 0.000000002568122}
+      rotation: {x: -0.00000039814043, y: -0.0000007590279, z: 0.00000062584877, w: 1}
+      scale: {x: 1.0000002, y: 1.0000005, z: 1.0000008}
+    - name: CTR_DEF_Ceja_03.R_end
+      parentName: CTR_DEF_Ceja_03.R
+      position: {x: -0, y: 0.0033212157, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Shoulder.001
+      parentName: CTR_DEF_Chest
+      position: {x: 0.018311856, y: 0.022842605, z: 0.0025233913}
+      rotation: {x: -0.000030040743, y: -0.000029883207, z: -0.7053377, w: 0.7088715}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1.0000002}
+    - name: CTR_DEF_Arm_Rueda_01.R
+      parentName: CTR_DEF_Shoulder.001
+      position: {x: 0.0010347771, y: 0.020045614, z: -0.000000086738886}
+      rotation: {x: -0.000000031133826, y: 0.000042821357, z: 0.0007194877, w: 0.99999976}
+      scale: {x: 1.0000001, y: 1.0000004, z: 0.9999998}
+    - name: CTR_DEF_Arm_Tornillo_01.R
+      parentName: CTR_DEF_Arm_Rueda_01.R
+      position: {x: 0.0005793603, y: 0.010990353, z: 0.0000000046845523}
+      rotation: {x: -0.00000006335703, y: 0.00000023159738, z: 0.0017716305, w: 0.99999845}
+      scale: {x: 1.0000013, y: 1.0000012, z: 1.0000005}
+    - name: CTR_DEF_Arm_Tornillo_01.R_end
+      parentName: CTR_DEF_Arm_Tornillo_01.R
+      position: {x: -0, y: 0.0063961204, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Arm_01.R
+      parentName: CTR_DEF_Arm_Rueda_01.R
+      position: {x: 0.006872749, y: 0.004024747, z: -0.0014601009}
+      rotation: {x: -0.00000055001954, y: -0.00000016905142, z: 0.7136585, w: -0.70049375}
+      scale: {x: 1.0000015, y: 1.0000015, z: 1.0000005}
+    - name: CTR_DEF_Arm_Rueda_02.R
+      parentName: CTR_DEF_Arm_01.R
+      position: {x: 0.0063342475, y: 0.017570036, z: 0.000000011813826}
+      rotation: {x: 0.00000055019984, y: 0.00000013925323, z: -0.7136586, w: -0.7004937}
+      scale: {x: 1.000001, y: 1.0000013, z: 0.99999964}
+    - name: CTR_DEF_Arm_Tornillo_02.R
+      parentName: CTR_DEF_Arm_Rueda_02.R
+      position: {x: 0.0005872306, y: 0.012212952, z: 0.0000000024680047}
+      rotation: {x: -0.00000018962682, y: 0.0000004846813, z: 0.0029507282, w: 0.99999565}
+      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000004}
+    - name: CTR_DEF_Arm_Tornillo_02.R_end
+      parentName: CTR_DEF_Arm_Tornillo_02.R
+      position: {x: -0, y: 0.0051735714, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Arm_02.R
+      parentName: CTR_DEF_Arm_Rueda_02.R
+      position: {x: 0.0058183013, y: 0.006510487, z: 0.0000000058859584}
+      rotation: {x: -0.00000055927535, y: -0.00000023270594, z: 0.7148933, w: -0.6992336}
+      scale: {x: 1.0000018, y: 1.0000018, z: 1.0000002}
+    - name: CTR_DEF_Munyeca.R
+      parentName: CTR_DEF_Arm_02.R
+      position: {x: -0.0010564325, y: 0.009705656, z: -1.862645e-10}
+      rotation: {x: -0.000000118850096, y: 0.00000017802455, z: -0.0044947267, w: 0.9999899}
+      scale: {x: 0.9999978, y: 0.99999964, z: 1.0000017}
+    - name: CTR_DEF_Arm_Rueda_03.R
+      parentName: CTR_DEF_Munyeca.R
+      position: {x: -0.00018499792, y: 0.0074881846, z: 0.0044905166}
+      rotation: {x: -0.70417494, y: -0.010416713, z: -0.000011245184, w: 0.70995015}
+      scale: {x: 1.0000008, y: 1.0000005, z: 1.0000001}
+    - name: CTR_DEF_Palma.R
+      parentName: CTR_DEF_Arm_Rueda_03.R
+      position: {x: -0.0010721808, y: 0.004479607, z: 0.0005387393}
+      rotation: {x: 0.67622733, y: -0.20276853, z: 0.20853971, w: 0.6768403}
+      scale: {x: 1.0000006, y: 1.0000007, z: 0.99999964}
+    - name: CTR_DEF_Arm_Rueda_04.R
+      parentName: CTR_DEF_Palma.R
+      position: {x: -0.00022490247, y: 0.0063771107, z: 0.0044926507}
+      rotation: {x: -0.67622733, y: 0.2027686, z: -0.20853983, w: 0.6768403}
+      scale: {x: 1.0000019, y: 1.0000005, z: 1}
+    - name: CTR_DEF_Dedos.R
+      parentName: CTR_DEF_Arm_Rueda_04.R
+      position: {x: 0.0004513098, y: 0.0045059416, z: 0.0010066937}
+      rotation: {x: 0.6670547, y: 0.22009026, z: -0.21776608, w: 0.6776255}
+      scale: {x: 1, y: 1.0000006, z: 1}
+    - name: CTR_DEF_Almohadilla_02.R
+      parentName: CTR_DEF_Dedos.R
+      position: {x: -0.0039108275, y: -0.0013811075, z: 0.000034117642}
+      rotation: {x: -0.0009944735, y: 0.000000283122, z: -0.11400998, w: 0.9934792}
+      scale: {x: 1.0000012, y: 1.0000012, z: 1.0000006}
+    - name: CTR_DEF_Almohadilla_02.R_end
+      parentName: CTR_DEF_Almohadilla_02.R
+      position: {x: -0, y: 0.009105956, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Almohadilla_01.R
+      parentName: CTR_DEF_Palma.R
+      position: {x: -0.004451237, y: 0.000981519, z: 0.000038838312}
+      rotation: {x: 0.000000059604645, y: 0.000000029802322, z: -0.00000016391277, w: 1}
+      scale: {x: 1.0000002, y: 1.0000007, z: 1}
+    - name: CTR_DEF_Almohadilla_01.R_end
+      parentName: CTR_DEF_Almohadilla_01.R
+      position: {x: -0, y: 0.0051861927, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Pulgar.R
+      parentName: CTR_DEF_Arm_Rueda_03.R
+      position: {x: 0.0011620874, y: -0.0007147649, z: -0.000260384}
+      rotation: {x: 0.42353085, y: -0.107380904, z: -0.5813652, w: 0.6863713}
+      scale: {x: 0.9999998, y: 1.0000007, z: 0.99999934}
+    - name: CTR_DEF_Almohadilla_Pulgar.R
+      parentName: CTR_DEF_Pulgar.R
+      position: {x: 0.0021592581, y: -0.00061446114, z: 0.0014692891}
+      rotation: {x: -0.019578336, y: -0.0013463794, z: 0.014596371, w: 0.99970096}
+      scale: {x: 1.0000006, y: 1.000001, z: 1.0000001}
+    - name: CTR_DEF_Almohadilla_Pulgar.R_end
+      parentName: CTR_DEF_Almohadilla_Pulgar.R
+      position: {x: -0, y: 0.0075911926, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Leg_Rueda_01.L
+      parentName: CTR_DEF_Hip
+      position: {x: -0.014153921, y: -0.00040132532, z: 0.0010390793}
+      rotation: {x: 0.00000038743025, y: -0.00000032053563, z: 0.71798927, w: 0.69605416}
+      scale: {x: 1.0000002, y: 1.0000001, z: 0.9999999}
+    - name: CTR_DEF_Leg_Tornillo_01.L
+      parentName: CTR_DEF_Leg_Rueda_01.L
+      position: {x: -0.000010588113, y: 0.011221293, z: 5.9604643e-10}
+      rotation: {x: -0.0000000809987, y: -0.0000006100117, z: -0.01838592, w: 0.999831}
+      scale: {x: 1.0000002, y: 1.0000004, z: 0.9999999}
+    - name: CTR_DEF_Leg_Tornillo_01.L_end
+      parentName: CTR_DEF_Leg_Tornillo_01.L
+      position: {x: -0, y: 0.005184023, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Leg_01.L
+      parentName: CTR_DEF_Leg_Rueda_01.L
+      position: {x: -0.0069158874, y: 0.005226974, z: 0.000024211853}
+      rotation: {x: 0.0000004903343, y: -0.00000013082149, z: 0.7026343, w: 0.7115512}
+      scale: {x: 1.0000001, y: 0.9999998, z: 0.9999999}
+    - name: CTR_DEF_Leg_Rueda_02.L
+      parentName: CTR_DEF_Leg_01.L
+      position: {x: -0.0050084293, y: 0.012879082, z: -0.000024195871}
+      rotation: {x: -0.00000067063166, y: -0.00000007597939, z: -0.7019493, w: 0.712227}
+      scale: {x: 1.0000012, y: 1.0000014, z: 1.0000002}
+    - name: CTR_DEF_Leg_Tornillo_02.L
+      parentName: CTR_DEF_Leg_Rueda_02.L
+      position: {x: -0.000017330645, y: 0.010361521, z: -6.705522e-10}
+      rotation: {x: -0.00000016918028, y: -0.00000035612794, z: -0.021745265, w: 0.9997636}
+      scale: {x: 1.0000004, y: 1.0000008, z: 1}
+    - name: CTR_DEF_Leg_Tornillo_02.L_end
+      parentName: CTR_DEF_Leg_Tornillo_02.L
+      position: {x: -0, y: 0.0028270364, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Bone
+      parentName: CTR_DEF_Leg_Rueda_02.L
+      position: {x: -0.003973164, y: 0.0059953043, z: 0.00002421394}
+      rotation: {x: 0.0000007167383, y: -0.00000010030535, z: 0.7031956, w: 0.71099645}
+      scale: {x: 1.000001, y: 1.0000004, z: 1.0000002}
+    - name: CTR_DEF_Tobillo.L
+      parentName: CTR_DEF_Bone
+      position: {x: 0.00003225012, y: 0.0068982895, z: 0.000000003761961}
+      rotation: {x: -0.00000027646246, y: -0.00000012727982, z: -0.01244089, w: 0.99992263}
+      scale: {x: 1.0000021, y: 1.000002, z: 1}
+    - name: CTR_DEF_Leg_Tornillo_03.L
+      parentName: CTR_DEF_Tobillo.L
+      position: {x: -0.0036815142, y: 0.0054198694, z: -0.0006451693}
+      rotation: {x: -0.0000018344581, y: -0.000000549787, z: -0.6967327, w: 0.7173309}
+      scale: {x: 1.0000011, y: 1.0000008, z: 1}
+    - name: CTR_DEF_Feet_01.L
+      parentName: CTR_DEF_Leg_Tornillo_03.L
+      position: {x: -0.00085996283, y: 0.000022504804, z: -0.003608229}
+      rotation: {x: -0, y: -0, z: -1.0085612e-12, w: 1}
+      scale: {x: 1.0000005, y: 1.0000007, z: 1}
+    - name: CTR_DEF_Feet_01.L_end
+      parentName: CTR_DEF_Feet_01.L
+      position: {x: -0, y: 0.007303685, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Feet_02.L
+      parentName: CTR_DEF_Leg_Tornillo_03.L
+      position: {x: -0.0004493502, y: 0.0037026023, z: 0.0027676022}
+      rotation: {x: 0.49494448, y: -0.5438623, z: -0.51006967, w: 0.44617572}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1.0000005}
+    - name: CTR_DEF_Feet_02.L_end
+      parentName: CTR_DEF_Feet_02.L
+      position: {x: -0, y: 0.0074774176, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Leg_Rueda_01.R
+      parentName: CTR_DEF_Hip
+      position: {x: 0.014153921, y: -0.00040132532, z: 0.0010390725}
+      rotation: {x: 0.00000023841858, y: 0.0000004841271, z: -0.71798927, w: 0.69605416}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+    - name: CTR_DEF_Leg_Tornillo_01.R
+      parentName: CTR_DEF_Leg_Rueda_01.R
+      position: {x: 0.000010588541, y: 0.0112212915, z: 0.0000000028684735}
+      rotation: {x: -0.00000010436576, y: 0.00000062844066, z: 0.01838592, w: 0.999831}
+      scale: {x: 1.0000008, y: 1.0000011, z: 0.9999999}
+    - name: CTR_DEF_Leg_Tornillo_01.R_end
+      parentName: CTR_DEF_Leg_Tornillo_01.R
+      position: {x: -0, y: 0.005184023, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Leg_01.R
+      parentName: CTR_DEF_Leg_Rueda_01.R
+      position: {x: 0.006915887, y: 0.0052269725, z: 0.000024215205}
+      rotation: {x: -0.00000048786535, y: -0.00000010891914, z: 0.7026343, w: -0.7115512}
+      scale: {x: 1.0000011, y: 1.0000011, z: 0.9999998}
+    - name: CTR_DEF_Leg_Rueda_02.R
+      parentName: CTR_DEF_Leg_01.R
+      position: {x: 0.0050084284, y: 0.012879082, z: -0.000024197212}
+      rotation: {x: 0.0000006085938, y: -0.00000009859015, z: -0.7019493, w: -0.712227}
+      scale: {x: 1.0000008, y: 1.0000008, z: 0.9999998}
+    - name: DEF_DEF_Bone.034
+      parentName: CTR_DEF_Leg_Rueda_02.R
+      position: {x: 0.0039807404, y: 0.0057653612, z: 0.000024214089}
+      rotation: {x: 0.00000008518873, y: 0.00000068708187, z: 0.68744683, w: -0.7262347}
+      scale: {x: 1.0000006, y: 1.0000007, z: 0.9999999}
+    - name: CTR_DEF_Tobillo.R
+      parentName: DEF_DEF_Bone.034
+      position: {x: 0.00004001945, y: 0.006898119, z: 0.0000000023926259}
+      rotation: {x: -0.00000026041556, y: 0.0000011880346, z: -0.009473324, w: 0.9999552}
+      scale: {x: 1.0000014, y: 1.0000012, z: 1.0000002}
+    - name: CTR_DEF_Leg_Tornillo_03.R
+      parentName: CTR_DEF_Tobillo.R
+      position: {x: 0.0036815144, y: 0.0054198713, z: -0.00064516877}
+      rotation: {x: 0.0000018618401, y: -0.00000054188166, z: -0.6967331, w: -0.7173305}
+      scale: {x: 1.0000004, y: 1.0000005, z: 1.0000001}
+    - name: CTR_DEF_Feet_01.R
+      parentName: CTR_DEF_Leg_Tornillo_03.R
+      position: {x: 0.00085996196, y: 0.00002250587, z: -0.0036082293}
+      rotation: {x: -0.0000000415921, y: -0.00000004269469, z: 8.9792236e-13, w: 1}
+      scale: {x: 1.0000006, y: 1.0000007, z: 1.0000005}
+    - name: CTR_DEF_Feet_01.R_end
+      parentName: CTR_DEF_Feet_01.R
+      position: {x: -0, y: 0.007303685, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Feet_02.R
+      parentName: CTR_DEF_Leg_Tornillo_03.R
+      position: {x: 0.00044934973, y: 0.0037026012, z: 0.0027676006}
+      rotation: {x: 0.49494466, y: 0.5438622, z: 0.51006943, w: 0.44617587}
+      scale: {x: 1.0000004, y: 1.0000013, z: 1.000001}
+    - name: CTR_DEF_Feet_02.R_end
+      parentName: CTR_DEF_Feet_02.R
+      position: {x: -0, y: 0.0074774176, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTR_DEF_Leg_Tornillo_02.R
+      parentName: CTR_DEF_Leg_Rueda_02.R
+      position: {x: 0.000017328783, y: 0.010361519, z: 0.0000000011920929}
+      rotation: {x: -0.0000002341589, y: 0.0000003743392, z: 0.021745205, w: 0.99976355}
+      scale: {x: 1.0000007, y: 1.0000005, z: 1.0000002}
+    - name: CTR_DEF_Leg_Tornillo_02.R_end
+      parentName: CTR_DEF_Leg_Tornillo_02.R
+      position: {x: -0, y: 0.0028270364, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Leg_01.L
+      parentName: Armature
+      position: {x: -0.01931687, y: -0.0076645934, z: 0.020478392}
+      rotation: {x: -0.006509201, y: -0.7070771, z: 0.7070766, w: -0.0065096924}
+      scale: {x: 1.0000002, y: 1.0000002, z: 0.9999999}
+    - name: DEF_DEF_Leg_Rueda_02.L
+      parentName: DEF_DEF_Leg_01.L
+      position: {x: -0.0050084293, y: 0.012879082, z: -0.000024195871}
+      rotation: {x: -0.016762927, y: -0.005200356, z: -0.5632877, w: 0.8260745}
+      scale: {x: 1.0000008, y: 1.0000008, z: 1}
+    - name: DEF_DEF_Leg_Tornillo_02.L
+      parentName: DEF_DEF_Leg_Rueda_02.L
+      position: {x: -0.000017330645, y: 0.010361521, z: -6.705522e-10}
+      rotation: {x: -0.0000001852751, y: -0.00000028696803, z: -0.021745145, w: 0.9997636}
+      scale: {x: 1.0000007, y: 1.0000006, z: 1.0000001}
+    - name: DEF_DEF_Leg_Tornillo_02.L_end
+      parentName: DEF_DEF_Leg_Tornillo_02.L
+      position: {x: -0, y: 0.0028270364, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Bone.032
+      parentName: DEF_DEF_Leg_Rueda_02.L
+      position: {x: -0.003973164, y: 0.0059953043, z: 0.00002421394}
+      rotation: {x: 0.0000007167148, y: -0.00000018337114, z: 0.7031957, w: 0.7109964}
+      scale: {x: 1.0000002, y: 1.0000002, z: 0.99999994}
+    - name: DEF_DEF_Tobillo.L
+      parentName: DEF_DEF_Bone.032
+      position: {x: 0.00003225012, y: 0.0068982895, z: 0.000000003761961}
+      rotation: {x: -0.01647952, y: -0.042476118, z: -0.27946424, w: 0.9590745}
+      scale: {x: 1.000002, y: 1.0000021, z: 1.0000001}
+    - name: DEF_DEF_Leg_Tornillo_03.L
+      parentName: DEF_DEF_Tobillo.L
+      position: {x: -0.0036815142, y: 0.0054198694, z: -0.0006451693}
+      rotation: {x: 0.28285813, y: -0.13220976, z: -0.5911539, w: 0.7436727}
+      scale: {x: 1.0000002, y: 1.0000005, z: 1.0000002}
+    - name: DEF_DEF_Feet_01.L
+      parentName: DEF_DEF_Leg_Tornillo_03.L
+      position: {x: -0.00085996283, y: 0.000022504804, z: -0.003608229}
+      rotation: {x: -1.1368681e-13, y: -0, z: -9.17042e-13, w: 1}
+      scale: {x: 1.0000006, y: 1.0000007, z: 0.99999976}
+    - name: DEF_DEF_Feet_01.L_end
+      parentName: DEF_DEF_Feet_01.L
+      position: {x: -0, y: 0.007303685, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Feet_02.L
+      parentName: DEF_DEF_Leg_Tornillo_03.L
+      position: {x: -0.0004493502, y: 0.0037026023, z: 0.0027676022}
+      rotation: {x: 0.49494463, y: -0.5438625, z: -0.51006943, w: 0.4461756}
+      scale: {x: 0.9999999, y: 1.0000004, z: 1.000001}
+    - name: DEF_DEF_Feet_02.L_end
+      parentName: DEF_DEF_Feet_02.L
+      position: {x: -0, y: 0.0074774176, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Ceja_01.L
+      parentName: Armature
+      position: {x: -0.01100899, y: -0.05686846, z: 0.0074085686}
+      rotation: {x: 0.5447535, y: 0.449882, z: 0.46009097, w: -0.5377417}
+      scale: {x: 1, y: 0.9999998, z: 1.0000002}
+    - name: DEF_DEF_Ceja_02.L
+      parentName: DEF_DEF_Ceja_01.L
+      position: {x: 3.7252902e-11, y: 0.0033212171, z: 0.000000005001202}
+      rotation: {x: 0.000000059604638, y: 0.000000014901159, z: -0.000000104308114, w: 1}
+      scale: {x: 1.0000001, y: 1.0000007, z: 1.000001}
+    - name: DEF_DEF_Ceja_02.L_end
+      parentName: DEF_DEF_Ceja_02.L
+      position: {x: -0, y: 0.0033212164, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Head
+      parentName: Armature
+      position: {x: -0.00063695863, y: -0.049225807, z: -0.0018121671}
+      rotation: {x: 0.7071068, y: -0.00000013446709, z: -0.00000010644139, w: 0.7071067}
+      scale: {x: 0.9999998, y: 1, z: 1.0000001}
+    - name: DEF_DEF_Ceja_03.L
+      parentName: DEF_DEF_Head
+      position: {x: -0.0036340177, y: 0.008198794, z: 0.007871017}
+      rotation: {x: 0.7654392, y: 0.6434487, z: 0.0072193746, w: 0.0049577756}
+      scale: {x: 1.0000007, y: 1.0000011, z: 1.0000011}
+    - name: DEF_DEF_Ceja_03.L_end
+      parentName: DEF_DEF_Ceja_03.L
+      position: {x: -0, y: 0.0033212157, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Corona
+      parentName: DEF_DEF_Head
+      position: {x: -0.000025836005, y: 0.0140363015, z: -0.00045061568}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: DEF_DEF_Corona_end
+      parentName: DEF_DEF_Corona
+      position: {x: -0, y: 0.01293004, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Ceja_03.R
+      parentName: DEF_DEF_Head
+      position: {x: 0.002571412, y: 0.008198793, z: 0.007871009}
+      rotation: {x: 0.7654393, y: -0.64344865, z: -0.007219523, w: 0.0049579344}
+      scale: {x: 1.0000008, y: 1.0000007, z: 1.0000019}
+    - name: DEF_DEF_Ceja_03.R_end
+      parentName: DEF_DEF_Ceja_03.R
+      position: {x: -0, y: 0.0033212157, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Leg_01.R
+      parentName: Armature
+      position: {x: 0.019220809, y: -0.0057318774, z: 0.017382836}
+      rotation: {x: 0.0065090936, y: -0.7070771, z: 0.7070766, w: 0.00650973}
+      scale: {x: 1.0000004, y: 1.0000002, z: 0.9999999}
+    - name: DEF_DEF_Leg_Rueda_02.R
+      parentName: DEF_DEF_Leg_01.R
+      position: {x: 0.0050084284, y: 0.012879082, z: -0.000024197212}
+      rotation: {x: 0.0031878967, y: -0.0009469091, z: -0.6924591, w: -0.72144955}
+      scale: {x: 1.0000011, y: 1.0000011, z: 1.0000001}
+    - name: DEF_DEF_Leg_Tornillo_02.R
+      parentName: DEF_DEF_Leg_Rueda_02.R
+      position: {x: 0.000017328783, y: 0.010361519, z: 0.0000000011920929}
+      rotation: {x: -0.00000018710864, y: 0.00000024747692, z: 0.021745265, w: 0.9997636}
+      scale: {x: 1.000001, y: 1.0000008, z: 1}
+    - name: DEF_DEF_Leg_Tornillo_02.R_end
+      parentName: DEF_DEF_Leg_Tornillo_02.R
+      position: {x: -0, y: 0.0028270364, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Bone.033
+      parentName: DEF_DEF_Leg_Rueda_02.R
+      position: {x: 0.0039807404, y: 0.0057653612, z: 0.000024214089}
+      rotation: {x: 0.000000042568047, y: 0.00000064323535, z: 0.6874467, w: -0.72623485}
+      scale: {x: 1.0000013, y: 1.0000014, z: 1.0000002}
+    - name: DEF_DEF_Tobillo.R
+      parentName: DEF_DEF_Bone.033
+      position: {x: 0.00004001945, y: 0.006898119, z: 0.0000000023926259}
+      rotation: {x: -0.02514711, y: 0.04657996, z: 0.23408306, w: 0.9707744}
+      scale: {x: 1.0000018, y: 1.0000012, z: 1.0000001}
+    - name: DEF_DEF_Leg_Tornillo_03.R
+      parentName: DEF_DEF_Tobillo.R
+      position: {x: 0.0036815144, y: 0.0054198704, z: -0.00064516877}
+      rotation: {x: -0.1450894, y: -0.086802974, z: -0.50027597, w: -0.8491986}
+      scale: {x: 1.0000011, y: 1.0000008, z: 1.0000002}
+    - name: DEF_DEF_Feet_01.R
+      parentName: DEF_DEF_Leg_Tornillo_03.R
+      position: {x: 0.00085996254, y: 0.00002250587, z: -0.0036082293}
+      rotation: {x: -0.00000004165258, y: -0.000000042637875, z: 7.5998414e-13, w: 1}
+      scale: {x: 1.0000004, y: 1.0000007, z: 1.0000002}
+    - name: DEF_DEF_Feet_01.R_end
+      parentName: DEF_DEF_Feet_01.R
+      position: {x: -0, y: 0.007303685, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Feet_02.R
+      parentName: DEF_DEF_Leg_Tornillo_03.R
+      position: {x: 0.00044934973, y: 0.0037026012, z: 0.0027676006}
+      rotation: {x: 0.4949445, y: 0.5438624, z: 0.5100696, w: 0.4461756}
+      scale: {x: 1.0000001, y: 1.0000005, z: 1.0000002}
+    - name: DEF_DEF_Feet_02.R_end
+      parentName: DEF_DEF_Feet_02.R
+      position: {x: -0, y: 0.0074774176, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DEF_DEF_Ceja_01.R
+      parentName: Armature
+      position: {x: 0.008277789, y: -0.05689308, z: 0.00779267}
+      rotation: {x: 0.5447535, y: -0.44988206, z: -0.46009088, w: -0.5377418}
+      scale: {x: 1.0000004, y: 1.0000008, z: 1.0000008}
+    - name: DEF_DEF_Ceja_02.R
+      parentName: DEF_DEF_Ceja_01.R
+      position: {x: -3.7252902e-11, y: 0.0033212155, z: -0.0000000010617077}
+      rotation: {x: 0.000000059604645, y: -0.000000029802322, z: 0.000000059604645, w: 1}
+      scale: {x: 1.0000002, y: 0.99999964, z: 1.0000001}
+    - name: DEF_DEF_Ceja_02.R_end
+      parentName: DEF_DEF_Ceja_02.R
+      position: {x: -0, y: 0.0033212164, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Boss
+      parentName: BOSS_RIGGED_ANIMATION(Clone)
+      position: {x: -1.1955746, y: 6.556007, z: -2.368748}
+      rotation: {x: 0.479255, y: 0.5199179, z: -0.47925496, w: 0.51991796}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: Martillo
+      parentName: BOSS_RIGGED_ANIMATION(Clone)
+      position: {x: -4.3151393, y: 2.3487227, z: -2.3027656}
+      rotation: {x: -0.000000097353585, y: 0, z: -0, w: 1}
+      scale: {x: 45.84546, y: 45.84546, z: 45.84546}
+    - name: REY
+      parentName: BOSS_RIGGED_ANIMATION(Clone)
+      position: {x: 0.07591135, y: 9.146436, z: 0.57661176}
+      rotation: {x: 0.70710695, y: -0.00000005338506, z: -0.7071066, w: -0.00000005338509}
+      scale: {x: 0.6530235, y: 0.6530235, z: 0.6530235}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

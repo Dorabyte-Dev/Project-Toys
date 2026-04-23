@@ -8,6 +8,7 @@ public class Boss_Combat : Entity_Combat
     {
         base.Awake();
         boss = GetComponent<Boss>();
+        
     }
     
     

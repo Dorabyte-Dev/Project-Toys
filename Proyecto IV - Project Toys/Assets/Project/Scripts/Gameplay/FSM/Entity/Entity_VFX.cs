@@ -113,7 +113,7 @@ public class Entity_VFX : MonoBehaviour
         yield return new WaitForSecondsRealtime(hitStopDuration);
         entity.anim.SetFloat(nameof(hitStopModifier), 1);
     }
-    public virtual void DamageVFX_Feedback(Transform damageDealer)
+    public virtual void DamageFeedback(Transform damageDealer)
     {
         TriggerMaterialChange();
         Vector3 pushDirection = (transform.position - damageDealer.position).normalized;

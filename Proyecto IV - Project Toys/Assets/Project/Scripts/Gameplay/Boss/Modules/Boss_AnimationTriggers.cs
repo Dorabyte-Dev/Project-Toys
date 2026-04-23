@@ -9,5 +9,10 @@ public class Boss_AnimationTriggers : Entity_AnimationTriggers
         base.Awake();
         boss = GetComponent<Boss>();
     }
+
+    public void TriggerSlamAttack()
+    {
+        boss.InstantiateSlamAttack();
+    }
     
 }
