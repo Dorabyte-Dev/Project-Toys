@@ -33,6 +33,7 @@ public class Player_VFX : Entity_VFX
 		TriggerMaterialChange();
 		Vector3 pushDirection = (transform.position - damageDealer.position).normalized;
 		CameraManager.instance.CameraShake();
+		RumbleManager.RumblePulse(1f, 0.5f, 0.2f);
 		StartCoroutine(PushFeedback(pushDirection));
 		player.ChangePlayerState(player.flinchState);
 	}
