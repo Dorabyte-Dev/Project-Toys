@@ -82,7 +82,6 @@ public class Enemy : Entity, IEnemyStates
     public virtual void SetEnemyDead()
     {
         OnEnemyDeath?.Invoke();
-        Destroy(shadowInstance);
         agent.isStopped = true;
         PerfectDodgeManager.EndPerfectDodgeFlag(this.gameObject);
         if (spawner != null)
