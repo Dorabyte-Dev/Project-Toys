@@ -29,9 +29,10 @@ public class Enemy_Health : Entity_Health
     {
         base.TakeDamage(takeDamage, damageDealer);
         //enemy.ChangeFlintState();
-        Vector3 damageDirection = damageDealer.position - transform.position;
+        /*Vector3 damageDirection = damageDealer.position - transform.position;
         if(damageDirection != Vector3.zero)
-            enemy._vfx.HitPSEffect(Quaternion.LookRotation(damageDirection));
+            enemy._vfx.HitPSEffect(Quaternion.LookRotation(damageDirection));*/
+        enemy._vfx.DamageFeedback(damageDealer);
         enemyUI.ReceiveDamage((int)takeDamage);
         if (isDead)
             return;

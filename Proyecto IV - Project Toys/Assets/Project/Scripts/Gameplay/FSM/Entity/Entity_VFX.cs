@@ -132,12 +132,14 @@ public class Entity_VFX : MonoBehaviour
         if (changeCoroutine != null)
         {
             StopCoroutine(changeCoroutine);
+            Debug.Log("<color=green>Stopped previous material change coroutine.</color>");
         }
 
 
         if (revertCoroutine != null)
         {
             StopCoroutine(revertCoroutine);
+            Debug.Log("<color=green>Stopped previous material revert coroutine.</color>");
         }
         changeCoroutine = StartCoroutine(ChangeMaterialsTemporarily());
     }
@@ -146,6 +148,7 @@ public class Entity_VFX : MonoBehaviour
     private IEnumerator ChangeMaterialsTemporarily()
     {
         ChangeMaterialsToColor(feedbackColor);
+        Debug.Log("<color=green>Materials changed to feedback color.</color>");
         //yield return new WaitForSeconds(0.2f);
         yield return null;
         revertCoroutine = StartCoroutine(RevertMaterialsSmoothly(feedbackDuration));

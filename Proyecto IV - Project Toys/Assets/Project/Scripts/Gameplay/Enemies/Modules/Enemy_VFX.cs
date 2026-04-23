@@ -30,7 +30,14 @@ public class Enemy_VFX : Entity_VFX
     {
         pDodgeShine.Play();
     }
-    
+
+    public override void DamageFeedback(Transform damageDealer)
+    {
+        base.DamageFeedback(damageDealer);
+        Vector3 damageDirection = damageDealer.position - transform.position;
+        HitPSEffect(Quaternion.LookRotation(damageDirection));
+    }
+
     public void HitPSEffect(Quaternion particleRotation)
     {
         pHitEffect.transform.rotation = particleRotation;
