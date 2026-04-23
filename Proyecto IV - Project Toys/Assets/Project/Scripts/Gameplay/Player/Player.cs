@@ -19,6 +19,8 @@ public class Player : Entity
     public Player_DashState dashState { get; private set; }
     //public Player_LightAttackState lightAttackState { get; private set; }
     public Player_ComboSystem comboSystemState { get; private set; }
+
+    public Player_FlinchState flinchState { get; private set; }
     public Player_DeathState deathState { get; private set; }
     //public Player_HeavyAttackState heavyState { get; private set; }
     public Player_ExecutionState executionState { get; private set; }
@@ -160,6 +162,7 @@ public class Player : Entity
         jumpState = new Player_JumpState(this, stateMachine, "jumpFall");
         fallState = new Player_FallState(this, stateMachine, "jumpFall");
         dashState = new Player_DashState(this, stateMachine, "Dash");
+        flinchState = new Player_FlinchState(this, stateMachine, "Flinch");
         deathState = new Player_DeathState(this, stateMachine, "death");
         comboSystemState = new Player_ComboSystem(this, stateMachine, "AttackPressed");
         executionState = new Player_ExecutionState(this,  stateMachine, "kill");

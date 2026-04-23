@@ -34,7 +34,7 @@ public class Player_VFX : Entity_VFX
 		Vector3 pushDirection = (transform.position - damageDealer.position).normalized;
 		CameraManager.instance.CameraShake();
 		StartCoroutine(PushFeedback(pushDirection));
-		//player.ChangePlayerState(player.hitState);
+		player.ChangePlayerState(player.flinchState);
 	}
 
 	protected override IEnumerator PushFeedback(Vector3 direction)
