@@ -24,8 +24,8 @@ public class Player_Combat : Entity_Combat
 
         _finalDamage = baseDamage * player.currentAttack.motionValue;
         Debug.Log("Final Damage: " + _finalDamage);
-
-        foreach (var target in GetDetectedColliders())
+        Collider[] detectedColliders = GetDetectedColliders();
+        foreach (var target in detectedColliders)
         {
             Entity_Health targetHealth = target.GetComponent<Entity_Health>();
             if (targetHealth != null)
@@ -46,6 +46,8 @@ public class Player_Combat : Entity_Combat
                 Debug.LogWarning("Entity_Health not found on " + target.name);
             }
         }
+        
+        RumbleManager.RumblePulse(0.2f * detectedColliders.Length, 0.5f * detectedColliders.Length, 0.4f);
     }
 
     protected override Collider[] GetDetectedColliders()

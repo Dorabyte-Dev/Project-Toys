@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2019985651617092825}
   - component: {fileID: 2859008793392584660}
   - component: {fileID: 5531803534786907228}
+  - component: {fileID: 8429316298242577380}
   m_Layer: 0
   m_Name: Techo
   m_TagString: Untagged
@@ -66,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ab4d482c5c1c46f4d867103023a50272, type: 2}
+  - {fileID: 2100000, guid: cf964e413d426e34da0a2ab91c65b22a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -89,3 +90,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8429316298242577380
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665363517332176301}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1, y: 1.1000001, z: 0.5673406}
+  m_Center: {x: 0.00000008940698, y: 0.00000005960466, z: 0.28367037}
