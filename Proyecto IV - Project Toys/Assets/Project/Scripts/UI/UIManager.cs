@@ -51,15 +51,17 @@ public class UIManager : MonoBehaviour
     }
 
     [Header("Pause Menu")]
-    public GameObject pausePanel;
+    [SerializeField] private GameObject pausePanel;
     public Button optionsbackButton;
     public static bool gameIsPaused;
+    private CanvasGroup pausePanelGroup;
+    private RectTransform pausePanelRect;
     [SerializeField] private string mainMenuString = "MainMenu";
     
     [Header("Options Panel")]
     [SerializeField] private GameObject optionsPanel;
-    [SerializeField] private CanvasGroup optionsPanelGroup;
-    [SerializeField] private RectTransform optionsPanelRect;
+    private CanvasGroup optionsPanelGroup;
+    private RectTransform optionsPanelRect;
 
     private void Awake()
     {
@@ -77,12 +79,16 @@ public class UIManager : MonoBehaviour
         {
             player = FindAnyObjectByType<Player>();
         }
+        InitUI();
+    }
+
+    private void InitUI()
+    {
         curtainInstance = curtain;
         curtainInstance.material.SetFloat("_MaskScale", 1f);
-        pausePanel.SetActive(false);
-        optionsPanel.SetActive(false);
+        InitPausePanel();
+        InitOptionsPanel();
         optionsbackButton.onClick.AddListener(CloseOptions);
-        
     }
 
     private void Update()
@@ -103,31 +109,7 @@ public class UIManager : MonoBehaviour
             }
         }
     }
-
-    private void PauseGame()
-    {
-        gameIsPaused = true;
-        Time.timeScale = 0f;
-        pausePanel.SetActive(true);
-    }
-
-    public void ResumeGame()
-    {
-        gameIsPaused = false;
-        Time.timeScale = 1f;
-        pausePanel.SetActive(false);
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
     
-    public void LoadMainMenu()
-    {
-        SceneManager.LoadScene(mainMenuString);
-    }
-
     public static void CloseCurtain(Action onComplete = null)
     {
         curtainInstance.material.DOFloat(0,"_MaskScale", 1f).SetEase(Ease.InOutQuad).OnComplete(() =>
@@ -150,6 +132,73 @@ public class UIManager : MonoBehaviour
         curtainInstance.material.SetFloat("_MaskScale", 1f);
     }
     
+    #region Pause Canvas
+    
+    private void InitPausePanel()
+    {
+        pausePanel.SetActive(false);
+        pausePanelGroup = pausePanel.GetComponent<CanvasGroup>();
+        pausePanelRect = pausePanel.GetComponent<RectTransform>();
+    }
+    private void PauseGame()
+    {
+        gameIsPaused = true;
+        Time.timeScale = 0f;
+        OpenPausePanel();
+    }
+    private void OpenPausePanel()
+    {
+        pausePanel.SetActive(true);
+        pausePanelGroup.alpha = 0f;
+        pausePanelRect.anchoredPosition = new Vector2(0, -50f);
+
+        pausePanelGroup 
+            .DOFade(1f, 0.3f)
+            .SetUpdate(true);
+
+        pausePanelRect
+            .DOAnchorPos(Vector2.zero, 0.3f)
+            .SetEase(Ease.OutBack)
+            .SetUpdate(true);
+    }
+    public void ResumeGame()
+    {
+        gameIsPaused = false;
+        Time.timeScale = 1f;
+        ClosePausePanel();
+    }
+    private void ClosePausePanel()
+    {
+        pausePanelGroup
+            .DOFade(0f, 0.2f)   
+            .SetUpdate(true);
+
+        pausePanelRect
+            .DOAnchorPos(new Vector2(0, -50f), 0.2f)
+            .SetUpdate(true)
+            .OnComplete(() =>
+            {
+                pausePanel.SetActive(false);
+            });
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(mainMenuString);
+    }
+    
+    #endregion
+    #region Options Canvas
+    
+    private void InitOptionsPanel()
+    {
+        optionsPanel.SetActive(false);
+        optionsPanelGroup = optionsPanel.GetComponent<CanvasGroup>();
+        optionsPanelRect = optionsPanel.GetComponent<RectTransform>();
+    }
     public void OpenOptions()
     {
         optionsPanel.SetActive(true);
@@ -186,4 +235,6 @@ public class UIManager : MonoBehaviour
                 pausePanel.SetActive(true);
             });
     }
+    
+    #endregion
 }
