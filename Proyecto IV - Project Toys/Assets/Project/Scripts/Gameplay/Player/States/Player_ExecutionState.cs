@@ -28,6 +28,8 @@ public class Player_ExecutionState : PlayerState
         
         player.executionTarget = null;
         player.comboBarAmount = 0f;
+
+        player._health.invincibleMode = true;
     }
 
     public override void Update()
@@ -42,6 +44,7 @@ public class Player_ExecutionState : PlayerState
     public override void Exit()
     {
         base.Exit();
+        player._health.invincibleMode = false;
 
         if (executionCamera != null)
         {

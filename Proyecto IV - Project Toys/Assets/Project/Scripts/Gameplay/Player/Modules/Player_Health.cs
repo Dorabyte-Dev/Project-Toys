@@ -13,4 +13,11 @@ public class Player_Health : Entity_Health
             //Heal sound effect
             //Player flash green
     }
+
+    public override void TakeDamage(float takeDamage, Transform damageDealer)
+    {
+        if(invincibleMode) return;
+        base.TakeDamage(takeDamage, damageDealer);
+        //VFX Feedback here
+    }
 }
