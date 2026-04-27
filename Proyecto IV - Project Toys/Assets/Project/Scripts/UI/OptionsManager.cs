@@ -108,6 +108,7 @@ public class OptionsManager : MonoBehaviour
                 currentIndex = i;
         }
 
+        
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentIndex;
         resolutionDropdown.onValueChanged.AddListener(SetResolution);
