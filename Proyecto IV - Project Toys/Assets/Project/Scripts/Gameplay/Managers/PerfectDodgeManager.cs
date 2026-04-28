@@ -8,14 +8,9 @@ public class PerfectDodgeManager : MonoBehaviour
     public static List<GameObject> pDodgeEnemies = new List<GameObject>();
     //Non-static list to debug in inspector
     public List<GameObject> debug_pDodgeEnemies = new List<GameObject>();
-
-
-    public void Start()
-    {
-        //Invert the static list to the non-static one for debugging
-        //pDodgeEnemies = debug_pDodgeEnemies;
-
-    }
+    
+    public static event Action OnPerfectDodgeFlagSet;
+    public static  event Action OnPerfectDodgeFlagRemoved;
 
     private void Update()
     {
@@ -27,7 +22,7 @@ public class PerfectDodgeManager : MonoBehaviour
         if (pDodgeEnemies.Contains(enemy)) return;
         
         pDodgeEnemies.Add(enemy);
-        Debug.Log("He puesto la Flag de perfect dodge");
+        OnPerfectDodgeFlagSet?.Invoke();
     }
 
     public static void EndPerfectDodgeFlag(GameObject enemy)
@@ -36,6 +31,7 @@ public class PerfectDodgeManager : MonoBehaviour
         {
             Debug.Log("Flag Removed");
             pDodgeEnemies.Remove(enemy);
+            OnPerfectDodgeFlagRemoved?.Invoke();
         }
         else
         {
@@ -78,5 +74,6 @@ public class PerfectDodgeManager : MonoBehaviour
     public static void WipePerfectDodgeFlags()
     {
         pDodgeEnemies.Clear();
+        OnPerfectDodgeFlagRemoved?.Invoke();
     }
 }
