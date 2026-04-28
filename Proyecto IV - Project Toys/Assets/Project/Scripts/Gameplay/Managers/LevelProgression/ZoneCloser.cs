@@ -63,6 +63,7 @@ public class ZoneCloser : MonoBehaviour
         foreach (var door in doors)
         {
             //Animation? Maybe?
+            door.gameObject.SetActive(true);
             door.Close();
         }
         Debug.Log("Zone Closed");

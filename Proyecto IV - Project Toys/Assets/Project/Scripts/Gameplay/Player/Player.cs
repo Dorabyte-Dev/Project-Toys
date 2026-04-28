@@ -453,6 +453,7 @@ public class Player : Entity
         if (stateMachine.currentState == comboSystemState) stateMachine.ChangeState(idleState); //No me gusta mucho esto, refactor prone
         _activeForgetCoroutine = ForgetPreviousAttack(comboResetTime);
         StartCoroutine(_activeForgetCoroutine);
+        _vfx.InterruptSlash();
     }
     public void OnComboAttackStarted(AttackData attack)
     {

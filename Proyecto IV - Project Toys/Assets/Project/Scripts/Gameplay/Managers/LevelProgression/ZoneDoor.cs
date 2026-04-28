@@ -7,9 +7,12 @@ public class ZoneDoor : MonoBehaviour
     //public bool closeState;
     public bool startClosed;
     public GameObject Door;
+    private Animator _anim;
     void Start()
     {
-        Door.SetActive(startClosed);
+        _anim = GetComponent<Animator>();
+        _anim.enabled = false;
+        gameObject.SetActive(startClosed);
     }
 
     void Update()
@@ -19,10 +22,13 @@ public class ZoneDoor : MonoBehaviour
 
     public void Open()
     {
-        Door.SetActive(false);
+        if (_anim != null)
+        {
+            _anim.SetTrigger("Open");
+        }
     }
     public void Close()
     {
-        Door.SetActive(true);
+        _anim.enabled = true;
     }
 }
