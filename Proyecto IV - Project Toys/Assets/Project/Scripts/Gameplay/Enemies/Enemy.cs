@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
@@ -37,6 +38,12 @@ public class Enemy : Entity, IEnemyStates
     public GameObject originalPrefab; //De que prefab se ha generado (util para la factory)
     public Entity_Health health;
     
+    [Header("Health Drops")]
+    [SerializeField] private GameObject healthObj;
+
+    [SerializeField] private float healthDropDistance = 2;
+    [SerializeField] private float healthDropArcHeight = 2;
+    [Space(20)]
     public int facingDirection = 1;
     
     public Transform player { get; private set; }
@@ -187,6 +194,13 @@ public class Enemy : Entity, IEnemyStates
     {
         
     }
+    private void DropHealth()
+    {
+        GameObject healthDrop = Instantiate(healthObj, transform.position, Quaternion.identity);
+        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere.normalized;
+        Vector3 targetPosition = transform.position + randomDirection * healthDropDistance;
+        healthDrop.transform.DOJump(targetPosition, healthDropArcHeight, 1, 0.5f).SetEase(Ease.OutBounce);
+    }
     #endregion
 
     #region Player Detection
@@ -242,7 +256,12 @@ public class Enemy : Entity, IEnemyStates
     public virtual void Flinch_Exit(){}
     public virtual void Execution_Enter(){}
     public virtual void Execution_Update(){}
-    public virtual void Execution_Exit(){}
+
+    public virtual void Execution_Exit()
+    {
+        Debug.Log("Execution Exit");
+        DropHealth();
+    }
     public virtual void Extra_Enter(){}
     public virtual void Extra_Update(){}
     public virtual void Extra_Exit(){}
