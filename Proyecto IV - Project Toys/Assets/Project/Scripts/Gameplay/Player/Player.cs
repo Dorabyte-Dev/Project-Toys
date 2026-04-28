@@ -42,7 +42,7 @@ public class Player : Entity
     #region ComboBar
     [Header("Combo Bar Properties")] 
     public float comboBarHitModifier;
-    public float comboBarPerfectDodgeModifier; //TODO: implement perfect dodge combo charge
+    public float comboBarPerfectDodgeModifier;
     public float maxComboBarAmount;
     private bool _isComboBarFull;
     private float _comboBarAmount;

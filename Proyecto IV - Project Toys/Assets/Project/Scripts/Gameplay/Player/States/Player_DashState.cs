@@ -98,6 +98,8 @@ public class Player_DashState : Player_GroundedState
     /// <param name="enemy">The enemy GameObject to dodge around</param>
     void PerfectDodge(GameObject enemy)
     {
+        player.comboBarAmount += player.comboBarPerfectDodgeModifier;
+        
         Vector3 direction = new Vector3(
             enemy.transform.position.x - player.transform.position.x,
             0f,
