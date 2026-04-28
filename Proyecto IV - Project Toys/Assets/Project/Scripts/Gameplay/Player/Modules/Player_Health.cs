@@ -18,6 +18,7 @@ public class Player_Health : Entity_Health
     {
         if(invincibleMode) return;
         base.TakeDamage(takeDamage, damageDealer);
+        vfx.DamageFeedback(damageDealer);
         //VFX Feedback here
     }
 }
