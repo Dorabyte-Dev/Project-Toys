@@ -142,7 +142,12 @@ public class Player : Entity
     }
 
     #endregion
-
+    
+    #region Invincibility Frames
+    public float invincibilityDurationAfterHit = 1f;
+    private Tween _invincibilityTween;
+    #endregion
+    
     #region Respawn
 
     [Header("Death Specs")] 
@@ -369,6 +374,27 @@ public class Player : Entity
         comboBarAmount += comboBarHitModifier;
     }
 
+    #region Invincibility
+    public void SetInvincible(float time)
+    {
+        _health.invincibleMode = true;
+        if(_invincibilityTween != null && _invincibilityTween.IsActive())
+        {
+            _invincibilityTween.Kill();
+        }
+        _invincibilityTween = DOVirtual.DelayedCall(time, () => _health.invincibleMode = false);
+        Debug.Log("Player Invincible = " + _health.invincibleMode + " for " + time + " seconds.");
+    }
+    
+    public void RemoveInvincibility()
+    {
+        if(_invincibilityTween != null && _invincibilityTween.IsActive())
+        {
+            _invincibilityTween.Kill();
+        }
+        _health.invincibleMode = false;
+    }
+    #endregion
     #region Death&Respawn
 
     private void OnTriggerEnter(Collider other)

@@ -36,6 +36,7 @@ public class Player_DashState : Player_GroundedState
         if (_isPerfectDodge)
         {
             PerfectDodge(PerfectDodgeManager.GetPerfectDodgeEnemy());
+            player.SetInvincible(player.dashDuration * 1.2f);
         }
         else
         {

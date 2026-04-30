@@ -55,6 +55,8 @@ public class Player_VFX : Entity_VFX
 		TriggerMaterialChange();
 		Vector3 pushDirection = (transform.position - damageDealer.position).normalized;
 		CameraManager.instance.CameraShake();
+		SoundManager.instance.PlayRandomInRange(new string[]{"PlayerVoiceGetHit1", "PlayerVoiceGetHit2"});
+		SoundManager.instance.Play("PlayerGetHitImpact");
 		RumbleManager.RumblePulse("PlayerDamage");
 		StartCoroutine(PushFeedback(pushDirection));
 		player.ChangePlayerState(player.flinchState);
