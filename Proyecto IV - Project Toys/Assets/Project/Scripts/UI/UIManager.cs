@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
         }
     }
     
-    [SerializeField] private Image comboBarLeft;
+    [FormerlySerializedAs("comboBarLeft")] [SerializeField] private Image comboBar;
     [SerializeField] private Image comboBarRight;
 
     [SerializeField] private RawImage curtain;
@@ -34,19 +34,19 @@ public class UIManager : MonoBehaviour
         set 
         {
             _comboBarFillAmount = Mathf.Clamp01(value);
-            comboBarLeft.fillAmount = _comboBarFillAmount;
-            comboBarRight.fillAmount = _comboBarFillAmount;
+            comboBar.fillAmount = _comboBarFillAmount;
+            //comboBarRight.fillAmount = _comboBarFillAmount;
 
-            if(Mathf.Approximately(_comboBarFillAmount, 1))
+            /*if(Mathf.Approximately(_comboBarFillAmount, 1))
             {
                 comboBarLeft.color = Color.blue;
-                comboBarRight.color = Color.blue;
+                //comboBarRight.color = Color.blue;
             }
             else
             {
                 comboBarLeft.color = Color.white;
-                comboBarRight.color = Color.white;
-            }
+                //comboBarRight.color = Color.white;
+            }*/
         }
     }
 

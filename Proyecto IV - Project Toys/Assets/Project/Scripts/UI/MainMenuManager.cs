@@ -81,15 +81,15 @@ public class MenuManager : MonoBehaviour
         Vector2 navInput = context.ReadValue<Vector2>();
         Debug.Log($"Navigate input: {navInput}");
 
-        if (Mathf.Abs(navInput.y) > joystickThreshold)
+        if (Mathf.Abs(navInput.x) > joystickThreshold)
         {
-            if (navInput.y > joystickThreshold) // Arriba
+            if (navInput.x > joystickThreshold) // Arriba
             {
                 currentIndex--;
                 if (currentIndex < 0)
                     currentIndex = menuElements.Length - 1;
             }
-            else if (navInput.y < -joystickThreshold) // Abajo
+            else if (navInput.x < -joystickThreshold) // Abajo
             {
                 currentIndex++;
                 if (currentIndex >= menuElements.Length)
@@ -150,6 +150,7 @@ public class MenuManager : MonoBehaviour
         if (isSelecting) return;
         if (menuElements[currentIndex] == null) return;
 
+        menuElements[currentIndex].BlockHit();
         isSelecting = true;
         ResetSelectionLock();
     }

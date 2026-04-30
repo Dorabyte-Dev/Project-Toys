@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6364880547127916417
 Transform:
   m_ObjectHideFlags: 0
@@ -9798,6 +9798,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3155361671392211022}
   - component: {fileID: 5776562894901069534}
+  - component: {fileID: 483461230766606832}
   m_Layer: 0
   m_Name: Wallslamvfx
   m_TagString: Untagged
@@ -9847,6 +9848,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &483461230766606832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6170414535961664622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48eb3bffaa53d9540b5492bcdae307c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WallSlamVFX
+  halfStartBurstParticles: {fileID: 215888446348787974}
+  dustParticles: {fileID: 8241888287625577112}
 --- !u!1001 &339896885860835602
 PrefabInstance:
   m_ObjectHideFlags: 0
