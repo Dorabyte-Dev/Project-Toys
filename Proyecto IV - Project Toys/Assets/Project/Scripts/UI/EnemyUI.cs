@@ -71,14 +71,22 @@ public class EnemyUI : MonoBehaviour
     {
         canvasObj.transform.rotation = Camera.main.transform.rotation;
 
-        if (enemyLifeScript.currentHp >= enemyLifeScript.maxHp)
+        if (OptionsManager.isEnabledUI)
         {
-            enemyCanvas.lifeBar.SetActive(false);
+            if (enemyLifeScript.currentHp >= enemyLifeScript.maxHp)
+            {
+                enemyCanvas.lifeBar.SetActive(false);
+            }
+            else
+            {
+                enemyCanvas.lifeBar.SetActive(true);
+            }
         }
         else
         {
-            enemyCanvas.lifeBar.SetActive(true);
+            enemyCanvas.lifeBar.SetActive(false);
         }
+
         enemyCanvas.fill.fillAmount = enemyLifeScript.currentHp / enemyLifeScript.maxHp;
     }
 
