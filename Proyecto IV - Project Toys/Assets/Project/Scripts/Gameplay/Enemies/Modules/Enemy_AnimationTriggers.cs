@@ -62,4 +62,9 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
         if(enemy.hasAttacked) return;
         base.HeavyTrigger();
     }
+
+    public void SetPerfectoDodgeCollider(int isActive)
+    {
+        enemy.combat.SetPerfectDodgeCollider(isActive == 1);
+    }
 }
