@@ -48,6 +48,7 @@ public class Enemy_Melee : Enemy
     protected override void Start()
     {
         base.Start();
+        enemyType = EnemyType.Melee;
         stateMachine.Initialize(idleState);
     }
 

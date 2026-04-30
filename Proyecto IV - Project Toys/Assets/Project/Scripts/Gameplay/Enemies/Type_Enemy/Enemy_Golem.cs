@@ -41,6 +41,7 @@ public class Enemy_Golem : Enemy
     protected override void Start()
     {
         base.Start();
+        enemyType = EnemyType.Golem;
         stateMachine.Initialize(idleState);
     }
     

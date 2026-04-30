@@ -11,6 +11,7 @@ public class Player_ExecutionState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        CheckEnemyType();
         Debug.Log("Entered Player_ExecutionState");
         //stateTimer = executionDuration;  //La idea es que se cambie luego cuando esté la animación de ejecución por un evento de animación
         GoToExecutionPoint();
@@ -58,5 +59,32 @@ public class Player_ExecutionState : PlayerState
         Vector3 directionToEnemy = player.executionEnemy.transform.position - player.transform.position;
         Vector3 executionPoint = player.transform.position + directionToEnemy.normalized * (directionToEnemy.magnitude - 1f);
         player.transform.position = executionPoint;
+    }
+
+    private void CheckEnemyType()
+    {
+        int enemyTypeIndex;
+
+        switch (player.executionEnemy.enemyType)
+        {
+            case Enemy.EnemyType.Melee:
+                enemyTypeIndex = 1;
+                break;
+            case Enemy.EnemyType.Ranged:
+                enemyTypeIndex = 2;
+                break;
+            case Enemy.EnemyType.Golem:
+                enemyTypeIndex = 3;
+                break;
+            case Enemy.EnemyType.MiniGolem:
+                enemyTypeIndex = 1;
+                break;
+            default:
+                Debug.LogWarning("Unknown enemy type during execution.");
+                enemyTypeIndex = 0;
+                break;
+        }
+        
+        player.anim.SetInteger("executionIndex", enemyTypeIndex);
     }
 }

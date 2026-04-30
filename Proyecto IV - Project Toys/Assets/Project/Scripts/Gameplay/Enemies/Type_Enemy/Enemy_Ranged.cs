@@ -53,6 +53,7 @@ public class Enemy_Ranged : Enemy
     protected override void Start()
     {
         base.Start();
+        enemyType = EnemyType.Ranged;
         projectileDamage = (int)combat.GetBaseDamage();
         _projectiles ??= new List<GameObject>(maxProjectiles);
         anim.SetFloat("invokeSpeed", invokeProjectileSpeed);

@@ -16,7 +16,17 @@ public class Enemy : Entity, IEnemyStates
     public Enemy_FlinchState flinchState; // ESTADO DE ATURDIMIENTO
     public Enemy_ExecutionState executionState; // ESTADO DE EJECUCION
     public Enemy_ExtraState extraState; // ESTADO EXTRA PERSONALIZADO
-
+    
+    //Enemy Types
+    public enum EnemyType
+    {
+        Melee,
+        Ranged,
+        Golem,
+        MiniGolem
+    }
+    [HideInInspector]public EnemyType enemyType;
+    
     [Header("Enemy Agent Specs")]
     public float acceleration;
     
