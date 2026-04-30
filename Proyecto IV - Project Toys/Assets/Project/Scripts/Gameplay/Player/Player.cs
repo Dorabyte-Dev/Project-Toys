@@ -323,6 +323,8 @@ public class Player : Entity
     public void ChangePlayerState(PlayerState newState)
     {
         stateMachine.ChangeState(newState);
+        
+        _vfx.InterruptSlash(); //Hard fix, I know, but it works and we have no time.
     }
     #region Movement
     public Vector2 MovementDirectionToCamera(Vector2 _moveInput)
