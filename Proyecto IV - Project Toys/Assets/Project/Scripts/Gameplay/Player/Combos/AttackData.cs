@@ -4,6 +4,8 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(fileName = "ComboAttack", menuName = "Scriptable Objects/ComboAttack")]
 public class AttackData : ScriptableObject
 {
+    [Tooltip("Multi-selector for extra effects to apply during the attack (CameraShake, SlamEffect, etc...)")] 
+    public AttackExtraEffect extraEffects;
     [Tooltip("Collider to use during this attack")]
     public AttackColliderType colliderUsed;
     [Tooltip("Value used to determine strength of the attack. It's multiplied by the player's base attack damage to calculate the final damage of the attack.")]

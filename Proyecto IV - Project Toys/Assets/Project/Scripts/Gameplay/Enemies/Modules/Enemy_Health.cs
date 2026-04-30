@@ -69,6 +69,8 @@ public class Enemy_Health : Entity_Health
         if (isDead) return;
         currentHp = 0;
         isDead = true;
+        Debug.Log("Execution Exit");
+        enemy.DropHealth();
         enemy.SetEnemyDead();
         vfx.DeathVFX_Feedback();
     }
