@@ -212,7 +212,6 @@ public class CameraManager : MonoBehaviour
     {
         if (activeCamera == null) return;
 
-        // Evitar drift asegurando que el shake anterior termine y vuelva a la posición original
         if (_currentShakeTween != null && _currentShakeTween.IsActive())
         {
             _currentShakeTween.Complete();
@@ -220,6 +219,19 @@ public class CameraManager : MonoBehaviour
 
         //Make it bulletproof 
         _currentShakeTween = activeCamera.transform.DOShakePosition(shakeDuration, new Vector3(shakeStrength, shakeStrength, 0f), shakeVibrato, 90f, false, true);
+    }
+    
+    public void CameraShake(float duration, float strength, int vibrato)
+    {
+        if (activeCamera == null) return;
+
+        if (_currentShakeTween != null && _currentShakeTween.IsActive())
+        {
+            _currentShakeTween.Complete();
+        }
+
+        //Make it bulletproof 
+        _currentShakeTween = activeCamera.transform.DOShakePosition(duration, new Vector3(strength, strength, 0f), vibrato, 90f, false, true);
     }
     public void ResetColliders()
     {

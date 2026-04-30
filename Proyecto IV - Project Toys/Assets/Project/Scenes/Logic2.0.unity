@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &19813224 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7412280807098564846, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-  m_PrefabInstance: {fileID: 121491919}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &121491919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -136,42 +131,54 @@ PrefabInstance:
       propertyPath: brain
       value: 
       objectReference: {fileID: 1266747218}
-    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-      propertyPath: canvasObj
-      value: 
-      objectReference: {fileID: 19813224}
-    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-      propertyPath: playerCanvas.XboxAffordance
-      value: 
-      objectReference: {fileID: 1687920729}
-    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-      propertyPath: comboBarPerfectDodgeModifier
-      value: 25
+    - target: {fileID: 1381299294608620690, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-      propertyPath: playerCanvas.keyboardAffordance
-      value: 
-      objectReference: {fileID: 787730349}
-    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-      propertyPath: playerCanvas.PlayStationAffordance
-      value: 
-      objectReference: {fileID: 1855253096}
-    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-      propertyPath: playerCanvas.perfectDodgeAffordance
-      value: 
-      objectReference: {fileID: 1041733184}
-    - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-      propertyPath: playerCanvas.genericControllerAffordance
-      value: 
-      objectReference: {fileID: 401662091}
-    - target: {fileID: 6403299107346664683, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-      propertyPath: m_Name
-      value: Right
+    - target: {fileID: 1381299294608620690, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8267075677120346143, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 0e499fc9e7414784f8a5181c082aec9e, type: 3}
+    - target: {fileID: 1381299294608620690, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1381299294608620690, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556701741223729026, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556701741223729026, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556701741223729026, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556701741223729026, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744826170849675288, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744826170849675288, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744826170849675288, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744826170849675288, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8468839315768395927, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
       propertyPath: m_Name
       value: Prefab_Player
@@ -216,9 +223,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9051771489497483300, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
+    - target: {fileID: 8769142131286306272, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769142131286306272, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769142131286306272, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769142131286306272, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -310,11 +329,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
---- !u!1 &401662091 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8840796098208519914, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-  m_PrefabInstance: {fileID: 121491919}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &406552130 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3773402685203420682, guid: 1f2e7322efdeec441a14f60a89170d7e, type: 3}
@@ -638,11 +652,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 567195214161365376, guid: 1f2e7322efdeec441a14f60a89170d7e, type: 3}
   m_PrefabInstance: {fileID: 8390365043131632325}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &787730349 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1059853139640009003, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-  m_PrefabInstance: {fileID: 121491919}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &922607220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -772,11 +781,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!1 &1041733184 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1235456375797171425, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-  m_PrefabInstance: {fileID: 121491919}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1136373685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -832,6 +836,10 @@ PrefabInstance:
     - target: {fileID: 1947301891608671087, guid: 8acc271e859e58f4eb64844d4862d6a8, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2535735885368688088, guid: 8acc271e859e58f4eb64844d4862d6a8, type: 3}
+      propertyPath: shakeStrength
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4747926882222132777, guid: 8acc271e859e58f4eb64844d4862d6a8, type: 3}
       propertyPath: cutsceneCamera
@@ -960,6 +968,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1947301891608671087, guid: 8acc271e859e58f4eb64844d4862d6a8, type: 3}
       insertIndex: 5
       addedObject: {fileID: 1136373688}
+    - targetCorrespondingSourceObject: {fileID: 1947301891608671087, guid: 8acc271e859e58f4eb64844d4862d6a8, type: 3}
+      insertIndex: 9
+      addedObject: {fileID: 1136373697}
   m_SourcePrefab: {fileID: 100100000, guid: 8acc271e859e58f4eb64844d4862d6a8, type: 3}
 --- !u!114 &1136373686 stripped
 MonoBehaviour:
@@ -1001,6 +1012,31 @@ MonoBehaviour:
   fullscreenToggle: {fileID: 406552130}
   enemyUIToggle: {fileID: 1540605830}
   directionalLight: {fileID: 0}
+--- !u!114 &1136373697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136373687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cda08db17781c14f882b50e184a33e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RumbleManager
+  rumbleSettings:
+  - Tag: PlayerDamage
+    LowFrequency: 1
+    HighFrequency: 0.5
+    Duration: 0.2
+  - Tag: PlayerAttack
+    LowFrequency: 2
+    HighFrequency: 0.75
+    Duration: 0.3
+  - Tag: GolemAttack
+    LowFrequency: 2
+    HighFrequency: 0.75
+    Duration: 0.5
 --- !u!114 &1140252599 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6248170570482654634, guid: 1f2e7322efdeec441a14f60a89170d7e, type: 3}
@@ -1798,11 +1834,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!1 &1687920729 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8259365580287712084, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-  m_PrefabInstance: {fileID: 121491919}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1787845578 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2528337414777260299, guid: 1f2e7322efdeec441a14f60a89170d7e, type: 3}
@@ -1825,11 +1856,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_Dropdown
---- !u!1 &1855253096 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6165853684962037248, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-  m_PrefabInstance: {fileID: 121491919}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1867907975 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8283462499389185550, guid: 1f2e7322efdeec441a14f60a89170d7e, type: 3}

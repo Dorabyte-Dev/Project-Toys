@@ -5,6 +5,7 @@ using UnityEngine.VFX;
 public class Player_VFX : Entity_VFX
 {
 	[SerializeField] private ParticleSystem swordTrailEffect;
+	[SerializeField] private Animator slamEffect;
 	[SerializeField] private Player player;
 	
 	protected override void Awake()
@@ -13,6 +14,27 @@ public class Player_VFX : Entity_VFX
 		player = GetComponent<Player>();
 	}
 
+	public void PlayFootstep()
+	{
+		//footstepEffect.Play(); for later when we have footstep particles
+	}
+	
+	public void SlamEffect()
+	{
+		slamEffect.gameObject.SetActive(true);
+		slamEffect.Play("wallslamanim");
+	}
+	
+	public void AttackCameraShake()
+	{
+		CameraManager.instance.CameraShake();
+	}
+	
+	public void ControllerShake()
+	{
+		RumbleManager.RumblePulse("PlayerAttack");
+	}
+	
 	public void Slash()
 	{
 		swordTrailEffect.Play();
@@ -33,7 +55,7 @@ public class Player_VFX : Entity_VFX
 		TriggerMaterialChange();
 		Vector3 pushDirection = (transform.position - damageDealer.position).normalized;
 		CameraManager.instance.CameraShake();
-		RumbleManager.RumblePulse(1f, 0.5f, 0.2f);
+		RumbleManager.RumblePulse("PlayerDamage");
 		StartCoroutine(PushFeedback(pushDirection));
 		player.ChangePlayerState(player.flinchState);
 	}
