@@ -36,7 +36,6 @@ public class Player_DashState : Player_GroundedState
         if (_isPerfectDodge)
         {
             PerfectDodge(PerfectDodgeManager.GetPerfectDodgeEnemy());
-            player.SetInvincible(player.dashDuration * 1.2f);
         }
         else
         {
@@ -100,6 +99,7 @@ public class Player_DashState : Player_GroundedState
     void PerfectDodge(GameObject enemy)
     {
         player.comboBarAmount += player.comboBarPerfectDodgeModifier;
+        SoundManager.instance.Play("PerfectDodge");
         
         Vector3 direction = new Vector3(
             enemy.transform.position.x - player.transform.position.x,
@@ -119,6 +119,7 @@ public class Player_DashState : Player_GroundedState
 
         CameraManager.instance.ToggleZoom();
         Time.timeScale = 0.25f;
+        player.SetInvincible((player.perfectDodgeDuration * 1.2f) / Time.timeScale);
 
         if (player.afterimageTrail != null)
             player.afterimageTrail.ToggleTrail();
