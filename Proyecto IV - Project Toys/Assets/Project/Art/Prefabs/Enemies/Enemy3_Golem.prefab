@@ -908,6 +908,7 @@ MonoBehaviour:
   turnSmoothTime: 0.1
   turnSmoothVelocity: 0
   maxSlopeAngle: 30
+  enemyType: 0
   acceleration: 4
   damage: 20
   isAttacking: 0
@@ -921,6 +922,9 @@ MonoBehaviour:
   spawner: {fileID: 0}
   originalPrefab: {fileID: 0}
   health: {fileID: 0}
+  healthObj: {fileID: 0}
+  healthDropDistance: 2
+  healthDropArcHeight: 2
   facingDirection: 1
   combat: {fileID: 0}
   _health: {fileID: 0}
@@ -930,7 +934,7 @@ MonoBehaviour:
   canAttackByManager: 0
   isBeingExecuted: 0
   isFlinching: 0
-  flinchDamageThreshold: 300
+  flinchDamageThreshold: 200
   miniGolemSpawnRadius: 5
   miniGolemJumpPower: 4
   miniGolemJumpDuration: 1.5
@@ -1065,7 +1069,7 @@ MonoBehaviour:
   entity: {fileID: 0}
   vfx: {fileID: 0}
   currentHp: 0
-  maxHp: 1500
+  maxHp: 800
   isDead: 0
   invincibleMode: 0
   enemy: {fileID: 0}
