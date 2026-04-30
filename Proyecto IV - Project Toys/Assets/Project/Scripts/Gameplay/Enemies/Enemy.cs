@@ -207,7 +207,7 @@ public class Enemy : Entity, IEnemyStates
     {
         
     }
-    private void DropHealth()
+    public void DropHealth()
     {
         GameObject healthDrop = Instantiate(healthObj, transform.position, Quaternion.identity);
         Vector3 randomDirection = UnityEngine.Random.insideUnitSphere.normalized;
@@ -272,8 +272,7 @@ public class Enemy : Entity, IEnemyStates
 
     public virtual void Execution_Exit()
     {
-        Debug.Log("Execution Exit");
-        DropHealth();
+        
     }
     public virtual void Extra_Enter(){}
     public virtual void Extra_Update(){}
