@@ -59,8 +59,10 @@ public class Enemy_VFX : Entity_VFX
         if (rb != null)
         {
             Debug.Log("PushFeedback started for " + this.gameObject.name);
-            
-            _enemy.agent.ResetPath();
+            if (!_enemy.agent.isOnNavMesh)
+            {
+                _enemy.agent.ResetPath();
+            }
             _enemy.agent.enabled = false;
             rb.isKinematic = false;
             rb.AddForce(direction * pushStrength, ForceMode.VelocityChange);
