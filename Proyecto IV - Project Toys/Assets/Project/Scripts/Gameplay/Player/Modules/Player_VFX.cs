@@ -8,6 +8,12 @@ public class Player_VFX : Entity_VFX
 	[SerializeField] private Animator slamEffect;
 	[SerializeField] private Player player;
 	
+	#region HealingEffect
+	[Header("--- Healing Effect ---")]
+	public Material[] healingMaterials;
+	public float healingDuration = 2f;
+	#endregion
+	
 	protected override void Awake()
 	{
 		base.Awake();
@@ -70,6 +76,48 @@ public class Player_VFX : Entity_VFX
 			player.ch.Move(direction * pushStrength * Time.unscaledDeltaTime);
 			elapsed += Time.unscaledDeltaTime;
 			yield return null;
+		}
+	}
+	
+	public void HealingEffect()
+	{
+		//healingEffect.Play(); for later when we have healing particles
+		HealingGlow();
+		Invoke(nameof(RemoveHealingGlow), healingDuration);
+	}
+
+	private void HealingGlow()
+	{
+		if(renderMesh != null && healingMaterials != null)
+		{
+			for(int i = 0; i < renderMesh.Length; i++)
+			{
+				Material[] newMats = new Material[renderMesh[i].materials.Length];
+				for(int j = 0; j < renderMesh[i].materials.Length; j++)
+				{
+					newMats[j] = healingMaterials[i];
+				}
+				renderMesh[i].materials = newMats;
+			}
+		}
+		else
+		{
+			Debug.LogError("Render Mesh or Healing Material is not assigned in: " + this.gameObject.name);
+		}
+	}
+	
+	private void RemoveHealingGlow()
+	{
+		if (renderMesh != null && originalMaterials != null)
+		{
+			for(int i = 0; i < renderMesh.Length; i++)
+			{
+				renderMesh[i].materials = originalMaterials[i];
+			}
+		}
+		else
+		{
+			Debug.LogError("Mesh Renderer or Original Materials is not assigned in: " + this.gameObject.name);
 		}
 	}
 }

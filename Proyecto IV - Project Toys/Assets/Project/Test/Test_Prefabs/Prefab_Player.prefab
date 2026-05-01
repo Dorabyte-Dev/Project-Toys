@@ -14181,6 +14181,7 @@ MonoBehaviour:
     genericControllerAffordance: {fileID: 8840796098208519914}
     XboxAffordance: {fileID: 8259365580287712084}
     PlayStationAffordance: {fileID: 6165853684962037248}
+  invincibilityDurationAfterHit: 1
   activeCheckpoint: {fileID: 0}
   _combat: {fileID: 0}
   _health: {fileID: 0}
@@ -14299,11 +14300,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_VFX
   renderMesh:
-  - {fileID: 0}
+  - {fileID: 6998298263107163441}
+  - {fileID: 7230989870333044890}
   vfxGraph: {fileID: 0}
-  feedbackColor: {r: 0, g: 0, b: 0, a: 0}
-  feedbackDuration: 0
-  glowIntensity: 5
+  feedbackColor: {r: 0.8584906, g: 0, b: 0, a: 1}
+  feedbackDuration: 0.25
+  glowIntensity: 10
   pushStrength: 0.4
   pushWaitDuration: 0.2
   pushStopThreeshold: 0.05
@@ -14317,6 +14319,10 @@ MonoBehaviour:
   swordTrailEffect: {fileID: 1058282547619454077}
   slamEffect: {fileID: 0}
   player: {fileID: 0}
+  healingMaterials:
+  - {fileID: 2100000, guid: 1b4fb4e3aab41e8459a9172c14cefb04, type: 2}
+  - {fileID: 2100000, guid: c5f8afdf9f520cd44bcb74eeb29636e4, type: 2}
+  healingDuration: 1
 --- !u!143 &4154271546559694580
 CharacterController:
   m_ObjectHideFlags: 0
