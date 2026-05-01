@@ -3,15 +3,20 @@ using UnityEngine;
 public class Player_Health : Entity_Health
 {
     [SerializeField] private float healAmount;
+    private Player player;
+    
+    public override void Awake()
+    {
+        base.Awake();
+        player = GetComponent<Player>();
+    }
     public virtual void Heal()
     {
         currentHp += healAmount;
         if (currentHp > maxHp)
             currentHp = maxHp;
         //Play heal VFX here:
-            //Green Particles going up
-            //Heal sound effect
-            //Player flash green
+        player._vfx.HealingEffect();
     }
 
     public override void TakeDamage(float takeDamage, Transform damageDealer)
