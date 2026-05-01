@@ -47,7 +47,6 @@ public class Player_Combat : Entity_Combat
             }
         }
         
-        RumbleManager.RumblePulse(0.2f * detectedColliders.Length, 0.5f * detectedColliders.Length, 0.4f);
     }
 
     protected override Collider[] GetDetectedColliders()

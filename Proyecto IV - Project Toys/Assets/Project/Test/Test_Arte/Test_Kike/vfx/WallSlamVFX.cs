@@ -25,4 +25,9 @@ public class WallSlamVFX : MonoBehaviour
     {
         dustParticles.Play();
     }
+
+    public void SetInactive()
+    {
+        gameObject.SetActive(false);
+    }
 }

@@ -29,11 +29,6 @@ public class Entity_Combat : MonoBehaviour
                 if (targetHealth.invincibleMode) return;
                 targetHit?.Invoke();
             }
-            else if (target.CompareTag("pDodge"))
-            {
-                if (GetComponent<Enemy>() != null)
-                    PerfectDodgeManager.SetPerfectDodgeFlag(entity.gameObject);
-            }
             else if (target.CompareTag("dObject"))
             {
                 Break_Object breakObject = target.GetComponent<Break_Object>();
