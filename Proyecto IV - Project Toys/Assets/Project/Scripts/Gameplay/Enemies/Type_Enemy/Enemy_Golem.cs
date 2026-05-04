@@ -6,6 +6,7 @@ public class Enemy_Golem : Enemy
 {
     [Header("Golem Settings")]
     public float flinchDamageThreshold;
+    public float minimizeScaleMultiplier = 0.8f;
     [Header("Mini Golem Spawn Settings")]
     public float miniGolemSpawnRadius;
     public float miniGolemJumpPower;
@@ -206,6 +207,7 @@ public class Enemy_Golem : Enemy
         agent.isStopped = true;
         _stateTimer = flinchTime;
         SpawnMiniGolem(GetRandomSpawnPosition(transform.position, miniGolemSpawnRadius));
+        transform.localScale *= minimizeScaleMultiplier;
     }
 
     public override void Flinch_Update()
