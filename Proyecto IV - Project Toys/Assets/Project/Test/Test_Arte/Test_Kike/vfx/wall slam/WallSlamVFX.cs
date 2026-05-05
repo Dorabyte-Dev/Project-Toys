@@ -29,5 +29,6 @@ public class WallSlamVFX : MonoBehaviour
     public void SetInactive()
     {
         gameObject.SetActive(false);
+        Destroy(this.gameObject);
     }
 }

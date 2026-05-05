@@ -136,6 +136,14 @@ PrefabInstance:
       propertyPath: brain
       value: 
       objectReference: {fileID: 1266747218}
+    - target: {fileID: 5092992522464097699, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: slamEffect
+      value: 
+      objectReference: {fileID: 6170414535961664622, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
+    - target: {fileID: 5092992522464097699, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      propertyPath: slamEffectPosition
+      value: 
+      objectReference: {fileID: 1747881459}
     - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
       propertyPath: canvasObj
       value: 
@@ -221,8 +229,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2476559215526555762, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 53654524851502779, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1747881460}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2737875176911543348, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
       insertIndex: -1
@@ -943,6 +955,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1690413803896629090, guid: f3d7108231bd74b42889f2c1505c20db, type: 3}
   m_PrefabInstance: {fileID: 504927231}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &545406420 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 53654524851502779, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+  m_PrefabInstance: {fileID: 121491919}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &586654222
 PrefabInstance:
@@ -3556,6 +3573,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7cccf98b490e54dabc7ca3945ca1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraGroup
+--- !u!1 &1747881459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1747881460}
+  m_Layer: 0
+  m_Name: WallSlamVFXPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1747881460
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747881459}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.13}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 545406420}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1779177400 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2905979181573972477, guid: 8d4de256d30af3c41bb89ab107130eee, type: 3}
