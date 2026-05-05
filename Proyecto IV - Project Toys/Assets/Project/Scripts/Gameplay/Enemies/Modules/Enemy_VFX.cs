@@ -14,6 +14,10 @@ public class Enemy_VFX : Entity_VFX
     [SerializeField] private VisualEffect pDodgeShine;
     [SerializeField] private ParticleSystem pHitEffect;
     [SerializeField] private Enemy _enemy;
+
+    [Header("--- Enemy Extras ---")] 
+    [SerializeField] private ParticleSystem enemyRangedChargeProjectile;
+    [SerializeField] private ParticleSystem enemyMeleeChargeEffect;
     
     protected override void Awake()
     {
@@ -162,5 +166,43 @@ public class Enemy_VFX : Entity_VFX
             Debug.LogError("Mesh Renderer or Original Materials is not assigned in: " + this.gameObject.name);
         }
     }
+
+    #region Enemy Extras
+
+    public void PlayRangedChargeVFX(bool play)
+    {
+        if(enemyRangedChargeProjectile == null)
+        {
+            Debug.LogError("Enemy Ranged Charge Projectile is not assigned in: " + this.gameObject.name);
+            return;
+        }
+        if (play)
+        {
+            enemyRangedChargeProjectile.Play();
+        }
+        else
+        {
+            enemyRangedChargeProjectile.Stop();
+        }
+    }
+    
+    public void PlayMeleeChargeVFX(bool play)
+    {
+        if(enemyMeleeChargeEffect == null)
+        {
+            Debug.LogError("Enemy Melee Charge Effect is not assigned in: " + this.gameObject.name);
+            return;
+        }
+        if (play)
+        {
+            enemyMeleeChargeEffect.Play();
+        }
+        else
+        {
+            enemyMeleeChargeEffect.Stop();
+        }
+    }
+
+    #endregion
    
 }
