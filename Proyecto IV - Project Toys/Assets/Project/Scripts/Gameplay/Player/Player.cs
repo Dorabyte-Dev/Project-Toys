@@ -407,7 +407,8 @@ public class Player : Entity
         }
         if (other.CompareTag("Heal"))
         {
-            _health.Heal(); // Heal amount hardcoded for testing, can be changed to a variable in the future
+            
+            _health.Heal(other.GetComponent<HealPickup>().healAmount); // Heal amount hardcoded for testing, can be changed to a variable in the future
             Destroy(other.gameObject);
         }
     }

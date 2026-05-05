@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Player_Health : Entity_Health
 {
-    [SerializeField] private float healAmount;
     private Player player;
     
     public override void Awake()
@@ -10,7 +9,7 @@ public class Player_Health : Entity_Health
         base.Awake();
         player = GetComponent<Player>();
     }
-    public virtual void Heal()
+    public virtual void Heal(float healAmount)
     {
         currentHp += healAmount;
         if (currentHp > maxHp)

@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
     [SerializeField]private Player player;
-    [SerializeField] private Image healthBar;
+    [SerializeField] private MultipleSpriteFillBar healthBar;
     private float _healthBarFillAmount;
     public float HealthBarFillAmount
     {
@@ -17,9 +17,12 @@ public class UIManager : MonoBehaviour
         set 
         {
             _healthBarFillAmount = Mathf.Clamp01(value);
-            healthBar.fillAmount = _healthBarFillAmount;
+            healthBar.Value = _healthBarFillAmount;
         }
     }
+    public float healthBlockAnimationDistance = 20f;
+    public float healthBlockAnimationDuration = 0.5f;
+    public Ease healthBlockAnimationEase = Ease.InOutElastic;
     
     [FormerlySerializedAs("comboBarLeft")] [SerializeField] private Image comboBar;
     [SerializeField] private Image comboBarRight;
