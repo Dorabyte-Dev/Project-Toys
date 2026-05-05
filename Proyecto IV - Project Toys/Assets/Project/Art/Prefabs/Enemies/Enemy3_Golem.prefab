@@ -936,6 +936,7 @@ MonoBehaviour:
   isBeingExecuted: 0
   isFlinching: 0
   flinchDamageThreshold: 200
+  minimizeScaleMultiplier: 0.8
   miniGolemSpawnRadius: 5
   miniGolemJumpPower: 4
   miniGolemJumpDuration: 1.5
@@ -1108,8 +1109,10 @@ MonoBehaviour:
   glowMaterial: {fileID: 2100000, guid: 10297333cd6d2cf42ad0ccd64d1f2987, type: 2}
   rb: {fileID: 0}
   pDodgeShine: {fileID: 0}
-  pHitEffect: {fileID: 544726138637182114}
+  pHitEffect: {fileID: 3450293706237721288, guid: b6a5e952934a007439f8f16ab3ed26bd, type: 3}
   _enemy: {fileID: 0}
+  enemyRangedChargeProjectile: {fileID: 0}
+  enemyMeleeChargeEffect: {fileID: 0}
 --- !u!114 &8067176831012849006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2045,11 +2048,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa91d23e7b65b374a8b415d1cfc75c33, type: 3}
---- !u!198 &544726138637182114 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8724860935628932229, guid: fa91d23e7b65b374a8b415d1cfc75c33, type: 3}
-  m_PrefabInstance: {fileID: 9123078168566997031}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4221110776364107565 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4904361311687616266, guid: fa91d23e7b65b374a8b415d1cfc75c33, type: 3}

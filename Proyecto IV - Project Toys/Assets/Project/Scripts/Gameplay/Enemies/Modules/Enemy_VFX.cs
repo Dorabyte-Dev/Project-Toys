@@ -12,7 +12,7 @@ public class Enemy_VFX : Entity_VFX
     [Space(20)]
     [SerializeField] protected Rigidbody rb;
     [SerializeField] private VisualEffect pDodgeShine;
-    [SerializeField] private ParticleSystem pHitEffect;
+    [SerializeField] private GameObject pHitEffect;
     [SerializeField] private Enemy _enemy;
 
     [Header("--- Enemy Extras ---")] 
@@ -44,8 +44,15 @@ public class Enemy_VFX : Entity_VFX
 
     public void HitPSEffect(Quaternion particleRotation)
     {
-        pHitEffect.transform.rotation = particleRotation;
-        pHitEffect.Play();
+        GameObject pHitEffectInstance = Instantiate(pHitEffect, transform.position, Quaternion.identity);
+        pHitEffectInstance.transform.rotation = particleRotation;
+        ParticleSystem pHitEffectPS = pHitEffectInstance.GetComponent<ParticleSystem>();
+        if (pHitEffectPS == null)
+        {
+            Debug.LogError("Hit Effect prefab does not have a ParticleSystem component.");
+            return;
+        }
+        pHitEffectPS.Play();
     }
     
     public void HitStop()

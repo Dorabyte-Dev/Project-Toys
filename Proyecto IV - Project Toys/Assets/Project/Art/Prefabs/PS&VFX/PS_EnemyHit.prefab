@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6386736377441824476}
   - component: {fileID: 4252459406952496670}
   - component: {fileID: 2069306483203858636}
+  - component: {fileID: 1597403248869489227}
   m_Layer: 0
   m_Name: PS_EnemyHit
   m_TagString: Untagged
@@ -41,7 +42,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3450293706237721288}
   serializedVersion: 8
-  lengthInSec: 2.5
+  lengthInSec: 0.5
   simulationSpeed: 1
   stopAction: 1
   cullingMode: 0
@@ -4957,3 +4958,16 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &1597403248869489227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3450293706237721288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e79dc2f3d0e50d418ceb69b49212e14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyInTime
+  timeToDestroy: 3
