@@ -223,7 +223,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2737875176911543348, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 121491923}
   m_SourcePrefab: {fileID: 100100000, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
 --- !u!4 &121491920 stripped
 Transform:
@@ -235,6 +238,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4395184669273791191, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
   m_PrefabInstance: {fileID: 121491919}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &121491922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2737875176911543348, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
+  m_PrefabInstance: {fileID: 121491919}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &121491923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121491922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f00182e84e7df0439d62206930419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PerfectDodgeCollider
+  whatIsPerfectDodge:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &189989866
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,7 +1986,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1947301891608671087, guid: 8acc271e859e58f4eb64844d4862d6a8, type: 3}
-      insertIndex: 5
+      insertIndex: 1
+      addedObject: {fileID: 1136373689}
+    - targetCorrespondingSourceObject: {fileID: 1947301891608671087, guid: 8acc271e859e58f4eb64844d4862d6a8, type: 3}
+      insertIndex: 6
       addedObject: {fileID: 1136373688}
   m_SourcePrefab: {fileID: 100100000, guid: 8acc271e859e58f4eb64844d4862d6a8, type: 3}
 --- !u!114 &1136373686 stripped
@@ -2006,6 +2032,212 @@ MonoBehaviour:
   fullscreenToggle: {fileID: 406552130}
   enemyUIToggle: {fileID: 1540605830}
   directionalLight: {fileID: 0}
+--- !u!114 &1136373689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136373687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc2aef5e87ee3c408561e2eadff36e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+  sounds:
+  - type: 1
+    name: Dodge
+    clip: {fileID: 8300000, guid: 5e7c7e49c1b0fe84e9694aa2ec9dcfcb, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: PlayerGetHitImpact
+    clip: {fileID: 8300000, guid: 8e2fa389d55dc304a9ddd9bff203c510, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: PlayerVoiceGetHit1
+    clip: {fileID: 8300000, guid: 71b98d6dda5d2184aabcafbcd47d679f, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: PlayerVoiceGetHit2
+    clip: {fileID: 8300000, guid: 67e5de829474e8141b7b3eb5a241b5e9, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: PlayerVoiceHit1
+    clip: {fileID: 8300000, guid: 91adbea9010ad2140a2f833fba8992f9, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: PlayerVoiceHit2
+    clip: {fileID: 8300000, guid: 26180e7abe7ddd54892c1014e4841c5f, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: PlayerVoiceHit3
+    clip: {fileID: 8300000, guid: d06f515644a6c984290f2a9f42680d7e, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: PlayerVoiceHit4
+    clip: {fileID: 8300000, guid: 40c64cc1d0749604488656c1211334bf, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: LightAttack1
+    clip: {fileID: 8300000, guid: 665819e394eff1e4b970c8063ae26a6d, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: LightAttack2
+    clip: {fileID: 8300000, guid: 65ac2ddb44067d547a0a2ce98073f8ac, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: LightAttack3
+    clip: {fileID: 8300000, guid: 8f851942cd34c2f4683584bf9a384467, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: HeavyAttack1
+    clip: {fileID: 8300000, guid: 983511ddb4283cb4ba8a64442fa55e03, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: HeavyAttack2
+    clip: {fileID: 8300000, guid: 64debf52cc20c5845bd23f4dd3055fa1, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: HeavyAttack3
+    clip: {fileID: 8300000, guid: 7e95b6767c3139b4fa21cb6347ba2c48, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: StoneWalk1
+    clip: {fileID: 8300000, guid: 89e05b10776a3514eb644c7ddd26e3c8, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: StoneWalk2
+    clip: {fileID: 8300000, guid: 692a8e3c078390a4eaff6ce10a2d6d52, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: StoneWalk3
+    clip: {fileID: 8300000, guid: 44395ad1fc29c06448d58bb51e9b909a, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: StoneWalk4
+    clip: {fileID: 8300000, guid: 502f4d6f6aae0cd4b876d932b11ae320, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: Heal
+    clip: {fileID: 8300000, guid: f315182572a1ca343a1bbb8e32e53618, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: GrassWalk1
+    clip: {fileID: 8300000, guid: 0ae2623028c202c48af53dd6394795c8, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: GrassWalk2
+    clip: {fileID: 8300000, guid: cf9d29761c9eae445b8ad692fc8a9516, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: WoodWalk
+    clip: {fileID: 8300000, guid: dfebb2121aa94844fb7a6cfe186f064b, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: PuzzleSolved
+    clip: {fileID: 8300000, guid: 41f502b624ddf7440817caac03a511e2, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: SpawnLightning
+    clip: {fileID: 8300000, guid: c945d3f7230802c4094871ed04f3dbbd, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: PerfectDodge
+    clip: {fileID: 8300000, guid: c52aef4b0e3523245a4356dee9c8b268, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: EnemyDeath
+    clip: {fileID: 8300000, guid: 69b0f64b1256b2b4890dde91d6826bb2, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: EnemyDeath(1-50)
+    clip: {fileID: 8300000, guid: b201f0b91fe5f6643abe0f563a48128d, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: CitadelDoor
+    clip: {fileID: 8300000, guid: 7872ffca7badcd34a9a14b35de2acd8c, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: ExecutionBarFull
+    clip: {fileID: 8300000, guid: 4cee9b525628da040b3c798e512f8686, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: LimitBlocksFalling(Test)
+    clip: {fileID: 8300000, guid: 482cf5880688d06418e4c994a621af37, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - type: 1
+    name: Lever
+    clip: {fileID: 8300000, guid: 01d8fa363c26ead4baf7127ba424108e, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  currentTheme:
+    type: 0
+    name: 
+    clip: {fileID: 0}
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
 --- !u!114 &1140252599 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6248170570482654634, guid: 1f2e7322efdeec441a14f60a89170d7e, type: 3}
@@ -2225,8 +2457,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1266747214}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3650239, y: 0.103676945, z: -0.040943988, w: 0.92430097}
-  m_LocalPosition: {x: 52.813934, y: 11.90001, z: 99.15535}
+  m_LocalRotation: {x: -0.010488338, y: 0.9566673, z: -0.28891444, w: -0.03472949}
+  m_LocalPosition: {x: 13.298336, y: 8.080798, z: 13.598511}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
