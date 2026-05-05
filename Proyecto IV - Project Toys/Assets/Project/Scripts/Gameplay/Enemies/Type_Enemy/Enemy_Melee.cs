@@ -326,6 +326,8 @@ public class Enemy_Melee : Enemy
         _currentTime = 0;
         
         orbitAngle = InitializeOrbitAngle();
+        
+        _vfx.PlayMeleeChargeVFX(true);
     }
 
     public override void WaitAttack_Update()
@@ -366,6 +368,7 @@ public class Enemy_Melee : Enemy
     {
         base.WaitAttack_Exit();
         agent.isStopped = false;
+        _vfx.PlayMeleeChargeVFX(false);
     }
 
     #endregion

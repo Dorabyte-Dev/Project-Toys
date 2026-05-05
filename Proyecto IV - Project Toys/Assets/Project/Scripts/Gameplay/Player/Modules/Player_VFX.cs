@@ -5,7 +5,8 @@ using UnityEngine.VFX;
 public class Player_VFX : Entity_VFX
 {
 	[SerializeField] private ParticleSystem swordTrailEffect;
-	[SerializeField] private Animator slamEffect;
+	[SerializeField] private GameObject slamEffect;
+	[SerializeField] private GameObject slamEffectPosition;
 	[SerializeField] private Player player;
 	
 	#region HealingEffect
@@ -27,8 +28,8 @@ public class Player_VFX : Entity_VFX
 	
 	public void SlamEffect()
 	{
-		slamEffect.gameObject.SetActive(true);
-		slamEffect.Play("wallslamanim");
+		GameObject newSlamEffect = Instantiate(slamEffect, slamEffectPosition.transform.position, slamEffectPosition.transform.rotation);
+		newSlamEffect.GetComponent<Animator>().Play("wallslamanim");
 	}
 	
 	public void AttackCameraShake()
