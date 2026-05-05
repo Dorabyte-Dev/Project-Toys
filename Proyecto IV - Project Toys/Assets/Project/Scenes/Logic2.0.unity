@@ -124,6 +124,41 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7412280807098564846, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
   m_PrefabInstance: {fileID: 121491919}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &62125992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 62125993}
+  m_Layer: 5
+  m_Name: HealthBarHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &62125993
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62125992}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.16, y: 2.16, z: 2.16}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 8390365043131632327}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 112.75, y: 44.687927}
+  m_SizeDelta: {x: 412.73, y: 29.8266}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &121491919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28377,9 +28412,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.0007324219
       objectReference: {fileID: 0}
+    - target: {fileID: 3813587625502946343, guid: 1f2e7322efdeec441a14f60a89170d7e, type: 3}
+      propertyPath: m_Name
+      value: OldHealthBarHolder
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8496501416813421792, guid: 1f2e7322efdeec441a14f60a89170d7e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 62125993}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f2e7322efdeec441a14f60a89170d7e, type: 3}
 --- !u!114 &8390365043131632326 stripped
@@ -28393,6 +28435,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!224 &8390365043131632327 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8496501416813421792, guid: 1f2e7322efdeec441a14f60a89170d7e, type: 3}
+  m_PrefabInstance: {fileID: 8390365043131632325}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8390946086368447874 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3073178063565386213, guid: c8b1d31e86fedcf43b3048cb25297f32, type: 3}
