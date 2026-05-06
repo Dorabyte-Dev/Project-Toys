@@ -17,7 +17,12 @@ public class MultipleSpriteFillBar : MonoBehaviour
     }
 
     public Image[] fillBars;
+    private float blockYInitialDistance;
 
+    private void Start()
+    {
+        blockYInitialDistance = fillBars[0].transform.position.y;
+    }
     void UpdateFillBars()
     {
         float totalValue = Value * fillBars.Length;
@@ -57,7 +62,7 @@ public class MultipleSpriteFillBar : MonoBehaviour
     {
         GameObject barParent = fillBars[barIndex].transform.parent.gameObject;
         barParent.SetActive(true);
-        barParent.transform.DOMoveY(barParent.transform.position.y + UIManager.Instance.healthBlockAnimationDistance,
+        barParent.transform.DOMoveY(blockYInitialDistance + UIManager.Instance.healthBlockAnimationDistance,
             UIManager.Instance.healthBlockAnimationDuration).SetEase(UIManager.Instance.healthBlockAnimationEase);
     }
 
@@ -70,7 +75,7 @@ public class MultipleSpriteFillBar : MonoBehaviour
     {
         GameObject barParent = fillBars[barIndex].transform.parent.gameObject;
         barParent.SetActive(true);
-        barParent.transform.DOMoveY(barParent.transform.position.y - UIManager.Instance.healthBlockAnimationDistance,
+        barParent.transform.DOMoveY(blockYInitialDistance,
             UIManager.Instance.healthBlockAnimationDuration).SetEase(UIManager.Instance.healthBlockAnimationEase);
         
         //Tween to lower the bar
