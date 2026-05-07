@@ -10330,6 +10330,37 @@ Transform:
   - {fileID: 7962763373147783470}
   m_Father: {fileID: 6975605005704388201}
   m_LocalEulerAnglesHint: {x: -78.547295, y: 60.648895, z: -78.564354}
+--- !u!1 &5848487058794956072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 634193041416268924}
+  m_Layer: 3
+  m_Name: PlayerFallBreak
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &634193041416268924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5848487058794956072}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.43, z: 0.94}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8581962557178675611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5855819720941682262
 GameObject:
   m_ObjectHideFlags: 0
@@ -14159,6 +14190,7 @@ Transform:
   - {fileID: 7720559568062826936}
   - {fileID: 9051771489497483300}
   - {fileID: 53654524851502779}
+  - {fileID: 634193041416268924}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5763861305979521097
@@ -14215,6 +14247,8 @@ MonoBehaviour:
   canMove: 0
   cam: {fileID: 0}
   jumpForce: 5
+  fallBreak: {fileID: 634193041416268924}
+  fallBreakDistance: 4
   dashDuration: 0.25
   dashDistance: 8
   dashCooldown: 0.5
@@ -14355,6 +14389,8 @@ MonoBehaviour:
   pushStrength: 0.4
   pushWaitDuration: 0.2
   pushStopThreeshold: 0.05
+  slamEffect: {fileID: 6170414535961664622, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
+  slamEffectPosition: {fileID: 4759836083231648907}
   dissolveRate: 0.0125
   refreshRate: 0.025
   shakeDuration: 1
@@ -14363,8 +14399,6 @@ MonoBehaviour:
   hitStopModifier: 0.05
   hitStopDuration: 0.3
   swordTrailEffect: {fileID: 1058282547619454077}
-  slamEffect: {fileID: 6170414535961664622, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
-  slamEffectPosition: {fileID: 4759836083231648907}
   player: {fileID: 0}
   healingMaterials:
   - {fileID: 2100000, guid: 3b0e11aa2329aef41967225eebed23d1, type: 2}
