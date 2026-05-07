@@ -15,7 +15,7 @@ public class Entity : MonoBehaviour
 
     [Header("Collision detection")]
     [SerializeField] private float groundCheckDistance;
-    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] protected LayerMask whatIsGround;
     [SerializeField] private Transform groundCheck;
     [SerializeField] public Transform targetCheck;
     [SerializeField] public float targetCheckRadius = 1;

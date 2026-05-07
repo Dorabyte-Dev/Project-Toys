@@ -113,8 +113,9 @@ public class Player : Entity
     public Vector2 moveInput { get; private set; }
     public Vector2 cameraMoveInput { get; private set; }
     public float jumpForce = 5;
-    
 
+    [SerializeField]private Transform fallBreak;
+    [SerializeField]private float fallBreakDistance = 0.2f;
     #endregion
 
     #region Dash & Perfect Dodge
@@ -349,6 +350,14 @@ public class Player : Entity
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
         }
     }
+    
+    public bool CheckFallBreak(Vector3 position)
+    {
+        bool isGroundBelow = Physics.Raycast(position, Vector3.down, fallBreakDistance, whatIsGround);
+        Debug.DrawLine(position, position + Vector3.down * fallBreakDistance, isGroundBelow ? Color.blue : Color.red);
+        return isGroundBelow;
+    }
+    
     public void SetVelocity(float xVelocity, float yVelocity)
     {
         Vector3 inputDirection = new Vector3(xVelocity, _verticalVelocity, yVelocity);
@@ -358,6 +367,8 @@ public class Player : Entity
 
         //Vector3 moveVelocity = inputDirection * moveSpeed;
 
+        if(!CheckFallBreak(fallBreak.transform.position)) return;
+        
         ch.Move(inputDirection * Time.deltaTime);
     }
 

@@ -55,7 +55,9 @@ public class MultipleSpriteFillBar : MonoBehaviour
 
     void OnBarFilled(int barIndex)
     {
-        
+        GameObject barParent = fillBars[barIndex].transform.parent.gameObject;
+        barParent.transform.DOMoveY(blockYInitialDistance,
+            UIManager.Instance.healthBlockAnimationDuration).SetEase(UIManager.Instance.healthBlockAnimationEase);
     }
 
     void OnBarEmpty(int barIndex)
@@ -64,6 +66,9 @@ public class MultipleSpriteFillBar : MonoBehaviour
         barParent.SetActive(true);
         barParent.transform.DOMoveY(blockYInitialDistance + UIManager.Instance.healthBlockAnimationDistance,
             UIManager.Instance.healthBlockAnimationDuration).SetEase(UIManager.Instance.healthBlockAnimationEase);
+        
+        Debug.LogWarning("Bar " + barIndex + " emptied");
+        Debug.LogWarning("InitialPosition: " + blockYInitialDistance + " TargetPosition: " + (blockYInitialDistance + UIManager.Instance.healthBlockAnimationDistance));
     }
 
     void OnBarStartedEmptying(int barIndex)
@@ -78,6 +83,7 @@ public class MultipleSpriteFillBar : MonoBehaviour
         barParent.transform.DOMoveY(blockYInitialDistance,
             UIManager.Instance.healthBlockAnimationDuration).SetEase(UIManager.Instance.healthBlockAnimationEase);
         
-        //Tween to lower the bar
+        Debug.LogWarning("Bar " + barIndex + " emptied");
+        Debug.LogWarning("InitialPosition: " + blockYInitialDistance + " TargetPosition: " + blockYInitialDistance);
     }
 }
