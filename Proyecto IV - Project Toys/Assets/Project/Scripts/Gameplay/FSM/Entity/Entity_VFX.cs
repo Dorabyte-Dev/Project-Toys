@@ -31,6 +31,10 @@ public class Entity_VFX : MonoBehaviour
     public float pushStrength = .4f;
     [FormerlySerializedAs("pushDuration")] 
     [Range(0, 1)] public float pushWaitDuration = 0.2f;
+    
+    [Header("--- Slam Effect ---")]
+    [SerializeField] protected GameObject slamEffect;
+    [SerializeField] protected GameObject slamEffectPosition;
 
     [Tooltip("Umbral de velocidad que detendrá al enemigo del empuje")]
     [Range(0.001f, 0.1f)]public float pushStopThreeshold = 0.05f;
@@ -301,36 +305,12 @@ public class Entity_VFX : MonoBehaviour
         
         return null;
     }
-
+    #region Slam Effect
+    public void SlamEffect()
+    {
+        GameObject newSlamEffect = Instantiate(slamEffect, slamEffectPosition.transform.position, slamEffectPosition.transform.rotation);
+        newSlamEffect.GetComponent<Animator>().Play("wallslamanim");
+    }
+    #endregion
     
-    // private void Shake(float duration, float magnitude)
-    // {
-    //     StartCoroutine(ShakeCoroutine(duration, magnitude));
-    // }
-    //
-    // IEnumerator ShakeCoroutine(float duration, float magnitude)
-    // {
-    //     Debug.Log("Ejecutando VFX Shake");
-    //     
-    //     // Cogemos posicion del Rigibody ya que al aplicar este componente, normalmente que este efecto no
-    //     // intervenga en el efecto de PushFeedback se realiza con rb.position y su funcion MovePosition
-    //     Vector3 originalPosition = rb.position;
-    //     float elapsed = 0f;
-    //
-    //     while (elapsed < duration)
-    //     {
-    //         float x = Random.Range(-randomShake, randomShake) * magnitude;
-    //         float y = Random.Range(-randomShake, randomShake) * magnitude;
-    //         float z = Random.Range(-randomShake, randomShake) * magnitude;
-    //         
-    //         // transform.position = originalPosition + new Vector3(x, y, z);
-    //         rb.MovePosition(originalPosition + new Vector3(x, y, z));
-    //         
-    //         elapsed += Time.fixedDeltaTime;
-    //         yield return new WaitForFixedUpdate();
-    //     }
-    //     
-    //     // transform.position = originalPosition;
-    //     rb.MovePosition(originalPosition);
-    // }
 }

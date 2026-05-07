@@ -5,8 +5,7 @@ using UnityEngine.VFX;
 public class Player_VFX : Entity_VFX
 {
 	[SerializeField] private ParticleSystem swordTrailEffect;
-	[SerializeField] private GameObject slamEffect;
-	[SerializeField] private GameObject slamEffectPosition;
+	
 	[SerializeField] private Player player;
 	
 	#region HealingEffect
@@ -26,11 +25,7 @@ public class Player_VFX : Entity_VFX
 		//footstepEffect.Play(); for later when we have footstep particles
 	}
 	
-	public void SlamEffect()
-	{
-		GameObject newSlamEffect = Instantiate(slamEffect, slamEffectPosition.transform.position, slamEffectPosition.transform.rotation);
-		newSlamEffect.GetComponent<Animator>().Play("wallslamanim");
-	}
+	
 	
 	public void AttackCameraShake()
 	{
@@ -74,8 +69,8 @@ public class Player_VFX : Entity_VFX
 		float elapsed = 0f;
 		while (elapsed < pushWaitDuration)
 		{
-			player.ch.Move(direction * pushStrength * Time.unscaledDeltaTime);
-			elapsed += Time.unscaledDeltaTime;
+			player.ch.Move(pushStrength * Time.deltaTime * direction);
+			elapsed += Time.deltaTime;
 			yield return null;
 		}
 	}
