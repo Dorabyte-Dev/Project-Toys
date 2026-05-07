@@ -24,7 +24,7 @@ public class MenuManager : MonoBehaviour
     private int currentIndex = 0;
     private float lastNavigationTime;
     private bool canNavigate = true;
-    private bool isSelecting = false;
+    [SerializeField] private bool isSelecting = false;
     
 
     private void Awake()
@@ -150,7 +150,7 @@ public class MenuManager : MonoBehaviour
         if (isSelecting) return;
         if (menuElements[currentIndex] == null) return;
 
-        menuElements[currentIndex].BlockHit();
+        //menuElements[currentIndex].BlockHit();
         isSelecting = true;
         ResetSelectionLock();
     }
