@@ -142,7 +142,9 @@ public class Enemy_Golem : Enemy
     public override void Attack_Exit()
     {
         base.Attack_Exit();
+        EnemyWaveManager.Instance.NotifyEnemyFinishedAttack(this);
         agent.isStopped = false;
+        hasAttacked = false;
         agent.ResetPath();
     }
     #endregion
@@ -159,6 +161,7 @@ public class Enemy_Golem : Enemy
         GetDistanceToPlayer();
         if(distanceToPlayer > _attackPlayerRange)
         {
+            EnemyWaveManager.Instance.NotifyEnemyFinishedAttack(this);
             ChangeEnemyState(pursuitState);
         }
         

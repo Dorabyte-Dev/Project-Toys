@@ -31,14 +31,13 @@ public class Entity_VFX : MonoBehaviour
     public float pushStrength = .4f;
     [FormerlySerializedAs("pushDuration")] 
     [Range(0, 1)] public float pushWaitDuration = 0.2f;
-    
-    [Header("--- Slam Effect ---")]
-    [SerializeField] protected GameObject slamEffect;
-    [SerializeField] protected GameObject slamEffectPosition;
-
     [Tooltip("Umbral de velocidad que detendrá al enemigo del empuje")]
     [Range(0.001f, 0.1f)]public float pushStopThreeshold = 0.05f;
 
+    [Header("--- Slam Effect ---")]
+    [SerializeField] protected GameObject slamEffect;
+    [SerializeField] protected GameObject slamEffectPosition;
+    
     [Header("--- Dissolve Effect ---")]
     public float dissolveRate = 0.0125f;
     [Range(0.01f, 0.1f)] public float refreshRate = 0.025f;

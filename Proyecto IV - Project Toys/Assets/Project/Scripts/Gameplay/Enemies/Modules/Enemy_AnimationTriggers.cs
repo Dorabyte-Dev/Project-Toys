@@ -45,12 +45,6 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
     {
         enemy.ChangeToDeadState();
     }
-    
-    public void FinishInvokeProjectile()
-    {
-        enemy.ChangeEnemyState(enemy.idleState);
-        
-    }
 
     public override void AttackTrigger()
     {
@@ -68,4 +62,22 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
     {
         enemy.combat.SetPerfectDodgeCollider(isActive == 1);
     }
+    
+    #region Golem
+
+    public void GolemSlamAttack()
+    {
+        AttackTrigger();
+        enemy._vfx.SlamEffect();
+        RumbleManager.RumblePulse("GolemSlam");
+    }
+    #endregion
+    
+    #region Mage
+    public void FinishInvokeProjectile()
+    {
+        enemy.ChangeEnemyState(enemy.idleState);
+        
+    }
+    #endregion
 }
