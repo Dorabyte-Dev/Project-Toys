@@ -83,8 +83,6 @@ public class Enemy : Entity, IEnemyStates
         agent.speed = moveSpeed;
         agent.acceleration = acceleration;
         agent.isStopped = false;
-        playerTransform = GameObject.FindWithTag("Player").transform;
-        if(playerTransform == null) Debug.LogError("No player found");
     }
     
     public override void DeadEntity()
@@ -120,6 +118,8 @@ public class Enemy : Entity, IEnemyStates
         }
         _vfx.OnDissolveComplete += _animationTriggers.DisableAndDestroyEnemy;
         //stateMachine.Initialize(idleState);
+        playerTransform = PlayerReference.playerTransform;
+        if(playerTransform == null) Debug.LogError("No player found");
         if (spawner == null)
             Debug.LogWarning("Spawner not assigned. Check GameObject to component of EnemySpawner.cs");
     }
