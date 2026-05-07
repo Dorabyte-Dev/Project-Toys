@@ -279,7 +279,7 @@ Transform:
   m_GameObject: {fileID: 2224270867412112030}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.1, z: 1.33}
+  m_LocalPosition: {x: 0, y: -0.1, z: 2.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -850,7 +850,6 @@ GameObject:
   - component: {fileID: 7031622699892672212}
   - component: {fileID: 8067176831012849006}
   - component: {fileID: 6648497076878446588}
-  - component: {fileID: 5625541057272846209}
   m_Layer: 6
   m_Name: Enemy3_Golem
   m_TagString: Untagged
@@ -935,7 +934,7 @@ MonoBehaviour:
   canAttackByManager: 0
   isBeingExecuted: 0
   isFlinching: 0
-  flinchDamageThreshold: 200
+  flinchDamageThreshold: 190
   minimizeScaleMultiplier: 0.8
   miniGolemSpawnRadius: 5
   miniGolemJumpPower: 4
@@ -1052,7 +1051,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 520
   entity: {fileID: 0}
-  baseDamage: 150
+  baseDamage: 160
   targetHit:
     m_PersistentCalls:
       m_Calls: []
@@ -1072,7 +1071,7 @@ MonoBehaviour:
   entity: {fileID: 0}
   vfx: {fileID: 0}
   currentHp: 0
-  maxHp: 800
+  maxHp: 1000
   isDead: 0
   invincibleMode: 0
   enemy: {fileID: 0}
@@ -1099,6 +1098,8 @@ MonoBehaviour:
   pushStrength: 1
   pushWaitDuration: 0.1
   pushStopThreeshold: 0.05
+  slamEffect: {fileID: 3225319569523407901, guid: d955df81292be314bb51b072712ce70f, type: 3}
+  slamEffectPosition: {fileID: 2224270867412112030}
   dissolveRate: 0.0125
   refreshRate: 0.025
   shakeDuration: 1
@@ -1142,26 +1143,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyUI
   canvasObj: {fileID: 5126245848054324828}
   damageNumberVelocity: 1
---- !u!114 &5625541057272846209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5459265353601684457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cf0e2cb974c9ff41be8495e81e4e981, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Entity_Stats
-  maxHealth:
-    baseValue: 1500
-  vitality:
-    baseValue: 0
-  attackDamage:
-    baseValue: 150
-  heavyDamage:
-    baseValue: 0
 --- !u!1 &6311209811154808221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1310,8 +1291,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.62621, y: 1.8486501, z: 2.916779}
-  m_Center: {x: 0.015882492, y: 0.24874228, z: 0.08047557}
+  m_Size: {x: 4.62621, y: 1.8486501, z: 3.847002}
+  m_Center: {x: 0.015882492, y: 0.24874228, z: 0.54558706}
 --- !u!1 &6917412973043154859
 GameObject:
   m_ObjectHideFlags: 0
