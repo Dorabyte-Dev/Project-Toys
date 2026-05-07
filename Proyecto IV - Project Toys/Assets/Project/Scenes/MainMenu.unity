@@ -4767,6 +4767,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc0ad6e80f17a244aa1c329522e4709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OptionsManager
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   volumeSlider: {fileID: 1337528111}
   brightnessSlider: {fileID: 232194000}
   volumeValueText: {fileID: 1609810977}
@@ -4774,6 +4777,7 @@ MonoBehaviour:
   qualityDropdown: {fileID: 1755572298}
   resolutionDropdown: {fileID: 9620975}
   fullscreenToggle: {fileID: 776522936}
+  enemyUIToggle: {fileID: 0}
   directionalLight: {fileID: 0}
 --- !u!1 &1265291885
 GameObject:
@@ -4834,8 +4838,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Back
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9212429d406d6a04c83cc6c66f47b5ed, type: 2}
+  m_sharedMaterial: {fileID: -3288358987061306906, guid: 9212429d406d6a04c83cc6c66f47b5ed, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
