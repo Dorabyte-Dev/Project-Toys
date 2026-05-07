@@ -31,9 +31,10 @@ public class Player_Combat : Entity_Combat
             if (targetHealth != null)
             {
                 if(targetHealth.isDead) continue;
+                targetHealth.TakeDamage(_finalDamage, this.transform);
+                if(targetHealth.invincibleMode) continue;
                 targetHit?.Invoke();
                 //if (targetHealth.invincibleMode) return;
-                targetHealth.TakeDamage(_finalDamage, this.transform);
             }
             else if (target.CompareTag("dObject"))
             {
