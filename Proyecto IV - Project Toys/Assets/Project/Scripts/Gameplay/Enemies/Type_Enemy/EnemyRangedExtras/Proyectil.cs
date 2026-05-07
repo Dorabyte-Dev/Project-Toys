@@ -6,6 +6,7 @@ using Random = System.Random;
 
 public class Proyectil : MonoBehaviour
 {
+    private Renderer _projRenderer;
     [Header("Shadow")]
     public GameObject shadowPrefab;
     private GameObject _shadowInstance;
@@ -30,12 +31,26 @@ public class Proyectil : MonoBehaviour
 
     [HideInInspector] public float initialDistanceToOrigin;
     [HideInInspector] public Vector3 targetPosition; 
+    
+    [Header("Enemy2 Projectile Settings")]
+    public ParticleSystem[] launchParticles;
+    public Material glowMaterial;
     public Action OnPlayerHit { get; set; }
 
     private void Awake()
     {
+        _projRenderer = GetComponentInChildren<Renderer>();
         _rb = GetComponent<Rigidbody>();
         _rb.isKinematic = true;
+        switch (projectileType)
+        {
+            case ProjectileType.Enemy2Projectile:
+                foreach (ParticleSystem ps in launchParticles)
+                {
+                    ps.gameObject.SetActive(false);
+                }
+                break;
+        }
     }
     
     private void Start()
@@ -111,6 +126,14 @@ public class Proyectil : MonoBehaviour
                 {
                     transform.DOLookAt(targetPosition, 0.3f);
                 });
+                break;
+            case ProjectileType.Enemy2Projectile:
+                foreach (ParticleSystem ps in launchParticles)
+                {
+                    ps.gameObject.SetActive(true);
+                    ps.Play();
+                }
+                _projRenderer.material = glowMaterial;
                 break;
         }
         Invoke(nameof(DestroyProjectile), 7.5f);
