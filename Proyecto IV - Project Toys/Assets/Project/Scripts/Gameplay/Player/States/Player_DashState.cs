@@ -55,7 +55,7 @@ public class Player_DashState : Player_GroundedState
 
         stateTimer -= Time.deltaTime;
         //Debug.Log("Dash State Timer: " + stateTimer);
-        if (!_isPerfectDodge)
+        if (!_isPerfectDodge && player.CheckFallBreak(player.transform.position + _forToApply * Time.deltaTime))
         {
             player.ch.Move(_forToApply * Time.deltaTime);
         }
