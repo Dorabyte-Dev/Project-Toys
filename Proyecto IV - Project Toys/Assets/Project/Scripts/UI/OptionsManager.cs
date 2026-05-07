@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 using System;
 
 
@@ -23,6 +24,8 @@ public class OptionsManager : MonoBehaviour
     [SerializeField] private TMP_Dropdown resolutionDropdown;
 
     [Header("Toggle")]
+    [SerializeField] private float dropPunchDownScale;
+    [SerializeField] private float dropdownAnimDuration;
     [SerializeField] private Toggle fullscreenToggle;
     [SerializeField] private Toggle enemyUIToggle;
     public static bool isEnabledUI = true;
@@ -166,6 +169,28 @@ public class OptionsManager : MonoBehaviour
     {
         QualitySettings.SetQualityLevel(index);
         PlayerPrefs.SetInt("Quality", index);
+        AnimateDropdown(qualityDropdown);
+    }
+
+    private void AnimateDropdown(TMP_Dropdown dropdown)
+    {
+        if (dropdown == null)
+            return;
+        RectTransform rt = dropdown.GetComponent<RectTransform>();
+        if (rt == null)
+            return;
+
+        rt.DOKill();
+        rt.localScale = Vector3.one;
+        rt.DOPunchScale(Vector3.one * dropPunchDownScale, dropdownAnimDuration, 5, .5f);
+        TMP_Text label = dropdown.captionText;
+        if (label != null)
+        {
+            Color original = label.color;
+            label.DOKill();
+            label.DOColor(Color.white, dropdownAnimDuration * 0.3f)
+                .OnComplete(() => label.DOColor(original, dropdownAnimDuration * 0.7f));
+        }
     }
 
     public void SetResolution(int index)
