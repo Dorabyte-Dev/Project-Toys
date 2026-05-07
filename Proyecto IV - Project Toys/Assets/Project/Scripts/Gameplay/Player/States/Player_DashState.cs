@@ -98,6 +98,9 @@ public class Player_DashState : Player_GroundedState
     /// <param name="enemy">The enemy GameObject to dodge around</param>
     void PerfectDodge(GameObject enemy)
     {
+        player.comboBarAmount += player.comboBarPerfectDodgeModifier;
+        SoundManager.instance.Play("PerfectDodge");
+        
         Vector3 direction = new Vector3(
             enemy.transform.position.x - player.transform.position.x,
             0f,
@@ -116,6 +119,7 @@ public class Player_DashState : Player_GroundedState
 
         CameraManager.instance.ToggleZoom();
         Time.timeScale = 0.25f;
+        player.SetInvincible((player.perfectDodgeDuration * 1.2f) / Time.timeScale);
 
         if (player.afterimageTrail != null)
             player.afterimageTrail.ToggleTrail();

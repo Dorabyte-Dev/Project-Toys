@@ -2,10 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+
 
 public class OptionsManager : MonoBehaviour
 {
     public static OptionsManager Instance;
+    public LayerMask enemyLayer;
 
     [Header("Sliders")]
     [SerializeField] private Slider volumeSlider;
@@ -21,6 +24,8 @@ public class OptionsManager : MonoBehaviour
 
     [Header("Toggle")]
     [SerializeField] private Toggle fullscreenToggle;
+    [SerializeField] private Toggle enemyUIToggle;
+    public static bool isEnabledUI = true;
 
     [Header("Post Processing")]
     [SerializeField] private Light directionalLight;
@@ -54,7 +59,9 @@ public class OptionsManager : MonoBehaviour
         InitQuality();
         InitResolution();
         InitFullscreen();
+        InitEnemyUI();
     }
+
 
     private void InitVolume()
     {
@@ -108,6 +115,7 @@ public class OptionsManager : MonoBehaviour
                 currentIndex = i;
         }
 
+
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentIndex;
         resolutionDropdown.onValueChanged.AddListener(SetResolution);
@@ -119,6 +127,16 @@ public class OptionsManager : MonoBehaviour
         fullscreenToggle.isOn = Screen.fullScreen;
         fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
     }
+    private void InitEnemyUI()
+    {
+        if (enemyUIToggle == null) return;
+        isEnabledUI = true;
+        enemyUIToggle.isOn = isEnabledUI;
+        enemyUIToggle.onValueChanged.AddListener(SetEnemyUI);
+        //SetEnemyUI(isEnabledUI);
+    }
+
+
 
     // ==== SETTERS ====
     public void SetVolume(float value)
@@ -159,5 +177,11 @@ public class OptionsManager : MonoBehaviour
     public void SetFullscreen(bool value)
     {
         Screen.fullScreen = value;
+    }
+
+    private void SetEnemyUI(bool value)
+    {
+        isEnabledUI = value;
+        PlayerPrefs.SetInt("EnemyUI", value ? 1 : 0);
     }
 }

@@ -33,6 +33,7 @@ public class Enemy_Health : Entity_Health
         if(damageDirection != Vector3.zero)
             enemy._vfx.HitPSEffect(Quaternion.LookRotation(damageDirection));*/
         enemy._vfx.DamageFeedback(damageDealer);
+        Debug.Log("<color=red>Enemy: " + this.gameObject.name + " took damage: " + takeDamage + "</color>");
         enemyUI.ReceiveDamage((int)takeDamage);
         if (isDead)
             return;
@@ -68,6 +69,8 @@ public class Enemy_Health : Entity_Health
         if (isDead) return;
         currentHp = 0;
         isDead = true;
+        Debug.Log("Execution Exit");
+        enemy.DropHealth();
         enemy.SetEnemyDead();
         vfx.DeathVFX_Feedback();
     }

@@ -24,15 +24,15 @@ public class Player_Combat : Entity_Combat
 
         _finalDamage = baseDamage * player.currentAttack.motionValue;
         Debug.Log("Final Damage: " + _finalDamage);
-
-        foreach (var target in GetDetectedColliders())
+        Collider[] detectedColliders = GetDetectedColliders();
+        foreach (var target in detectedColliders)
         {
             Entity_Health targetHealth = target.GetComponent<Entity_Health>();
             if (targetHealth != null)
             {
                 if(targetHealth.isDead) continue;
                 targetHit?.Invoke();
-                if (targetHealth.invincibleMode) return;
+                //if (targetHealth.invincibleMode) return;
                 targetHealth.TakeDamage(_finalDamage, this.transform);
             }
             else if (target.CompareTag("dObject"))
@@ -46,6 +46,7 @@ public class Player_Combat : Entity_Combat
                 Debug.LogWarning("Entity_Health not found on " + target.name);
             }
         }
+        
     }
 
     protected override Collider[] GetDetectedColliders()

@@ -53,6 +53,7 @@ public class Enemy_Ranged : Enemy
     protected override void Start()
     {
         base.Start();
+        enemyType = EnemyType.Ranged;
         projectileDamage = (int)combat.GetBaseDamage();
         _projectiles ??= new List<GameObject>(maxProjectiles);
         anim.SetFloat("invokeSpeed", invokeProjectileSpeed);
@@ -246,7 +247,7 @@ public class Enemy_Ranged : Enemy
     public override void Extra_Enter()
     {
         base.Extra_Enter();
-        
+        _vfx.PlayRangedChargeVFX(true);
     }
 
     public override void Extra_Update()
@@ -264,6 +265,7 @@ public class Enemy_Ranged : Enemy
         base.Extra_Exit();
         DestroyProjectiles(); //Aseguramos que no haya proyectiles antes de invocar nuevos para que no clippen los antiguos con los nuevos.
         InvokeProjectiles();    //Cambia de estado por animation trigger.
+        _vfx.PlayRangedChargeVFX(false);
     }
     #endregion
     #region AttackFunctions

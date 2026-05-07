@@ -42,7 +42,7 @@ public class Player : Entity
     #region ComboBar
     [Header("Combo Bar Properties")] 
     public float comboBarHitModifier;
-    public float comboBarPerfectDodgeModifier; //TODO: implement perfect dodge combo charge
+    public float comboBarPerfectDodgeModifier;
     public float maxComboBarAmount;
     private bool _isComboBarFull;
     private float _comboBarAmount;
@@ -129,8 +129,25 @@ public class Player : Entity
     public float perfectDodgeEnemyDistance = 1f;
     public MeshTrail afterimageTrail;
 
-    #endregion
+    public GameObject canvasObj;
+    public PlayerCanvas playerCanvas;
+    [System.Serializable]
+    public struct PlayerCanvas
+    {
+        public GameObject perfectDodgeAffordance;
+        public GameObject keyboardAffordance;
+        public GameObject genericControllerAffordance;
+        public GameObject XboxAffordance;
+        public GameObject PlayStationAffordance;
+    }
 
+    #endregion
+    
+    #region Invincibility Frames
+    public float invincibilityDurationAfterHit = 1f;
+    private Tween _invincibilityTween;
+    #endregion
+    
     #region Respawn
 
     [Header("Death Specs")] 
@@ -209,6 +226,8 @@ public class Player : Entity
         {
             SearchForExecutionTarget();
         }
+        
+        canvasObj.transform.rotation = Camera.main.transform.rotation;
     }
   
     private void OnEnable()
@@ -216,11 +235,19 @@ public class Player : Entity
         input.Enable();
         input.Player.Movement.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;
+        
+        InputDeviceManager.AlCambiarDispositivo += CheckDevice;
+        PerfectDodgeManager.OnPerfectDodgeFlagSet += ShowPerfectDodgeUI;
+        PerfectDodgeManager.OnPerfectDodgeFlagRemoved += HidePerfectDodgeUI;
     }
   
     private void OnDisable()
     {
         input.Disable();
+        
+        InputDeviceManager.AlCambiarDispositivo -= CheckDevice;
+        PerfectDodgeManager.OnPerfectDodgeFlagSet -= ShowPerfectDodgeUI;
+        PerfectDodgeManager.OnPerfectDodgeFlagRemoved -= HidePerfectDodgeUI;
     }
   
     #endregion
@@ -296,6 +323,8 @@ public class Player : Entity
     public void ChangePlayerState(PlayerState newState)
     {
         stateMachine.ChangeState(newState);
+        
+        _vfx.InterruptSlash(); //Hard fix, I know, but it works and we have no time.
     }
     #region Movement
     public Vector2 MovementDirectionToCamera(Vector2 _moveInput)
@@ -347,6 +376,27 @@ public class Player : Entity
         comboBarAmount += comboBarHitModifier;
     }
 
+    #region Invincibility
+    public void SetInvincible(float time)
+    {
+        _health.invincibleMode = true;
+        if(_invincibilityTween != null && _invincibilityTween.IsActive())
+        {
+            _invincibilityTween.Kill();
+        }
+        _invincibilityTween = DOVirtual.DelayedCall(time, () => _health.invincibleMode = false);
+        Debug.Log("Player Invincible = " + _health.invincibleMode + " for " + time + " seconds.");
+    }
+    
+    public void RemoveInvincibility()
+    {
+        if(_invincibilityTween != null && _invincibilityTween.IsActive())
+        {
+            _invincibilityTween.Kill();
+        }
+        _health.invincibleMode = false;
+    }
+    #endregion
     #region Death&Respawn
 
     private void OnTriggerEnter(Collider other)
@@ -357,7 +407,8 @@ public class Player : Entity
         }
         if (other.CompareTag("Heal"))
         {
-            _health.Heal(); // Heal amount hardcoded for testing, can be changed to a variable in the future
+            
+            _health.Heal(other.GetComponent<HealPickup>().healAmount); // Heal amount hardcoded for testing, can be changed to a variable in the future
             Destroy(other.gameObject);
         }
     }
@@ -453,6 +504,7 @@ public class Player : Entity
         if (stateMachine.currentState == comboSystemState) stateMachine.ChangeState(idleState); //No me gusta mucho esto, refactor prone
         _activeForgetCoroutine = ForgetPreviousAttack(comboResetTime);
         StartCoroutine(_activeForgetCoroutine);
+        _vfx.InterruptSlash();
     }
     public void OnComboAttackStarted(AttackData attack)
     {
@@ -479,6 +531,53 @@ public class Player : Entity
     public bool CanDash()
     {
         return _dashCooldownTimer <= 0f;
+    }
+
+    public void ShowPerfectDodgeUI()
+    {
+        if(playerCanvas.perfectDodgeAffordance == null) return;
+        playerCanvas.perfectDodgeAffordance.SetActive(true);
+    }
+    
+    public void HidePerfectDodgeUI()
+    {
+        if(playerCanvas.perfectDodgeAffordance == null) return;
+        playerCanvas.perfectDodgeAffordance.SetActive(false);
+    }
+    private void CheckDevice(InputDeviceManager.Devices dispositivo)
+    {
+        if(playerCanvas.perfectDodgeAffordance == null) return;
+        switch (dispositivo)
+        {
+            case InputDeviceManager.Devices.Teclado:
+                playerCanvas.keyboardAffordance.SetActive(true); //
+                playerCanvas.genericControllerAffordance.SetActive(false);
+                playerCanvas.PlayStationAffordance.SetActive(false);
+                playerCanvas.XboxAffordance.SetActive(false);
+                break;
+            case InputDeviceManager.Devices.MandoGenerico:
+                playerCanvas.keyboardAffordance.SetActive(false);
+                playerCanvas.genericControllerAffordance.SetActive(true); //
+                playerCanvas.PlayStationAffordance.SetActive(false);
+                playerCanvas.XboxAffordance.SetActive(false);
+                break;
+            case InputDeviceManager.Devices.MandoPlayStation:
+                playerCanvas.keyboardAffordance.SetActive(false);
+                playerCanvas.genericControllerAffordance.SetActive(false);
+                playerCanvas.PlayStationAffordance.SetActive(true); //
+                playerCanvas.XboxAffordance.SetActive(false);
+                break;
+            case InputDeviceManager.Devices.MandoXbox:
+                playerCanvas.keyboardAffordance.SetActive(false);
+                playerCanvas.genericControllerAffordance.SetActive(false);
+                playerCanvas.PlayStationAffordance.SetActive(false);
+                playerCanvas.XboxAffordance.SetActive(true); //
+                break;
+            default:
+                playerCanvas.keyboardAffordance.SetActive(false);
+                playerCanvas.genericControllerAffordance.SetActive(false);
+                break;
+        }
     }
     #endregion
   

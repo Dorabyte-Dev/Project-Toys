@@ -10,6 +10,7 @@ public class Player_FlinchState : PlayerState
     {
         base.Enter();
         stateTimer = player.anim.GetCurrentAnimatorClipInfo(0).Length; // Duración de la animación de flinch
+        player.SetInvincible(player.invincibilityDurationAfterHit);
     }
 
     public override void Update()

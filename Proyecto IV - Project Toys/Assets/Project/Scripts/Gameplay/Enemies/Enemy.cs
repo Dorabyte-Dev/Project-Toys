@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
@@ -15,7 +16,17 @@ public class Enemy : Entity, IEnemyStates
     public Enemy_FlinchState flinchState; // ESTADO DE ATURDIMIENTO
     public Enemy_ExecutionState executionState; // ESTADO DE EJECUCION
     public Enemy_ExtraState extraState; // ESTADO EXTRA PERSONALIZADO
-
+    
+    //Enemy Types
+    public enum EnemyType
+    {
+        Melee,
+        Ranged,
+        Golem,
+        MiniGolem
+    }
+    [HideInInspector]public EnemyType enemyType;
+    
     [Header("Enemy Agent Specs")]
     public float acceleration;
     
@@ -37,6 +48,12 @@ public class Enemy : Entity, IEnemyStates
     public GameObject originalPrefab; //De que prefab se ha generado (util para la factory)
     public Entity_Health health;
     
+    [Header("Health Drops")]
+    [SerializeField] private GameObject healthObj;
+
+    [SerializeField] private float healthDropDistance = 2;
+    [SerializeField] private float healthDropArcHeight = 2;
+    [Space(20)]
     public int facingDirection = 1;
     
     public Transform player { get; private set; }
@@ -96,8 +113,11 @@ public class Enemy : Entity, IEnemyStates
         _animationTriggers = GetComponent<Enemy_AnimationTriggers>();
         _health = GetComponent<Enemy_Health>();
         _vfx = GetComponent<Enemy_VFX>();
-        combat.targetHit.AddListener(OnPlayerDamaged);
-        combat.targetHit.AddListener(_vfx.HitStop);
+        if (combat != null)
+        {
+            combat.targetHit.AddListener(OnPlayerDamaged);
+            combat.targetHit.AddListener(_vfx.HitStop);
+        }
         _vfx.OnDissolveComplete += _animationTriggers.DisableAndDestroyEnemy;
         //stateMachine.Initialize(idleState);
         if (spawner == null)
@@ -187,6 +207,13 @@ public class Enemy : Entity, IEnemyStates
     {
         
     }
+    public void DropHealth()
+    {
+        GameObject healthDrop = Instantiate(healthObj, transform.position, Quaternion.identity);
+        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere.normalized;
+        Vector3 targetPosition = transform.position + randomDirection * healthDropDistance;
+        healthDrop.transform.DOJump(targetPosition, healthDropArcHeight, 1, 0.5f).SetEase(Ease.OutBounce);
+    }
     #endregion
 
     #region Player Detection
@@ -242,7 +269,11 @@ public class Enemy : Entity, IEnemyStates
     public virtual void Flinch_Exit(){}
     public virtual void Execution_Enter(){}
     public virtual void Execution_Update(){}
-    public virtual void Execution_Exit(){}
+
+    public virtual void Execution_Exit()
+    {
+        
+    }
     public virtual void Extra_Enter(){}
     public virtual void Extra_Update(){}
     public virtual void Extra_Exit(){}

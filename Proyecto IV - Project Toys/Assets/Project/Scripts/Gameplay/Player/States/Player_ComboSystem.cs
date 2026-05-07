@@ -53,7 +53,7 @@ public class Player_ComboSystem : PlayerState
         base.Update();
         //player.SetVelocity(0,0);
         ApplyAttackVelocity();
-        RotateWithinCombo();
+        
 
         if (player.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= player.comboBufferUnlockThreshold)
         {
@@ -103,12 +103,14 @@ public class Player_ComboSystem : PlayerState
         if (normalizedTime > player.currentAttack.attackMoveDurationStart
             && normalizedTime < player.currentAttack.attackMoveDurationEnd)
         {
-            player.SetVelocity(attackVelocity.x, attackVelocity.z);
+            float hitStopMultiplier = player.anim.GetFloat("hitStopModifier");
+            player.SetVelocity(attackVelocity.x * hitStopMultiplier, attackVelocity.z * hitStopMultiplier);
             Debug.DrawLine(player.transform.position, player.transform.position + player.transform.forward * player.currentAttack.attackMoveDistance, Color.red);
         }
         else
         {
             player.SetVelocity(0, 0);
+            RotateWithinCombo();
         }
         
     }

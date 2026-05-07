@@ -1,36 +1,24 @@
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Windows;
+using UnityEngine.Serialization;
 
 public class MeshTrail : MonoBehaviour
 {
 
+    [System.Serializable]
+    public struct MeshTrailPart
+    {
+        public SkinnedMeshRenderer Skin;
+        public Material Material;
+    }
     public float meshDestroyDelay = 2f;
     [Header("Mesh Related")]
     public float meshRefreshRate = 0.05f;
-    //private MeshFilter meshFilter;
-    [SerializeField]private SkinnedMeshRenderer[] skinnedMeshRenderers;
 
-    [Header("Shader Related")]
-    public Material mat;
-
+    [SerializeField]private MeshTrailPart[] meshTrailParts;
+    [SerializeField] private Material defaultMat;
     public bool toggleTrail;
-    private bool isTrailActive;
-
-    private void Start()
-    {
-    }
-    void Update()
-    {
-        /*if (toggleTrail && !isTrailActive)
-        {
-            toggleTrail = false;
-            isTrailActive = true;
-            StartCoroutine(ActivateTrail(player.dashDuration));
-        }*/
-    }
 
     public void ToggleTrail()
     {
@@ -47,25 +35,42 @@ public class MeshTrail : MonoBehaviour
     {
         while(toggleTrail)
         {
-            if(skinnedMeshRenderers == null)
+            if(meshTrailParts == null)
             {
-                skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+                SkinnedMeshRenderer[] skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+                meshTrailParts = new  MeshTrailPart[skinnedMeshRenderers.Length];
+                for (int i = 0; i < skinnedMeshRenderers.Length; i++)
+                {
+                    meshTrailParts[i] = new MeshTrailPart
+                    {
+                        Skin = skinnedMeshRenderers[i],
+                        Material = defaultMat
+                    };
+                }
             }
 
-            foreach (SkinnedMeshRenderer skin in skinnedMeshRenderers)
+            foreach (MeshTrailPart part in meshTrailParts)
             {
                 GameObject newMesh = new GameObject();
-                newMesh.transform.SetPositionAndRotation(skin.transform.position, skin.transform.rotation);
+                newMesh.transform.SetPositionAndRotation(part.Skin.transform.position, part.Skin.transform.rotation);
                 newMesh.transform.localScale = transform.localScale;
 
                 MeshRenderer rend = newMesh.AddComponent<MeshRenderer>();
                 MeshFilter filter = newMesh.AddComponent<MeshFilter>();
                 
                 Mesh mesh = new Mesh();
-                skin.BakeMesh(mesh);
+                part.Skin.BakeMesh(mesh);
 
                 filter.mesh = mesh;
-                rend.material = mat;
+                if (part.Material != null)
+                {
+                    rend.material = part.Material;
+                }
+                else
+                {
+                    rend.material = defaultMat;
+                }
+                
                 rend.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 rend.material.DOFade(0, meshDestroyDelay);
 
@@ -74,6 +79,5 @@ public class MeshTrail : MonoBehaviour
                 yield return new WaitForSecondsRealtime(meshRefreshRate);
             }
         }
-        isTrailActive = false;
     }
 }

@@ -28,7 +28,7 @@ public class SoundManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.loop = s.loop;
         }
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     public void Play(string name, float pitch)

@@ -33,6 +33,7 @@ public class Enemy_ExecutionState : EnemyState
     {
         base.Exit();
         enemy.Execution_Exit();
+        Debug.LogWarning("Exiting Execution State.");
         enemy.isBeingExecuted = false;
     }
 }

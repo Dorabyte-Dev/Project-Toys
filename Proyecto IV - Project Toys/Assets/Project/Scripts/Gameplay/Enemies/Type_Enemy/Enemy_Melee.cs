@@ -14,7 +14,11 @@ public class Enemy_Melee : Enemy
     public float attackAcceleration;
     public float attackSpeed;
     public float pursuitPlayerRange;
+    private float _pursuitPlayerRange => pursuitPlayerRange * pursuitPlayerRange;
     public float attackPlayerRange;
+    private float _attackPlayerRange => attackPlayerRange * attackPlayerRange;
+    public float escapeAttackRange;
+    private float _escapeAttackRange => escapeAttackRange * escapeAttackRange;
     [Header("Orbit Settings")]
     public float orbitDistance;
     public float orbitSpeed;
@@ -48,6 +52,7 @@ public class Enemy_Melee : Enemy
     protected override void Start()
     {
         base.Start();
+        enemyType = EnemyType.Melee;
         stateMachine.Initialize(idleState);
     }
 
@@ -59,8 +64,12 @@ public class Enemy_Melee : Enemy
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(targetCheck.position, pursuitPlayerRange);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(targetCheck.position, targetCheckRadius);
+        Gizmos.DrawWireSphere(targetCheck.position, attackPlayerRange);
+        Gizmos.color = Color.brown;
+        Gizmos.DrawWireSphere(targetCheck.position, escapeAttackRange);
     }
 
     #region IdleFunctions
@@ -156,7 +165,7 @@ public class Enemy_Melee : Enemy
             return;
         }
 
-        if (distanceToPlayer < pursuitPlayerRange)
+        if (distanceToPlayer < _pursuitPlayerRange)
         {
             ChangeEnemyState(pursuitState);
         }
@@ -191,11 +200,11 @@ public class Enemy_Melee : Enemy
         if (playerTransform != null)
         {
             agent.destination = playerTransform.position;
-            if (distanceToPlayer < attackPlayerRange)
+            if (distanceToPlayer < _attackPlayerRange)
             {
                ChangeEnemyState(waitAttackState);
             }
-            else if (distanceToPlayer > pursuitPlayerRange)
+            else if (distanceToPlayer > _pursuitPlayerRange)
             {
                 ChangeEnemyState(moveState);
             }
@@ -269,11 +278,11 @@ public class Enemy_Melee : Enemy
 
     private void OrbitAroundPlayer()
     {
-        // 1. Aumentar el �ngulo de �rbita con el tiempo
+        // 1. Aumentar el angulo de orbita con el tiempo
         // El Time.deltaTime * OrbitSpeed hace que el punto rote.
         orbitAngle += Time.deltaTime * orbitSpeed;
 
-        // Asegurar que el �ngulo no se desborde (opcional, por limpieza)
+        // Asegurar que el angulo no se desborde (opcional, por limpieza)
         if (orbitAngle > 360f)
         {
             orbitAngle -= 360f;
@@ -317,6 +326,8 @@ public class Enemy_Melee : Enemy
         _currentTime = 0;
         
         orbitAngle = InitializeOrbitAngle();
+        
+        _vfx.PlayMeleeChargeVFX(true);
     }
 
     public override void WaitAttack_Update()
@@ -327,6 +338,13 @@ public class Enemy_Melee : Enemy
         
         OrbitAroundPlayer();
         LookToPlayer();
+        GetDistanceToPlayer();
+        if (distanceToPlayer > _escapeAttackRange)
+        {
+            
+            EnemyWaveManager.Instance.NotifyEnemyFinishedAttack(this);
+            ChangeEnemyState(pursuitState);
+        }
         if (_currentTime >= waitTime)
         {
             if (canAttackByManager)
@@ -343,12 +361,14 @@ public class Enemy_Melee : Enemy
             }
             
         }
+        
     }
 
     public override void WaitAttack_Exit()
     {
         base.WaitAttack_Exit();
         agent.isStopped = false;
+        _vfx.PlayMeleeChargeVFX(false);
     }
 
     #endregion
@@ -394,7 +414,7 @@ public class Enemy_Melee : Enemy
                 DeadEntity();
                 return;
             }
-            ChangeEnemyState(moveState);
+            ChangeEnemyState(pursuitState);
         }
     }
     public override void Flinch_Exit()

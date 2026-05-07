@@ -12,8 +12,12 @@ public class Enemy_VFX : Entity_VFX
     [Space(20)]
     [SerializeField] protected Rigidbody rb;
     [SerializeField] private VisualEffect pDodgeShine;
-    [SerializeField] private ParticleSystem pHitEffect;
+    [SerializeField] private GameObject pHitEffect;
     [SerializeField] private Enemy _enemy;
+
+    [Header("--- Enemy Extras ---")] 
+    [SerializeField] private ParticleSystem enemyRangedChargeProjectile;
+    [SerializeField] private ParticleSystem enemyMeleeChargeEffect;
     
     protected override void Awake()
     {
@@ -40,8 +44,15 @@ public class Enemy_VFX : Entity_VFX
 
     public void HitPSEffect(Quaternion particleRotation)
     {
-        pHitEffect.transform.rotation = particleRotation;
-        pHitEffect.Play();
+        GameObject pHitEffectInstance = Instantiate(pHitEffect, transform.position, Quaternion.identity);
+        pHitEffectInstance.transform.rotation = particleRotation;
+        ParticleSystem pHitEffectPS = pHitEffectInstance.GetComponent<ParticleSystem>();
+        if (pHitEffectPS == null)
+        {
+            Debug.LogError("Hit Effect prefab does not have a ParticleSystem component.");
+            return;
+        }
+        pHitEffectPS.Play();
     }
     
     public void HitStop()
@@ -59,8 +70,10 @@ public class Enemy_VFX : Entity_VFX
         if (rb != null)
         {
             Debug.Log("PushFeedback started for " + this.gameObject.name);
-            
-            _enemy.agent.ResetPath();
+            if (!_enemy.agent.isOnNavMesh)
+            {
+                _enemy.agent.ResetPath();
+            }
             _enemy.agent.enabled = false;
             rb.isKinematic = false;
             rb.AddForce(direction * pushStrength, ForceMode.VelocityChange);
@@ -160,5 +173,43 @@ public class Enemy_VFX : Entity_VFX
             Debug.LogError("Mesh Renderer or Original Materials is not assigned in: " + this.gameObject.name);
         }
     }
+
+    #region Enemy Extras
+
+    public void PlayRangedChargeVFX(bool play)
+    {
+        if(enemyRangedChargeProjectile == null)
+        {
+            Debug.LogError("Enemy Ranged Charge Projectile is not assigned in: " + this.gameObject.name);
+            return;
+        }
+        if (play)
+        {
+            enemyRangedChargeProjectile.Play();
+        }
+        else
+        {
+            enemyRangedChargeProjectile.Stop();
+        }
+    }
+    
+    public void PlayMeleeChargeVFX(bool play)
+    {
+        if(enemyMeleeChargeEffect == null)
+        {
+            Debug.LogError("Enemy Melee Charge Effect is not assigned in: " + this.gameObject.name);
+            return;
+        }
+        if (play)
+        {
+            enemyMeleeChargeEffect.Play();
+        }
+        else
+        {
+            enemyMeleeChargeEffect.Stop();
+        }
+    }
+
+    #endregion
    
 }

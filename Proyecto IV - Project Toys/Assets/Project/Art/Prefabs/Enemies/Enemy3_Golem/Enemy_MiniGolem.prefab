@@ -596,6 +596,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_MiniGolem
   anim: {fileID: 0}
+  shadowPrefab: {fileID: 4145692097774232219, guid: 1c6d75a5c068b9a4484cff2a809ce665, type: 3}
+  shadowOffsetY: 0.01
+  shadowScaleMultiplier: 1
+  shadowInstance: {fileID: 0}
   groundCheckDistance: 0
   whatIsGround:
     serializedVersion: 2
@@ -607,6 +611,7 @@ MonoBehaviour:
   turnSmoothTime: 0.1
   turnSmoothVelocity: 0
   maxSlopeAngle: 30
+  enemyType: 0
   acceleration: 7
   damage: 0
   isAttacking: 0
@@ -620,6 +625,9 @@ MonoBehaviour:
   spawner: {fileID: 0}
   originalPrefab: {fileID: 0}
   health: {fileID: 0}
+  healthObj: {fileID: 0}
+  healthDropDistance: 2
+  healthDropArcHeight: 2
   facingDirection: 1
   combat: {fileID: 0}
   _health: {fileID: 0}
@@ -719,6 +727,7 @@ MonoBehaviour:
   targetHit:
     m_PersistentCalls:
       m_Calls: []
+  attackCollider: {fileID: 0}
 --- !u!114 &3643430401106698170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -737,6 +746,7 @@ MonoBehaviour:
   vfxGraph: {fileID: 6548983651006511885}
   feedbackColor: {r: 1, g: 1, b: 1, a: 1}
   feedbackDuration: 0.1
+  glowIntensity: 1
   pushStrength: 0.4
   pushWaitDuration: 0.2
   pushStopThreeshold: 0.05
@@ -750,8 +760,10 @@ MonoBehaviour:
   glowMaterial: {fileID: 2100000, guid: 10297333cd6d2cf42ad0ccd64d1f2987, type: 2}
   rb: {fileID: 0}
   pDodgeShine: {fileID: 0}
-  pHitEffect: {fileID: 1447795924311669116}
+  pHitEffect: {fileID: 3450293706237721288, guid: b6a5e952934a007439f8f16ab3ed26bd, type: 3}
   _enemy: {fileID: 0}
+  enemyRangedChargeProjectile: {fileID: 0}
+  enemyMeleeChargeEffect: {fileID: 0}
 --- !u!114 &999935357260906425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1153,11 +1165,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa91d23e7b65b374a8b415d1cfc75c33, type: 3}
---- !u!198 &1447795924311669116 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8724860935628932229, guid: fa91d23e7b65b374a8b415d1cfc75c33, type: 3}
-  m_PrefabInstance: {fileID: 7855250214498778617}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2957948870472866547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4904361311687616266, guid: fa91d23e7b65b374a8b415d1cfc75c33, type: 3}

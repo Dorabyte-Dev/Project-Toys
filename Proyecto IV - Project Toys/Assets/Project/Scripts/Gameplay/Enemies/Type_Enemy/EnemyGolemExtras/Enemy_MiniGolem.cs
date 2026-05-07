@@ -33,6 +33,7 @@ public class Enemy_MiniGolem : Enemy
     protected override void Start()
     {
         base.Start();
+        enemyType = EnemyType.MiniGolem;
         agent.speed = moveSpeed;
         agent.acceleration = acceleration;
         _originalPushDuration = _vfx.pushWaitDuration;
