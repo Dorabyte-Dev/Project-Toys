@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3976753804316941207}
   - component: {fileID: 2535735885368688088}
   - component: {fileID: 5840005273365215540}
+  - component: {fileID: 6371072418236210554}
   - component: {fileID: 190639929983386835}
   - component: {fileID: 1531434230399691284}
   - component: {fileID: 8715632376417173382}
@@ -278,6 +279,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug_pDodgeEnemies: []
+--- !u!114 &6371072418236210554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947301891608671087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cda08db17781c14f882b50e184a33e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RumbleManager
+  rumbleSettings:
+  - Tag: PlayerAttack
+    LowFrequency: 0.25
+    HighFrequency: 0.5
+    Duration: 0.5
+  - Tag: PlayerDamage
+    LowFrequency: 0.5
+    HighFrequency: 0.75
+    Duration: 0.5
 --- !u!114 &190639929983386835
 MonoBehaviour:
   m_ObjectHideFlags: 0

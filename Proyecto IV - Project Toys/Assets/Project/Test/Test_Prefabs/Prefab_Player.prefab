@@ -5242,7 +5242,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6644268025014901842}
+  - {fileID: 6341788866041423465}
   m_Father: {fileID: 8581962557178675611}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &548392137395617350
@@ -7414,6 +7414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3086476952732928126}
   - component: {fileID: 1876948882874136663}
+  - component: {fileID: 2486275452138837435}
   m_Layer: 9
   m_Name: PerfectDodgeCollider
   m_TagString: pDodge
@@ -7457,6 +7458,21 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2486275452138837435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2737875176911543348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f00182e84e7df0439d62206930419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PerfectDodgeCollider
+  whatIsPerfectDodge:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &2757473767200000443
 GameObject:
   m_ObjectHideFlags: 0
@@ -9132,6 +9148,37 @@ Transform:
   - {fileID: 4640354873750302184}
   m_Father: {fileID: 266197887601085705}
   m_LocalEulerAnglesHint: {x: 21.035591, y: 39.85726, z: 25.632704}
+--- !u!1 &4759836083231648907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6341788866041423465}
+  m_Layer: 0
+  m_Name: WallSlamVFXPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6341788866041423465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4759836083231648907}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.13}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 53654524851502779}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4783186576780128549
 GameObject:
   m_ObjectHideFlags: 0
@@ -14206,7 +14253,6 @@ MonoBehaviour:
   maxHp: 480
   isDead: 0
   invincibleMode: 0
-  healAmount: 0
 --- !u!95 &2371286157433658125
 Animator:
   serializedVersion: 7
@@ -14317,7 +14363,8 @@ MonoBehaviour:
   hitStopModifier: 0.05
   hitStopDuration: 0.3
   swordTrailEffect: {fileID: 1058282547619454077}
-  slamEffect: {fileID: 0}
+  slamEffect: {fileID: 6170414535961664622, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
+  slamEffectPosition: {fileID: 4759836083231648907}
   player: {fileID: 0}
   healingMaterials:
   - {fileID: 2100000, guid: 3b0e11aa2329aef41967225eebed23d1, type: 2}
@@ -14842,70 +14889,4 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7696487047859822659, guid: 45202a80f07369e4290c32a21aafe9ed, type: 3}
   m_PrefabInstance: {fileID: 138373764440435195}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &8646689355911982108
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 53654524851502779}
-    m_Modifications:
-    - target: {fileID: 3155361671392211022, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3155361671392211022, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3155361671392211022, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 3155361671392211022, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3155361671392211022, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3155361671392211022, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3155361671392211022, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3155361671392211022, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3155361671392211022, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3155361671392211022, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6170414535961664622, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
-      propertyPath: m_Name
-      value: Wallslamvfx
-      objectReference: {fileID: 0}
-    - target: {fileID: 6170414535961664622, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
---- !u!4 &6644268025014901842 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3155361671392211022, guid: ef511172fd93d98459a03ef2aa7ae7bf, type: 3}
-  m_PrefabInstance: {fileID: 8646689355911982108}
   m_PrefabAsset: {fileID: 0}
