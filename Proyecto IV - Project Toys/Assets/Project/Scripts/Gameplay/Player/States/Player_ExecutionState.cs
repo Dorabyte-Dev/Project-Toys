@@ -12,7 +12,7 @@ public class Player_ExecutionState : PlayerState
     {
         base.Enter();
         CheckEnemyType();
-        Debug.Log("Entered Player_ExecutionState");
+        Debug.Log("<color = yellow>Entered Player_ExecutionState</color>");
         //stateTimer = executionDuration;  //La idea es que se cambie luego cuando esté la animación de ejecución por un evento de animación
         GoToExecutionPoint();
         player.transform.DODynamicLookAt(player.executionEnemy.transform.position, 0.25f, AxisConstraint.Y).OnComplete((
@@ -45,6 +45,7 @@ public class Player_ExecutionState : PlayerState
     public override void Exit()
     {
         base.Exit();
+        Debug.Log("<color = yellow>Exit Player_ExecutionState</color>");
         player._health.invincibleMode = false;
 
         if (executionCamera != null)
