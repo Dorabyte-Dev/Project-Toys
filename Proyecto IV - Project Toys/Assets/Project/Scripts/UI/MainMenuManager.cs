@@ -18,7 +18,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private BlockButton[] menuElements; // Array de 3 elementos del menú
     [SerializeField] private float joystickThreshold = 0.5f; // Umbral para detectar movimiento del joystick
     [SerializeField] private float navigationCooldown = 0.3f; // Tiempo mínimo entre navegaciones
-    [SerializeField] private Material highlightMaterial;
+    [SerializeField] private Material[] highlightMaterials;
     
     
     private int currentIndex = 0;
@@ -126,7 +126,7 @@ public class MenuManager : MonoBehaviour
                 {
                     List<Material> materials = new  List<Material>();
                     menuElements[i].renderer.GetMaterials(materials);
-                    materials.Add(highlightMaterial);
+                    materials.Add(highlightMaterials[currentIndex]);
                     menuElements[i].renderer.SetMaterials(materials);
                 }
                 else{
