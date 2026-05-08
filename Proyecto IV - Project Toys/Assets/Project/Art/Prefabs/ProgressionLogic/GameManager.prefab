@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 3682019371314083763}
   - component: {fileID: 4747926882222132777}
   - component: {fileID: 8668117222001361893}
+  - component: {fileID: 3277078863907169326}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -359,6 +360,8 @@ MonoBehaviour:
   brightnessValueText: {fileID: 0}
   qualityDropdown: {fileID: 0}
   resolutionDropdown: {fileID: 0}
+  dropPunchDownScale: 0
+  dropdownAnimDuration: 0
   fullscreenToggle: {fileID: 0}
   enemyUIToggle: {fileID: 0}
   directionalLight: {fileID: 0}
@@ -541,3 +544,21 @@ PlayableDirector:
     value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
+--- !u!114 &3277078863907169326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947301891608671087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 308da8ce11367dc43954e8a6efad492c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tutorial
+  requiredLightAttacks: 3
+  pressLightAttackButton: {fileID: 3292942243112039379, guid: db53dc9a0ceee3847a7e1fc1d8882e70, type: 3}
+  lightHorizontalLayoutParent: {fileID: 0}
+  requiredHeavyAttacks: 3
+  pressHeavyAttackButton: {fileID: 1217658751140033993, guid: 528e0e77c5ea81a4ba12caa054efd023, type: 3}
+  heavyHorizontalLayoutParent: {fileID: 0}
