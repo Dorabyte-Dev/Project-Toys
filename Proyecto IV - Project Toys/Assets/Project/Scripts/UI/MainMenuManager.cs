@@ -109,10 +109,11 @@ public class MenuManager : MonoBehaviour
     // Método para conectar con el Input System - llámalo cuando se presione el botón de selección
     public void OnSelect(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            SelectCurrentElement();
-        }
+        if (!context.performed) return;
+        if (context.control.device is Mouse)
+            return;
+        
+        SelectCurrentElement();
     }
 
     private void UpdateMenuVisuals()
@@ -150,7 +151,7 @@ public class MenuManager : MonoBehaviour
         if (isSelecting) return;
         if (menuElements[currentIndex] == null) return;
 
-        //menuElements[currentIndex].BlockHit();
+        menuElements[currentIndex].BlockHit();
         isSelecting = true;
         ResetSelectionLock();
     }
