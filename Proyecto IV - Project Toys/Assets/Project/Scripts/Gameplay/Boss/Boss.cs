@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent),typeof(Boss_AnimationTriggers), typeof(Boss_Health))]
@@ -34,8 +36,10 @@ public class Boss : Entity
     #endregion
     
     #region References
+    [Header("References")]
     [Tooltip("Es OBLIGATORIO tener un spawner de enemigos para que pueda invocar enemigos el boss")]public EnemySpawner enemySpawner;
     [Tooltip("El centro de la arena donde se va a mover el boss tras recuperarse")]public Transform arenaCenterTransform;
+    [Tooltip("Es necesario un Box Collider para poner un lugar de spawn de los lapices")]public BoxCollider pencilAttackSpawnArea;
     #endregion
 
     #region Prefabs
@@ -50,6 +54,15 @@ public class Boss : Entity
     public float bossCanBeExecutedHpThreshold = 20f;
     
     public float slamSpeed = 10f;
+    [HideInInspector]public float slamDamage => combat.slamDamage;
+    
+    public int numberOfPencilsToInvoke = 5;
+    public float pencilSpeed = 15f;
+    public float timeToInvokePencils = 2f;
+    [HideInInspector]public float pencilDamage => combat.pencilDamage;
+    [HideInInspector]public List<GameObject> _projectiles;
+    [HideInInspector]public Proyectil _pencilProjectile;
+    
     
     public float timeInWeakState = 10f;
     public float timeInIdle = 4f;
@@ -110,7 +123,8 @@ public class Boss : Entity
         stateMachine.ChangeState(newState);
     }
     
-    #region Various Methods
+    #region Attack Methods
+    // ---- Slam ----
     public void InstantiateSlamAttack()
     {
         GameObject slamInstance = Instantiate(slamObjPrefab, transform.position, Quaternion.identity);
@@ -126,6 +140,47 @@ public class Boss : Entity
         {
             Debug.LogError("The instantiated slam attack does not have a Proyectil component.");
         }
+    }
+    
+    // ---- Pencil ----
+    public void InstantiatePencilAttack()
+    {
+        
+    }
+    
+    public IEnumerator PencilAttackCoroutine()
+    {
+        float timeBetweenPencils = timeToInvokePencils / numberOfPencilsToInvoke;
+        for (int i = 0; i < numberOfPencilsToInvoke; i++)
+        {
+            _pencilProjectile = null;
+            GameObject pencilInstance = Instantiate(pencilObjPrefab, GetPencilPosition(), Quaternion.identity);
+            _pencilProjectile = pencilInstance.GetComponent<Proyectil>();
+            if (_pencilProjectile != null)
+            {
+                _pencilProjectile.Release();
+                _pencilProjectile.direction = Vector3.down;
+                _pencilProjectile.speed = pencilSpeed;
+                _pencilProjectile.OnPlayerHit += (() => Debug.Log("Player hit by pencil!"));
+            }
+            else
+            {
+                Debug.LogError("The instantiated pencil attack does not have a Proyectil component.");
+            }
+            yield return new WaitForSeconds(timeBetweenPencils); 
+        }
+        _pencilProjectile.OnProjectileDestroyed += () => isAttacking = false;
+    }
+
+    private Vector3 GetPencilPosition()
+    {
+        if(!pencilAttackSpawnArea) return transform.position;
+        Vector3 randomPoint = new Vector3(
+            UnityEngine.Random.Range(pencilAttackSpawnArea.bounds.min.x, pencilAttackSpawnArea.bounds.max.x),
+            pencilAttackSpawnArea.bounds.center.y,
+            UnityEngine.Random.Range(pencilAttackSpawnArea.bounds.min.z, pencilAttackSpawnArea.bounds.max.z)
+        );
+        return randomPoint;
     }
     #endregion
     
