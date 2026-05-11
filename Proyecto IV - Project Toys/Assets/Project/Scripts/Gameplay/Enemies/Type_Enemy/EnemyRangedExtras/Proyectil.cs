@@ -6,6 +6,9 @@ using Random = System.Random;
 
 public class Proyectil : MonoBehaviour
 {
+    [Header("Collision")]
+    //public LayerMask targetLayerMask;
+    public LayerMask obstacleLayerMask;
     private Renderer _projRenderer;
     [Header("Shadow")]
     public GameObject shadowPrefab;
@@ -14,6 +17,7 @@ public class Proyectil : MonoBehaviour
     public float shadowScaleMultiplier = 1f;
     public LayerMask shadowMask;
     private RaycastHit _groundHit;
+    public event Action OnProjectileDestroyed;
     
     public enum ProjectileType
     {
@@ -28,6 +32,7 @@ public class Proyectil : MonoBehaviour
     
     [HideInInspector] public Vector3 direction;
     [HideInInspector] public float speed;
+    [HideInInspector] public float timeToDestroy;
 
     [HideInInspector] public float initialDistanceToOrigin;
     [HideInInspector] public Vector3 targetPosition; 
@@ -78,6 +83,7 @@ public class Proyectil : MonoBehaviour
                     _rb.MovePosition(transform.position + direction * (speed * Time.deltaTime));
                     break;
                 case ProjectileType.BossPencil:
+                    _rb.MovePosition(transform.position + direction * (speed * Time.deltaTime));
                     break;
                 default:
                 Debug.LogWarning("La vida de un crítico es sencilla en muchos aspectos." +
@@ -112,7 +118,11 @@ public class Proyectil : MonoBehaviour
         {
             OnPlayerHit?.Invoke();
             
-            Destroy(gameObject);
+            DestroyProjectile();
+        }
+        else if ((obstacleLayerMask.value & (1 << other.gameObject.layer)) > 0 && _isReleased)
+        {
+            DestroyProjectile();
         }
     }
 
@@ -122,9 +132,11 @@ public class Proyectil : MonoBehaviour
         switch (projectileType)
         {
             case ProjectileType.BossPencil:
+                _isReleased = false;
                 _rb.DOMove(GetPointFromDirection(GetRandomDirectionAbove()), 0.5f).OnComplete(() =>
                 {
                     transform.DOLookAt(targetPosition, 0.3f);
+                    _isReleased = true;
                 });
                 break;
             case ProjectileType.Enemy2Projectile:
@@ -142,6 +154,7 @@ public class Proyectil : MonoBehaviour
     public void DestroyProjectile()
     {
         Destroy(this.gameObject);
+        OnProjectileDestroyed?.Invoke();
     }
 
     private Vector3 GetRandomDirectionAbove()

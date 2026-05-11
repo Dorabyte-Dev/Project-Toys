@@ -136,11 +136,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f221bc47dbb51e24f85ec1256cbd8c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Proyectil
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 2147483648
+  shadowPrefab: {fileID: 4145692097774232219, guid: 1c6d75a5c068b9a4484cff2a809ce665, type: 3}
+  shadowOffsetY: 0.01
+  shadowScaleMultiplier: 1
+  shadowMask:
+    serializedVersion: 2
+    m_Bits: 2147483648
   projectileType: 2
   direction: {x: 0, y: 0, z: 0}
   speed: 0
+  timeToDestroy: 0
   initialDistanceToOrigin: 0
   targetPosition: {x: 0, y: 0, z: 0}
+  launchParticles: []
+  glowMaterial: {fileID: 0}
 --- !u!65 &8294219978920613584
 BoxCollider:
   m_ObjectHideFlags: 0
