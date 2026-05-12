@@ -78,24 +78,25 @@ public class ZoneCloser : MonoBehaviour
         {
             //Camera looking at door
             openZoneCamera.Priority = 11;
-            DOVirtual.DelayedCall(1f, () =>
+            DOVirtual.DelayedCall(1.5f, () =>
             {
                 //Doors open
                 foreach (var door in doors)
                 {
                     door.Open();
                 }
-            });
-            DOVirtual.DelayedCall(2f, () =>
-            {
-                //Camera back to player
-                openZoneCamera.Priority = 0;
                 DOVirtual.DelayedCall(2f, () =>
                 {
-                    //Player can move again
-                    FindFirstObjectByType<Player>().GrantControl();
+                    //Camera back to player
+                    openZoneCamera.Priority = 0;
+                    DOVirtual.DelayedCall(1.5f, () =>
+                    {
+                        //Player can move again
+                        FindFirstObjectByType<Player>().GrantControl();
+                    });
                 });
             });
+            
         }
         else
         {
