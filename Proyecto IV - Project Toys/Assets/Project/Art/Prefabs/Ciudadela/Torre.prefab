@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2971449959523173391}
   - component: {fileID: 2715671307321146186}
   - component: {fileID: 2578064508289684041}
-  - component: {fileID: 2646729965401664910}
+  - component: {fileID: 7537954792811031875}
   m_Layer: 30
   m_Name: Torre
   m_TagString: Untagged
@@ -27,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5474406638105183691}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.700828, y: 0.09402171, z: 0.0940217, w: 0.7008281}
-  m_LocalPosition: {x: 1.2853156, y: 0.010522604, z: -29.592712}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &2715671307321146186
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5474406638105183691}
-  m_Mesh: {fileID: -6327319962397886626, guid: f2c6c70109becd44fb5adf3d72f4cbc1, type: 3}
+  m_Mesh: {fileID: -6327319962397886626, guid: 65733e2ccf29f4043a393863bb21c7b1, type: 3}
 --- !u!23 &2578064508289684041
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: 1701aa8013c427d4ca0d5745e133bfd7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -90,7 +90,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2646729965401664910
+--- !u!136 &7537954792811031875
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,6 +110,6 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.03
-  m_Height: 0.11737392
+  m_Height: 0.12
   m_Direction: 2
-  m_Center: {x: 0, y: 0.001, z: 0.032160606}
+  m_Center: {x: 0.00027614116, y: -0.00066313264, z: 0.035}
