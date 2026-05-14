@@ -24,5 +24,6 @@ public class Player_Health : Entity_Health
         base.TakeDamage(takeDamage, damageDealer);
         vfx.DamageFeedback(damageDealer);
         //VFX Feedback here
+        
     }
 }
