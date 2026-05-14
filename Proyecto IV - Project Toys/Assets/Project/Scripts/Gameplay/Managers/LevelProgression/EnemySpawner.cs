@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -56,6 +57,8 @@ public class EnemySpawner : MonoBehaviour
     private static IObjectFactory enemyFactory;
     private CameraManager camManager;
     private CameraGroup cam;
+
+    [SerializeField] private ParticleSystem[] confettis;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -150,8 +153,21 @@ public class EnemySpawner : MonoBehaviour
         {
             Debug.LogWarning("Camera Manager not assigned!");
         }
+        
+        if(confettis != null && confettis.Length > 0)
+        {
+            foreach (ParticleSystem confetti in confettis)
+            {
+                confetti.Play();
+            }
+        }
+        
+        FindFirstObjectByType<Player>().RevokeControl();
+        
+        DOVirtual.DelayedCall(3f,() => {
+            endCombat.Invoke();
+        });
 
-        endCombat.Invoke();
     }
 
 

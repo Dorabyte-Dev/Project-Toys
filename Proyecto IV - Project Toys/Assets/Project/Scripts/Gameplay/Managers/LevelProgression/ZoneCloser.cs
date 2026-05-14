@@ -1,3 +1,5 @@
+using DG.Tweening;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -11,6 +13,7 @@ public class ZoneCloser : MonoBehaviour
     public LayerMask playerMask;
     public ZoneEvent zoneEvent;
     public ZoneDoor[] doors;
+    [SerializeField]private CinemachineCamera openZoneCamera;
 
     public enum EventType
     {
@@ -66,17 +69,44 @@ public class ZoneCloser : MonoBehaviour
             door.gameObject.SetActive(true);
             door.Close();
         }
-        Debug.Log("Zone Closed");
     }
 
     void OpenZone()
     {
-        foreach (var door in doors)
+        //Cinemachine Change to other camera
+        if (openZoneCamera != null)
         {
-            //Animation? Maybe?
-            door.Open();
+            //Camera looking at door
+            openZoneCamera.Priority = 11;
+            DOVirtual.DelayedCall(1.5f, () =>
+            {
+                //Doors open
+                foreach (var door in doors)
+                {
+                    door.Open();
+                }
+                DOVirtual.DelayedCall(2f, () =>
+                {
+                    //Camera back to player
+                    openZoneCamera.Priority = 0;
+                    DOVirtual.DelayedCall(1.5f, () =>
+                    {
+                        //Player can move again
+                        FindFirstObjectByType<Player>().GrantControl();
+                    });
+                });
+            });
+            
         }
-        Debug.Log("ZoneOpen");
+        else
+        {
+            foreach (var door in doors)
+            {
+                door.Open();
+            }
+            FindFirstObjectByType<Player>().GrantControl();
+            Debug.LogWarning("Open Zone Camera not assigned!");
+        }
     }
     
     public void ResetZoneCloser()
@@ -97,6 +127,5 @@ public class ZoneCloser : MonoBehaviour
     
     public void DebugReset()
     {
-        Debug.LogError("CloseZoneEvent Called");
     }
 }

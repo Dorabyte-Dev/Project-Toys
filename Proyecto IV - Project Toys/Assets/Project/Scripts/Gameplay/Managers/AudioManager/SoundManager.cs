@@ -63,7 +63,6 @@ public class SoundManager : MonoBehaviour
         int rand = UnityEngine.Random.Range(0, _sounds.Length);
 
         _sounds[rand].source.Play();
-
     }
     public void Stop(string name)
     {

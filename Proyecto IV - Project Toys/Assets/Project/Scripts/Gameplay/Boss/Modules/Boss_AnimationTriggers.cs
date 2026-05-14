@@ -15,4 +15,9 @@ public class Boss_AnimationTriggers : Entity_AnimationTriggers
         boss.InstantiateSlamAttack();
     }
     
+    public void TriggerPencilAttack()
+    {
+        StartCoroutine(boss.PencilAttackCoroutine());
+    }
+    
 }

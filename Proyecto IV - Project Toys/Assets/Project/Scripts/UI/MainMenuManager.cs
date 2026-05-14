@@ -18,7 +18,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private BlockButton[] menuElements; // Array de 3 elementos del menú
     [SerializeField] private float joystickThreshold = 0.5f; // Umbral para detectar movimiento del joystick
     [SerializeField] private float navigationCooldown = 0.3f; // Tiempo mínimo entre navegaciones
-    [SerializeField] private Material highlightMaterial;
+    [SerializeField] private Material[] highlightMaterials;
     
     
     private int currentIndex = 0;
@@ -109,10 +109,11 @@ public class MenuManager : MonoBehaviour
     // Método para conectar con el Input System - llámalo cuando se presione el botón de selección
     public void OnSelect(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            SelectCurrentElement();
-        }
+        if (!context.performed) return;
+        if (context.control.device is Mouse)
+            return;
+        
+        SelectCurrentElement();
     }
 
     private void UpdateMenuVisuals()
@@ -126,7 +127,7 @@ public class MenuManager : MonoBehaviour
                 {
                     List<Material> materials = new  List<Material>();
                     menuElements[i].renderer.GetMaterials(materials);
-                    materials.Add(highlightMaterial);
+                    materials.Add(highlightMaterials[currentIndex]);
                     menuElements[i].renderer.SetMaterials(materials);
                 }
                 else{
@@ -150,7 +151,7 @@ public class MenuManager : MonoBehaviour
         if (isSelecting) return;
         if (menuElements[currentIndex] == null) return;
 
-        //menuElements[currentIndex].BlockHit();
+        menuElements[currentIndex].BlockHit();
         isSelecting = true;
         ResetSelectionLock();
     }

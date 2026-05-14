@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Boss_PencilAttackState : BossState
@@ -10,12 +11,15 @@ public class Boss_PencilAttackState : BossState
     {
         base.Enter();
         stateTimer = 3f;
+        boss.isAttacking = true;
+        if (boss._projectiles == null) boss._projectiles = new List<GameObject>(boss.numberOfPencilsToInvoke);
+        
     }
 
     public override void Update()
     {
         base.Update();
-        if (stateTimer <= 0)
+        if (stateTimer <= 0 && !boss.isAttacking)
         {
             stateMachine.ChangeState(boss.baseState);
         }
@@ -25,4 +29,6 @@ public class Boss_PencilAttackState : BossState
     {
         base.Exit();
     }
+    
+    
 }

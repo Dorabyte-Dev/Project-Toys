@@ -45,6 +45,8 @@ public class Player_DashState : Player_GroundedState
         
             // Guardamos la dirección, el Move lo aplica SetVelocity en Update
             _enteredSlope = player.OnGround();
+            
+            SoundManager.instance.Play("Dodge", 3.5f);
         }
         PerfectDodgeManager.WipePerfectDodgeFlags();
     }
