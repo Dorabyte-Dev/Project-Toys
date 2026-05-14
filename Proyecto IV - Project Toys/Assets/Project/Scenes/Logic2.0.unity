@@ -458,7 +458,27 @@ PrefabInstance:
     - target: {fileID: 1492195444601635940, guid: 51d98deb2c0d6904c8ccde68fc0b9ecd, type: 3}
       propertyPath: timelineToPlay
       value: 
-      objectReference: {fileID: 11400000, guid: c297a59047785434aa1a962b39b8b384, type: 2}
+      objectReference: {fileID: 11400000, guid: de155ed8f0d45ad40b826865bf1137e8, type: 2}
+    - target: {fileID: 1492195444601635940, guid: 51d98deb2c0d6904c8ccde68fc0b9ecd, type: 3}
+      propertyPath: OnCutsceneEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1492195444601635940, guid: 51d98deb2c0d6904c8ccde68fc0b9ecd, type: 3}
+      propertyPath: OnCutsceneEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1704311912}
+    - target: {fileID: 1492195444601635940, guid: 51d98deb2c0d6904c8ccde68fc0b9ecd, type: 3}
+      propertyPath: OnCutsceneEnded.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TriggerComment
+      objectReference: {fileID: 0}
+    - target: {fileID: 1492195444601635940, guid: 51d98deb2c0d6904c8ccde68fc0b9ecd, type: 3}
+      propertyPath: OnCutsceneEnded.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogueTrigger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1492195444601635940, guid: 51d98deb2c0d6904c8ccde68fc0b9ecd, type: 3}
+      propertyPath: OnCutsceneEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4249510703498866299, guid: 51d98deb2c0d6904c8ccde68fc0b9ecd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.1378984
@@ -3784,86 +3804,78 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1344306655}
     m_Modifications:
-    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+    - target: {fileID: 1957899672189314839, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
+      propertyPath: comment.sentences.Array.data[17].sentenceText
+      value: "Pulsa X para hacer un ataque d\xE9bil."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1957899672189314839, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
+      propertyPath: comment.sentences.Array.data[17].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1347148016}
+    - target: {fileID: 1957899672189314839, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
+      propertyPath: comment.sentences.Array.data[17].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BeginTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301215190608644775, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
       propertyPath: m_Name
       value: DialogueTrigger_1
       objectReference: {fileID: 0}
-    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
-      propertyPath: comment.sentences.Array.data[0].character
-      value: 
-      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
-    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
-      propertyPath: comment.sentences.Array.data[1].character
-      value: 
-      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
-    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
-      propertyPath: comment.sentences.Array.data[0].sentenceText
-      value: "\xA1Oh, hey!"
-      objectReference: {fileID: 0}
-    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
-      propertyPath: comment.sentences.Array.data[1].sentenceText
-      value: "\xA1Por fin despiertas!"
-      objectReference: {fileID: 0}
-    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
-      propertyPath: comment.sentences.Array.data[2].sentenceText
-      value: "\xBFD\xF3nde estoy?"
-      objectReference: {fileID: 0}
-    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
-      propertyPath: comment.sentences.Array.data[3].sentenceText
-      value: ...
-      objectReference: {fileID: 0}
-    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+    - target: {fileID: 155341746989605918, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.59
       objectReference: {fileID: 0}
-    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+    - target: {fileID: 155341746989605918, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.00001
       objectReference: {fileID: 0}
-    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+    - target: {fileID: 155341746989605918, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
       propertyPath: m_LocalPosition.z
       value: 36.62
       objectReference: {fileID: 0}
-    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+    - target: {fileID: 155341746989605918, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+    - target: {fileID: 155341746989605918, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+    - target: {fileID: 155341746989605918, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+    - target: {fileID: 155341746989605918, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+    - target: {fileID: 155341746989605918, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+    - target: {fileID: 155341746989605918, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+    - target: {fileID: 155341746989605918, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1957899672189314839, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
+      propertyPath: comment.sentences.Array.data[17].sentenceText
+      value: "Pulsa X para hacer un ataque d\xE9bil."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1957899672189314839, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
+      propertyPath: comment.sentences.Array.data[17].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BeginTutorial
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
 --- !u!4 &1288326645 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 155341746989605918, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
   m_PrefabInstance: {fileID: 1288326644}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1329204786 stripped
@@ -3903,6 +3915,17 @@ Transform:
   - {fileID: 1288326645}
   m_Father: {fileID: 9145892588466683373}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1347148016 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3277078863907169326, guid: 8acc271e859e58f4eb64844d4862d6a8, type: 3}
+  m_PrefabInstance: {fileID: 1136373685}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 308da8ce11367dc43954e8a6efad492c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tutorial
 --- !u!1001 &1358887855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4713,6 +4736,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7cccf98b490e54dabc7ca3945ca1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraGroup
+--- !u!114 &1704311912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1957899672189314839, guid: d6718dabb26b10d48aa14797f6a6c8fb, type: 3}
+  m_PrefabInstance: {fileID: 1288326644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d293794941b100f45bc67945d93165cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
 --- !u!1001 &1723352283
 PrefabInstance:
   m_ObjectHideFlags: 0
