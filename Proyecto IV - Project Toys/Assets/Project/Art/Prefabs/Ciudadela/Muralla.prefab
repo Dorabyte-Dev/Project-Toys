@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1696069807695405327}
   - component: {fileID: 638152321852237953}
   - component: {fileID: 6394474166799934567}
+  - component: {fileID: 6652697107895864696}
   m_Layer: 30
   m_Name: Muralla
   m_TagString: Untagged
@@ -111,3 +112,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1251953, y: 0.29515398, z: 0.20662989}
   m_Center: {x: -0.0009430591, y: -0.0019971277, z: 0.10329496}
+--- !u!114 &6652697107895864696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8097903615657662870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshModifier
+  m_SerializedVersion: 0
+  m_OverrideArea: 1
+  m_Area: 1
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
