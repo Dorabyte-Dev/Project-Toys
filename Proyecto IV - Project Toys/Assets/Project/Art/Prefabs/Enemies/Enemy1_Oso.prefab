@@ -3012,6 +3012,8 @@ MonoBehaviour:
   pushStrength: 5
   pushWaitDuration: 0.2
   pushStopThreeshold: 0.0507
+  slamEffect: {fileID: 0}
+  slamEffectPosition: {fileID: 0}
   dissolveRate: 0.025
   refreshRate: 0.025
   shakeDuration: 1
@@ -6591,6 +6593,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: PS&VFX
       objectReference: {fileID: 0}
+    - target: {fileID: 2895517747781341353, guid: fa91d23e7b65b374a8b415d1cfc75c33, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2895517747781341353, guid: fa91d23e7b65b374a8b415d1cfc75c33, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 2895517747781341353, guid: fa91d23e7b65b374a8b415d1cfc75c33, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2895517747781341353, guid: fa91d23e7b65b374a8b415d1cfc75c33, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2895517747781341353, guid: fa91d23e7b65b374a8b415d1cfc75c33, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2895517747781341353, guid: fa91d23e7b65b374a8b415d1cfc75c33, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2895517747781341353, guid: fa91d23e7b65b374a8b415d1cfc75c33, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2895517747781341353, guid: fa91d23e7b65b374a8b415d1cfc75c33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4026743209284060916, guid: fa91d23e7b65b374a8b415d1cfc75c33, type: 3}
       propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Value
       value: 
@@ -6639,7 +6673,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4904361311687616266, guid: fa91d23e7b65b374a8b415d1cfc75c33, type: 3}
-      insertIndex: -1
+      insertIndex: 2
       addedObject: {fileID: 9199319892216203322}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa91d23e7b65b374a8b415d1cfc75c33, type: 3}
