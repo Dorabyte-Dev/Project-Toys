@@ -48,7 +48,7 @@ public class Tutorial : MonoBehaviour
 
     private void OnEnable()
     {
-        BeginTutorial();
+        //BeginTutorial();
     }
 
     void Update()
@@ -69,7 +69,7 @@ public class Tutorial : MonoBehaviour
 
     private void SetTutorialPhases()
     {
-        canContinueToNextPhase = true; // De momento siempre emprieza en true ya que no está puesto el dialogo del principio.
+        
         
         tutorialsPhases.Add(new TutorialPhase((() =>
         {
@@ -162,9 +162,10 @@ public class Tutorial : MonoBehaviour
     }
     
 
-    private void BeginTutorial()
+    public void BeginTutorial()
     {
         OnTutorialStarted?.Invoke();
+        canContinueToNextPhase = true; // De momento siempre emprieza en true ya que no está puesto el dialogo del principio.
         Debug.Log("[Tutorial] Tutorial Started!");
     }
 
