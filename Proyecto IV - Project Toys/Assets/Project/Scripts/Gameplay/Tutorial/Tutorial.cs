@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using DG.Tweening;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -10,6 +11,8 @@ public class Tutorial : MonoBehaviour
     #region Static Events
     public static event Action OnTutorialStarted;
     public static event Action OnTutorialEnded;
+    public UnityEvent OnTutorialAttackLightPhaseCompleted;
+    public UnityEvent OnTutorialAttackHeavyPhaseCompleted;
     #endregion
     
     #region PlayerReference
@@ -87,7 +90,7 @@ public class Tutorial : MonoBehaviour
             lightAttackCanvasParent.DOAnchorPosX(400, 0.5f).SetEase(Ease.InBack).OnComplete(() =>
             {
                 lightAttackCanvasParent.gameObject.SetActive(false);
-                canContinueToNextPhase = true;
+                //canContinueToNextPhase = true;
             });
             return true;
         })));
@@ -204,6 +207,7 @@ public class Tutorial : MonoBehaviour
                 playerInput.Player.LightAttack.performed -= OnLightAttack;
                 // Funciones que indican que se ha completado la fase 
                 // Siguiente dialogo o lo que sea
+                OnTutorialAttackLightPhaseCompleted?.Invoke();
             }
             else
             {
@@ -227,6 +231,7 @@ public class Tutorial : MonoBehaviour
                 playerInput.Player.HeavyAttack.performed -= OnHeavyAttack;
                 // Funciones que indican que se ha completado la fase 
                 // Siguiente dialogo o lo que sea
+                OnTutorialAttackHeavyPhaseCompleted?.Invoke();
             }
             else
             {
