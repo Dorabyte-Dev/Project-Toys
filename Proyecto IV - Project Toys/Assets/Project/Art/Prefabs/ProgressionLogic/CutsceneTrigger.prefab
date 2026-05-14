@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 555182043121692849, guid: 611ec0defbdbd4a4fb999c55095924a8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20
+      value: 1.9737396
       objectReference: {fileID: 0}
     - target: {fileID: 555182043121692849, guid: 611ec0defbdbd4a4fb999c55095924a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: 555182043121692849, guid: 611ec0defbdbd4a4fb999c55095924a8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -83.6
+      value: -3.1308599
       objectReference: {fileID: 0}
     - target: {fileID: 555182043121692849, guid: 611ec0defbdbd4a4fb999c55095924a8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -105,11 +105,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6d47e91510b1f499fee18418c00c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneTrigger
-  timelineToPlay: {fileID: 11400000, guid: 46de1f91da9295f44b401234e17f9b63, type: 2}
+  timelineToPlay: {fileID: 11400000, guid: de155ed8f0d45ad40b826865bf1137e8, type: 2}
   playOnlyOnce: 1
   OnCutsceneStarted:
     m_PersistentCalls:
       m_Calls: []
   OnCutsceneEnded:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

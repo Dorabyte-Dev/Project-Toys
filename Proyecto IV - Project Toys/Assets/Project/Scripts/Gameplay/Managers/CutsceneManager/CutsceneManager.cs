@@ -41,7 +41,7 @@ public class CutsceneManager : MonoBehaviour
 
         timelineDirector.playableAsset = timelineAsset;
 
-        cutsceneCamera.Priority = 10;
+        //cutsceneCamera.Priority = 10;
         //SetBlackBands(true);
 
         OnAnyCutsceneStart?.Invoke();
@@ -54,7 +54,7 @@ public class CutsceneManager : MonoBehaviour
     private void OnTimelineStopped(PlayableDirector director)
     {
         IsCutsceneActive = false;
-        cutsceneCamera.Priority = 0;
+        //cutsceneCamera.Priority = 0;
         //SetBlackBands(false);
 
         timelineDirector.stopped -= OnTimelineStopped;
