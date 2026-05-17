@@ -50,10 +50,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7201590739449671882, guid: c7a65640d1d16d14184d9e65b6cb3ec2, type: 3}
       propertyPath: m_Name
-      value: Tejado Variant
+      value: Tejado Variant 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7201590739449671882, guid: c7a65640d1d16d14184d9e65b6cb3ec2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5458988971516683050}
   m_SourcePrefab: {fileID: 100100000, guid: c7a65640d1d16d14184d9e65b6cb3ec2, type: 3}
+--- !u!1 &6780038367826094894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7201590739449671882, guid: c7a65640d1d16d14184d9e65b6cb3ec2, type: 3}
+  m_PrefabInstance: {fileID: 4460455229710195684}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &5458988971516683050
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6780038367826094894}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.0272827, y: 2.4880557, z: 5.136559}
+  m_Center: {x: -0.00000047683716, y: 6.0028706, z: 0.008398056}
