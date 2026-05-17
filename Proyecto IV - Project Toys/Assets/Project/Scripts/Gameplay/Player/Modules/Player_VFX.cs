@@ -10,23 +10,19 @@ public class Player_VFX : Entity_VFX
 	
 	#region HealingEffect
 	[Header("--- Healing Effect ---")]
+	[SerializeField]private ParticleSystem healingEffect;
 	public Material[] healingMaterials;
 	public float healingDuration = 2f;
 	#endregion
-	
+
 	protected override void Awake()
 	{
 		base.Awake();
 		player = GetComponent<Player>();
 	}
 
-	public void PlayFootstep()
-	{
-		//footstepEffect.Play(); for later when we have footstep particles
-	}
-	
-	
-	
+
+
 	public void AttackCameraShake()
 	{
 		CameraManager.instance.CameraShake();
@@ -77,7 +73,7 @@ public class Player_VFX : Entity_VFX
 	
 	public void HealingEffect()
 	{
-		//healingEffect.Play(); for later when we have healing particles
+		healingEffect.Play(); 
 		HealingGlow();
 		Invoke(nameof(RemoveHealingGlow), healingDuration);
 	}
