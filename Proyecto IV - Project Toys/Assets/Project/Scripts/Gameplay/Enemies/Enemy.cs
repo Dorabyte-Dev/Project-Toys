@@ -181,6 +181,8 @@ public class Enemy : Entity, IEnemyStates
         Player.OnPlayerDeath += PlayerDeath;
         if (EnemyWaveManager.Instance != null)
             EnemyWaveManager.Instance?.RegisterEnemy(this);
+        
+        SoundManager.instance.Play("SpawnLightning");
     }
 
     private void OnDisable()

@@ -51,8 +51,10 @@ public class Player : Entity
         get { return _comboBarAmount; }
         set
         {
+            float previousAmount = _comboBarAmount;
             _comboBarAmount = Mathf.Clamp(value, 0, maxComboBarAmount);
             SetComboBar();
+            if(_isComboBarFull && previousAmount != _comboBarAmount) SoundManager.instance.Play("ExecutionBarFull");
         }
     }
   
@@ -589,6 +591,21 @@ public class Player : Entity
                 playerCanvas.genericControllerAffordance.SetActive(false);
                 break;
         }
+    }
+    #endregion
+    
+    #region Extras SFX
+
+    public string GetGroundType()
+    {
+        string result = "";
+        RaycastHit hit;
+        Physics.Raycast(groundCheck.position, Vector3.down, out hit, groundCheckDistance, whatIsGround);
+        if (hit.collider != null)
+        {
+            result = hit.collider.gameObject.tag;
+        }
+        return  result;
     }
     #endregion
   
