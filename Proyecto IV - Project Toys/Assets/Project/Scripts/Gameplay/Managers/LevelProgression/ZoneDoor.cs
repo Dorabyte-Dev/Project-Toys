@@ -25,10 +25,12 @@ public class ZoneDoor : MonoBehaviour
         if (_anim != null)
         {
             _anim.SetTrigger("Open");
+            SoundManager.instance.Play("LimitBlocksFalling(Test)", 2f);
         }
     }
     public void Close()
     {
         _anim.enabled = true;
+        SoundManager.instance.Play("LimitBlocksFalling(Test)", 1f);
     }
 }

@@ -16,6 +16,7 @@ public class Player_Health : Entity_Health
             currentHp = maxHp;
         //Play heal VFX here:
         player._vfx.HealingEffect();
+        SoundManager.instance.Play("Heal");
     }
 
     public override void TakeDamage(float takeDamage, Transform damageDealer)

@@ -14,9 +14,9 @@ public class Entity : MonoBehaviour
     [HideInInspector] public GameObject shadowInstance;
 
     [Header("Collision detection")]
-    [SerializeField] private float groundCheckDistance;
+    [SerializeField] protected float groundCheckDistance;
     [SerializeField] protected LayerMask whatIsGround;
-    [SerializeField] private Transform groundCheck;
+    [SerializeField] protected Transform groundCheck;
     [SerializeField] public Transform targetCheck;
     [SerializeField] public float targetCheckRadius = 1;
     public bool groundDetected { get; private set; }

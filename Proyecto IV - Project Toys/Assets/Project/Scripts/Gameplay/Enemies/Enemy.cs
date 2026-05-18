@@ -181,6 +181,8 @@ public class Enemy : Entity, IEnemyStates
         Player.OnPlayerDeath += PlayerDeath;
         if (EnemyWaveManager.Instance != null)
             EnemyWaveManager.Instance?.RegisterEnemy(this);
+        
+        SoundManager.instance.Play("SpawnLightning");
     }
 
     private void OnDisable()
@@ -212,6 +214,16 @@ public class Enemy : Entity, IEnemyStates
         GameObject healthDrop = Instantiate(healthObj, transform.position, Quaternion.identity);
         Vector3 randomDirection = UnityEngine.Random.insideUnitSphere.normalized;
         Vector3 targetPosition = transform.position + randomDirection * healthDropDistance;
+        NavMeshHit navMeshHit;
+        if(NavMesh.SamplePosition(targetPosition, out navMeshHit, healthDropDistance, NavMesh.AllAreas))
+        {
+            targetPosition = navMeshHit.position;
+        }
+        else
+        {
+            targetPosition = transform.position;
+        }
+        
         healthDrop.transform.DOJump(targetPosition, healthDropArcHeight, 1, 0.5f).SetEase(Ease.OutBounce);
     }
     #endregion
