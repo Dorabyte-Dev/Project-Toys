@@ -24,6 +24,7 @@ public class DialogueManager : MonoBehaviour
     private bool isTyping = false;
     private bool cancelTyping = false;
     private string currentVoiceBlip = "";
+    private Sentence lastSentence;
 
     //References
     private SoundManager sm;
@@ -60,6 +61,10 @@ public class DialogueManager : MonoBehaviour
             }
             else //Next Sentence
             {
+                if (lastSentence != null && lastSentence.sentenceEvent.WhenToPlay == DialogueEvent.PlayWhen.PlayAfterInput)
+                {
+                    StartCoroutine(DelayEvent(lastSentence.sentenceEvent.timeOffset, lastSentence.sentenceEvent.uEvent));
+                }
                 DisplayNextSentence();
             }
         }
@@ -89,6 +94,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         Sentence currentSentence = sentences.Dequeue();
+        lastSentence = currentSentence;
 
         // PlayAtStart Event
         if (currentSentence.sentenceEvent.WhenToPlay == DialogueEvent.PlayWhen.PlayAtStart)
@@ -188,4 +194,3 @@ public class DialogueManager : MonoBehaviour
         uEvent?.Invoke();
     }
 }
-
