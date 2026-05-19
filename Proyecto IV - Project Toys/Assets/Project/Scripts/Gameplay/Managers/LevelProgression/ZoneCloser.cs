@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -8,6 +9,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
 public class ZoneCloser : MonoBehaviour
 {
+    private static List<ZoneCloser> zoneClosersCompleted = new();
     Rigidbody rb;
     public bool hasBeenActivated;
     public LayerMask playerMask;
@@ -53,7 +55,7 @@ public class ZoneCloser : MonoBehaviour
 
     public void Activate()
     {
-        if (hasBeenActivated) return;
+        if (hasBeenActivated || zoneClosersCompleted.Contains(this)) return;
         //Disable the Zone Closer
         hasBeenActivated = true;
 
@@ -101,6 +103,7 @@ public class ZoneCloser : MonoBehaviour
                         //Player can move again
                         FindFirstObjectByType<Player>().GrantControl();
                         onZoneCompleted?.Invoke();
+                        zoneClosersCompleted.Add(this);
                     });
                 });
             });
