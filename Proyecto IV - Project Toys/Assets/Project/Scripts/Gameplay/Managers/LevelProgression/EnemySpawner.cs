@@ -1,10 +1,9 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -84,6 +83,12 @@ public class EnemySpawner : MonoBehaviour
     public void StartCombat()
     {
         currentWave = 0;
+
+        if(SoundManager.instance.currentTheme.name != "ST_Fight")
+        {
+            SoundManager.instance.ChangeCurrentTheme("ST_Fight", true);
+        }
+
         StartCoroutine(SpawnEnemies());
         if(camManager != null)
         {
@@ -163,7 +168,9 @@ public class EnemySpawner : MonoBehaviour
         }
         
         FindFirstObjectByType<Player>().RevokeControl();
-        
+
+        SoundManager.instance.FadeOut("ST_Fight", .5f);
+
         DOVirtual.DelayedCall(3f,() => {
             endCombat.Invoke();
         });

@@ -73,7 +73,7 @@ public class SeeThroughWallManager : MonoBehaviour
         debugCutoutSize = currentCutoutSize;
 
         // 4. Envío de datos
-        if (!isObstructed && currentCutoutSize < 0.001f)
+        if ((!isObstructed && currentCutoutSize < 0.001f) || CutsceneManager.IsCutsceneActive)
         {
             currentCutoutSize = 0f;
             Shader.SetGlobalFloat("_CutoutSize", 0f);

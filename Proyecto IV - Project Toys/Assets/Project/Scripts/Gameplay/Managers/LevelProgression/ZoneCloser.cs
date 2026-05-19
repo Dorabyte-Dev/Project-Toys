@@ -103,6 +103,7 @@ public class ZoneCloser : MonoBehaviour
                         //Player can move again
                         FindFirstObjectByType<Player>().GrantControl();
                         onZoneCompleted?.Invoke();
+                        SoundManager.instance.FadeIn("ST_EnterCitadel", .5f);
                         zoneClosersCompleted.Add(this);
                     });
                 });

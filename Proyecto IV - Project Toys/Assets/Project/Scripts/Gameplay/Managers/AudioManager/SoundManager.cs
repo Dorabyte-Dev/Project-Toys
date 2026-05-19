@@ -110,23 +110,24 @@ public class SoundManager : MonoBehaviour
     }
     //Fade out
 
-    public void FadeOut(string name)
+    public void FadeOut(string name, float duration, bool noStop = false)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null) return;
-        s.source.DOFade(0, 4).SetEase(Ease.InOutSine).OnComplete(() =>
+        s.source.DOFade(0, duration).SetEase(Ease.InOutSine).OnComplete(() =>
         {
+            if(noStop) return;
             Stop(name);
             SetVolume(name, s.volume);
 
         });
     }
-    public void FadeIn(string name)
+    public void FadeIn(string name, float duration)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null) return;
         SetVolume(name, 0);
-        s.source.DOFade(s.volume, 4).SetEase(Ease.InOutSine);
+        s.source.DOFade(s.volume, duration).SetEase(Ease.InOutSine);
     }
     public void StopAllSfx()
     {
@@ -159,10 +160,13 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void ChangeCurrentTheme(string name)
+    public void ChangeCurrentTheme(string name, bool noStop = false)
     {
-        FadeOut(currentTheme.name);
-        Play(name);
-        FadeIn(name);
+        if(currentTheme == null)
+        {
+            FadeOut(currentTheme.name, 1, noStop);
+        }
+        if(!FindSound(name).source.isPlaying) Play(name);
+        FadeIn(name, 1);
     }
 }
