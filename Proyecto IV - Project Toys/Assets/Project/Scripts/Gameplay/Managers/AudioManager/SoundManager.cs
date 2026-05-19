@@ -45,6 +45,8 @@ public class SoundManager : MonoBehaviour
         if (s == null) return;
         if (s.type == Sound.SoundType.music) currentTheme = s;
         s.source.Play();
+
+        Debug.Log("Now playing: " + currentTheme.name);
     }
     public void PlayRandomInRange(string[] names)
     {
@@ -162,7 +164,7 @@ public class SoundManager : MonoBehaviour
 
     public void ChangeCurrentTheme(string name, bool noStop = false)
     {
-        if(currentTheme == null)
+        if(currentTheme != null)
         {
             FadeOut(currentTheme.name, 1, noStop);
         }

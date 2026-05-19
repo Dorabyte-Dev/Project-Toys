@@ -104,6 +104,7 @@ public class ZoneCloser : MonoBehaviour
                         FindFirstObjectByType<Player>().GrantControl();
                         onZoneCompleted?.Invoke();
                         SoundManager.instance.FadeIn("ST_EnterCitadel", .5f);
+                        SoundManager.instance.currentTheme = SoundManager.instance.FindSound("ST_EnterCitadel");
                         zoneClosersCompleted.Add(this);
                     });
                 });
