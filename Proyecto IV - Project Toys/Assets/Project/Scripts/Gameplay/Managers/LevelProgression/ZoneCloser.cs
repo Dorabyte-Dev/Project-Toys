@@ -12,6 +12,7 @@ public class ZoneCloser : MonoBehaviour
     public bool hasBeenActivated;
     public LayerMask playerMask;
     public ZoneEvent zoneEvent;
+    public UnityEvent onZoneCompleted;
     public ZoneDoor[] doors;
     [SerializeField]private CinemachineCamera openZoneCamera;
 
@@ -44,21 +45,27 @@ public class ZoneCloser : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("I detected " +  other.gameObject.name + "with layer being " + playerMask.ToString() + "and condition is " + (playerMask & (1 << other.gameObject.layer)));
-        if ((playerMask & (1 << other.gameObject.layer)) != 0 && !hasBeenActivated)
+        if ((playerMask & (1 << other.gameObject.layer)) != 0)
         {
-            //Disable the Zone Closer
-            hasBeenActivated = true;
-
-            //Close zone
-            CloseZone();
-
-            //Trigger Zone Event
-            zoneEvent.uEvent.Invoke();
-            Debug.Log("Zone Event: " + zoneEvent.name + " activated");
-
-            //Wait for Zone Unlocker
-            zoneEvent.spawner.endCombat.AddListener(OpenZone);
+            Activate();
         }
+    }
+
+    public void Activate()
+    {
+        if (hasBeenActivated) return;
+        //Disable the Zone Closer
+        hasBeenActivated = true;
+
+        //Close zone
+        CloseZone();
+
+        //Trigger Zone Event
+        zoneEvent.uEvent.Invoke();
+        Debug.Log("Zone Event: " + zoneEvent.name + " activated");
+
+        //Wait for Zone Unlocker
+        zoneEvent.spawner.endCombat.AddListener(OpenZone);
     }
 
     void CloseZone()
@@ -93,6 +100,7 @@ public class ZoneCloser : MonoBehaviour
                     {
                         //Player can move again
                         FindFirstObjectByType<Player>().GrantControl();
+                        onZoneCompleted?.Invoke();
                     });
                 });
             });
