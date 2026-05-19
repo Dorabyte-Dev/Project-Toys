@@ -19,7 +19,10 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private float joystickThreshold = 0.5f; // Umbral para detectar movimiento del joystick
     [SerializeField] private float navigationCooldown = 0.3f; // Tiempo mínimo entre navegaciones
     [SerializeField] private Material[] highlightMaterials;
-    
+
+    [SerializeField] private AudioClip selectClip;
+    [SerializeField] private AudioClip navigateClip;
+    [SerializeField] private AudioSource audio;
     
     private int currentIndex = 0;
     private float lastNavigationTime;
@@ -95,6 +98,9 @@ public class MenuManager : MonoBehaviour
                 if (currentIndex >= menuElements.Length)
                     currentIndex = 0;
             }
+            audio.clip = navigateClip;
+            audio.Play();
+
             Debug.LogWarning("Current Button is: " + menuElements[currentIndex].name);
             UpdateMenuVisuals();
             lastNavigationTime = Time.time;
@@ -112,7 +118,10 @@ public class MenuManager : MonoBehaviour
         if (!context.performed) return;
         if (context.control.device is Mouse)
             return;
-        
+
+        audio.clip = selectClip;
+        audio.Play();
+
         SelectCurrentElement();
     }
 

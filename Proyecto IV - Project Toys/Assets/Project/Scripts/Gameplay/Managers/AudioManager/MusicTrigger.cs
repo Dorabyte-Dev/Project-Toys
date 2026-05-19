@@ -19,4 +19,9 @@ public class MusicTrigger : MonoBehaviour
             SoundManager.instance.Play(musicName);
         }
     }
+
+    public void TriggerSFX()
+    {
+        SoundManager.instance.Play(musicName);
+    }
 }
