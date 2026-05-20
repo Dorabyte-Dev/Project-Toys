@@ -110,16 +110,22 @@ public class Player_DashState : Player_GroundedState
             enemy.transform.position.z - player.transform.position.z
         );
 
-        Vector3 pDodgePosition = new Vector3(
+        bool isGolem = enemy.TryGetComponent<Enemy_Golem>(out Enemy_Golem golemComponent);
+
+        Vector3 pDodgePosition;
+
+        pDodgePosition = new Vector3(
             enemy.transform.position.x,
             player.transform.position.y,
             enemy.transform.position.z
-        ) + direction.normalized * player.perfectDodgeEnemyDistance;
+        ) + direction.normalized * player.perfectDodgeEnemyDistance * (isGolem ? 10 : 1); //Multiply it by 20 if it's the golem because it's big and we want to dodge around it, not into it.
 
         Vector3 pDodgeCurvePoint = player.transform.position 
                                     + direction / 2 
-                                    + Vector3.Cross(direction, Vector3.up).normalized * direction.magnitude / 1.25f;
+                                    + Vector3.Cross(direction, Vector3.up).normalized * direction.magnitude / (isGolem ? .5f : 1.25f); //Again, curvePoint must be further away if it's golem so the dodge doesnt crash into it.
 
+        Debug.DrawLine(player.transform.position, pDodgeCurvePoint, Color.green, 2f);
+        Debug.DrawLine(pDodgeCurvePoint, pDodgePosition, Color.green, 2f);
         CameraManager.instance.ToggleZoom();
         Time.timeScale = 0.25f;
         player.SetInvincible((player.perfectDodgeDuration * 1.2f) / Time.timeScale);
