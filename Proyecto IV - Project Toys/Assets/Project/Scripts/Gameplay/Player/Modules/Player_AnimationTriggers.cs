@@ -57,6 +57,21 @@ public class Player_AnimationTriggers : Entity_AnimationTriggers
         player.ChangePlayerState(player.idleState);
     }
     
+    public void LowRumble()
+    {
+        RumbleManager.RumblePulse(0.25f, 0.25f, 0.25f);
+    }
+    
+    public void MediumRumble()
+    {
+        RumbleManager.RumblePulse(0.5f, 0.5f, 0.25f);
+    }
+    
+    public void HighRumble()
+    {
+        RumbleManager.RumblePulse(1f, 1f, 0.25f);
+    }
+    
     #region Sound Functions
 
     public void PlayLightAttack1SFX()
