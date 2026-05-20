@@ -22,6 +22,7 @@ public class Enemy_DeadState : EnemyState
         enemy.SetEnemyDead();
         enemy._vfx.ResetPushFeedback();
         
+        RandomDeadSFX();
     }
 
 
@@ -34,6 +35,20 @@ public class Enemy_DeadState : EnemyState
     {
         base.Exit();
         enemy.Dead_Exit();
+    }
+
+    void RandomDeadSFX()
+    {
+        int rand = Random.Range(0, 50);
+
+        if (rand == 14)
+        {
+            SoundManager.instance.Play("EnemyDeath(1-50)");
+        }
+        else
+        {
+            SoundManager.instance.Play("EnemyDeath");
+        }
     }
 
     

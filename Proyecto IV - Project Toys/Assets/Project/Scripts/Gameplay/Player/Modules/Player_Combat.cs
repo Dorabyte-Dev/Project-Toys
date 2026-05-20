@@ -31,7 +31,7 @@ public class Player_Combat : Entity_Combat
             if (targetHealth != null)
             {
                 if(targetHealth.isDead) continue;
-                targetHealth.TakeDamage(_finalDamage, this.transform);
+                    targetHealth.TakeDamage(_finalDamage, this.transform);
                 if(targetHealth.invincibleMode) continue;
                 targetHit?.Invoke();
                 SoundManager.instance.PlayRandomInRange(new string[]{ "PlayerVoiceHit1", "PlayerVoiceHit2", "PlayerVoiceHit3", "PlayerVoiceHit4"});

@@ -439,6 +439,7 @@ MonoBehaviour:
   endCombat:
     m_PersistentCalls:
       m_Calls: []
+  confettis: []
 --- !u!4 &193186890
 Transform:
   m_ObjectHideFlags: 0
@@ -1537,26 +1538,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5092992522464097699, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-      propertyPath: feedbackColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5092992522464097699, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-      propertyPath: feedbackColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5092992522464097699, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-      propertyPath: feedbackColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5092992522464097699, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-      propertyPath: feedbackColor.r
-      value: 0.735849
-      objectReference: {fileID: 0}
-    - target: {fileID: 5092992522464097699, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
-      propertyPath: feedbackDuration
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 5763861305979521097, guid: 19e13259cd7b3db48aaa9449d226d931, type: 3}
       propertyPath: canvasObj
       value: 
@@ -4686,7 +4667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1973517841
 Transform:
   m_ObjectHideFlags: 0
@@ -5000,7 +4981,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3771482807369979788, guid: ac5cf0c8d06ee4144b94982684de0437, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4678827832512805996, guid: ac5cf0c8d06ee4144b94982684de0437, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6511,7 +6492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1311956479014145465, guid: baea996769c743d42bccd6d6245a1419, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.51
+      value: 0.63
       objectReference: {fileID: 0}
     - target: {fileID: 1311956479014145465, guid: baea996769c743d42bccd6d6245a1419, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7634,6 +7615,10 @@ PrefabInstance:
     - target: {fileID: 5670286414187179358, guid: 22577ec4a46b9b846859046ee75c109b, type: 3}
       propertyPath: m_Name
       value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670286414187179358, guid: 22577ec4a46b9b846859046ee75c109b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6044130906445087293, guid: 22577ec4a46b9b846859046ee75c109b, type: 3}
       propertyPath: m_LocalPosition.x
