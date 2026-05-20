@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.VFX;
 
 public class Enemy_VFX : Entity_VFX
@@ -12,7 +13,8 @@ public class Enemy_VFX : Entity_VFX
     [Space(20)]
     [SerializeField] protected Rigidbody rb;
     [SerializeField] private VisualEffect pDodgeShine;
-    [SerializeField] private GameObject pHitEffect;
+    [FormerlySerializedAs("pHitEffect")] [SerializeField] private GameObject pHitEffectParticles;
+    [SerializeField] private GameObject pHitEffectFlash;
     [SerializeField] private Enemy _enemy;
 
     [Header("--- Enemy Extras ---")] 
@@ -45,14 +47,22 @@ public class Enemy_VFX : Entity_VFX
 
     public void HitPSEffect(Quaternion particleRotation)
     {
-        GameObject pHitEffectInstance = Instantiate(pHitEffect, transform.position, Quaternion.identity);
+        GameObject pHitEffectInstance = Instantiate(pHitEffectParticles, transform.position, Quaternion.identity);
+        GameObject pHitEffectFlashInstance = Instantiate(pHitEffectFlash, transform.position, Quaternion.identity);
         pHitEffectInstance.transform.rotation = particleRotation;
         ParticleSystem pHitEffectPS = pHitEffectInstance.GetComponent<ParticleSystem>();
+        ParticleSystem pHitEffectFlashPS = pHitEffectFlashInstance.GetComponent<ParticleSystem>();
         if (pHitEffectPS == null)
         {
             Debug.LogError("Hit Effect prefab does not have a ParticleSystem component.");
             return;
         }
+        if (pHitEffectFlashPS == null)
+        {
+            Debug.LogError("Hit Effect Flash prefab does not have a ParticleSystem component.");
+            return;
+        }
+        pHitEffectFlashPS.Play();
         pHitEffectPS.Play();
     }
     

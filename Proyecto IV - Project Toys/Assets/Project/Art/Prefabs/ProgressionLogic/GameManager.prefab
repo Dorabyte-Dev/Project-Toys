@@ -242,6 +242,54 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
+  - type: 0
+    name: ST_Fight
+    clip: {fileID: 8300000, guid: 86d0d2f052b35b541882cc16470bcf9e, type: 3}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
+  - type: 0
+    name: ST_LowHealth
+    clip: {fileID: 8300000, guid: f71b2019df7c1464fbab718812ecdc21, type: 3}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
+  - type: 0
+    name: ST_Menu
+    clip: {fileID: 8300000, guid: bec64db48bd67ea478810c520c915da3, type: 3}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
+  - type: 0
+    name: ST_End
+    clip: {fileID: 8300000, guid: 894e6234fc359c3458ed33052849d20e, type: 3}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
+  - type: 0
+    name: ST_Chill
+    clip: {fileID: 8300000, guid: 811fb18687d953d408983f55158432fb, type: 3}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
+  - type: 0
+    name: ST_Start
+    clip: {fileID: 8300000, guid: 7585779f404a1034b81611a9ef92ea29, type: 3}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
+  - type: 0
+    name: ST_EnterCitadel
+    clip: {fileID: 8300000, guid: be6222560c383f24e991fd85a612ed8e, type: 3}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
+  - type: 1
+    name: Balatroo
+    clip: {fileID: 8300000, guid: 7ad24ead47e45614ba5548c142fe09b0, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
   currentTheme:
     type: 0
     name: 
@@ -556,9 +604,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308da8ce11367dc43954e8a6efad492c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tutorial
+  OnTutorialAttackLightPhaseCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTutorialAttackHeavyPhaseCompleted:
+    m_PersistentCalls:
+      m_Calls: []
   requiredLightAttacks: 3
   pressLightAttackButton: {fileID: 3292942243112039379, guid: db53dc9a0ceee3847a7e1fc1d8882e70, type: 3}
   lightHorizontalLayoutParent: {fileID: 0}
   requiredHeavyAttacks: 3
   pressHeavyAttackButton: {fileID: 1217658751140033993, guid: 528e0e77c5ea81a4ba12caa054efd023, type: 3}
   heavyHorizontalLayoutParent: {fileID: 0}
+  canContinueToNextPhase: 0

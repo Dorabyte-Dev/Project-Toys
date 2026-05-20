@@ -1110,11 +1110,12 @@ MonoBehaviour:
   glowMaterial: {fileID: 2100000, guid: 10297333cd6d2cf42ad0ccd64d1f2987, type: 2}
   rb: {fileID: 0}
   pDodgeShine: {fileID: 0}
-  pHitEffect: {fileID: 3450293706237721288, guid: b6a5e952934a007439f8f16ab3ed26bd, type: 3}
+  pHitEffectParticles: {fileID: 3450293706237721288, guid: b6a5e952934a007439f8f16ab3ed26bd, type: 3}
+  pHitEffectFlash: {fileID: 3048029172641694992, guid: 63783065221977343ba7669cb6ec3aee, type: 3}
   _enemy: {fileID: 0}
   enemyRangedChargeProjectile: {fileID: 0}
   enemyMeleeChargeEffect: {fileID: 0}
-  enemyHitExecutionEffect: {fileID: 0}
+  enemyHitExecutionEffect: {fileID: 787100979879009108}
 --- !u!114 &8067176831012849006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2030,6 +2031,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63783065221977343ba7669cb6ec3aee, type: 3}
+--- !u!198 &787100979879009108 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8514037653191853427, guid: 63783065221977343ba7669cb6ec3aee, type: 3}
+  m_PrefabInstance: {fileID: 8992465838233738791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8293011060791017715 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1143098013432176340, guid: 63783065221977343ba7669cb6ec3aee, type: 3}
