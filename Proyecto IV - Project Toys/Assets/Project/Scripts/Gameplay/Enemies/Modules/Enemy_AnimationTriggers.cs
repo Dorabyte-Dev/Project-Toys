@@ -58,7 +58,10 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
         base.HeavyTrigger();
     }
     
-    
+    public void VFXExecutionHit()
+    {
+        enemy._vfx.PlayHitExecutionVFX();
+    }
 
     public void SetPerfectoDodgeCollider(int isActive)
     {

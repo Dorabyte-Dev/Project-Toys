@@ -18,6 +18,7 @@ public class Enemy_VFX : Entity_VFX
     [Header("--- Enemy Extras ---")] 
     [SerializeField] private ParticleSystem enemyRangedChargeProjectile;
     [SerializeField] private ParticleSystem enemyMeleeChargeEffect;
+    [SerializeField] private ParticleSystem enemyHitExecutionEffect;
     
     protected override void Awake()
     {
@@ -208,6 +209,16 @@ public class Enemy_VFX : Entity_VFX
         {
             enemyMeleeChargeEffect.Stop();
         }
+    }
+    
+    public void PlayHitExecutionVFX()
+    {
+        if(enemyHitExecutionEffect == null)
+        {
+            Debug.LogError("Enemy Hit Execution Effect is not assigned in: " + this.gameObject.name);
+            return;
+        }
+        enemyHitExecutionEffect.Play();
     }
 
     #endregion
