@@ -1,0 +1,2240 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7609459969501853801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3128514789679589188}
+  m_Layer: 0
+  m_Name: DIALOGUES
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3128514789679589188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7609459969501853801}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5313430590556449031}
+  - {fileID: 7295554230201717751}
+  - {fileID: 3579554641192829092}
+  - {fileID: 3307945794576661169}
+  - {fileID: 8589603058661853862}
+  - {fileID: 2839765398070833287}
+  - {fileID: 798694608991072641}
+  - {fileID: 3398064369389323292}
+  - {fileID: 4654782271896922375}
+  - {fileID: 2884940485922087635}
+  - {fileID: 2304627348033189577}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1066637514363566602
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3128514789679589188}
+    m_Modifications:
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Name
+      value: DialogueTrigger_1_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Size.x
+      value: 10.613015
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Size.z
+      value: 6.6826286
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Center.z
+      value: 0.8413143
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].emotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].emotion
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].emotion
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].emotion
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].sentenceText
+      value: "\xA1Prep\xE1rate! Esta gente no recibe muy bien a los de fuera"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].sentenceText
+      value: "Es que el rey de ese sitio es un aut\xE9ntico dictador."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].sentenceText
+      value: "\xA1Discriminan y marginan a los juguetes de otras marcas!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].sentenceText
+      value: "Tu misi\xF3n es encargarte de esa gente"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].sentenceText
+      value: Reglas del cuarto, lo siento chaval
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].sentenceText
+      value: "\xA1P-pero si es mi cuarto!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].sentenceText
+      value: "Venga va, toma esto como una especie de\u2026 \xA1colabo!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].sentenceText
+      value: "Yo te presto mi poder, t\xFA me ayudas a llegar al castillo\u2026 \xA1Todos
+        ganamos!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].sentenceText
+      value: "Yo te presto mi poder, t\xFA me ayudas a llegar al castillo\u2026 \xA1Todos
+        ganamos!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 80.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+--- !u!4 &8589603058661853862 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+  m_PrefabInstance: {fileID: 1066637514363566602}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2073363064540717915
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3128514789679589188}
+    m_Modifications:
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Name
+      value: DialogueTrigger_T_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].emotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].sentenceText
+      value: "\xA1Genial! Ya podr\xEDas defenderte de un spinner, por lo menos "
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].sentenceText
+      value: "Ahora pulsa clic derecho para hace un ataque fuerte, o Y si lo est\xE1s
+        jugando en mando."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BeginTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Tutorial, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.8544292
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 31.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+--- !u!4 &7295554230201717751 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+  m_PrefabInstance: {fileID: 2073363064540717915}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3477917643625159083
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3128514789679589188}
+    m_Modifications:
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Name
+      value: DialogueTrigger_T_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.size
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].emotion
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].emotion
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].emotion
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[9].emotion
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[10].emotion
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[11].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[12].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[13].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[14].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[15].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[16].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[17].emotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[9].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[10].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[11].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[12].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[13].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[14].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[15].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[16].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[17].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].sentenceText
+      value: "\u2026\xBFHola? Hay alguien ah\xED?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].sentenceText
+      value: "\u2026Como no te muevas voy a empezar a pensar que la has palmado"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].sentenceText
+      value: "\u2026"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].sentenceText
+      value: "Hmm\u2026 Qu\xE9\u2026 \xBFQui\xE9n? \xBFC\xF3mo? \xBFQU\xC9 ES ESTO? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].sentenceText
+      value: "Hombreeee,  \xA1por fin despiertas!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].sentenceText
+      value: "\xBFUna espada que habla? Espera\u2026 \xBFDONDE ESTOY? \xBFMAM\xC1?
+        \xBFPAP\xC1?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].sentenceText
+      value: "Oye, desconocido con p\xE9rdidas de memoria, para t\xED soy LA espada
+        que habla."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].sentenceText
+      value: "Estaba en el coche y de repente\u2026 "
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].sentenceText
+      value: "Espera\u2026 \xBFNo te acuerdas?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[9].sentenceText
+      value: "La verdad es que no\u2026"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[10].sentenceText
+      value: "Pues un grupo de osos terror\xEDficos y malvados estaban atac\xE1ndote "
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[11].sentenceText
+      value: "Por suerte\u2026 Un servidor estaba aqu\xED para ayudarte! "
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[12].sentenceText
+      value: "Esto\u2026 \xBFGracias?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[13].sentenceText
+      value: "Aunque creo que no me quedar\xEDa tranquilo si te dejase a tu aire
+        por aqu\xED"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[14].sentenceText
+      value: He visto plastilina defenderse mejor.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[15].sentenceText
+      value: "As\xED que\u2026 Veamos si te acuerdas de moverte por aqu\xED"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[16].sentenceText
+      value: La espada Pixavi queda a tu servicio!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[17].sentenceText
+      value: "Pulsa Clic Izquierdo para hacer un ataque d\xE9bil, o X si est\xE1s
+        jugando en mando."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[17].sentenceEvent.WhenToPlay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[17].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[17].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[17].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[17].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BeginTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[17].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Tutorial, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[17].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.8544292
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 31.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+--- !u!4 &5313430590556449031 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+  m_PrefabInstance: {fileID: 3477917643625159083}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4134313819036670379
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3128514789679589188}
+    m_Modifications:
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Name
+      value: DialogueTrigger_S_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Size.x
+      value: 6.7778854
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Size.z
+      value: 8.281883
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Center.x
+      value: 0.40376854
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Center.z
+      value: 0.37615585
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].emotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].emotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].emotion
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].sentenceText
+      value: "\xBFEse es el rey bloque? Lo imaginaba m\xE1s\u2026 Con forma de bloque. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].sentenceText
+      value: "Pues te vas a reir\u2026 Pero eso es, literalmente."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].sentenceText
+      value: "\u2026"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].sentenceText
+      value: "\u2026"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].sentenceText
+      value: "Cada cual se ve de una manera, supongo\u2026"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].sentenceText
+      value: "\xA1P-pero si es mi cuarto!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].sentenceText
+      value: "Venga va, toma esto como una especie de\u2026 \xA1colabo!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].sentenceText
+      value: "Yo te presto mi poder, t\xFA me ayudas a llegar al castillo\u2026 \xA1Todos
+        ganamos!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].sentenceText
+      value: "Yo te presto mi poder, t\xFA me ayudas a llegar al castillo\u2026 \xA1Todos
+        ganamos!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 132.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+--- !u!4 &4654782271896922375 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+  m_PrefabInstance: {fileID: 4134313819036670379}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5211846370087841800
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3128514789679589188}
+    m_Modifications:
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Name
+      value: DialogueTrigger_T_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].emotion
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].emotion
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].sentenceText
+      value: "\xA1Nada mal, chico! Puede que te haya subestimado"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].sentenceText
+      value: "\xBFSabias que si combinas los ataques d\xE9biles y fuertes puedes
+        llegar a hacer unos pedazo de combos?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].sentenceText
+      value: "Estoy seguro de que lo sab\xEDas\u2026 Ya sabes, cosas de los videojuegos"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].sentenceText
+      value: Bueno, ya que te he salvado y eso, me debes un favor.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].sentenceText
+      value: "\xA1Eh, eso no me lo hab\xEDas dicho!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].sentenceText
+      value: Reglas del cuarto, lo siento chaval
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].sentenceText
+      value: "\xA1P-pero si es mi cuarto!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].sentenceText
+      value: "Venga va, toma esto como una especie de\u2026 \xA1colabo!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].sentenceText
+      value: "Yo te presto mi poder, t\xFA me ayudas a llegar al castillo\u2026 \xA1Todos
+        ganamos!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3811195591205403064}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TriggerComment
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogueTrigger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].sentenceEvent.uEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.8544292
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 31.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+--- !u!4 &3579554641192829092 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+  m_PrefabInstance: {fileID: 5211846370087841800}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5904304073974190719
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3128514789679589188}
+    m_Modifications:
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Name
+      value: DialogueTrigger_5_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Size.x
+      value: 35.148773
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Size.z
+      value: 5.780655
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Center.x
+      value: -1.0126038
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Center.z
+      value: -0.39032745
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].emotion
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].emotion
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].sentenceText
+      value: "\xBFY estos coches?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].sentenceText
+      value: Bueno, esta es zona de ricos. Las mejores casas, los mejores coches..
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].sentenceText
+      value: Parecen un poco mal colocados
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].sentenceText
+      value: "\xA1Oye, que aparcar en paralelo es muy dif\xEDcil!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].sentenceText
+      value: "Cada cual se ve de una manera, supongo\u2026"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].sentenceText
+      value: "\xA1P-pero si es mi cuarto!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].sentenceText
+      value: "Venga va, toma esto como una especie de\u2026 \xA1colabo!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].sentenceText
+      value: "Yo te presto mi poder, t\xFA me ayudas a llegar al castillo\u2026 \xA1Todos
+        ganamos!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].sentenceText
+      value: "Yo te presto mi poder, t\xFA me ayudas a llegar al castillo\u2026 \xA1Todos
+        ganamos!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 34.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 212.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9602747
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.27905664
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -32.408
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+--- !u!4 &2884940485922087635 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+  m_PrefabInstance: {fileID: 5904304073974190719}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6057689491683265053
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3128514789679589188}
+    m_Modifications:
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Name
+      value: DialogueTrigger_T_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].emotion
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].emotion
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].emotion
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].sentenceText
+      value: "Bueeeeno\u2026 Supongo que puedo aceptar. \xBFPor qu\xE9 quieres ir?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].sentenceText
+      value: "Es que el rey de ese sitio es un aut\xE9ntico dictador."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].sentenceText
+      value: "\xA1Discriminan y marginan a los juguetes de otras marcas!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].sentenceText
+      value: "Tu misi\xF3n es encargarte de esa gente"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].sentenceText
+      value: Reglas del cuarto, lo siento chaval
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].sentenceText
+      value: "\xA1P-pero si es mi cuarto!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].sentenceText
+      value: "Venga va, toma esto como una especie de\u2026 \xA1colabo!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].sentenceText
+      value: "Yo te presto mi poder, t\xFA me ayudas a llegar al castillo\u2026 \xA1Todos
+        ganamos!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].sentenceText
+      value: "Yo te presto mi poder, t\xFA me ayudas a llegar al castillo\u2026 \xA1Todos
+        ganamos!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 31.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+--- !u!4 &3307945794576661169 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+  m_PrefabInstance: {fileID: 6057689491683265053}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3811195591205403064 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+  m_PrefabInstance: {fileID: 6057689491683265053}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d293794941b100f45bc67945d93165cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
+--- !u!1001 &6255863656211559600
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3128514789679589188}
+    m_Modifications:
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Name
+      value: DialogueTrigger_S_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Size.z
+      value: 7.5643816
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].emotion
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].emotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].emotion
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].sentenceText
+      value: "\xA1AH! \xA1QUE PASADA, TAMBI\xC9N TEN\xC9IS DINOSAURIOS!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].sentenceText
+      value: "\xA1Por supuesto! \xBFQui\xE9n no tiene dinosaurios en su ciudad? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].sentenceText
+      value: "\xBFY pasa algo si me acerco?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].sentenceText
+      value: "Bueno, tu prueba. C\xF3mo dice el refr\xE1n:"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].sentenceText
+      value: "\u201CEl mono que no trepa la palmera, se queda sin pl\xE1tano\u201D"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].sentenceText
+      value: "\xA1P-pero si es mi cuarto!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].sentenceText
+      value: "Venga va, toma esto como una especie de\u2026 \xA1colabo!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].sentenceText
+      value: "Yo te presto mi poder, t\xFA me ayudas a llegar al castillo\u2026 \xA1Todos
+        ganamos!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].sentenceText
+      value: "Yo te presto mi poder, t\xFA me ayudas a llegar al castillo\u2026 \xA1Todos
+        ganamos!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 165.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+--- !u!4 &3398064369389323292 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+  m_PrefabInstance: {fileID: 6255863656211559600}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6814452864512802859
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3128514789679589188}
+    m_Modifications:
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Name
+      value: DialogueTrigger_2_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].emotion
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].emotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].emotion
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].sentenceText
+      value: "Jo, si que est\xE1n agresivos\u2026De momento voy bien, \xBFno?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].sentenceText
+      value: "Podr\xEDa decirse que si. \xBFVes la barrita arcoiris que hay encima
+        tuya?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].sentenceText
+      value: "\xBFLa qu\xE9 de qu\xE9?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].sentenceText
+      value: "No importa\u2026 Si pulsas la F (o LT/L2 + RT/R2 en mando) ver\xE1s
+        algo muy curioso\u2026 \xA1Mi mejor ataque!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].sentenceText
+      value: "\xBFLa qu\xE9 de qu\xE9?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].sentenceText
+      value: "\xA1P-pero si es mi cuarto!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].sentenceText
+      value: "Venga va, toma esto como una especie de\u2026 \xA1colabo!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].sentenceText
+      value: "Yo te presto mi poder, t\xFA me ayudas a llegar al castillo\u2026 \xA1Todos
+        ganamos!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].sentenceText
+      value: "Yo te presto mi poder, t\xFA me ayudas a llegar al castillo\u2026 \xA1Todos
+        ganamos!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -40.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 157.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+--- !u!4 &2839765398070833287 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+  m_PrefabInstance: {fileID: 6814452864512802859}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7350645414778095205
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3128514789679589188}
+    m_Modifications:
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Name
+      value: DialogueTrigger_7_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Size.x
+      value: 15.6711235
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].emotion
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].emotion
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].emotion
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[9].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[10].emotion
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[9].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[10].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].sentenceText
+      value: "\xA1Pues ya estamos aqu\xED! \xBFCrees que podemos ganar?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].sentenceText
+      value: "Bueno, s\xED y no. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].sentenceText
+      value: "\xBFCreo en ti y eso? S\xED."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].sentenceText
+      value: "\xBFEs probable que ganemos? pues\u2026"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].sentenceText
+      value: "Espera, \xBFqu\xE9?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].sentenceText
+      value: 'Ah, por eso no te preocupes. No vais a pelear. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].sentenceText
+      value: "\xBFNo vamos a entrar?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].sentenceText
+      value: Hombre, es lo que tienen las demos, no duran para siempre
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].sentenceText
+      value: "\xBFDemo? Espera, \xBFY toda la preparaci\xF3n? \xBFPara esto?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[9].sentenceText
+      value: "\xA1Gracias por jugar Toymaggedon! \xA1Disfrutad de la batalla en itch.io!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[10].sentenceText
+      value: ESPERA UN MOMENT-
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 30.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 21.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 323.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+--- !u!4 &2304627348033189577 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+  m_PrefabInstance: {fileID: 7350645414778095205}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8281165132591415597
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3128514789679589188}
+    m_Modifications:
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Name
+      value: DialogueTrigger_C_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219116031880748565, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Size.x
+      value: 16.829967
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Size.z
+      value: 2.6881695
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474559056475104044, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].emotion
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].emotion
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].emotion
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].emotion
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].emotion
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].emotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 638992151c266c3438db025cf641671e, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fd91653c7df854d9cf17652e8a6b3d, type: 2}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[0].sentenceText
+      value: "\xA1Oye, reconozco ese juguete! "
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[1].sentenceText
+      value: "Mi hermana se lo dej\xF3 en la excursi\xF3n al faro"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[2].sentenceText
+      value: "\xBFEh? \xBFQu\xE9 faro? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[3].sentenceText
+      value: "Nada da igual\u2026"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[4].sentenceText
+      value: "\xBFLa qu\xE9 de qu\xE9?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[5].sentenceText
+      value: "\xA1P-pero si es mi cuarto!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[6].sentenceText
+      value: "Venga va, toma esto como una especie de\u2026 \xA1colabo!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[7].sentenceText
+      value: "Yo te presto mi poder, t\xFA me ayudas a llegar al castillo\u2026 \xA1Todos
+        ganamos!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986536911165780901, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: comment.sentences.Array.data[8].sentenceText
+      value: "Yo te presto mi poder, t\xFA me ayudas a llegar al castillo\u2026 \xA1Todos
+        ganamos!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -56.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 107.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+--- !u!4 &798694608991072641 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8789077398795120812, guid: 6c8ec06899f2b6a45b0b1b0d0d3a436e, type: 3}
+  m_PrefabInstance: {fileID: 8281165132591415597}
+  m_PrefabAsset: {fileID: 0}
