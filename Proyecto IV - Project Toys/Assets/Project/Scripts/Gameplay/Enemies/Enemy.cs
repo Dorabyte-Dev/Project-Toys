@@ -176,7 +176,7 @@ public class Enemy : Entity, IEnemyStates
     {
         stateMachine.ChangeState(deadState);
     }
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         Player.OnPlayerDeath += PlayerDeath;
         if (EnemyWaveManager.Instance != null)
