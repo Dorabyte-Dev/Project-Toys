@@ -345,7 +345,7 @@ public class Player : Entity
     }
     public void RotatePlayerToMatchInput()
     {
-        if(cameraMoveInput.magnitude >= 0.1f)
+        if(cameraMoveInput.magnitude >= 0.1f && !UIManager.gameIsPaused)
         {
             float targetAngle = Mathf.Atan2(cameraMoveInput.x, cameraMoveInput.y) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
@@ -613,7 +613,7 @@ public class Player : Entity
     #region Execution
     public bool CanExecute()
     {
-        if (executionEnemy)
+        if (executionEnemy && !UIManager.gameIsPaused)
         {
             if(!executionEnemy._health.isDead) return true;
         }

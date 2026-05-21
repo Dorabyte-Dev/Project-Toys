@@ -86,6 +86,7 @@ public class UIManager : MonoBehaviour
     }
 
     private void InitUI()
+    
     {
         curtainInstance = curtain;
         curtainInstance.material.SetFloat("_MaskScale", 1f);
@@ -104,11 +105,16 @@ public class UIManager : MonoBehaviour
                 if (optionsPanel.gameObject.activeSelf)
                     CloseOptions();
                 else
+                {
                     ResumeGame();
+                    SoundManager.instance.Unpause(SoundManager.instance.currentTheme.name);
+                }
+                    
             }
             else
             {
                 PauseGame();
+                SoundManager.instance.Pause(SoundManager.instance.currentTheme.name);
             }
         }
     }
