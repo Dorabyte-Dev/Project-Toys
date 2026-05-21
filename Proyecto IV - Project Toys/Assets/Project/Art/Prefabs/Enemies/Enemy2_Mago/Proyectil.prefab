@@ -138,6 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f221bc47dbb51e24f85ec1256cbd8c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Proyectil
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   shadowPrefab: {fileID: 4145692097774232219, guid: 1c6d75a5c068b9a4484cff2a809ce665, type: 3}
   shadowOffsetY: 0.01
   shadowScaleMultiplier: 1
@@ -147,6 +150,7 @@ MonoBehaviour:
   projectileType: 0
   direction: {x: 0, y: 0, z: 0}
   speed: 0
+  timeToDestroy: 0
   initialDistanceToOrigin: 0
   targetPosition: {x: 0, y: 0, z: 0}
   launchParticles:
@@ -266,7 +270,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0e5affad3542e35478779280893afe91, type: 2}
+  - {fileID: 2100000, guid: 857948fb5ff4a4e4cafdcda7df4f9603, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
