@@ -48,8 +48,14 @@ public class Enemy_VFX : Entity_VFX
     public void HitPSEffect(Quaternion particleRotation)
     {
         GameObject pHitEffectInstance = Instantiate(pHitEffectParticles, transform.position, Quaternion.identity);
-        GameObject pHitEffectFlashInstance = Instantiate(pHitEffectFlash, transform.position, Quaternion.identity);
+        
+        Vector3 directionToCamera = (Camera.main.transform.position - transform.position).normalized;
+        
+        GameObject pHitEffectFlashInstance = Instantiate(pHitEffectFlash, transform.position + directionToCamera * 1f, Quaternion.identity);
         pHitEffectInstance.transform.rotation = particleRotation;
+        
+        
+        
         ParticleSystem pHitEffectPS = pHitEffectInstance.GetComponent<ParticleSystem>();
         ParticleSystem pHitEffectFlashPS = pHitEffectFlashInstance.GetComponent<ParticleSystem>();
         if (pHitEffectPS == null)
