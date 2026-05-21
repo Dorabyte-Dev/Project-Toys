@@ -61,7 +61,7 @@ public class Proyectil : MonoBehaviour
     private void Start()
     {
         CastShadow();
-        SoundManager.instance.Play("WizardShoot");
+        
     }
 
     private void Update()
@@ -141,6 +141,7 @@ public class Proyectil : MonoBehaviour
                 });
                 break;
             case ProjectileType.Enemy2Projectile:
+                SoundManager.instance.Play("WizardShoot");
                 foreach (ParticleSystem ps in launchParticles)
                 {
                     ps.gameObject.SetActive(true);
