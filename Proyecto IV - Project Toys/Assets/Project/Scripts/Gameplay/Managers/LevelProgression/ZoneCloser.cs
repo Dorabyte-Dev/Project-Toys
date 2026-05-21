@@ -10,6 +10,7 @@ using UnityEngine.Events;
 public class ZoneCloser : MonoBehaviour
 {
     private static List<ZoneCloser> zoneClosersCompleted = new();
+    public List<ZoneCloser> debug_ZoneClosers;
     Rigidbody rb;
     public bool hasBeenActivated;
     public LayerMask playerMask;
@@ -41,7 +42,7 @@ public class ZoneCloser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        debug_ZoneClosers = zoneClosersCompleted;
     }
 
     private void OnTriggerEnter(Collider other)
