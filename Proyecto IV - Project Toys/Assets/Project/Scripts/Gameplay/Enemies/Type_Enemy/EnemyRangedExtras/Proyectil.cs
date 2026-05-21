@@ -61,6 +61,7 @@ public class Proyectil : MonoBehaviour
     private void Start()
     {
         CastShadow();
+        SoundManager.instance.Play("WizardShoot");
     }
 
     private void Update()
@@ -153,6 +154,8 @@ public class Proyectil : MonoBehaviour
 
     public void DestroyProjectile()
     {
+        SoundManager.instance.Play("WizardShootDeath");
+        SoundManager.instance.Stop("WizardShoot");
         Destroy(this.gameObject);
         OnProjectileDestroyed?.Invoke();
     }

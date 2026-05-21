@@ -16,8 +16,19 @@ public class UIManager : MonoBehaviour
         get => _healthBarFillAmount;
         set 
         {
+            float previousFillAmount = _healthBarFillAmount;
+
             _healthBarFillAmount = Mathf.Clamp01(value);
             healthBar.Value = _healthBarFillAmount;
+
+            if(_healthBarFillAmount < .33f && previousFillAmount >= .33f)
+            {
+                SoundManager.instance.Play("LowHealth");
+            }
+            else if(_healthBarFillAmount > .33f && previousFillAmount <= .33f)
+            {
+                SoundManager.instance.Stop("LowHealth");
+            }
         }
     }
     public float healthBlockAnimationDistance = 20f;
