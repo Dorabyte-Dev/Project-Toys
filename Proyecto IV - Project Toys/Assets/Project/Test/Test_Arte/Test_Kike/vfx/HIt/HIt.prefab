@@ -29,7 +29,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 444088679495137389}
   - {fileID: 672393009932137934}
@@ -119,7 +119,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.12
+      scalar: 0.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -290,7 +290,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5013,8 +5013,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.15
-      minScalar: 0.1
+      scalar: 0.25
+      minScalar: 0.15
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9908,7 +9908,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.12
+      scalar: 0.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -14745,6 +14745,10 @@ PrefabInstance:
     - target: {fileID: 2694285693500686670, guid: bd2b3ac4a9d5ee74fbdb42f94053d05a, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 1.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 2694285693500686670, guid: bd2b3ac4a9d5ee74fbdb42f94053d05a, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2694285693500686670, guid: bd2b3ac4a9d5ee74fbdb42f94053d05a, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.atime0
