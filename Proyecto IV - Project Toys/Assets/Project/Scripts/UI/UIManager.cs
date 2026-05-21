@@ -56,6 +56,7 @@ public class UIManager : MonoBehaviour
     [Header("Pause Menu")]
     [SerializeField] private GameObject pausePanel;
     public Button optionsbackButton;
+    public Button controlsBackButton;
     public static bool gameIsPaused;
     private CanvasGroup pausePanelGroup;
     private RectTransform pausePanelRect;
@@ -65,6 +66,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject optionsPanel;
     private CanvasGroup optionsPanelGroup;
     private RectTransform optionsPanelRect;
+    [Header("Controls Panel")]
+    [SerializeField] private GameObject controlsPanel;
+    private CanvasGroup controlsPanelGroup;
+    private RectTransform controlsPanelRect;
 
     private void Awake()
     {
@@ -92,7 +97,9 @@ public class UIManager : MonoBehaviour
         curtainInstance.material.SetFloat("_MaskScale", 1f);
         InitPausePanel();
         InitOptionsPanel();
+        InitControlsPanel();
         optionsbackButton.onClick.AddListener(CloseOptions);
+        controlsBackButton.onClick.AddListener(CloseControls);
     }
 
     private void Update()
@@ -245,5 +252,47 @@ public class UIManager : MonoBehaviour
             });
     }
     
+    #endregion
+
+    #region Controls Canvas
+    private void InitControlsPanel()
+    {
+        controlsPanel.SetActive(false);
+        controlsPanelGroup = optionsPanel.GetComponent<CanvasGroup>();
+        controlsPanelRect = optionsPanel.GetComponent<RectTransform>();
+    }
+    public void OpenControls()
+    {
+        controlsPanel.SetActive(true);
+        pausePanel.SetActive(false);
+
+        controlsPanelGroup.alpha = 0f;
+        controlsPanelRect.anchoredPosition = new Vector2(0, -50f);
+
+        controlsPanelGroup
+            .DOFade(1f, 0.3f)
+            .SetUpdate(true);
+
+        controlsPanelRect
+            .DOAnchorPos(Vector2.zero, 0.3f)
+            .SetEase(Ease.OutBack)
+            .SetUpdate(true);
+    }
+    
+    private void CloseControls()
+    {
+        controlsPanelGroup
+            .DOFade(0f, 0.2f)
+            .SetUpdate(true);
+
+        controlsPanelRect
+            .DOAnchorPos(new Vector2(0, -50f), 0.2f)
+            .SetUpdate(true)
+            .OnComplete(() =>
+            {
+                controlsPanel.SetActive(false);
+                pausePanel.SetActive(true);
+            });
+    }
     #endregion
 }
