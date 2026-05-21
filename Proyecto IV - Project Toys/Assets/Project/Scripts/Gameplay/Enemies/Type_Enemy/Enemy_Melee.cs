@@ -443,7 +443,7 @@ public class Enemy_Melee : Enemy
         base.Execution_Enter();
         
         agent.isStopped = true;
-        SoundManager.instance.Play("TeddyExecution");
+        //SoundManager.instance.Play("TeddyExecution");
         //SetEnemyDead();
     }
     public override void Execution_Update()

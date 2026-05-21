@@ -68,6 +68,16 @@ public class Enemy_AnimationTriggers : Entity_AnimationTriggers
         enemy.combat.SetPerfectDodgeCollider(isActive == 1);
     }
     
+    public void PlayExcecutionTeddySFX()
+    {
+        SoundManager.instance.Play("TeddyExecution");
+    }
+    
+    public void PlayExecutionWizardSFX()
+    {
+        SoundManager.instance.Play("WizardExecution");
+    }
+    
     #region Golem
 
     public void GolemSlamAttack()
