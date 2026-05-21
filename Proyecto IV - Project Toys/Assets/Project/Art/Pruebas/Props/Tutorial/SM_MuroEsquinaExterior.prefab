@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3513958257876349849}
   - component: {fileID: 1838473211106657368}
   - component: {fileID: 4154946020437114477}
+  - component: {fileID: 5371466785561410819}
   m_Layer: 0
   m_Name: SM_MuroEsquinaExterior
   m_TagString: Untagged
@@ -111,3 +112,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 210.4061, y: 206.62953, z: 129.82933}
   m_Center: {x: 5.2030754, y: -3.314762, z: -64.91466}
+--- !u!114 &5371466785561410819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458488100915318413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshModifier
+  m_SerializedVersion: 0
+  m_OverrideArea: 1
+  m_Area: 1
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
