@@ -79,6 +79,9 @@ public class SeeThroughWallManager : MonoBehaviour
             Shader.SetGlobalFloat("_CutoutSize", 0f);
             return;
         }
+        
+        float playerDepth = mainCamera.WorldToViewportPoint(shaderTarget.position).z;
+        Shader.SetGlobalFloat("_PlayerDepth", playerDepth);
         Shader.SetGlobalVector("_CutoutPosition", cutoutPos);
         
         Shader.SetGlobalFloat("_CutoutSize", currentCutoutSize);
@@ -119,12 +122,14 @@ public class SeeThroughWallManager : MonoBehaviour
     {
         Shader.SetGlobalFloat("_CutoutSize", 0f);
         Shader.SetGlobalFloat("_EnableShader", 0f);
+        Shader.SetGlobalFloat("_PlayerDepth", 0f);
     }
-    
+
     private void OnDestroy()
     {
         Shader.SetGlobalFloat("_CutoutSize", 0f);
         Shader.SetGlobalFloat("_EnableShader", 0f);
+        Shader.SetGlobalFloat("_PlayerDepth", 0f);
     }
     
     /*private void OnGUI()
