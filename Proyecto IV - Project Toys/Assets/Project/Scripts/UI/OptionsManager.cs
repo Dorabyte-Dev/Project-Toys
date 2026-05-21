@@ -3,8 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
-using System;
-
 
 public class OptionsManager : MonoBehaviour
 {
@@ -24,16 +22,19 @@ public class OptionsManager : MonoBehaviour
     [SerializeField] private TMP_Dropdown resolutionDropdown;
 
     [Header("Toggle")]
-    [SerializeField] private float dropPunchDownScale;
-    [SerializeField] private float dropdownAnimDuration;
+    [SerializeField] private float dropPunchDownScale = 0.1f;
+    [SerializeField] private float dropdownAnimDuration = 0.2f;
     [SerializeField] private Toggle fullscreenToggle;
     [SerializeField] private Toggle enemyUIToggle;
+    
     public static bool isEnabledUI = true;
 
     [Header("Post Processing")]
     [SerializeField] private Light directionalLight;
     private float baseIntensity = -1f;
-    private Resolution[] resolutions;
+    
+    // CORRECCIÓN: Lista paralela para evitar el desfase de índices del Dropdown
+    private List<Resolution> filteredResolutions = new List<Resolution>(); 
 
     private void Awake()
     {
@@ -60,34 +61,31 @@ public class OptionsManager : MonoBehaviour
         InitVolume();
         InitBrightness();
         InitQuality();
-        InitResolution();
+        InitResolution(); // Ahora filtra correctamente
         InitFullscreen();
         InitEnemyUI();
     }
-
 
     private void InitVolume()
     {
         if (volumeSlider == null) return;
         volumeSlider.value = PlayerPrefs.GetFloat("Volume", 1f);
-        AudioListener.volume = volumeSlider.value;
-        volumeSlider.onValueChanged.AddListener(SetVolume);
         SetVolume(volumeSlider.value);
+        volumeSlider.onValueChanged.AddListener(SetVolume);
     }
 
     private void InitBrightness()
     {
         if (brightnessSlider == null || directionalLight == null) return;
-        if (baseIntensity < 0f)
-            baseIntensity = directionalLight.intensity;
+        if (baseIntensity < 0f) baseIntensity = directionalLight.intensity;
 
         brightnessSlider.minValue = 0f;
         brightnessSlider.maxValue = 1f;
         brightnessSlider.value = PlayerPrefs.GetFloat("Brightness", 1f);
-
+        SetBrightness(brightnessSlider.value);
+        
         brightnessSlider.onValueChanged.RemoveAllListeners();
         brightnessSlider.onValueChanged.AddListener(SetBrightness);
-        SetBrightness(brightnessSlider.value);
     }
 
     private void InitQuality()
@@ -95,51 +93,79 @@ public class OptionsManager : MonoBehaviour
         if (qualityDropdown == null) return;
         qualityDropdown.ClearOptions();
         qualityDropdown.AddOptions(new List<string>(QualitySettings.names));
-        qualityDropdown.value = PlayerPrefs.GetInt("Quality", QualitySettings.GetQualityLevel());
+        
+        int savedQuality = PlayerPrefs.GetInt("Quality", QualitySettings.GetQualityLevel());
+        qualityDropdown.value = savedQuality;
+        
+        // CORRECCIÓN: Forzamos la aplicación de la calidad guardada al iniciar
+        QualitySettings.SetQualityLevel(savedQuality); 
+        
         qualityDropdown.onValueChanged.AddListener(SetQuality);
     }
 
     private void InitResolution()
     {
         if (resolutionDropdown == null) return;
-        resolutions = Screen.resolutions;
+        
+        Resolution[] allResolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
+        filteredResolutions.Clear();
 
         List<string> options = new List<string>();
-        int currentIndex = 0;
+        int currentResIndex = 0;
+        
+        // Recuperamos la resolución guardada (o usamos la de la pantalla por defecto)
+        int savedWidth = PlayerPrefs.GetInt("ResWidth", Screen.currentResolution.width);
+        int savedHeight = PlayerPrefs.GetInt("ResHeight", Screen.currentResolution.height);
 
-        for (int i = 0; i < resolutions.Length; i++)
+        for (int i = 0; i < allResolutions.Length; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            if (!options.Contains(option)) options.Add(option);
+            string option = allResolutions[i].width + " x " + allResolutions[i].height;
+            
+            // Si es una resolución única, la guardamos
+            if (!options.Contains(option)) 
+            {
+                options.Add(option);
+                filteredResolutions.Add(allResolutions[i]); // Guardamos la real
 
-            if (resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
-                currentIndex = i;
+                if (allResolutions[i].width == savedWidth && allResolutions[i].height == savedHeight)
+                {
+                    currentResIndex = filteredResolutions.Count - 1;
+                }
+            }
         }
 
-
         resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentIndex;
+        resolutionDropdown.value = currentResIndex;
+        resolutionDropdown.RefreshShownValue();
+        
+        // CORRECCIÓN: Forzamos la aplicación para pisar el error de Windows Registry
+        SetResolution(currentResIndex);
+        
         resolutionDropdown.onValueChanged.AddListener(SetResolution);
     }
 
     private void InitFullscreen()
     {
         if (fullscreenToggle == null) return;
-        fullscreenToggle.isOn = Screen.fullScreen;
+        
+        // CORRECCIÓN: Recuperamos si era pantalla completa
+        bool isFullscreen = PlayerPrefs.GetInt("Fullscreen", Screen.fullScreen ? 1 : 0) == 1;
+        fullscreenToggle.isOn = isFullscreen;
+        Screen.fullScreen = isFullscreen;
+        
         fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
     }
+
     private void InitEnemyUI()
     {
         if (enemyUIToggle == null) return;
-        isEnabledUI = true;
+        
+        // CORRECCIÓN: Respetamos el guardado de la UI
+        isEnabledUI = PlayerPrefs.GetInt("EnemyUI", 1) == 1; 
         enemyUIToggle.isOn = isEnabledUI;
         enemyUIToggle.onValueChanged.AddListener(SetEnemyUI);
-        //SetEnemyUI(isEnabledUI);
     }
-
-
 
     // ==== SETTERS ====
     public void SetVolume(float value)
@@ -172,17 +198,40 @@ public class OptionsManager : MonoBehaviour
         AnimateDropdown(qualityDropdown);
     }
 
+    public void SetResolution(int index)
+    {
+        // CORRECCIÓN: Usamos la lista filtrada para que coincida con el Dropdown
+        Resolution res = filteredResolutions[index];
+        
+        Screen.SetResolution(res.width, res.height, Screen.fullScreen);
+        
+        // Guardamos los datos para la próxima vez que se abra el juego
+        PlayerPrefs.SetInt("ResWidth", res.width);
+        PlayerPrefs.SetInt("ResHeight", res.height);
+    }
+
+    public void SetFullscreen(bool value)
+    {
+        Screen.fullScreen = value;
+        PlayerPrefs.SetInt("Fullscreen", value ? 1 : 0);
+    }
+
+    private void SetEnemyUI(bool value)
+    {
+        isEnabledUI = value;
+        PlayerPrefs.SetInt("EnemyUI", value ? 1 : 0);
+    }
+
     private void AnimateDropdown(TMP_Dropdown dropdown)
     {
-        if (dropdown == null)
-            return;
+        if (dropdown == null) return;
         RectTransform rt = dropdown.GetComponent<RectTransform>();
-        if (rt == null)
-            return;
+        if (rt == null) return;
 
         rt.DOKill();
         rt.localScale = Vector3.one;
         rt.DOPunchScale(Vector3.one * dropPunchDownScale, dropdownAnimDuration, 5, .5f);
+        
         TMP_Text label = dropdown.captionText;
         if (label != null)
         {
@@ -191,22 +240,5 @@ public class OptionsManager : MonoBehaviour
             label.DOColor(Color.white, dropdownAnimDuration * 0.3f)
                 .OnComplete(() => label.DOColor(original, dropdownAnimDuration * 0.7f));
         }
-    }
-
-    public void SetResolution(int index)
-    {
-        Resolution res = resolutions[index];
-        Screen.SetResolution(res.width, res.height, Screen.fullScreen);
-    }
-
-    public void SetFullscreen(bool value)
-    {
-        Screen.fullScreen = value;
-    }
-
-    private void SetEnemyUI(bool value)
-    {
-        isEnabledUI = value;
-        PlayerPrefs.SetInt("EnemyUI", value ? 1 : 0);
     }
 }
