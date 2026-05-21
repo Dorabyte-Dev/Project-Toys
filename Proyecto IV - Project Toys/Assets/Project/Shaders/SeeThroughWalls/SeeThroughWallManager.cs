@@ -127,7 +127,7 @@ public class SeeThroughWallManager : MonoBehaviour
         Shader.SetGlobalFloat("_EnableShader", 0f);
     }
     
-    private void OnGUI()
+    /*private void OnGUI()
     {
         if (shaderTarget == null || mainCamera == null) return;
         Vector3 sp = mainCamera.WorldToScreenPoint(shaderTarget.position);
@@ -136,5 +136,5 @@ public class SeeThroughWallManager : MonoBehaviour
         // Dibuja un punto rojo exactamente donde el script cree que está el jugador
         GUI.color = Color.red;
         GUI.DrawTexture(new Rect(sp.x - 5, guiY - 5, 10, 10), Texture2D.whiteTexture);
-    }
+    }*/
 }
