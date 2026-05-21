@@ -240,6 +240,7 @@ public class Enemy_MiniGolem : Enemy
     {
         base.Execution_Enter();
         agent.isStopped = true;
+        SoundManager.instance.Play("TeddyExecution");
     }
 
     public override void Execution_Update()

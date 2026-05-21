@@ -448,6 +448,7 @@ public class Enemy_Ranged : Enemy
     {
         base.Execution_Enter();
         agent.isStopped = true;
+        SoundManager.instance.Play("WizardExecution");
     }
     public override void Execution_Update()
     {

@@ -269,6 +269,7 @@ public class Enemy_Golem : Enemy
     {
         base.Execution_Enter();
         agent.isStopped = true;
+        SoundManager.instance.Play("GolemExecution");
     }
 
     public override void Execution_Update()
