@@ -49,6 +49,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Collider spawnArea;
     public float spawnDelay;
     private int currentWave;
+    [SerializeField]private int currentEnemiesAdded;
     public Wave[] waves;
     private int enemiesDead;
     [SerializeField]private List<GameObject> enemiesSpawned = new List<GameObject>();
@@ -107,8 +108,9 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator SpawnEnemies()
     {
         List<GameObject> enemiesToSpawn = waves[currentWave].TotalEnemies;
+        currentEnemiesAdded = 0;
         //for (int i = 0; i < enemiesToSpawn.Count; i++)
-        while(enemiesToSpawn.Count > 0)
+        while (enemiesToSpawn.Count > 0)
         {
             //Codigo de la generacion aleatoria dentro de bounds
             Vector3 newPosition = GetRandomNavMeshPoint(spawnArea);
@@ -125,6 +127,12 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    public void AddNewEnemy(GameObject newEnemy)
+    {
+        enemiesSpawned.Add(newEnemy);
+        newEnemy.GetComponentInChildren<Enemy>().spawner = this;
+        currentEnemiesAdded++;
+    }
     public void EnemyDead(GameObject enemy)
     {
         if (!enemiesSpawned.Contains(enemy)) return;
@@ -133,7 +141,7 @@ public class EnemySpawner : MonoBehaviour
         //enemyFactory.Dispose(enemy);
         //enemy.transform.parent.gameObject.SetActive(false);
         enemiesDead++;
-        if(waves[currentWave].EnemyCount == enemiesDead)
+        if(waves[currentWave].EnemyCount + currentEnemiesAdded == enemiesDead)
         {
             if(currentWave + 1 < waves.Length)
             {

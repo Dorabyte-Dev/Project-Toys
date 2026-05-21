@@ -244,8 +244,8 @@ public class Enemy_Golem : Enemy
         miniGolem.transform.DOJump(spawnPosition, miniGolemJumpPower, 1, miniGolemJumpDuration).SetEase(Ease.OutQuad).OnComplete((
             () =>
             {
-                Enemy_MiniGolem _miniGolem = miniGolem.GetComponent<Enemy_MiniGolem>();
-                _miniGolem.hasBorn = true;
+                miniGolem.GetComponent<Enemy_MiniGolem>().hasBorn = true;
+                spawner.AddNewEnemy(miniGolem);
             }));
     }
 
