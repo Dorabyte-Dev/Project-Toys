@@ -46,7 +46,15 @@ public class SoundManager : MonoBehaviour
         if (s.type == Sound.SoundType.music) currentTheme = s;
         s.source.Play();
 
-        Debug.Log("Now playing: " + currentTheme.name);
+        //Debug.Log("Now playing: " + currentTheme.name);
+    }
+
+    public void PlayUnique(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null) return;
+        if (s.source.isPlaying) return;
+        s.source.Play();
     }
     public void PlayRandomInRange(string[] names)
     {

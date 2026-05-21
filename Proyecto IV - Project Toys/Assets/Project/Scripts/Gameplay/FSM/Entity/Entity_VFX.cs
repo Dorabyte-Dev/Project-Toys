@@ -305,7 +305,7 @@ public class Entity_VFX : MonoBehaviour
         return null;
     }
     #region Slam Effect
-    public void SlamEffect()
+    public virtual void SlamEffect()
     {
         GameObject newSlamEffect = Instantiate(slamEffect, slamEffectPosition.transform.position, slamEffectPosition.transform.rotation);
         newSlamEffect.GetComponent<Animator>().Play("wallslamanim");

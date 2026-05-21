@@ -82,6 +82,12 @@ public class Enemy_VFX : Entity_VFX
         StartCoroutine(Dissolve());
     }
 
+    public override void SlamEffect()
+    {
+        base.SlamEffect();
+        SoundManager.instance.Play("SlamGolem");
+    }
+
     protected override IEnumerator PushFeedback(Vector3 direction)
     {
         if (rb != null)

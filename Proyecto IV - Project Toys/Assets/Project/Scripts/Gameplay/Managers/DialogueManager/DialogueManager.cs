@@ -155,7 +155,7 @@ public class DialogueManager : MonoBehaviour
             {
                 if (!string.IsNullOrEmpty(currentVoiceBlip) && sm != null)
                 {
-                    sm.Play(currentVoiceBlip);
+                    sm.PlayUnique(currentVoiceBlip);
                 }
                 
                 for (int i = 0; i < letterWaitFrames; i++)

@@ -48,7 +48,13 @@ public class Player_VFX : Entity_VFX
 		StartCoroutine(base.HitStop(player));
 	}
 
-	public override void DamageFeedback(Transform damageDealer)
+    public override void SlamEffect()
+    {
+        base.SlamEffect();
+		SoundManager.instance.Play("SlamPlayer");
+    }
+
+    public override void DamageFeedback(Transform damageDealer)
 	{
 		TriggerMaterialChange();
 		Vector3 pushDirection = (transform.position - damageDealer.position).normalized;

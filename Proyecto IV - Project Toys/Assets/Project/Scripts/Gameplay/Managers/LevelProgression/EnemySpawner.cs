@@ -172,6 +172,7 @@ public class EnemySpawner : MonoBehaviour
             foreach (ParticleSystem confetti in confettis)
             {
                 confetti.Play();
+                SoundManager.instance.Play("ZoneCompleted");
             }
         }
         
